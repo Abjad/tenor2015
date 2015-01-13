@@ -90,3 +90,36 @@ We should do away with the distinction between composers and programmers.
 Model: LilyPond paper.
 
 Paragraph: problems of representation (list things we’ll later publish).
+
+Outline based on design priorities --
+
+Typographic Modeling
+   cite Kay and Smalltalk
+   we model objects on the page according to common pratice notation
+   this is extensible and we respond to requests for additions (you get what you need to make scores)
+Relationship Modeling
+   leaf-spanner-container
+   parentage
+   logical tie
+   selection
+Score Navigation
+   Iteration
+      efficient and intuitive navigation of the score hierarchy
+      does what mapping does in a functional program
+   Structural Addressing
+      list indexing
+      list slicing
+      named context indexing
+Open-source
+   accessibility
+   encourages sharing of best practices
+   encourages participation in a community
+   allied open-source development teams and priorities
+      minimize chances of possible obsolescence
+      testing and refactoring
+         9 million to 250,000 (approx. 36 to 1: for every line in code, 35 have been discarded)
+Embeddability
+      it's a library
+      iPython - put it in web apps, collaborate
+Extensibility
+   
