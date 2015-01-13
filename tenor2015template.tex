@@ -25,10 +25,11 @@
 
 
 %user defined variables
-\def\papertitle{PAPER TEMPLATE FOR TENOR 2015}
-\def\firstauthor{First author}
-\def\secondauthor{Second author}
-\def\thirdauthor{Third author}
+\def\papertitle{Abjad, A Python API for Formalized Score Control}
+\def\firstauthor{Trevor Ba\v{c}a}
+\def\secondauthor{Josiah Wolf Oberholtzer}
+\def\thirdauthor{Jeffrey Trevi\~{n}o}
+\def\fourthauthor{Victor Ad\'{a}n}
 
 % adds the automatic
 % Saves a lot of ouptut space in PDF... after conversion with the distiller
@@ -47,7 +48,7 @@
 \ifpdf % compiling with pdflatex
   \usepackage[pdftex,
     pdftitle={\papertitle},
-    pdfauthor={\firstauthor, \secondauthor, \thirdauthor},
+    pdfauthor={\firstauthor, \secondauthor, \thirdauthor, \fourthauthor},
     bookmarksnumbered, % use section numbers with bookmarks
     pdfstartview=XYZ % start with zoom=100% instead of full screen; 
                      % especially useful if working with a big screen :-)
@@ -112,14 +113,25 @@
 
 % Three addresses
 % --------------
- \threeauthors
-   {\firstauthor} {Affiliation1 \\ %
-     {\tt \href{mailto:author1@adomain.org}{author1@adomain.org}}}
-   {\secondauthor} {Affiliation2 \\ %
-     {\tt \href{mailto:author2@adomain.org}{author2@adomain.org}}}
-   {\thirdauthor} { Affiliation3 \\ %
-     {\tt \href{mailto:author3@adomain.org}{author3@adomain.org}}}
+% \threeauthors
+%   {\firstauthor} {Affiliation1 \\ %
+%     {\tt \href{mailto:author1@adomain.org}{author1@adomain.org}}}
+%   {\secondauthor} {Affiliation2 \\ %
+%     {\tt \href{mailto:author2@adomain.org}{author2@adomain.org}}}
+%   {\thirdauthor} { Affiliation3 \\ %
+%     {\tt \href{mailto:author3@adomain.org}{author3@adomain.org}}}
 
+% Four addresses
+% --------------
+ \fourauthors
+   {\firstauthor} {Harvard \\ %
+     {\tt \href{mailto:trevorbaca@gmail.com}{trevorbaca@gmail.com}}}
+   {\secondauthor} {Harvard \\ %
+     {\tt \href{mailto:josiah.oberholtzer@gmail.com}{josiah.oberholtzer@gmail.com}}}
+   {\thirdauthor} { UCSD \\ %
+     {\tt \href{mailto:jeffrey.trevino@gmail.com}{jeffrey.trevino@gmail.com}}}
+   {\fourthauthor} { Columbia \\ %
+     {\tt \href{mailto:vga2102@columbia.edu}{vga2102@columbia.edu}}}
 
 % ***************************************** the document starts here ***************
 \begin{document}
