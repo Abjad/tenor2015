@@ -94,32 +94,66 @@ Paragraph: problems of representation (list things we’ll later publish).
 Outline based on design priorities --
 
 Typographic Modeling
-   cite Kay and Smalltalk
-   we model objects on the page according to common pratice notation
-   this is extensible and we respond to requests for additions (you get what you need to make scores)
+    - cite Kay and Smalltalk
+    - we model objects on the page according to common pratice notation
+    - Notes, Chords, Rests, Articulations, Slurs, Beams etc.
+    - this is extensible and we respond to requests for additions (you get what
+      you need to make scores)
+
 Relationship Modeling
-   leaf-spanner-container
-   parentage
-   logical tie
-   selection
+    - Leaf, Container, Spanner, Indicator
+    - Selection, [ContiguousSelection, SliceSelection, etc.]
+    - Parentage
+    - LogicalTie
+    - IndicatorExpression (this touches on a conversation of horizontal
+      contexts and scope)
+    - InspectionAgent
+
 Score Navigation
-   Iteration
-      efficient and intuitive navigation of the score hierarchy
-      does what mapping does in a functional program
-   Structural Addressing
-      list indexing
-      list slicing
-      named context indexing
-Open-source
-   accessibility
-   encourages sharing of best practices
-   encourages participation in a community
-   allied open-source development teams and priorities
-      minimize chances of possible obsolescence
-      testing and refactoring
-         9 million to 250,000 (approx. 36 to 1: for every line in code, 35 have been discarded)
-Embeddability
-      it's a library
-      iPython - put it in web apps, collaborate
+    - Iteration
+        - efficient and intuitive navigation of the score hierarchy does what
+          mapping does in a functional program
+    - Structural Addressing
+        - list indexing
+        - list slicing
+        - named context accessing (regardless of depth in the score tree)
+    - powerful selectors are afforded by the inherent ease of iterating over
+      the score tree.
+
+Score Mutation [?]
+    - [again, afforded by clean object model and iteration tools]
+    - Appending, extending, (__setitem__) allows for moving objects around in
+      the score tree
+    - attach() / detach()
+    - mutate()
+
 Extensibility
-   
+    - Abjad core model is agnostic to composition techniques
+    - Abjad provides affordances for high-level, personal, eccentric
+      composition techniques as optional tools packages.
+        - quantizationtools
+        - rhythmmakertools
+        - sievetools
+    - Composers and researchers are free to contribute changes via pull request
+        - continuous integration simplifies the contribution process
+
+Embeddability
+    - Abjad is an importable Python library
+    - It can be used as a dependency in any other Python project.
+    - Abjad supports iPython Notebooks; a popular format for interactively
+      creating math and science documents.
+
+Open-source
+    - Accessibility, transparency
+    - encourages sharing of best practices
+        - extensive testing (regression, doctesting, continuous integration)
+        - extensive documentation
+        - style guide
+        - support for multiple python versions
+    - encourages participation in a community
+    - allied open-source development teams and priorities
+    - minimize chances of possible obsolescence
+    - testing and refactoring
+        - 9 million line changes to 250,000 current lines: a refactoring ratio
+          of approximately 36 to 1.
+        - For every line in code, 35 have been discarded.
