@@ -100,6 +100,9 @@ Typographic Modeling
         - Note, Chord, Rest, etc., not lists of (implicit) numbers
     - this is extensible and we respond to requests for additions (you get what
       you need to make scores)
+    - examples:
+        - written, assignable and prolated durations
+        - named pitches vs numbered pitches
 
 Relationship Modeling
     - Leaf, Container, Spanner, Indicator
@@ -108,7 +111,6 @@ Relationship Modeling
     - LogicalTie
     - IndicatorExpression (this touches on a conversation of horizontal
       contexts and scope)
-    - InspectionAgent
 
 Score Navigation
     - Iteration
@@ -120,6 +122,9 @@ Score Navigation
         - named context accessing (regardless of depth in the score tree)
     - powerful selectors are afforded by the inherent ease of iterating over
       the score tree.
+    - examples:
+        - InspectionAgent, IterationAgent
+
 
 Score Mutation
     - [again, afforded by clean object model and iteration tools]
