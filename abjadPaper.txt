@@ -1,0 +1,42 @@
+deadline: 1/31
+notification: “End of February”
+4-12 pages
+
+abjads is not a music notation program - it’s a modeling program that happens to have the ability to generate notations
+
+
+background and history
+
+modeling composition vs modeling notation
+
+Overview of Abjad with examples
+
+LCSI - Leaf, Container, Spanner, Indicator
+Concrete class for parentage (object model of parentage)
+Important: we object model glyphs on the page — but it goes a step further: models abstract relationships between those things.
+
+goal: composition agnostic
+
+
+core —
+scoretools
+indicatortools
+spannertools
+
+extensibility and namespacing (it’s a library that can be included):
+
+developer-provided examples of extensibility—
+sievetools
+tonalanalysistools
+
+Abjad is the first robust object-oriented interface to Western Notation
+
+cognitive bits Smalltalk comparisons, etc.
+
+crucial: early assumption in design — who knows how anyone else composes? however it is, we want a lot of the same basic things (iteration, indexing and addressing, hierarchical nesting, nesting, containment, structural addressing, encapsulation) — dovetails with example of iterating through notes, chords, rests in PWGL vs Abjad, can build on ch. 1 discussion of readability and score navigation.
+
+We should do away with the distinction between composers and programmers.
+
+Model: Liilypond paper.
+
+paragraph: problems of representation (list things we’ll later publish).
