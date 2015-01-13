@@ -1,42 +1,92 @@
-deadline: 1/31
-notification: “End of February”
-4-12 pages
+Deadline: 1/31
+Notification: “End of February”
+4-12 pages**
 
-abjads is not a music notation program - it’s a modeling program that happens to have the ability to generate notations
+**Though note that the tenor2015template.pdf (contained in this directory)
+states the "[y] paper must not exceed 8 pages, no matter if you are presenting
+orally or posterly. We strongly encourage a paper length of 6 pages."
 
+Abjad is not a music notation program - it’s a modeling program that happens to
+have the ability to generate notations.
 
-background and history
+Background and history.
 
-modeling composition vs modeling notation
+Modeling composition vs modeling notation.
 
 Overview of Abjad with examples
 
 LCSI - Leaf, Container, Spanner, Indicator
 Concrete class for parentage (object model of parentage)
-Important: we object model glyphs on the page — but it goes a step further: models abstract relationships between those things.
 
-goal: composition agnostic
+Important: we object model glyphs on the page — but it goes a step further:
+models abstract relationships between those things.
 
+Goal: composition-agnostic
 
-core —
-scoretools
-indicatortools
-spannertools
+Core packages:
+    * scoretools
+    * indicatortools
+    * spannertools
 
-extensibility and namespacing (it’s a library that can be included):
+Mandatory packages (required for the core packages to function correctly):
+    * datastructuretools
+    * durationtools
+    * markuptools
+    * mathtools
+    * pitchtools
+    * schemetools
+    * selectiontools
+    * stringtools
+    * topleveltools
 
-developer-provided examples of extensibility—
-sievetools
-tonalanalysistools
+Extensibility. Abjad is architected as a Python package. Other Python packages
+include the datetime, itertools and random modules [do we need to distinguish
+between Python packages and Python modules?] included in the Python standard
+library as well as the thousands of Python packages available for download over
+the public Internet at the Python Package Index. (The Python Package Index is
+available at http://pypi.python.org.)
 
-Abjad is the first robust object-oriented interface to Western Notation
+Why is it important that Abjad is a Python module? [Fill in with a few benefits
+of extensibility here.] [QUESTION: does the fact that Abjad is architected as a
+Python package point to the *extensibility* of Abjad or to something else? Like
+perhaps to the accessiblity of Abjad? Though "accessibility" refers to readable
+typefaces and text-to-speech affordances for non-hearing users in this context.
+So we need a different word here.]
 
-cognitive bits Smalltalk comparisons, etc.
+The Python website includes this boilerplate on the benefit of Python packages:
 
-crucial: early assumption in design — who knows how anyone else composes? however it is, we want a lot of the same basic things (iteration, indexing and addressing, hierarchical nesting, nesting, containment, structural addressing, encapsulation) — dovetails with example of iterating through notes, chords, rests in PWGL vs Abjad, can build on ch. 1 discussion of readability and score navigation.
+"As a popular open source development project, Python has an active supporting
+community of contributors and users that also make their software available for
+other Python developers to use under open source license terms. This allows
+Python users to share and collaborate effectively, benefiting from the
+solutions others have already created to common (and sometimes even rare!)
+problems, as well as potentially contributing their own solutions to the common
+pool." [https://docs.python.org/3/installing/index.html]
+
+Developer-provided examples of extensibility. That is, components that function
+as "plug-ins" to the Abjad core system:
+    * labeltools
+    * metertools
+    * quantizationtools
+    * rhythmmakertools
+    * selectortools
+    * sequencetools
+    * sievetools
+    * tonalanalysistools
+
+Abjad is the first robust object-oriented interface to Western Notation.
+
+Cognitive bits Smalltalk comparisons, etc.
+
+Crucial: early assumption in design — who knows how anyone else composes?
+however it is, we want a lot of the same basic things (iteration, indexing and
+addressing, hierarchical nesting, nesting, containment, structural addressing,
+encapsulation) — dovetails with example of iterating through notes, chords,
+rests in PWGL vs Abjad, can build on ch. 1 discussion of readability and score
+navigation.
 
 We should do away with the distinction between composers and programmers.
 
-Model: Liilypond paper.
+Model: LilyPond paper.
 
-paragraph: problems of representation (list things we’ll later publish).
+Paragraph: problems of representation (list things we’ll later publish).
