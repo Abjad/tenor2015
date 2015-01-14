@@ -120,8 +120,6 @@ Score Navigation
         - list indexing
         - list slicing
         - named context accessing (regardless of depth in the score tree)
-    - powerful selectors are afforded by the inherent ease of iterating over
-      the score tree.
     - examples:
         - InspectionAgent, IterationAgent
 
@@ -137,8 +135,11 @@ Extensibility
     - Abjad core model is agnostic to composition techniques
     - Abjad provides affordances for high-level, personal, eccentric
       composition techniques as optional tools packages.
+        - labeltools
+        - metertools
         - quantizationtools
         - rhythmmakertools
+        - selectortools
         - sievetools
         - tonalanalysistools
     - Composers and researchers are free to contribute changes via pull request
