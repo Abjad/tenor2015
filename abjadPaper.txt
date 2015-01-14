@@ -105,10 +105,23 @@ Typographic Modeling
         - named pitches vs numbered pitches
 
 Relationship Modeling
+   (many methods of InspectionAgent should be given as examples: get_descendants, get_durations, get_effective_staff, get_lineage, get_logical_tie, get_parentage, get_sounding_pitch, get_vertical_moment
+   (Address in each subsection the way that pointers have been approached in the object models.)
     - Leaf, Container, Spanner, Indicator
-    - Selection, [ContiguousSelection, SliceSelection, etc.]
-    - Parentage
-    - LogicalTie
+    - Selection
+         Relationships in the Score Hierarchy
+            Lineage
+            Parentage
+            Descendants
+         Relationships in Time
+            LogicalTie
+            Slice
+            VerticalMoment
+      Arbitrary collection of components listed together.
+         We don't use containers for this, because containers imply time-orientation. 
+         They're either contiguous, sequential time sequence, or parallel containers.
+         A list of components without time ordering
+         Avoids need for bi-directional pointers (selections are not pointer-rich)
     - IndicatorExpression (this touches on a conversation of horizontal
       contexts and scope)
 
