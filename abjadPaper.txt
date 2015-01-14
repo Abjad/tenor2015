@@ -111,12 +111,12 @@ Relationship Modeling
       Components
          Leaves
          Containers
+            They're either contiguous, sequential time sequence, or parallel containers.
       Spanners
       Indicator
    Selection
    (introductory)
       We don't use containers for this, because containers imply time-orientation. 
-      They're either contiguous, sequential time sequence, or parallel containers.
       A list of components without time ordering
       Avoids need for bi-directional pointers (selections are not pointer-rich)
       Relationships in the Score Hierarchy
