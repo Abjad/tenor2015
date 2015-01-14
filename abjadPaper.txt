@@ -136,14 +136,16 @@ Relationship Modeling
 
 Score Navigation
     - Iteration
+        - methods that "get_*"
+            Container.select_leaves
+            Container.select_notes_and_chords
+            IterationAgent.by_class, .by_logical_tie, .by_timeline, .by_vertical_moment, .depth_first
         - efficient and intuitive navigation of the score hierarchy does what
           mapping does in a functional program
     - Structural Addressing
-        - list indexing
-        - list slicing
-        - named context accessing (regardless of depth in the score tree)
-    - examples:
-        - InspectionAgent, IterationAgent
+        - numeric addressing
+        - temporal addressing
+        - named addressing
 
 
 Score Mutation
