@@ -140,8 +140,8 @@ Score Navigation
             Container.select_leaves
             Container.select_notes_and_chords
             IterationAgent.by_class, .by_logical_tie, .by_timeline, .by_vertical_moment, .depth_first
-        - efficient and intuitive navigation of the score hierarchy does what
-          mapping does in a functional program
+        - efficient and intuitive navigation of the score hierarchy does what mapping does in a functional program
+            -containers partake of Python's sequence iterating interface (for loops work)
     - Structural Addressing
         - numeric addressing
         - temporal addressing
@@ -150,7 +150,7 @@ Score Navigation
 
 Score Mutation
     - [again, afforded by clean object model and iteration tools]
-    - Appending, extending, (__setitem__) allows for moving objects around in
+    - Appending, extending
       the score tree, between parents
     - attach() / detach()
     - mutate()
@@ -196,3 +196,7 @@ Conclusions and Future Direction
    IDE
    Document Preparation
    
+to do: 
+   audit outline for what figures we should include
+   input flexibility must be demonstrated (philosophy: Goldilocks. pitch, duration, note, container), 
+   either in footnotes or through example variety
