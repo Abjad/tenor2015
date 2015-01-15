@@ -107,6 +107,7 @@ Typographic Modeling
 Relationship Modeling
    (many methods of InspectionAgent should be given as examples: get_descendants, get_durations, get_effective_staff, get_lineage, get_logical_tie, get_parentage, get_sounding_pitch, get_vertical_moment
    (Address in each subsection the way that pointers have been approached in the object models.)
+   -Interrogability
    - Component, Spanner, Indicator
       - Components
          - Leaves
@@ -134,7 +135,7 @@ Relationship Modeling
     - IndicatorExpression (this touches on a conversation of horizontal
       contexts and scope)
 
-Score Addressing
+Score Addressability
     - Iteration
         - methods that "get_*"
             Container.select_leaves
@@ -147,11 +148,10 @@ Score Addressing
         - temporal addressing
         - named addressing
         
-Score Creation
+Score Fungability
    - instantiation
    - arbitrary annotation
-      - attach() / detach()
-   - interrogation
+   - attach() / detach()
    - mutation
    - [again, afforded by clean object model and iteration tools]
    - Appending, extending
