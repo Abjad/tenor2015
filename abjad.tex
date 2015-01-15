@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{tenor2015}
+\usepackage{times}
+\usepackage{ifpdf}
+\usepackage[english]{babel}
+\usepackage{cite}
+
+\def\papertitle{Abjad, A Python API for Formalized Score Control}
+\def\firstauthor{Trevor Ba\v{c}a}
+\def\secondauthor{Josiah Wolf Oberholtzer}
+\def\thirdauthor{Jeffrey Trevi\~{n}o}
+\def\fourthauthor{Victor Ad\'{a}n}
+
+\newif\ifpdf
+\ifx\pdfoutput\relax
+\else
+   \ifcase\pdfoutput
+      \pdffalse
+   \else
+      \pdftrue
+\fi
+
+\ifpdf % compiling with pdflatex
+  \usepackage[pdftex,
+    pdftitle={\papertitle},
+    pdfauthor={\firstauthor, \secondauthor, \thirdauthor, \fourthauthor},
+    bookmarksnumbered, % use section numbers with bookmarks
+    pdfstartview=XYZ % start with zoom=100% instead of full screen; 
+                     % especially useful if working with a big screen :-)
+   ]{hyperref}
+  %\pdfcompresslevel=9
+
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are and their extensions so 
+  %you won't have to specify these with every instance of \includegraphics
+  \graphicspath{{./figures/}}
+  \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+
+  \usepackage[figure,table]{hypcap}
+
+\else % compiling with latex
+  \usepackage[dvips,
+    bookmarksnumbered, % use section numbers with bookmarks
+    pdfstartview=XYZ % start with zoom=100% instead of full screen
+  ]{hyperref}  % hyperrefs are active in the pdf file after conversion
+  \usepackage[dvips]{epsfig,graphicx}
+  \graphicspath{{./figures/}}
+  \DeclareGraphicsExtensions{.eps}
+  \usepackage[figure,table]{hypcap}
+\fi
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\title{\papertitle}
+
+\fourauthors
+  {\firstauthor} {Harvard \\
+    {\tt \href{mailto:trevorbaca@gmail.com}{trevorbaca@gmail.com}}}
+  {\secondauthor} {Harvard \\
+    {\tt \href{mailto:josiah.oberholtzer@gmail.com}{josiah.oberholtzer@gmail.com}}}
+  {\thirdauthor} { Carleton College \\
+    {\tt \href{mailto:jeffrey.trevino@gmail.com}{jeffrey.trevino@gmail.com}}}
+  {\fourthauthor} { Bank of America \\
+    {\tt \href{mailto:vctradn@gmail.com}{vctradn@gmail.com}}}
+
+\begin{document}
+
+\capstartfalse
+\maketitle
+\capstarttrue
+
+\begin{abstract}
+Place your abstract at the top left column on the first page.
+Please write about 150-200 words that specifically highlight the purpose of your work,
+its context, and provide a brief synopsis of your results.
+Avoid equations in this part.
+\end{abstract}
+
+\section{Introduction}\label{sec:introduction}
+
+\begin{acknowledgments}
+You may acknowledge people, projects, 
+funding agencies, etc. 
+which can be included after the second-level heading
+``Acknowledgments'' (with no numbering).
+\end{acknowledgments} 
+
+\bibliography{tenor2015template}
+\end{document}
