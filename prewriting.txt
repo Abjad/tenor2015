@@ -13,15 +13,14 @@ Background and history.
 
 Modeling composition vs modeling notation.
 
-Overview of Abjad with examples
+Overview of Abjad with examples.
 
-LCSI - Leaf, Container, Spanner, Indicator
-Concrete class for parentage (object model of parentage)
+CSI - Component, Spanner, Indicator.
 
 Important: we object model glyphs on the page — but it goes a step further:
 models abstract relationships between those things.
 
-Goal: composition-agnostic
+Goal: composition-agnostic.
 
 Core packages:
     * scoretools
@@ -91,28 +90,57 @@ Model: LilyPond paper.
 
 Paragraph: problems of representation (list things we’ll later publish).
 
-Outline based on design priorities --
+0. Introduction: boilerplate on what Abjad is and the most recent statistics
+about it. [Tevor]
 
-Typographic Modeling
+1. Background. [Jeff]
+
+Explicitness of representation. Notational isomorphism. [Josiah]
+    "Typographic Modeling" / "We model objects on the page"
     - cite Kay and Smalltalk
     - we model objects on the page according to common pratice notation
-    - Modeling of musical constructs is explicit
+    - modeling of musical constructs is explicit
         - Note, Chord, Rest, etc., not lists of (implicit) numbers
     - this is extensible and we respond to requests for additions (you get what
       you need to make scores)
     - examples:
-        - written, assignable and prolated durations
-        - named pitches vs numbered pitches
+        - 5/8 must be notated with ties (or equivalent)
+        - accidentals must be specified
+        - tuplets must be built either as augmentations or diminutions
+    [FEEDFORWARD: single paper on semiotic status of defining new stuff]
+    How we build up score:
+        - instantiation
+        - arbitrary annotation
+        - attach() / detach()
+        - mutation
+        - [again, afforded by clean object model and iteration tools]
+        - Appending, extending
+            - the score tree, between parents
+        - mutate()
+        - some type of compositional process agnositicism
+        - iterative
+        - modular construction
+        - iterative aggregation
+    We assume notational primitives are the elements of composition
+    - Notational visualization
+    [special almost-accidental feature is that while you're composing you can
+    have near-publication-quality output while you're working]
 
-Relationship Modeling
-   (many methods of InspectionAgent should be given as examples: get_descendants, get_durations, get_effective_staff, get_lineage, get_logical_tie, get_parentage, get_sounding_pitch, get_vertical_moment
-   (Address in each subsection the way that pointers have been approached in the object models.)
-   -Interrogability
+Relationship Modeling [Hold off for now]
+
+   (many methods of InspectionAgent should be given as examples:
+   get_descendants, get_durations, get_effective_staff, get_lineage,
+   get_logical_tie, get_parentage, get_sounding_pitch, get_vertical_moment
+   (Address in each subsection the way that pointers have been approached in
+   the object models.)
+
+   - Interrogability
    - Component, Spanner, Indicator
       - Components
          - Leaves
          - Containers
-            - They're either contiguous, sequential time sequence, or parallel containers.
+            - They're either contiguous, sequential time sequence, or parallel 
+            containers.
       - Spanners
       - Indicator
    - Selection
@@ -130,12 +158,13 @@ Relationship Modeling
          - VerticalMoment
          - Timespans
             - Models abstract temporal relationships
-            - Any durated objects (components and spanners) model that exists in time has a timespan
+            - Any durated objects (components and spanners) model that exists 
+            in time has a timespan
       - Arbitrary collection of components listed together.
     - IndicatorExpression (this touches on a conversation of horizontal
       contexts and scope)
 
-Score Addressability
+Score Addressability [Trevor]
     - Iteration
         - methods that "get_*"
             Container.select_leaves
@@ -148,17 +177,7 @@ Score Addressability
         - temporal addressing
         - named addressing
         
-Score ?ability
-   - instantiation
-   - arbitrary annotation
-   - attach() / detach()
-   - mutation
-   - [again, afforded by clean object model and iteration tools]
-   - Appending, extending
-      - the score tree, between parents
-    - mutate()
-
-Extensibility
+Extensibility [Jeff]
     - Abjad core model is agnostic to composition techniques
     - Abjad provides affordances for high-level, personal, eccentric
       composition techniques as optional tools packages.
@@ -172,14 +191,14 @@ Extensibility
     - Composers and researchers are free to contribute changes via pull request
         - continuous integration simplifies the contribution process
 
-Embeddability
+Embeddability [Josiah]
     - Abjad is an importable Python library
     - It can be used as a dependency in any other Python project.
     - Abjad supports iPython Notebooks; a popular format for interactively
       creating math and science documents.
 
-Open-source
-    - Accessibility, transparency
+Open-source [Trevor]
+    - accessibility, transparency
     - encourages sharing of best practices
         - extensive documentation
         - extensive testing (regression, documentation testing, continuous
@@ -195,9 +214,11 @@ Open-source
         - 9 million line changes to 250,000 current lines: a refactoring ratio
           of approximately 36 to 1.
         - For every line in code, 35 have been discarded.
-Conclusions and Future Direction
-   IDE
-   Document Preparation
+
+Conclusions and Future Direction [save until end or possibly not even present
+    in this paper]
+    IDE
+    Document Preparation
    
 to do: 
    audit outline for what figures we should include
