@@ -148,7 +148,7 @@ Score Addressability
         - temporal addressing
         - named addressing
         
-Score Fungability
+Score ?ability
    - instantiation
    - arbitrary annotation
    - attach() / detach()
