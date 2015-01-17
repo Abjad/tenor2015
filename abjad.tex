@@ -5,11 +5,6 @@
 \usepackage[english]{babel}
 \usepackage{cite}
 
-\usepackage{color}
-\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
-\definecolor{greencomments}{rgb}{0,0.5,0}
-\definecolor{redstrings}{rgb}{0.9,0,0}
-
 \usepackage{listings}
 \lstset{language=Python,
 showspaces=false,
@@ -18,10 +13,8 @@ breaklines=false,
 showstringspaces=false,
 breakatwhitespace=false,
 escapeinside={(*@}{@*)},
-commentstyle=\color{greencomments},
-keywordstyle=\color{bluekeywords}\bfseries,
-stringstyle=\color{redstrings},
-basicstyle=\footnotesize\ttfamily
+keywordstyle=\bfseries,
+basicstyle=\scriptsize\ttfamily
 }
 
 \def\papertitle{Abjad, A Python API for Formalized Score Control}

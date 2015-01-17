@@ -2,10 +2,62 @@
 
 Abjad models objects on the page according to common practice notation.
 
-We assume notational primitives are the elements of composition.
+One class per user-creatable notational element: Note, Chord, Rest,
+Articulation, Slur, Beam, Tie.
 
 \subsection{Explicit notational modeling}
 
+Abjad models notation explicitly.
+
+Durations: written, assignable.
+
+\texttt{Notes}, \texttt{Chords} and \texttt{Rests} must be instantiated with
+assignable written durations. Durational assignability tests whether a duration
+can be represented as a power-of-two flag count combined with zero or more
+dots. \texttt{7/16} is an assignable duration while \texttt{5/32} and
+\texttt{9/8} are not. Non-assignable durations cannot be represented in common
+practice notation by a single glyph but only by two or more glyphs tied
+together. Abjad will not automatically render a single note with a duration of
+\texttt{5/16} as two or more notes tied together. We consider such behavior to
+be too implicit. there are too many potentially compositionally valid ways to
+render a duration such as \texttt{5/16} into a series of tied assignable
+durations: \texttt{1/4 + 1/16}, \texttt{3/16 + 2/16}, \texttt{2/16 + 3/16},
+\texttt{1/16 + 1/4}, \texttt{1/8 + 1/8 + 1/16} etc.
+
+Instead we provide affordances for generating tied notes from
+non-assignable durations via the \texttt{scoretools.make\_notes()} function.
+
+\begin{lstlisting}
+>>> notes = scoretools.make_notes(["c'"], [(5, 16)])
+>>> staff = Staff(notes)
+>>> print(format(staff))
+\new Staff {
+    c'4 ~
+    c'16
+}
+\end{lstlisting}
+
+Prolation: diminution vs augmentation.
+
+Likewise, \texttt{Notes} and other leaves cannot be instantiated with durations
+with non-power-of-two denominators. Not only are such durations non-assignable
+but they also suggest implicit tuplet-derived prolation..
+
+Three notes each having a prolated duration of \texttt{1/12} can be represented
+as either three \texttt{1/16} notes in a \texttt{3:4} tuplet or three
+\texttt{1/8} notes in a \texttt{3:2} tuplet.
+
 \subsection{Notational aggregation}
 
+We assume notational primitives are the elements of composition.
+
+The act of composition revolves around the aggregation of these primitives into
+arbitrarily complex score objects.
+
+Examples: append(), extend(), insert(), attach().
+
 \subsection{Notational visualization}
+
+Abjad makes visualizing notational artifacts simple. Any notational element or
+aggregate can be displayed at any time as a PDF via calls to its top-level
+\texttt{show()} function.
