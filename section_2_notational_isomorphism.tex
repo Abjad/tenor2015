@@ -4,6 +4,22 @@ Abjad models objects on the page according to common practice notation.
 
 We assume notational primitives are the elements of composition.
 
+\subsection{Notational aggregation}
+
+We consider the act of composition to revolve around the iterative aggregation
+of notational primitives into arbitrarily complex score objects.
+
+- append(), extend(), insert()
+
+- attach()
+
+\subsection{Notational visualization}
+
+Abjad makes visualizing notational artifacts simple.
+
+Any notational element or aggregate can be displayed at any time as a PDF via
+calls to its top-level \texttt{show()} function.
+
 \subsection{Explicit notational modeling}
 
 Abjad models notation explicitly. All notational primitives expressed by Abjad
@@ -11,15 +27,14 @@ must conform to the principles of common practice notation. When compositional
 inputs cannot be expressed in terms of these principles, we provide affordances
 for massaging them into valid notational states.
 
-\subsection{Explicit rationals and pitches}
-
-Abjad expresses durations in terms of rational values -- fractions and integers
--- rather than floating point numbers. Likewise Abjad expresses all pitches in
-terms of triples of diatonic note names, accidentals and octave numbers, rather
-than MIDI numbers or frequencies. While we provide alternative representations
-of pitch and rhythm, as well as affordances for moving between them, the format
-actually stored in and used by score components for rendering notation is
-always the most notationally-explicit.
+For example, Abjad expresses the durations of all score components in terms of
+rational values -- fractions and integers -- rather than floating point
+numbers. Likewise Abjad expresses all pitches in terms of triples of diatonic
+note names, accidentals and octave numbers, rather than MIDI numbers or
+frequencies. While we provide alternative representations of pitch and rhythm,
+as well as affordances for moving between them, the format actually stored in
+and used by score components for rendering notation is always the most
+notationally-explicit.
 
 \subsection{Written, assignable and prolated durations}
 
@@ -44,10 +59,10 @@ render a duration such as \texttt{5/16} into a series of tied assignable
 durations: \texttt{1/4 + 1/16}, \texttt{3/16 + 2/16}, \texttt{2/16 + 3/16},
 \texttt{1/16 + 1/4}, \texttt{1/8 + 1/8 + 1/16} etc. Instead we provide
 affordances for generating tied notes from non-assignable durations. One such
-affordance is our \texttt{scoretools.make\_notes()} function.
+affordance is our \texttt{scoretools.make\_notes()} function, which chooses
+smart defaults for generating tied glyphs from otherwise un-notateable input.
 
-\begin{lstlisting}
->>> selection = scoretools.make_notes("c'", [(5, 16)])
+\begin{lstlisting}>>> selection = scoretools.make_notes("c'", [(5, 16)])
 >>> staff = Staff(selection)
 >>> show(staff)
 \end{lstlisting}
@@ -70,16 +85,14 @@ above must have written durations of either \texttt{1/8} or \texttt{1/16}, and
 the tuplet must be correspondingly an explicit diminution or augmentation to
 provide the desired prolation of \texttt{2/3} or \texttt{4/3}.
 
-\begin{lstlisting}
->>> selection = scoretools.make_notes("c'", [(1, 12)] * 3)
+\begin{lstlisting}>>> selection = scoretools.make_notes("c'", [(1, 12)] * 3)
 >>> tuplet = selection[0]
 >>> show(tuplet)
 \end{lstlisting}
 
 \includegraphics[scale=1.0]{images/section_2_notational_isomorphism-2.pdf}
 
-\begin{lstlisting}[basicstyle=\footnotesize\ttfamily, breaklines=True, tabsize=4, showtabs=false, showspaces=false]
->>> tuplet.toggle_prolation()
+\begin{lstlisting}>>> tuplet.toggle_prolation()
 >>> show(tuplet)
 \end{lstlisting}
 
@@ -88,19 +101,3 @@ provide the desired prolation of \texttt{2/3} or \texttt{4/3}.
 
 The durational information of any aggregate score object in Abjad is always
 explicit and unambiguous with regard to its notational reality.
-
-\subsection{Notational aggregation}
-
-We consider the act of composition to revolve around the iterative aggregation
-of notational primitives into arbitrarily complex score objects.
-
-- append(), extend(), insert()
-
-- attach()
-
-\subsection{Notational visualization}
-
-Abjad makes visualizing notational artifacts simple.
-
-Any notational element or aggregate can be displayed at any time as a PDF via
-calls to its top-level \texttt{show()} function.
