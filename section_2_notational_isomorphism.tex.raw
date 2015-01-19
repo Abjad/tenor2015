@@ -46,14 +46,11 @@ durations: \texttt{1/4 + 1/16}, \texttt{3/16 + 2/16}, \texttt{2/16 + 3/16},
 affordances for generating tied notes from non-assignable durations. One such
 affordance is our \texttt{scoretools.make\_notes()} function.
 
-\begin{lstlisting}
->>> selection = scoretools.make_notes("c'", [(5, 16)])
->>> staff = Staff(selection)
->>> show(staff)
-\end{lstlisting}
-
-\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-1.pdf}
-
+<abjad>
+selection = scoretools.make_notes("c'", [(5, 16)])
+staff = Staff(selection)
+show(staff)
+</abjad>
 
 All score components also have a \emph{prolated} duration - the product of
 their written duration and their \emph{prolation}. Prolation is the cumulative
@@ -70,21 +67,13 @@ above must have written durations of either \texttt{1/8} or \texttt{1/16}, and
 the tuplet must be correspondingly an explicit diminution or augmentation to
 provide the desired prolation of \texttt{2/3} or \texttt{4/3}.
 
-\begin{lstlisting}
->>> selection = scoretools.make_notes("c'", [(1, 12)] * 3)
->>> tuplet = selection[0]
->>> show(tuplet)
-\end{lstlisting}
-
-\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-2.pdf}
-
-\begin{lstlisting}[basicstyle=\footnotesize\ttfamily, breaklines=True, tabsize=4, showtabs=false, showspaces=false]
->>> tuplet.toggle_prolation()
->>> show(tuplet)
-\end{lstlisting}
-
-\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-3.pdf}
-
+<abjad>
+selection = scoretools.make_notes("c'", [(1, 12)] * 3)
+tuplet = selection[0]
+show(tuplet)
+tuplet.toggle_prolation()
+show(tuplet)
+</abjad>
 
 The durational information of any aggregate score object in Abjad is always
 explicit and unambiguous with regard to its notational reality.
