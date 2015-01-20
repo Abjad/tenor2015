@@ -2,12 +2,12 @@
 
 Abjad models objects on the page according to common practice notation.
 
-We assume notational primitives are the elements of composition.
-
 \subsection{Notational aggregation}
 
-We consider the act of composition to revolve around the iterative aggregation
-of notational primitives into arbitrarily complex score objects.
+We assume notational primitives are the elements of composition.
+
+We consider the act of composition then to revolve around the iterative
+aggregation of notational primitives into arbitrarily complex score objects.
 
 - append(), extend(), insert()
 
@@ -91,5 +91,5 @@ tuplet.toggle_prolation()
 show(tuplet)
 </abjad>
 
-The durational information of any aggregate score object in Abjad is always
-explicit and unambiguous with regard to its notational reality.
+The durational information of any aggregate score object in Abjad is therefore
+always explicit and unambiguous with regard to its notational reality.
