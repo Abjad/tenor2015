@@ -2,9 +2,10 @@ Deadline: 1/31
 Notification: “End of February”
 4-12 pages**
 
-**Though note that the tenor2015template.pdf (contained in this directory)
-states the "[y] paper must not exceed 8 pages, no matter if you are presenting
-orally or posterly. We strongly encourage a paper length of 6 pages."
+**The tenor2015template.pdf (contained in this directory) states the "[t]he
+paper must not exceed 8 pages, no matter if you are presenting orally or
+posterly. We strongly encourage a paper length of 6 pages." But Jeff's email to
+the conference organizers confirms that 4-12 pages is the correct length.
 
 Abjad is not a music notation program - it’s a modeling program that happens to
 have the ability to generate notations.
