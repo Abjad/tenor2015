@@ -10,6 +10,14 @@ Selections
 
 Bidirectional vs unidirectional pointers.
 
-Timespans
-
 Indicator scope
+
+\subsection{Timespans}
+
+A \emph{timespan} is an object-oriented model of a start/stop offset pair.
+Abjad's \texttt{Timespan} class affords users with a variety of tests for
+relationships between timespans such as overlap and intersection.
+
+All durated objects in Abjad have a timespan, including all score components
+and spanners, allowing them to partake in timespan-based relationship modeling
+without regard for hierarchical score structure.
