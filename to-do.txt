@@ -14,7 +14,10 @@ maintaining a system (not just building it once).
 making stuff addressable, ie, affording intelligent reuse (and everything
 else).
 
-7. motivations for the system: we asked ourselves what underlying reality there
+6. change section 1 from "introduction" to "introduction & motivations". then
+add the next point, below, as a new paragraph to this section.
+
+8. motivations for the system: we asked ourselves what underlying reality there
 could possibly be to the act of composition and, through trial and error, we
 settled on the graphic elements of notation: note heads, accidentals, tuplet
 brackets, trill spanners and so on. we didn't do this because of any type of
