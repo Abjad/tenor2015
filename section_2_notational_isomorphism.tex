@@ -2,23 +2,60 @@
 
 Abjad models objects on the page according to common practice notation.
 
+Our musical model attempts to be isomorphic with notation, with one class per
+musical construct: \texttt{Note}, \texttt{Rest}, \texttt{Chord},
+\texttt{NoteHead}, \texttt{Articulation}, \texttt{TimeSignature}, \texttt{Slur}
+and so forth.
+
+[smalltalk?]
+
 \subsection{Notational aggregation}
 
-We assume notational primitives are the elements of composition.
+We assume notational primitives are the elements of composition. The act of
+composition then revolves around the iterative aggregation of notational
+primitives into arbitrarily complex score objects.
 
-We consider the act of composition then to revolve around the iterative
-aggregation of notational primitives into arbitrarily complex score objects.
+Abjad allows for the iterative aggregation of notational elements via Python's
+\emph{mutable sequence} protocol. Score components can be appended, extended or
+inserted into other container-like score components.
 
-- append(), extend(), insert()
+\begin{lstlisting}
+>>> score = Score()
+>>> staff_group = StaffGroup()
+>>> upper_staff = Staff()
+>>> lower_staff = Staff()
+>>> score.append(staff_group)
+>>> staff_group.extend([upper_staff, lower_staff])
+>>> upper_staff.extend("c'4 d'4 e'4 f'4")
+>>> lower_staff.extend([Chord("<a ef'>4."), Note("g8")])
+>>> lower_staff.insert(0, Rest((1, 2)))
+>>> show(score)
+\end{lstlisting}
 
-- attach()
+\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-1.pdf}
 
-\subsection{Notational visualization}
 
-Abjad makes visualizing notational artifacts simple.
+Note that Abjad makes visualizing notational artifacts simple. Any notational
+element or aggregate can be displayed at any time as a PDF via calls to its
+top-level \texttt{show()} function in near-publication quality.
 
-Any notational element or aggregate can be displayed at any time as a PDF via
-calls to its top-level \texttt{show()} function.
+Spanners such as slurs, beams and glissandi and indicators such as
+articulations and textual directions can be attached to score components via
+the \texttt{attach()} function.
+
+\begin{lstlisting}
+>>> attach(Slur(), upper_staff[:])
+>>> attach(Glissando(), lower_staff[1:])
+>>> attach(Articulation('accent'), lower_staff[-1])
+>>> show(score)
+\end{lstlisting}
+
+\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-2.pdf}
+
+
+Abjad attempts to be compositionally agnostic. By providing simple and
+unambiguous means of gradually aggregating arbitrarily complex score objects,
+we encourage users to develop their own personal approach.
 
 \subsection{Explicit notational modeling}
 
@@ -62,12 +99,13 @@ affordances for generating tied notes from non-assignable durations. One such
 affordance is our \texttt{scoretools.make\_notes()} function, which chooses
 smart defaults for generating tied glyphs from otherwise un-notateable input.
 
-\begin{lstlisting}>>> selection = scoretools.make_notes("c'", [(5, 16)])
+\begin{lstlisting}
+>>> selection = scoretools.make_notes("c'", [(5, 16)])
 >>> staff = Staff(selection)
 >>> show(staff)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-1.pdf}
+\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-3.pdf}
 
 
 All score components also have a \emph{prolated} duration - the product of
@@ -85,18 +123,20 @@ above must have written durations of either \texttt{1/8} or \texttt{1/16}, and
 the tuplet must be correspondingly an explicit diminution or augmentation to
 provide the desired prolation of \texttt{2/3} or \texttt{4/3}.
 
-\begin{lstlisting}>>> selection = scoretools.make_notes("c'", [(1, 12)] * 3)
+\begin{lstlisting}
+>>> selection = scoretools.make_notes("c'", [(1, 12)] * 3)
 >>> tuplet = selection[0]
 >>> show(tuplet)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-2.pdf}
+\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-4.pdf}
 
-\begin{lstlisting}>>> tuplet.toggle_prolation()
+\begin{lstlisting}
+>>> tuplet.toggle_prolation()
 >>> show(tuplet)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-3.pdf}
+\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-5.pdf}
 
 
 The durational information of any aggregate score object in Abjad is therefore

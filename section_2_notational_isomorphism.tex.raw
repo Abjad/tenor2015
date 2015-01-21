@@ -2,23 +2,54 @@
 
 Abjad models objects on the page according to common practice notation.
 
+Our musical model attempts to be isomorphic with notation, with one class per
+musical construct: \texttt{Note}, \texttt{Rest}, \texttt{Chord},
+\texttt{NoteHead}, \texttt{Articulation}, \texttt{TimeSignature}, \texttt{Slur}
+and so forth.
+
+[smalltalk?]
+
 \subsection{Notational aggregation}
 
-We assume notational primitives are the elements of composition.
+We assume notational primitives are the elements of composition. The act of
+composition then revolves around the iterative aggregation of notational
+primitives into arbitrarily complex score objects.
 
-We consider the act of composition then to revolve around the iterative
-aggregation of notational primitives into arbitrarily complex score objects.
+Abjad allows for the iterative aggregation of notational elements via Python's
+\emph{mutable sequence} protocol. Score components can be appended, extended or
+inserted into other container-like score components.
 
-- append(), extend(), insert()
+<abjad>
+score = Score()
+staff_group = StaffGroup()
+upper_staff = Staff()
+lower_staff = Staff()
+score.append(staff_group)
+staff_group.extend([upper_staff, lower_staff])
+upper_staff.extend("c'4 d'4 e'4 f'4")
+lower_staff.extend([Chord("<a ef'>4."), Note("g8")])
+lower_staff.insert(0, Rest((1, 2)))
+show(score)
+</abjad>
 
-- attach()
+Note that Abjad makes visualizing notational artifacts simple. Any notational
+element or aggregate can be displayed at any time as a PDF via calls to its
+top-level \texttt{show()} function in near-publication quality.
 
-\subsection{Notational visualization}
+Spanners such as slurs, beams and glissandi and indicators such as
+articulations and textual directions can be attached to score components via
+the \texttt{attach()} function.
 
-Abjad makes visualizing notational artifacts simple.
+<abjad>
+attach(Slur(), upper_staff[:])
+attach(Glissando(), lower_staff[1:])
+attach(Articulation('accent'), lower_staff[-1])
+show(score)
+</abjad>
 
-Any notational element or aggregate can be displayed at any time as a PDF via
-calls to its top-level \texttt{show()} function.
+Abjad attempts to be compositionally agnostic. By providing simple and
+unambiguous means of gradually aggregating arbitrarily complex score objects,
+we encourage users to develop their own personal approach.
 
 \subsection{Explicit notational modeling}
 
