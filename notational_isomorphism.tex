@@ -2,13 +2,13 @@
 
 The set of typographical notation symbols overlaps with the set of
 extrasymbolic musical entities, often causing confusion in discourse and
-program architecture. For example, a “chord” might be a vertically ordered
-collection of pitch-classes in a harmonic conceit, or it might refer to the
-specific arrangement of pitched noteheads, stemmed together into a composite
-notation symbol that instructs a performer to perform a sound that consists of
-several component pitches. Because of conceptual overlap between music and
-notation, it can be difficult to separate a system’s model of music/composition
-from its model of notation.
+program architecture.\footnote{A ``chord'', for example, might be a vertically
+ordered collection of pitch-classes in a harmonic conceit, or it might refer to
+the specific arrangement of pitched note heads, stemmed together into a
+composite notation symbol that instructs a performer to perform a sound that
+consists of several component pitches.} Because of conceptual overlap between
+music and notation, it can be difficult to separate a system’s model of
+music/composition from its model of notation.
 
 Abjad handles this ambiguity by explicitly modeling symbols on the page
 according to common practice notation.
@@ -39,8 +39,6 @@ Components:
 >>> show(score)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/notational_isomorphism-1.pdf}
-
 
 Spanners:
 
@@ -53,8 +51,6 @@ Spanners:
 >>> attach(Slur(), upper_leaves[7:])
 >>> show(score)
 \end{lstlisting}
-
-\includegraphics[scale=1.0]{images/notational_isomorphism-2.pdf}
 
 
 Indicators:
@@ -75,8 +71,6 @@ Indicators:
 ... 
 >>> show(score)
 \end{lstlisting}
-
-\includegraphics[scale=1.0]{images/notational_isomorphism-3.pdf}
 
 
 \subsection{Building up score: iterative aggregation}
@@ -144,8 +138,6 @@ smart defaults for generating tied glyphs from otherwise un-notateable input.
 >>> show(staff)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/notational_isomorphism-4.pdf}
-
 
 All score components also have a \emph{prolated} duration - the product of
 their written duration and their \emph{prolation}. Prolation is the cumulative
@@ -168,14 +160,10 @@ provide the desired prolation of \texttt{2/3} or \texttt{4/3}.
 >>> show(tuplet)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/notational_isomorphism-5.pdf}
-
 \begin{lstlisting}
 >>> tuplet.toggle_prolation()
 >>> show(tuplet)
 \end{lstlisting}
-
-\includegraphics[scale=1.0]{images/notational_isomorphism-6.pdf}
 
 
 The durational information of any aggregate score object in Abjad is therefore
