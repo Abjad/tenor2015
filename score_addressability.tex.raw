@@ -1,5 +1,36 @@
 \section{Score Addressability}\label{sec:score_addressability}
 
+<abjad>[hide=true]
+score = Score()
+staff_group = StaffGroup()
+upper_staff = Staff(name='Upper Staff')
+outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
+inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
+outer_tuplet_one.append(inner_tuplet)
+outer_tuplet_two = Tuplet((4, 5), "d'8 r16 b'16 as'16")
+upper_staff.extend([outer_tuplet_one, outer_tuplet_two])
+upper_staff.extend("as'8.. fs'32")
+lower_staff = Staff(name='Lower Staff')
+lower_staff.extend("c8 r8 b8 r8 gf8 r4 cs8")
+staff_group.extend([upper_staff, lower_staff])
+score.append(staff_group)
+upper_leaves = upper_staff.select_leaves()
+attach(Tie(), upper_leaves[4:6])
+attach(Tie(), upper_leaves[-3:-1])
+attach(Slur(), upper_leaves[:2])
+attach(Slur(), upper_leaves[2:6])
+attach(Slur(), upper_leaves[7:])
+attach(Dynamic('f'), upper_leaves[0])
+attach(Dynamic('p'), upper_leaves[-4])
+attach(Articulation('accent'), upper_leaves[0])
+attach(Articulation('accent'), upper_leaves[2])
+lower_leaves = lower_staff.select_leaves()
+attach(Clef('bass'), lower_leaves[0])
+for note in iterate(lower_staff).by_class(Note):
+    attach(Articulation('staccato'), note)
+
+</abjad>
+
 \begin{comment}
 Score Addressability [Trevor]
     - Iteration
@@ -15,7 +46,7 @@ Score Addressability [Trevor]
         - named addressing
 \end{comment}
 
-\subsection{Numeric addressing}
+\subsection{Addressing objects by index}
 
 Abjad allows the numeric addressing of all score components. Abjad score
 components are zero-indexed from the start of the container which holds them:
@@ -28,7 +59,7 @@ latter, the statement \texttt{staff[15:25]} selects the ten components in
 \texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
 addressing regime follow those of Python's list and tuple interface exactly. 
 
-\subsection{Temporal addressing}
+\subsection{Addressing objects temporally}
 
 Here is some text.
 
@@ -40,10 +71,41 @@ All durated objects in Abjad have a timespan, including all score components
 and spanners, allowing them to partake in timespan-based relationship modeling
 without regard for hierarchical score structure.
 
-\subsection{Named addressing}
+\subsection{Addressing objects by name}
 
 Here is some text.
 
-\subsection{Iteration}
+<abjad>
+upper_staff = score['Upper Staff']
+show(upper_staff)
+</abjad>
+
+<abjad>
+lower_staff = score['Lower Staff']
+show(lower_staff)
+</abjad>
+
+\subsection{Iterating throught score}
 
 Here is some text.
+
+<abjad>
+for x in score['Upper Staff']:
+    x
+
+</abjad>
+
+<abjad>
+for component in iterate(score).by_timeline():
+    component
+
+</abjad>
+
+<abjad>
+for logical_tie in iterate(score).by_logical_tie(
+    nontrivial=True,
+    pitched=True,
+    ):
+    logical_tie
+
+</abjad>

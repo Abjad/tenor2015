@@ -63,10 +63,9 @@ attach(Articulation('accent'), upper_leaves[2])
 <abjad>
 lower_leaves = lower_staff.select_leaves()
 attach(Clef('bass'), lower_leaves[0])
-attach(Articulation('staccato'), lower_leaves[0])
-attach(Articulation('staccato'), lower_leaves[2])
-attach(Articulation('staccato'), lower_leaves[4])
-attach(Articulation('staccato'), lower_leaves[6])
+for note in iterate(lower_staff).by_class(Note):
+    attach(Articulation('staccato'), note)
+
 show(score)
 </abjad>
 

@@ -1,5 +1,6 @@
 \section{Score Addressability}\label{sec:score_addressability}
 
+
 \begin{comment}
 Score Addressability [Trevor]
     - Iteration
@@ -15,7 +16,7 @@ Score Addressability [Trevor]
         - named addressing
 \end{comment}
 
-\subsection{Numeric addressing}
+\subsection{Addressing objects by index}
 
 Abjad allows the numeric addressing of all score components. Abjad score
 components are zero-indexed from the start of the container which holds them:
@@ -28,7 +29,7 @@ latter, the statement \texttt{staff[15:25]} selects the ten components in
 \texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
 addressing regime follow those of Python's list and tuple interface exactly. 
 
-\subsection{Temporal addressing}
+\subsection{Addressing objects temporally}
 
 Here is some text.
 
@@ -40,10 +41,74 @@ All durated objects in Abjad have a timespan, including all score components
 and spanners, allowing them to partake in timespan-based relationship modeling
 without regard for hierarchical score structure.
 
-\subsection{Named addressing}
+\subsection{Addressing objects by name}
 
 Here is some text.
 
-\subsection{Iteration}
+\begin{lstlisting}
+>>> upper_staff = score['Upper Staff']
+>>> show(upper_staff)
+\end{lstlisting}
+
+\includegraphics[scale=1.0]{images/score_addressability-1.pdf}
+
+
+\begin{lstlisting}
+>>> lower_staff = score['Lower Staff']
+>>> show(lower_staff)
+\end{lstlisting}
+
+\includegraphics[scale=1.0]{images/score_addressability-2.pdf}
+
+
+\subsection{Iterating throught score}
 
 Here is some text.
+
+\begin{lstlisting}
+>>> for x in score['Upper Staff']:
+...     x
+... 
+Tuplet(Multiplier(2, 3), 'd\'\'16 ef\'8. Tuplet(Multiplier(4, 5), "cs\'\'16 e\'16 d\'2 ~")')
+Tuplet(Multiplier(4, 5), "d'8 r16 b'16 as'16 ~")
+Note("as'8..")
+Note("fs'32")
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> for component in iterate(score).by_timeline():
+...     component
+... 
+Note("d''16")
+Note('c8')
+Note("ef'8.")
+Rest('r8')
+Note("cs''16")
+Note("e'16")
+Note("d'2")
+Note('b8')
+Rest('r8')
+Note("d'8")
+Note('gf8')
+Rest('r16')
+Rest('r4')
+Note("b'16")
+Note("as'16")
+Note("as'8..")
+Note('cs8')
+Note("fs'32")
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> for logical_tie in iterate(score).by_logical_tie(
+...     nontrivial=True,
+...     pitched=True,
+...     ):
+...     logical_tie
+... 
+LogicalTie(Note("d'2"), Note("d'8"))
+LogicalTie(Note("as'16"), Note("as'8.."))
+\end{lstlisting}
+
