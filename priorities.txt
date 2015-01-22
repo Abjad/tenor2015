@@ -1,28 +1,34 @@
 design priorities
 
-1. it's easy to notate score components (any score component can be notated)
+1. it's easy to notate score components (any score component can be notated).
 
 2. all score components are instantiated in a notatable state and no score
-component can ever be put in a non-notatable state
+component can ever be put in a non-notatable state. we might call this the
+"principle of conservation of (score component) notatability." second
+principle: class authors may equip even the most abstract classes with an
+optional illustration: this is what we mean when we refer to our illustration
+protocol. we might call this second principle a "principle of universal
+illustration".
 
-3. we provide one core class for every symbol on the page
+2.5 we provide factories. factory functions. factory classes.
 
-4. we make it easy to build up complex score objects through iterative
-aggregation
+3. we make it easy to build up complex score objects through iterative
+aggregation.
 
-5. we make it easy to address objects via index
+4. we make it easy to address objects via index.
 
-6. we allow users to address objects via time relations
+5. we allow users to address objects via time relations.
 
-7. we allow users to address objects via name
+6. we allow users to address objects via name.
 
-8. we provide a variety of ways of iterating over a score
+7. we provide a variety of ways of iterating over a score.
 
-9. we provide concrete object models of hierarchical relationships in the score
+8. we provide concrete object models of hierarchical relationships in the
+score.
 
-10. we provide concrete object models of temporal relationships in the score.
+9. we provide concrete object models of temporal relationships in the score.
 
-11. we provide concrete object models of vertical relationships in the score.
+10. we provide concrete object models of vertical relationships in the score.
 
-12. we try to follow the best practices of the open-source community (which has
+11. we try to follow the best practices of the open-source community (which has
 a number of subpoints). 
