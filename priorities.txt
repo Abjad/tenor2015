@@ -1,0 +1,28 @@
+design priorities
+
+1. it's easy to notate score components (any score component can be notated)
+
+2. all score components are instantiated in a notatable state and no score
+component can ever be put in a non-notatable state
+
+3. we provide one core class for every symbol on the page
+
+4. we make it easy to build up complex score objects through iterative
+aggregation
+
+5. we make it easy to address objects via index
+
+6. we allow users to address objects via time relations
+
+7. we allow users to address objects via name
+
+8. we provide a variety of ways of iterating over a score
+
+9. we provide concrete object models of hierarchical relationships in the score
+
+10. we provide concrete object models of temporal relationships in the score.
+
+11. we provide concrete object models of vertical relationships in the score.
+
+12. we try to follow the best practices of the open-source community (which has
+a number of subpoints). 

@@ -1,59 +1,92 @@
 \section{Notational isomorphism}\label{sec:notational_isomorphism}
 
-\subsection{Notational aggregation}
+The set of typographical notation symbols overlaps with the set of
+extrasymbolic musical entities, often causing confusion in discourse and
+program architecture.\footnote{A ``chord'', for example, might be a vertically
+ordered collection of pitch-classes in a harmonic conceit, or it might refer to
+the specific arrangement of pitched note heads, stemmed together into a
+composite notation symbol that instructs a performer to perform a sound that
+consists of several component pitches.} Because of conceptual overlap between
+music and notation, it can be difficult to separate a system’s model of
+music/composition from its model of notation.
 
-Abjad models objects on the page according to common practice notation. Abjad
-assumes notational primitives are the elements of composition. The act of
+Abjad handles this ambiguity by explicitly modeling symbols on the page
+according to common practice notation.
+
+We provide one class per musical/typographic construct, such as \texttt{Note},
+\texttt{NoteHead}, \texttt{Chord}, \texttt{Rest}, \texttt{Slur},
+\texttt{Articulation} and so forth.
+
+A \texttt{Note} object has one \texttt{NoteHead}, while a \texttt{Chord}
+contains a collection of \texttt{NoteHead} objects.
+
+Components:
+
+<abjad>
+score = Score()
+staff_group = StaffGroup()
+upper_staff = Staff(name='Upper Staff')
+outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
+inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
+outer_tuplet_one.append(inner_tuplet)
+outer_tuplet_two = Tuplet((4, 5), "d'8 r16 b'16 as'16")
+upper_staff.extend([outer_tuplet_one, outer_tuplet_two])
+upper_staff.extend("as'8.. fs'32")
+lower_staff = Staff(name='Lower Staff')
+lower_staff.extend("c8 r8 b8 r8 gf8 r4 cs8")
+staff_group.extend([upper_staff, lower_staff])
+score.append(staff_group)
+show(score)
+</abjad>
+
+Spanners:
+
+<abjad>
+upper_leaves = upper_staff.select_leaves()
+attach(Tie(), upper_leaves[4:6])
+attach(Tie(), upper_leaves[-3:-1])
+attach(Slur(), upper_leaves[:2])
+attach(Slur(), upper_leaves[2:6])
+attach(Slur(), upper_leaves[7:])
+show(score)
+</abjad>
+
+Indicators:
+
+<abjad>
+attach(Dynamic('f'), upper_leaves[0])
+attach(Dynamic('p'), upper_leaves[-4])
+attach(Articulation('accent'), upper_leaves[0])
+attach(Articulation('accent'), upper_leaves[2])
+</abjad>
+
+<abjad>
+lower_leaves = lower_staff.select_leaves()
+attach(Clef('bass'), lower_leaves[0])
+for note in iterate(lower_staff).by_class(Note):
+    attach(Articulation('staccato'), note)
+
+show(score)
+</abjad>
+
+\subsection{Building up score: iterative aggregation}
+
+Abjad assumes notational primitives are the elements of composition. The act of
 composition then revolves around the iterative aggregation of notational
-primitives into arbitrarily complex score objects.
-
-"semantic content"
-
-[more]
-
-Abjad allows for the iterative aggregation of notational elements via Python's
-\emph{mutable sequence} protocol. Score components can be appended, extended or
-inserted into other container-like score components.
-
-\begin{lstlisting}
->>> score = Score()
->>> staff_group = StaffGroup()
->>> upper_staff = Staff()
->>> lower_staff = Staff()
->>> score.append(staff_group)
->>> staff_group.extend([upper_staff, lower_staff])
->>> upper_staff.extend("c'4 d'4 e'4 f'4")
->>> lower_staff.extend([Chord("<a ef'>4."), Note("g8")])
->>> lower_staff.insert(0, Rest((1, 2)))
->>> show(score)
-\end{lstlisting}
-
-\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-1.pdf}
-
-
-Note that Abjad makes visualizing notational artifacts simple. Any notational
-element or aggregate can be displayed at any time as a PDF via calls to its
-top-level \texttt{show()} function in publication quality.
+primitives into arbitrarily complex score objects. Abjad affords aggregation
+via Python's \emph{mutable sequence} protocol, a collection of instance methods
+which allow score components to be appended, extended or inserted into other
+container-like score components as though they were lists.
 
 Spanners such as slurs, beams and glissandi and indicators such as
 articulations and textual directions can be attached to score components via
 the \texttt{attach()} function.
 
-\begin{lstlisting}
->>> attach(Slur(), upper_staff[:])
->>> attach(Glissando(), lower_staff[1:])
->>> attach(Articulation('accent'), lower_staff[-1])
->>> show(score)
-\end{lstlisting}
-
-\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-2.pdf}
-
-
 Abjad attempts to be compositionally agnostic. By providing simple and
 unambiguous means of gradually aggregating arbitrarily complex score objects,
 Abjad encourages users to develop their own personal approach.
 
-\subsection{Explicit notational modeling}
+\subsection{Modeling notation explicitly}
 
 Abjad models notation explicitly. All notational primitives expressed by Abjad
 must conform to the principles of common practice notation. When compositional
@@ -69,7 +102,7 @@ rhythm, as well as affordances for moving between them, the format actually
 stored in and used by score components for rendering notation is always the
 most notationally-explicit.
 
-\subsection{Written, assignable and prolated durations}
+%\subsection{Written, assignable and prolated durations}
 
 All \texttt{Note}, \texttt{Chord} and \texttt{Rest} objects in Abjad must be
 instantiated with a duration corresponding to the written glyphs on the page --
@@ -95,14 +128,11 @@ affordances for generating tied notes from non-assignable durations. One such
 affordance is our \texttt{scoretools.make\_notes()} function, which chooses
 smart defaults for generating tied glyphs from otherwise un-notateable input.
 
-\begin{lstlisting}
->>> selection = scoretools.make_notes("c'", [(5, 16)])
->>> staff = Staff(selection)
->>> show(staff)
-\end{lstlisting}
-
-\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-3.pdf}
-
+<abjad>
+selection = scoretools.make_notes("c'", [(5, 16)])
+staff = Staff(selection)
+show(staff)
+</abjad>
 
 All score components also have a \emph{prolated} duration - the product of
 their written duration and their \emph{prolation}. Prolation is the cumulative
@@ -119,21 +149,13 @@ above must have written durations of either \texttt{1/8} or \texttt{1/16}, and
 the tuplet must be correspondingly an explicit diminution or augmentation to
 provide the desired prolation of \texttt{2/3} or \texttt{4/3}.
 
-\begin{lstlisting}
->>> selection = scoretools.make_notes("c'", [(1, 12)] * 3)
->>> tuplet = selection[0]
->>> show(tuplet)
-\end{lstlisting}
-
-\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-4.pdf}
-
-\begin{lstlisting}
->>> tuplet.toggle_prolation()
->>> show(tuplet)
-\end{lstlisting}
-
-\includegraphics[scale=1.0]{images/section_2_notational_isomorphism-5.pdf}
-
+<abjad>
+selection = scoretools.make_notes("c'", [(1, 12)] * 3)
+tuplet = selection[0]
+show(tuplet)
+tuplet.toggle_prolation()
+show(tuplet)
+</abjad>
 
 The durational information of any aggregate score object in Abjad is therefore
 always explicit and unambiguous with regard to its notational reality.

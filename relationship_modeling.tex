@@ -1,0 +1,145 @@
+\section{Relationship Modeling}\label{sec:relationship_modeling}
+
+We provide a variety of concrete object-models of relationships between objects
+in a score.
+
+
+\subsection{Relating object hierarchically}
+
+Abjad provides concrete object-models for various hierarchical relationships.
+
+Leaves and parentage.
+
+\begin{lstlisting}
+>>> upper_leaves = upper_staff.select_leaves()
+>>> for leaf in upper_leaves:
+...     leaf
+... 
+Note("d''16")
+Note("ef'8.")
+Note("cs''16")
+Note("e'16")
+Note("d'2")
+Note("d'8")
+Rest('r16')
+Note("b'16")
+Note("as'16")
+Note("as'8..")
+Note("fs'32")
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> tuplet_leaves = inner_tuplet.select_leaves()
+>>> for leaf in tuplet_leaves:
+...     leaf
+... 
+Note("cs''16")
+Note("e'16")
+Note("d'2")
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> third_note = upper_leaves[2]
+>>> third_note
+Note("cs''16")
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> parentage = inspect_(third_note).get_parentage()
+>>> parentage.root
+<Score<<1>>>
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> parentage.tuplet_depth
+2
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> parentage.prolation
+Multiplier(8, 15)
+\end{lstlisting}
+
+
+\subsection{Relating object in time}
+
+Spanners.
+
+Effective indicators.
+
+Logical ties.
+
+\begin{lstlisting}
+>>> spanners = inspect_(upper_leaves[0]).get_spanners(Slur)
+>>> first_slur = tuple(spanners)[0]
+>>> first_slur.components
+Selection(Note("d''16"), Note("ef'8."))
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> for leaf in upper_leaves:
+...     dynamic = inspect_(leaf).get_effective(Dynamic)
+...     print(dynamic, leaf)
+... 
+Dynamic(name='f') d''16
+Dynamic(name='f') ef'8.
+Dynamic(name='f') cs''16
+Dynamic(name='f') e'16
+Dynamic(name='f') d'2
+Dynamic(name='f') d'8
+Dynamic(name='f') r16
+Dynamic(name='p') b'16
+Dynamic(name='p') as'16
+Dynamic(name='p') as'8..
+Dynamic(name='p') fs'32
+\end{lstlisting}
+
+
+Logical ties.
+
+\begin{lstlisting}
+>>> for logical_tie in iterate(upper_staff).by_logical_tie():
+...     logical_tie
+... 
+LogicalTie(Note("d''16"),)
+LogicalTie(Note("ef'8."),)
+LogicalTie(Note("cs''16"),)
+LogicalTie(Note("e'16"),)
+LogicalTie(Note("d'2"), Note("d'8"))
+LogicalTie(Rest('r16'),)
+LogicalTie(Note("b'16"),)
+LogicalTie(Note("as'16"), Note("as'8.."))
+LogicalTie(Note("fs'32"),)
+\end{lstlisting}
+
+
+\subsection{Relating objects vertically}
+
+\begin{lstlisting}
+>>> for moment in iterate(score).by_vertical_moment():
+...     moment
+... 
+VerticalMoment(0, <<2>>)
+VerticalMoment(1/24, <<2>>)
+VerticalMoment(1/8, <<2>>)
+VerticalMoment(1/6, <<2>>)
+VerticalMoment(1/5, <<2>>)
+VerticalMoment(7/30, <<2>>)
+VerticalMoment(1/4, <<2>>)
+VerticalMoment(3/8, <<2>>)
+VerticalMoment(1/2, <<2>>)
+VerticalMoment(3/5, <<2>>)
+VerticalMoment(5/8, <<2>>)
+VerticalMoment(13/20, <<2>>)
+VerticalMoment(7/10, <<2>>)
+VerticalMoment(3/4, <<2>>)
+VerticalMoment(7/8, <<2>>)
+VerticalMoment(31/32, <<2>>)
+\end{lstlisting}
+

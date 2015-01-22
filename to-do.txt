@@ -14,37 +14,6 @@ maintaining a system (not just building it once).
 making stuff addressable, ie, affording intelligent reuse (and everything
 else).
 
-6. change section 1 from "introduction" to "introduction & motivations". then
-add the next point, below, as a new paragraph to this section.
-
-8. motivations for the system: we asked ourselves what underlying reality there
-could possibly be to the act of composition and, through trial and error, we
-settled on the graphic elements of notation: note heads, accidentals, tuplet
-brackets, trill spanners and so on. we didn't do this because of any type of
-myopia that compelled us to focus on only the notational trees at the expense
-of (music-structural) forest: instead we chose to extend an extremely widely
-used programming language with the basic elements of notation precisely so that
-composers everywhere could define absolutely idiomatic elements of intermediate
-musical structure for themselves. we did this in part because the traditional
-elements of intermediate musical structure (phrases, measures and so on)
-constitute only a vanishingly small part of the inventory of different
-structures we compose into our music. and our determination was that the design
-priorities of none of the music software systems of the preceding decades were
-established to allow composers infinitely to reconfigure relationships at the
-intermediate level of musical structure: the software systems of the previous
-decades were designed either to allow analysts to ferret out familiar musical
-structures (phrases, again, and also harmonic progressions, known sequences of
-ornaments, familiar beginnings and endings of sections) in existing works or,
-later (with the advent of the commercial notation packages) to allow composers
-to enter page upon page of notes essentialy no way to logically define
-important relationships between infinite variety of graphic elements on the
-page. [footnote the "mirror" function that used to be available in either
-finale or sibelius or both] simply put, neither the music analysis systems of
-the past nor the music notation systems of the present have been designed
-according to the twin priorities with which we have designed, and continue to
-design, abjad: first, that composers should be allowed to establish first-class
-relationships between any collection of symbols anywhere in the score and,
-second, that abstract relations composers dream up during the act of
-composition should be viewable as publication-quality music notation (rather
-than as any other type of impoverished representation of music as numbers,
-sound wave profiles, or so on).
+7. There's an implicit pedagogical or educational message in the way we develop
+the system: we believe a certain subset of composers should become programmers.
+how does this fact relate to our design principles?

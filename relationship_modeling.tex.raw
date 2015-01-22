@@ -1,0 +1,110 @@
+\section{Relationship Modeling}\label{sec:relationship_modeling}
+
+We provide a variety of concrete object-models of relationships between objects
+in a score.
+
+<abjad>[hide=true]
+score = Score()
+staff_group = StaffGroup()
+upper_staff = Staff(name='Upper Staff')
+outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
+inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
+outer_tuplet_one.append(inner_tuplet)
+outer_tuplet_two = Tuplet((4, 5), "d'8 r16 b'16 as'16")
+upper_staff.extend([outer_tuplet_one, outer_tuplet_two])
+upper_staff.extend("as'8.. fs'32")
+lower_staff = Staff(name='Lower Staff')
+lower_staff.extend("c8 r8 b8 r8 gf8 r4 cs8")
+staff_group.extend([upper_staff, lower_staff])
+score.append(staff_group)
+upper_leaves = upper_staff.select_leaves()
+attach(Tie(), upper_leaves[4:6])
+attach(Tie(), upper_leaves[-3:-1])
+attach(Slur(), upper_leaves[:2])
+attach(Slur(), upper_leaves[2:6])
+attach(Slur(), upper_leaves[7:])
+attach(Dynamic('f'), upper_leaves[0])
+attach(Dynamic('p'), upper_leaves[-4])
+attach(Articulation('accent'), upper_leaves[0])
+attach(Articulation('accent'), upper_leaves[2])
+lower_leaves = lower_staff.select_leaves()
+attach(Clef('bass'), lower_leaves[0])
+for note in iterate(lower_staff).by_class(Note):
+    attach(Articulation('staccato'), note)
+
+</abjad>
+
+\subsection{Relating object hierarchically}
+
+Abjad provides concrete object-models for various hierarchical relationships.
+
+Leaves and parentage.
+
+<abjad>
+upper_leaves = upper_staff.select_leaves()
+for leaf in upper_leaves:
+    leaf
+
+</abjad>
+
+<abjad>
+tuplet_leaves = inner_tuplet.select_leaves()
+for leaf in tuplet_leaves:
+    leaf
+
+</abjad>
+
+<abjad>
+third_note = upper_leaves[2]
+third_note
+</abjad>
+
+<abjad>
+parentage = inspect_(third_note).get_parentage()
+parentage.root
+</abjad>
+
+<abjad>
+parentage.tuplet_depth
+</abjad>
+
+<abjad>
+parentage.prolation
+</abjad>
+
+\subsection{Relating object in time}
+
+Spanners.
+
+Effective indicators.
+
+Logical ties.
+
+<abjad>
+spanners = inspect_(upper_leaves[0]).get_spanners(Slur)
+first_slur = tuple(spanners)[0]
+first_slur.components
+</abjad>
+
+<abjad>
+for leaf in upper_leaves:
+    dynamic = inspect_(leaf).get_effective(Dynamic)
+    print(dynamic, leaf)
+
+</abjad>
+
+Logical ties.
+
+<abjad>
+for logical_tie in iterate(upper_staff).by_logical_tie():
+    logical_tie
+
+</abjad>
+
+\subsection{Relating objects vertically}
+
+<abjad>
+for moment in iterate(score).by_vertical_moment():
+    moment
+
+</abjad>
