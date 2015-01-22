@@ -69,7 +69,7 @@ for note in iterate(lower_staff).by_class(Note):
 show(score)
 </abjad>
 
-\subsection{Iterative aggregation}
+\subsection{Building up score: iterative aggregation}
 
 Abjad assumes notational primitives are the elements of composition. The act of
 composition then revolves around the iterative aggregation of notational
@@ -86,7 +86,7 @@ Abjad attempts to be compositionally agnostic. By providing simple and
 unambiguous means of gradually aggregating arbitrarily complex score objects,
 Abjad encourages users to develop their own personal approach.
 
-\subsection{Explicit notational modeling}
+\subsection{Modeling notation explicitly}
 
 Abjad models notation explicitly. All notational primitives expressed by Abjad
 must conform to the principles of common practice notation. When compositional

@@ -59,6 +59,19 @@ latter, the statement \texttt{staff[15:25]} selects the ten components in
 \texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
 addressing regime follow those of Python's list and tuple interface exactly. 
 
+<abjad>
+staff_group = score[0]
+</abjad>
+
+<abjad>
+upper_staff = score[0][0]
+</abjad>
+
+<abjad>
+first_tuplet = score[0][0][0]
+show(first_tuplet)
+</abjad>
+
 \subsection{Addressing objects temporally}
 
 Here is some text.

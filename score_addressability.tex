@@ -29,6 +29,24 @@ latter, the statement \texttt{staff[15:25]} selects the ten components in
 \texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
 addressing regime follow those of Python's list and tuple interface exactly. 
 
+\begin{lstlisting}
+>>> staff_group = score[0]
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> upper_staff = score[0][0]
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> first_tuplet = score[0][0][0]
+>>> show(first_tuplet)
+\end{lstlisting}
+
+\includegraphics[scale=1.0]{images/score_addressability-1.pdf}
+
+
 \subsection{Addressing objects temporally}
 
 Here is some text.
@@ -50,7 +68,7 @@ Here is some text.
 >>> show(upper_staff)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/score_addressability-1.pdf}
+\includegraphics[scale=1.0]{images/score_addressability-2.pdf}
 
 
 \begin{lstlisting}
@@ -58,7 +76,7 @@ Here is some text.
 >>> show(lower_staff)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/score_addressability-2.pdf}
+\includegraphics[scale=1.0]{images/score_addressability-3.pdf}
 
 
 \subsection{Iterating throught score}
