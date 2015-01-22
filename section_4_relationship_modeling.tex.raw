@@ -4,7 +4,7 @@
 
 Some text here.
 
-\subsection{Hierarchical relationships}
+Components:
 
 <abjad>
 staff = Staff()
@@ -17,9 +17,36 @@ staff.extend("as'8.. fs'32")
 show(staff)
 </abjad>
 
-Abjad provides concrete object-models for various hierarchical relationships
+Spanners:
 
-Parentage, Lineage, Leaves
+<abjad>
+leaves = staff.select_leaves()
+attach(Tie(), leaves[4:6])
+attach(Tie(), leaves[-3:-1])
+attach(Slur(), leaves[:2])
+attach(Slur(), leaves[2:6])
+final_slur = Slur()
+attach(final_slur, leaves[7:])
+show(staff)
+</abjad>
+
+Indicators:
+
+<abjad>
+attach(Markup('giocoso', Up).italic(), leaves[0])
+attach(Markup('dolce', Up).italic(), leaves[-4])
+attach(Dynamic('f'), leaves[0])
+attach(Dynamic('p'), leaves[-4])
+attach(Articulation('accent'), leaves[0])
+attach(Articulation('accent'), leaves[2])
+show(staff)
+</abjad>
+
+\subsection{Hierarchical relationships}
+
+Abjad provides concrete object-models for various hierarchical relationships.
+
+Leaves and parentage.
 
 <abjad>
 staff_leaves = staff.select_leaves()
@@ -29,7 +56,7 @@ for leaf in staff_leaves:
 </abjad>
 
 <abjad>
-tuplet_leaves = outer_tuplet_one.select_leaves()
+tuplet_leaves = inner_tuplet.select_leaves()
 for leaf in tuplet_leaves:
     leaf
 
@@ -56,26 +83,13 @@ parentage.tuplet_depth
 parentage.prolation
 </abjad>
 
-Selections
+\subsection{Temporal relationships}
 
-Bidirectional vs unidirectional pointers.
+Spanners.
 
-\subsection{Attachment relationships}
+Effective indicators.
 
-<abjad>
-leaves = staff.select_leaves()
-attach(Tie(), leaves[4:6])
-attach(Tie(), leaves[-3:-1])
-attach(Slur(), leaves[:2])
-attach(Slur(), leaves[2:6])
-final_slur = Slur()
-attach(final_slur, leaves[7:])
-attach(Dynamic('f'), leaves[0])
-attach(Dynamic('p'), leaves[-4])
-attach(Articulation('accent'), leaves[0])
-attach(Articulation('accent'), leaves[2])
-show(staff)
-</abjad>
+Logical ties.
 
 <abjad>
 spanners = inspect_(leaves[0]).get_spanners(Slur)
@@ -89,12 +103,6 @@ for leaf in leaves:
     print(dynamic, leaf)
 
 </abjad>
-
-Spanners.
-
-Indicator scope.
-
-\subsection{Temporal relationships}
 
 Logical ties.
 

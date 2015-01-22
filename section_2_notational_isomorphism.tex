@@ -37,7 +37,7 @@ container-like score components as though they were lists.
 >>> score.append(staff_group)
 >>> staff_group.extend([upper_staff, lower_staff])
 >>> upper_staff.extend("c'4 d'4 e'4 f'4")
->>> lower_staff.extend([Chord("<a ef'>4."), Note("g8")])
+>>> lower_staff.extend([Chord("<a c'>4."), Chord("<g b>8")])
 >>> lower_staff.insert(0, Rest((1, 2)))
 >>> show(score)
 \end{lstlisting}
