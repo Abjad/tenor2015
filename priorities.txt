@@ -1,0 +1,4 @@
+1. change "iterative aggregation" ==> "building up score: iterative
+aggregation"
+
+2. 
