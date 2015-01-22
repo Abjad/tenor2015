@@ -1,0 +1,49 @@
+\section{Score Addressability}\label{sec:score_addressability}
+
+\begin{comment}
+Score Addressability [Trevor]
+    - Iteration
+        - methods that "get_*"
+            Container.select_leaves
+            Container.select_notes_and_chords
+            IterationAgent.by_class, .by_logical_tie, .by_timeline, .by_vertical_moment, .depth_first
+        - efficient and intuitive navigation of the score hierarchy does what mapping does in a functional program
+            -containers partake of Python's sequence iterating interface (for loops work)
+    - Structural Addressing
+        - numeric addressing
+        - temporal addressing
+        - named addressing
+\end{comment}
+
+\subsection{Numeric addressing}
+
+Abjad allows the numeric addressing of all score components. Abjad score
+components are zero-indexed from the start of the container which holds them:
+the statement \texttt{staff[0]} addresses the first component contained in
+\texttt{staff} while the statement \texttt{staff[1]} addresses the component
+after that, and so on. Negative indices address components from the end of the
+container which holds them. Python's slice notation may be used to retrieve an
+arbitrary number of contiguous components at one time. As an example of the
+latter, the statement \texttt{staff[15:25]} selects the ten components in
+\texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
+addressing regime follow those of Python's list and tuple interface exactly. 
+
+\subsection{Temporal addressing}
+
+Here is some text.
+
+A \emph{timespan} is an object-oriented model of a start/stop offset pair.
+Abjad's \texttt{Timespan} class affords users with a variety of tests for
+relationships between timespans such as overlap and intersection.
+
+All durated objects in Abjad have a timespan, including all score components
+and spanners, allowing them to partake in timespan-based relationship modeling
+without regard for hierarchical score structure.
+
+\subsection{Named addressing}
+
+Here is some text.
+
+\subsection{Iteration}
+
+Here is some text.

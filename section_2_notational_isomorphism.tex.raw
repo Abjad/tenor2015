@@ -1,26 +1,33 @@
 \section{Notational isomorphism}\label{sec:notational_isomorphism}
 
 The set of typographical notation symbols overlaps with the set of
-extrasymbolic musical entities, often causing con- fusion in discourse and
-program architecture. For exam- ple, a “chord” might be a vertically ordered
+extrasymbolic musical entities, often causing confusion in discourse and
+program architecture. For example, a “chord” might be a vertically ordered
 collection of pitch-classes in a harmonic conceit, or it might refer to the
 specific arrangement of pitched noteheads, stemmed together into a composite
 notation symbol that instructs a performer to perform a sound that consists of
-several com- ponent pitches. Because of conceptual overlap between music and
+several component pitches. Because of conceptual overlap between music and
 notation, it can be difficult to separate a system’s model of music/composition
 from its model of notation.
 
-Abjad models objects on the page according to common practice notation.
+Abjad handles this ambiguity by explicitly modeling symbols on the page
+according to common practice notation.
 
-\subsection{Notational aggregation}
+We provide one class per musical/typographic construct, such as \texttt{Note},
+\texttt{NoteHead}, \texttt{Chord}, \texttt{Rest}, \texttt{Slur},
+\texttt{Articulation} and so forth.
+
+A \texttt{Note} object has one \texttt{NoteHead}, while a \texttt{Chord}
+contains a collection of \texttt{NoteHead} objects.
+
+\subsection{Iterative aggregation}
 
 Abjad assumes notational primitives are the elements of composition. The act of
 composition then revolves around the iterative aggregation of notational
-primitives into arbitrarily complex score objects.
-
-Abjad allows for the iterative aggregation of notational elements via Python's
-\emph{mutable sequence} protocol. Score components can be appended, extended or
-inserted into other container-like score components.
+primitives into arbitrarily complex score objects. Abjad affords aggregation
+via Python's \emph{mutable sequence} protocol, a collection of instance methods
+which allow score components to be appended, extended or inserted into other
+container-like score components as though they were lists.
 
 <abjad>
 score = Score()
@@ -36,8 +43,8 @@ show(score)
 </abjad>
 
 Note that Abjad makes visualizing notational artifacts simple. Any notational
-element or aggregate can be displayed at any time as a PDF via calls to its
-top-level \texttt{show()} function in publication quality.
+element or element aggregate can be displayed at any time as a PDF via calls to
+its top-level \texttt{show()} function in publication quality.
 
 Spanners such as slurs, beams and glissandi and indicators such as
 articulations and textual directions can be attached to score components via
@@ -70,7 +77,7 @@ rhythm, as well as affordances for moving between them, the format actually
 stored in and used by score components for rendering notation is always the
 most notationally-explicit.
 
-\subsection{Written, assignable and prolated durations}
+%\subsection{Written, assignable and prolated durations}
 
 All \texttt{Note}, \texttt{Chord} and \texttt{Rest} objects in Abjad must be
 instantiated with a duration corresponding to the written glyphs on the page --

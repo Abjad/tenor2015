@@ -1,0 +1,105 @@
+\section{Relationship Modeling}\label{sec:relationship_modeling}
+
+\subsection{Component, Spanner, Indicator}
+
+Some text here.
+
+\subsection{Hierarchical relationships}
+
+<abjad>
+staff = Staff()
+outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
+inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
+outer_tuplet_one.append(inner_tuplet)
+outer_tuplet_two = Tuplet((4, 5), "d'8 r16 b'16 as'16")
+staff.extend([outer_tuplet_one, outer_tuplet_two])
+staff.extend("as'8.. fs'32")
+show(staff)
+</abjad>
+
+Abjad provides concrete object-models for various hierarchical relationships
+
+Parentage, Lineage, Leaves
+
+<abjad>
+staff_leaves = staff.select_leaves()
+for leaf in staff_leaves:
+    leaf
+
+</abjad>
+
+<abjad>
+tuplet_leaves = outer_tuplet_one.select_leaves()
+for leaf in tuplet_leaves:
+    leaf
+
+</abjad>
+
+<abjad>
+third_note = staff_leaves[2]
+third_note
+</abjad>
+
+<abjad>
+</abjad>
+
+<abjad>
+parentage = inspect_(third_note).get_parentage()
+parentage.root
+</abjad>
+
+<abjad>
+parentage.tuplet_depth
+</abjad>
+
+<abjad>
+parentage.prolation
+</abjad>
+
+Selections
+
+Bidirectional vs unidirectional pointers.
+
+\subsection{Attachment relationships}
+
+<abjad>
+leaves = staff.select_leaves()
+attach(Tie(), leaves[4:6])
+attach(Tie(), leaves[-3:-1])
+attach(Slur(), leaves[:2])
+attach(Slur(), leaves[2:6])
+final_slur = Slur()
+attach(final_slur, leaves[7:])
+attach(Dynamic('f'), leaves[0])
+attach(Dynamic('p'), leaves[-4])
+attach(Articulation('accent'), leaves[0])
+attach(Articulation('accent'), leaves[2])
+show(staff)
+</abjad>
+
+<abjad>
+spanners = inspect_(leaves[0]).get_spanners(Slur)
+first_slur = tuple(spanners)[0]
+first_slur.components
+</abjad>
+
+<abjad>
+for leaf in leaves:
+    dynamic = inspect_(leaf).get_effective(Dynamic)
+    print(dynamic, leaf)
+
+</abjad>
+
+Spanners.
+
+Indicator scope.
+
+\subsection{Temporal relationships}
+
+Logical ties.
+
+<abjad>
+for logical_tie in iterate(staff).by_logical_tie():
+    logical_tie
+
+</abjad>
