@@ -39,6 +39,8 @@ Components:
 >>> show(score)
 \end{lstlisting}
 
+\includegraphics[scale=1.0]{images/notational_isomorphism-1.pdf}
+
 
 Spanners:
 
@@ -51,6 +53,8 @@ Spanners:
 >>> attach(Slur(), upper_leaves[7:])
 >>> show(score)
 \end{lstlisting}
+
+\includegraphics[scale=1.0]{images/notational_isomorphism-2.pdf}
 
 
 Indicators:
@@ -71,6 +75,8 @@ Indicators:
 ... 
 >>> show(score)
 \end{lstlisting}
+
+\includegraphics[scale=1.0]{images/notational_isomorphism-3.pdf}
 
 
 \subsection{Building up score: iterative aggregation}
@@ -138,6 +144,8 @@ smart defaults for generating tied glyphs from otherwise un-notateable input.
 >>> show(staff)
 \end{lstlisting}
 
+\includegraphics[scale=1.0]{images/notational_isomorphism-4.pdf}
+
 
 All score components also have a \emph{prolated} duration - the product of
 their written duration and their \emph{prolation}. Prolation is the cumulative
@@ -160,10 +168,14 @@ provide the desired prolation of \texttt{2/3} or \texttt{4/3}.
 >>> show(tuplet)
 \end{lstlisting}
 
+\includegraphics[scale=1.0]{images/notational_isomorphism-5.pdf}
+
 \begin{lstlisting}
 >>> tuplet.toggle_prolation()
 >>> show(tuplet)
 \end{lstlisting}
+
+\includegraphics[scale=1.0]{images/notational_isomorphism-6.pdf}
 
 
 The durational information of any aggregate score object in Abjad is therefore
