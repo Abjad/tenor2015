@@ -10,12 +10,40 @@ optional illustration: this is what we mean when we refer to our illustration
 protocol. we might call this second principle a "principle of universal
 illustration".
 
-2.5 we provide factories. factory functions. factory classes.
+2.5 we provide factories. factory functions. factory classes. when we wanna
+make complex stuff we usually come up with factories. (there may be a design
+principle here that initialization is kept simple and we implement in factories
+complex ways of aggregating together objects that admit only simple
+initialization.)
+
+2.75 input flexibility: you can build up score via iterative aggregation but
+you can also just type a lilypond string into a staff. we afford both types of
+input and, indeed, two different ways of building up score. this is where we
+should cite alan kay's smalltalk paper.
+
+2.95 there's a design priority in here somewhere that what we want to do is
+make it as easy as possible for people to implement their own factories. what
+does this mean? it means that we want to make it as easy as possible for people
+to implement their own code that outputs or creates intermediate level
+structures or materials. (there's a realization here that people probabaly
+don't find it interesting to make a single note. but people can find it totally
+fascinating to make an intermediate-level object like a complete phrase of
+music.) 
 
 3. we make it easy to build up complex score objects through iterative
 aggregation.
 
-4. we make it easy to address objects via index.
+3.15 we think it's important that users of the system should always have access
+to an object-oriented interface to the graphic elements on the page.
+
+3.25 we think it's important that things that are conventionally semantic have
+been modeled. we also think it's important that things that some composers
+might want to make semantic (like an idiosyncratic use of stem length to
+communicate dynamics) can, in fact, be made semantic. lilypond shares this
+design principle. (and the distinction here would seem to be between the
+semantic and the typographic.)
+
+4. we think it's important to be able to address objects via numerical index.
 
 5. we allow users to address objects via time relations.
 
