@@ -96,10 +96,17 @@ basicstyle=\scriptsize\ttfamily
 \capstarttrue
 
 \begin{abstract}
-Place your abstract at the top left column on the first page. Please write
-about 150-200 words that specifically highlight the purpose of your work, its
-context, and provide a brief synopsis of your results. Avoid equations in this
-part.
+Abjad\footnote{www.projectabjad.org} is an interactive open-source software system designed
+to help composers build up complex pieces of music notation in an iterative and
+incremental way.  
+Abjad is implemented in the Python\footnote{www.python.org}
+programming language and architected as an object-oriented collection of
+packages, classes and functions. Composers can visualize their work as
+publication-quality score at all stages of the compositional process using
+Abjad's interface to the LilyPond\footnote{www.lilypond.org} music notation
+package. Although the first versions of Abjad were implemented in 1997 and the project website is now visited thousands of times each month, we have never documented
+the design priorities that have guided us as we have built the system. In this paper we detail some of the most important principles we have followed in our work
+architecting Abjad. The priorities we document here arise in answer to domain-specific questions of music modeling (what are the fundamental elements of music notation? which elements of music notation should be modeled hierarchically? which programming constructs are available to help model the temporal relationships arising between entities in musical score?) as well as in consideration of the ways in which best practices taken from software engineering can apply to the development of a music software system like ours (which programming concepts concerning things like iteration, aggregation and encapsulation make sense to make available to composers? which existing tools to test, document and deploy other open-source projects are available to help develop a music software system like Abjad?). In the sections that follow we discuss the background and motivations that lead us to ask questions like these and then elaborate the design priorities we have arrived at in our ongoing work architecting Abjad.
 \end{abstract}
 
 \input{section_0_introduction.tex}
