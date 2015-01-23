@@ -329,6 +329,15 @@ users can feel confident that they will be able to view the objects they
 create. The same is true of many other Abjad classes that model abstract
 relationships: \texttt{Mode}, \texttt{Scale}, \texttt{PitchClass} and so on.
 
+For example, Abjad expresses the durations of all score components in terms of
+rational values -- fractions and integers -- rather than floating point
+numbers. Likewise Abjad expresses all pitches in terms of triples of diatonic
+note names, accidentals and octave numbers, rather than MIDI numbers or
+frequencies. While Abjad provides alternative representations of pitch and
+rhythm, as well as affordances for moving between them, the format actually
+stored in and used by score components for rendering notation is always the
+most notationally-explicit.
+
 \section{build bottom-up}
 
 it's important for composers to be able to build complex
@@ -348,48 +357,42 @@ via Python's \emph{mutable sequence} protocol, a collection of instance methods
 which allow score components to be appended, extended or inserted into other
 container-like score components as though they were lists.
 
-\begin{lstlisting}
->>> score = Score()
->>> staff_group = StaffGroup()
->>> upper_staff = Staff(name='Upper Staff')
->>> outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
->>> inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
->>> outer_tuplet_one.append(inner_tuplet)
->>> outer_tuplet_two = Tuplet((4, 5), "d'8 r16 b'16 as'16")
->>> upper_staff.extend([outer_tuplet_one, outer_tuplet_two])
->>> upper_staff.extend("as'8.. fs'32")
->>> lower_staff = Staff(name='Lower Staff')
->>> lower_staff.extend("c8 r8 b8 r8 gf8 r4 cs8")
->>> staff_group.extend([upper_staff, lower_staff])
->>> score.append(staff_group)
->>> show(score)
-\end{lstlisting}
+<abjad>
+score = Score()
+staff_group = StaffGroup()
+upper_staff = Staff(name='Upper Staff')
+outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
+inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
+outer_tuplet_one.append(inner_tuplet)
+outer_tuplet_two = Tuplet((4, 5), "d'8 r16 b'16 as'16")
+upper_staff.extend([outer_tuplet_one, outer_tuplet_two])
+upper_staff.extend("as'8.. fs'32")
+lower_staff = Staff(name='Lower Staff')
+lower_staff.extend("c8 r8 b8 r8 gf8 r4 cs8")
+staff_group.extend([upper_staff, lower_staff])
+score.append(staff_group)
+show(score)
+</abjad>
 
-\includegraphics[scale=1.0]{images/abjad-1.pdf}
+<abjad>
+upper_leaves = upper_staff.select_leaves()
+lower_leaves = lower_staff.select_leaves()
+attach(Tie(), upper_leaves[4:6])
+attach(Tie(), upper_leaves[-3:-1])
+attach(Slur(), upper_leaves[:2])
+attach(Slur(), upper_leaves[2:6])
+attach(Slur(), upper_leaves[7:])
+attach(Hairpin('ppp < mp'), lower_leaves)
+attach(Dynamic('f'), upper_leaves[0])
+attach(Dynamic('p'), upper_leaves[-4])
+attach(Articulation('accent'), upper_leaves[0])
+attach(Articulation('accent'), upper_leaves[2])
+attach(Clef('bass'), lower_leaves[0])
+for note in iterate(lower_staff).by_class(Note):
+    attach(Articulation('staccato'), note)
 
-
-\begin{lstlisting}
->>> upper_leaves = upper_staff.select_leaves()
->>> lower_leaves = lower_staff.select_leaves()
->>> attach(Tie(), upper_leaves[4:6])
->>> attach(Tie(), upper_leaves[-3:-1])
->>> attach(Slur(), upper_leaves[:2])
->>> attach(Slur(), upper_leaves[2:6])
->>> attach(Slur(), upper_leaves[7:])
->>> attach(Hairpin('ppp < mp'), lower_leaves)
->>> attach(Dynamic('f'), upper_leaves[0])
->>> attach(Dynamic('p'), upper_leaves[-4])
->>> attach(Articulation('accent'), upper_leaves[0])
->>> attach(Articulation('accent'), upper_leaves[2])
->>> attach(Clef('bass'), lower_leaves[0])
->>> for note in iterate(lower_staff).by_class(Note):
-...     attach(Articulation('staccato'), note)
-... 
->>> show(score)
-\end{lstlisting}
-
-\includegraphics[scale=1.0]{images/abjad-2.pdf}
-
+show(score)
+</abjad>
 
 
 \section{build top-down}
