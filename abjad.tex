@@ -332,49 +332,20 @@ fell into disuse. Music software systems except for the large commercial
 notation packages will probabaly always be the niche efforts of specialists and
 our experience architecting Abjad leads us to think about the future in such a
 way that we give ourselves all the advantages of expansiveness that are
-possible: picking an existing lanaguage that makes learning preliminaries
+possible: picking an existing language that makes learning preliminaries
 easier and makes the continued development of the system as open as possible to
 as many different collaborators as possible.
 
-\begin{comment}
-Python is an excellent general-purpose programming
-language. But our decision to implement all recent versions of Abjad in Python
-does not arise from any of the specifics of the language itself but rather from
-the fact that the language is supported by a large and active community of
-users and that all features of the language are already well-documented and
-explained by people other than ourselves.
+\section{Allow composers to illustrate objects iteratively during composition }
 
-with Abjad is really a type of specialized programming working with Abjad while
-keeping available to composers the entirety of the langauge's
-features.\footnote{The core features of Python include fundamental data
-structures like lists and dictionaries; the basics of flow control, looping and
-iteration; the way code in one file refers to code in another file; and the
-extensive functionality included as part of the language's standard library.}
-Our insistence on this principle of extension --- of adding functionality to an
-existing system rather than constructing from the ground up --- is fundamental
-to way we have architected Abjad and the work underlying language constructs.
+One of the core beliefs we bring to our work architecting Abjad concerns the power of conventional music notation. We believe that it is important for composers be able to illustrate the objects they work with as they compose. This priority in favor of iteratively viewing the objects of composition is reflected in the illustration protocol established for Abjad objects. Composers call the top-level \texttt{show()} function to visualize Abjad objects. Behind the scenes Abjad inspects objects passed to \texttt{show()} for the presence of an \texttt{\_\_illustrate\_\_()} method that defines explicitly how an object should be illustrated. Abjad transforms score components, for example, into LilyPond input code and then calls LilyPond to generate a PDF that is then pushed to the composer's PDF viewer.
 
-All versions of Abjad released since 2008 have
-all been implemented in Python and architected in such a way as to make
-available to composers all features of the Python programming language (rather
-than only a subset of language features).\footnote{Early versions of
-Abjad were implemented in \texttt{C} and \texttt{Mathematica}.}
-
-music people always think they need a dsl.
-everybody always makes that mistake. extend existing language. [TREVOR]
-\end{comment}
-
-\section{universal illustration}
-
-it's important that composers be able to
-illustrate all objects they work with as they compose. this design priority is
-reflected in the establishment of what we call the illustration protocol. this
-priority is driven in large part by our shared insistence on the incredible
-power of conventional music notation as a tool for thinking about sound and
-time. (we wanna make it possible to illustrate everything all the time because
-we notation helps us think about such incredibly complex stuff.) (footnote: we
-think it's important that users have access to all the features of the
-underlying typesetter.) [TREVOR]
+%priority is driven in large part by our shared insistence on the incredible
+%power of conventional music notation as a tool for thinking about sound and
+%time. (we wanna make it possible to illustrate everything all the time because
+%we notation helps us think about such incredibly complex stuff.) (footnote: we
+%think it's important that users have access to all the features of the
+%underlying typesetter.) [TREVOR]
 
 \hrulefill\vspace{5pt}
 
