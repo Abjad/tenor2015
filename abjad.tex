@@ -292,12 +292,64 @@ notation, addressability (in HMSL and JMSL). Reintroduce generative task: late
 until IRCAM's Patchwork approached a generative task of broadly enabling
 composers; sufficiency determined by comprehensive task.
 
-\section{NO DSLs}.
+\section{Extend an existing language: \\ No domain-specific languages}
 
-we think it's really important to rely as much as possible on a well-known
-and well-understood existent programming langauge. no domain-specific languages
-(dsls). music people always think they need a dsl. everybody always makes that
-mistake. extend existing language. [TREVOR]
+Abjad is not a programming langauge. Abjad instead extends the Python
+programming language. Our insistence on this principle of extension --- of
+adding functionality to an existing programming language rather than inventing
+yet another domain-specific language --- originates in the belief that there is
+no real benefit to be had in reestablishing the ways variables are created,
+references are handled, loops are structured or any of the other fundamentals
+of programming. We have instead architected Abjad in the form of a Python
+package designed to be used the same way as the thousands of other packages
+that equip the language with new functionality.\footnote{See the Python Package
+Index for functionality to extend the language for purposes as diverse as
+creative writing and aeronautical engineering. The Python Package Index
+contains 54,306 packages at the time or writing and is available at
+\textit{pypi.python.org}.}
+
+\begin{comment}
+a desire to make available to composers the considerable amount
+of work already accomplished by software engineers. There are surely more
+programmers than composers in the world, and likely always will be: in deciding
+to architect Abjad as an extension to one of the most widely known programming
+languages in the world we are implicitly making the case that necessarily
+relatively smaller global community of composers will be well-served in
+adopting the tools and best practices of the much larger global community of
+software developers and engineers.
+
+Python is an excellent general-purpose programming
+language. But our decision to implement all recent versions of Abjad in Python
+does not arise from any of the specifics of the language itself but rather from
+the fact that the language is supported by a large and active community of
+users and that all features of the language are already well-documented and
+explained by people other than ourselves.
+
+currently in use we hope to ease the composers'
+transition to programming in making available the global community of Python
+language users. High-quality resources for learning Python are available in
+all major languages and written according to a variety of different
+perspectives and understandings. This
+
+with Abjad is really a type of specialized programming working with Abjad while
+keeping available to composers the entirety of the langauge's
+features.\footnote{The core features of Python include fundamental data
+structures like lists and dictionaries; the basics of flow control, looping and
+iteration; the way code in one file refers to code in another file; and the
+extensive functionality included as part of the language's standard library.}
+Our insistence on this principle of extension --- of adding functionality to an
+existing system rather than constructing from the ground up --- is fundamental
+to way we have architected Abjad and the work underlying language constructs.
+
+All versions of Abjad released since 2008 have
+all been implemented in Python and architected in such a way as to make
+available to composers all features of the Python programming language (rather
+than only a subset of language features).\footnote{Early versions of
+Abjad were implemented in \texttt{C} and \texttt{Mathematica}.}
+
+music people always think they need a dsl.
+everybody always makes that mistake. extend existing language. [TREVOR]
+\end{comment}
 
 \section{universal illustration}
 
@@ -421,7 +473,7 @@ By providing core functionality oriented toward the elements of standard
 notation, Abjad strives to remain as agnostic as possible to various
 composition techniques. 
 
-\section{selection flexability}
+\section{selection flexibility}
 
 we think it's important for composers to be able to select arbitrary
 collections of score objects. this is important for a couple of reasons. first,
