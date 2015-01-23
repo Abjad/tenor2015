@@ -38,6 +38,15 @@ music.)
 3. we make it easy to build up complex score objects through iterative
 aggregation.
 
+3. "encapsulation". we want everything to be encapsulated as much as
+possible. what this comes out to mean is the system is overwhelming
+object-oriented (in the proper uses of the term) and that all parts of the
+system (whether object-oriented or not) are structured in such a way as to
+provide a single interface named according to a uniform set of naming
+conventions.
+
+====
+
 3.15 we think it's important that users of the system should always have access
 to an object-oriented interface to the graphic elements on the page.
 
@@ -51,6 +60,9 @@ letting users instantiate *nonsemantic* (that is, "purely graphic") objects.
 3.5 we think it's important that users have access to all the features of the
 underlying typesetter. (this is definitely a design committment and a
 development committment.) this definitely comes from working with lilypond.
+
+===
+
 
 4. "selection flexability". we think it's important for composers to be able to
 select arbitrary collections of score objects. this is important for a couple
