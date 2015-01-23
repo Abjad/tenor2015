@@ -36,12 +36,16 @@ aggregation.
 3.15 we think it's important that users of the system should always have access
 to an object-oriented interface to the graphic elements on the page.
 
-3.25 we think it's important that things that are conventionally semantic have
-been modeled. we also think it's important that things that some composers
-might want to make semantic (like an idiosyncratic use of stem length to
-communicate dynamics) can, in fact, be made semantic. lilypond shares this
-design principle. (and the distinction here would seem to be between the
-semantic and the typographic.)
+3.2 we're committed to providing our users access to the full inventory of
+symbols of conventional musical notation. (by contrast, we're not committed to
+affording the drawing of arbitrary lines or other vectors.) in fact it's
+interesting because what we seem to be committed to is letting users
+instantiate conventionally semantic objects. and we're not at all committed to
+letting users instantiate *nonsemantic* (that is, "purely graphic") objects.
+
+3.5 we think it's important that users have access to all the features of the
+underlying typesetter. (this is definitely a design committment and a
+development committment.) this definitely comes from working with lilypond.
 
 4. we think it's important to be able to address objects via numerical index.
 
