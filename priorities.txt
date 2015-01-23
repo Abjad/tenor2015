@@ -3,7 +3,7 @@ design priorities
 1. we think it's really important to rely as much as possible on a well-known
 and well-understood existent programming langauge. no domain-specific languages
 (dsls). music people always think they need a dsl. everybody always makes that
-mistake. extend existing language.
+mistake. extend existing language. [TREVOR]
 
 2. "universal illustration." it's important that composers be able to
 illustrate all objects they work with as they compose. this design priority is
@@ -13,7 +13,7 @@ power of conventional music notation as a tool for thinking about sound and
 time. (we wanna make it possible to illustrate everything all the time because
 we notation helps us think about such incredibly complex stuff.) (footnote: we
 think it's important that users have access to all the features of the
-underlying typesetter.)
+underlying typesetter.) [TREVOR]
 
 3. "build bottom-up." it's important for composers to be able to build complex
 score bottom-up. input flexibility. you can build up score via iterative
@@ -21,7 +21,7 @@ aggregation but you can also just type a lilypond string into a staff. we
 afford both types of input and, indeed, two different ways of building up
 score. this is where we should cite alan kay's smalltalk paper. ("it's easy to
 make a thing.") we make it easy to build up complex score objects through
-iterative aggregation. ("we make it easy to build things up.")
+iterative aggregation. ("we make it easy to build things up.") [JOSIAH]
 
 4. "build top-down." it's important for composers to be able to build complex
 score top-down. we provide factories. factory functions. factory classes. when
@@ -38,7 +38,10 @@ make a single note. but people can find it totally fascinating to make an
 intermediate-level object like a complete phrase of music.) we think it's
 important for composers to be able to create their own processes that
 generalize these things. with experience, use of the system migrates from
-bottom-up to top-down: just look at us! 
+bottom-up to top-down: just look at us! this is what is closest to the work of
+beginning to implement one's own system of composition. this is where we make
+the case for esthethic-agnositicism. this is also an important point about
+extensibility. [JOSIAH]
 
 5. "selection flexability". we think it's important for composers to be able to
 select arbitrary collections of score objects. this is important for a couple
@@ -63,17 +66,18 @@ important for composers to be able to configure objects a single time, and then
 resuse the configuration as many times as necessary while composing. we also
 think it's important to configure complex objects all at once. "templating". we
 think it's important for composers to be able to template all objects in the
-system, especially the hugely complex objects.
+system, especially the hugely complex objects. [JOSIAH]
 
 7. "encapsulation". we want everything to be encapsulated as much as
 possible. what this comes out to mean is the system is overwhelming
 object-oriented (in the proper uses of the term) and that all parts of the
 system (whether object-oriented or not) are structured in such a way as to
 provide a single interface named according to a uniform set of naming
-conventions.
+conventions. [TREVOR]
 
 8. we try to follow the best practices of the open-source community (which has
-a number of subpoints). 
+a number of subpoints). [TREVOR]
 
 9. conclusion: we want composers to become programmers. for extremely good
 reasons. and the priorities we have detailed here help make the case for why.
+[TREVOR]
