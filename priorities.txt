@@ -1,7 +1,9 @@
 design priorities
 
 0. we think it's really important to rely as much as possible on a well-known
-and well-understood existent programming langauge.
+and well-understood existent programming langauge. no domain-specific languages
+(dsls). music people always think they need a dsl. everybody always makes that
+mistake. extend existing language.
 
 1. it's easy to notate score components (any score component can be notated).
 
@@ -60,7 +62,8 @@ important to afford composers the ability to reference score objects in
 whatever ways are most natural for a given task. sometimes the most natural
 mode of reference is numeric, sometimes by name or sometimes by music-specific
 criteria such as the relative times at which different objects appear in the
-score. examples follow.
+score. examples follow. we provide concrete object models of vertical
+relationships in the score.
 
 5. "configuration is super fucking important." we think it's important for
 composers to be able to define an operation (where musical or notational) one
@@ -74,12 +77,5 @@ think it's important to configure complex objects all at once. "templating". we
 think it's important for composers to be able to template all objects in the
 system, especially the hugely complex objects.
 
-7. we provide concrete object models of hierarchical relationships in the
-score.
-
-8. we provide concrete object models of temporal relationships in the score.
-
-9. we provide concrete object models of vertical relationships in the score.
-
-10. we try to follow the best practices of the open-source community (which has
+6. we try to follow the best practices of the open-source community (which has
 a number of subpoints). 
