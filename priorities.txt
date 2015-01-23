@@ -5,38 +5,39 @@ and well-understood existent programming langauge. no domain-specific languages
 (dsls). music people always think they need a dsl. everybody always makes that
 mistake. extend existing language.
 
-1. it's easy to notate score components (any score component can be notated).
+1. "universal illustration." it's important that composers be able to
+illustrate all objects they work with as they compose. this design priority is
+reflected in the establishment of what we call the illustration protocol. this
+priority is driven in large part by our shared insistence on the incredible
+power of conventional music notation as a tool for thinking about sound and
+time. (we wanna make it possible to illustrate everything all the time because
+we notation helps us think about such incredibly complex stuff.)
 
-2. all score components are instantiated in a notatable state and no score
-component can ever be put in a non-notatable state. we might call this the
-"principle of conservation of (score component) notatability." second
-principle: class authors may equip even the most abstract classes with an
-optional illustration: this is what we mean when we refer to our illustration
-protocol. we might call this second principle a "principle of universal
-illustration".
+"input flexibility" you can build up score via iterative aggregation but
+you can also just type a lilypond string into a staff. we afford both types of
+input and, indeed, two different ways of building up score. this is where we
+should cite alan kay's smalltalk paper. ("it's easy to make a thing.")
 
-2.5 we provide factories. factory functions. factory classes. when we wanna
+we make it easy to build up complex score objects through iterative
+aggregation. ("we make it easy to build things up.")
+
+we provide factories. factory functions. factory classes. when we wanna
 make complex stuff we usually come up with factories. (there may be a design
 principle here that initialization is kept simple and we implement in factories
 complex ways of aggregating together objects that admit only simple
-initialization.)
+initialization.) (we generalize many of these things in processes.)
 
-2.75 input flexibility: you can build up score via iterative aggregation but
-you can also just type a lilypond string into a staff. we afford both types of
-input and, indeed, two different ways of building up score. this is where we
-should cite alan kay's smalltalk paper.
-
-2.95 there's a design priority in here somewhere that what we want to do is
+there's a design priority in here somewhere that what we want to do is
 make it as easy as possible for people to implement their own factories. what
 does this mean? it means that we want to make it as easy as possible for people
 to implement their own code that outputs or creates intermediate level
 structures or materials. (there's a realization here that people probabaly
 don't find it interesting to make a single note. but people can find it totally
 fascinating to make an intermediate-level object like a complete phrase of
-music.) 
+music.) we think it's important for composers to be able to create their own
+processes that generalize these things.
 
-3. we make it easy to build up complex score objects through iterative
-aggregation.
+==
 
 3. "encapsulation". we want everything to be encapsulated as much as
 possible. what this comes out to mean is the system is overwhelming
