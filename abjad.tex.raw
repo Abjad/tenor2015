@@ -4,6 +4,7 @@
 \usepackage{ifpdf}
 \usepackage[english]{babel}
 \usepackage{cite}
+\usepackage{microtype}
 
 \usepackage{inconsolata}
 \usepackage{verbatim}
@@ -358,19 +359,19 @@ which allow score components to be appended, extended or inserted into other
 container-like score components as though they were lists.
 
 <abjad>
-score = Score()
-staff_group = StaffGroup()
-upper_staff = Staff(name='Upper Staff')
 outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
 inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
 outer_tuplet_one.append(inner_tuplet)
-outer_tuplet_two = Tuplet((4, 5), "d'8 r16 b'16 as'16")
-upper_staff.extend([outer_tuplet_one, outer_tuplet_two])
+outer_tuplet_two = Tuplet((4, 5))
+outer_tuplet_two.extend("d'8 r16 b'16 as'16")
+tuplets = [outer_tuplet_one, outer_tuplet_two]
+upper_staff = Staff(tuplets, name='Upper Staff')
 upper_staff.extend("as'8.. fs'32")
 lower_staff = Staff(name='Lower Staff')
 lower_staff.extend("c8 r8 b8 r8 gf8 r4 cs8")
+staff_group = StaffGroup()
 staff_group.extend([upper_staff, lower_staff])
-score.append(staff_group)
+score = Score([staff_group])
 show(score)
 </abjad>
 
@@ -490,6 +491,33 @@ composing. we also think it's important to configure complex objects all at
 once. "templating". we think it's important for composers to be able to
 template all objects in the system, especially the hugely complex objects.
 [JOSIAH]
+
+<abjad>
+rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+    talea=rhythmmakertools.Talea(
+        counts=(1, 2, 3),
+        denominator=16,
+        ),
+    )
+print(format(rhythm_maker))
+</abjad>
+
+<abjad>
+divisions = [(3, 8), (1, 4), (5, 16), (1, 4)]
+show(rhythm_maker, divisions=divisions)
+</abjad>
+
+<abjad>
+new_rhythm_maker = new(rhythm_maker,
+    talea__counts=(1, 2, 3, 4),
+    extra_counts_per_division=(0, 1),
+    )
+print(format(new_rhythm_maker))
+</abjad>
+
+<abjad>
+show(new_rhythm_maker, divisions=divisions)
+</abjad>
 
 \section{encapsulation}
 
