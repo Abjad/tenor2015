@@ -1,5 +1,8 @@
 design priorities
 
+0. we think it's really important to rely as much as possible on a well-known
+and well-understood existent programming langauge.
+
 1. it's easy to notate score components (any score component can be notated).
 
 2. all score components are instantiated in a notatable state and no score
@@ -59,27 +62,17 @@ mode of reference is numeric, sometimes by name or sometimes by music-specific
 criteria such as the relative times at which different objects appear in the
 score. examples follow.
 
-5. we think it's important for composers to be able to define an operation
-(where musical or notational) one time and be able to apply the operation to
-arbitrarily many objects in the score at once. of the many ways abjad provides
-of doing this, the most important (and most general) is iteration. examples
-follow. iteration can be glossed as "define-once, apply-many".
-
-6. "configuration reuse". we think it's important for composers to be able to
-configure objects a single time, and then resuse the configuration as many
-times as necessary while composing. we also think it's important to configure
-complex objects all at once.
-
-6.5 "templating". we think it's important for composers to be able to template
-all objects in the system, especially the hugely complex objects.
-
-7. "statelessness". we think it's important that things should be stateless
-whenever possible. this is why we provide the top-level new() function.
-
-5. we provide a variety of ways of iterating over a score. 
-
-6. we think it's really important to rely as much as possible on a well-known
-and well-understood existent programming langauge.
+5. "configuration is super fucking important." we think it's important for
+composers to be able to define an operation (where musical or notational) one
+time and be able to apply the operation to arbitrarily many objects in the
+score at once. of the many ways abjad provides of doing this, the most
+important (and most general) is iteration. examples follow. iteration can be
+glossed as "define-once, apply-many". "configuration reuse". we think it's
+important for composers to be able to configure objects a single time, and then
+resuse the configuration as many times as necessary while composing. we also
+think it's important to configure complex objects all at once. "templating". we
+think it's important for composers to be able to template all objects in the
+system, especially the hugely complex objects.
 
 7. we provide concrete object models of hierarchical relationships in the
 score.
