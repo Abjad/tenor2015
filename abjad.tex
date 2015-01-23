@@ -342,13 +342,18 @@ One of the core beliefs we bring to our work architecting Abjad concerns the
 power of conventional music notation. We believe that it is important for
 composers be able to illustrate the objects they work with as they compose.
 This priority in favor of iteratively viewing the objects of composition is
-reflected in the \emph{illustration protocol} established for Abjad objects.
-Composers call the top-level \texttt{show()} function to visualize Abjad
-objects. Behind the scenes Abjad inspects objects passed to \texttt{show()} for
-the presence of an \texttt{\_\_illustrate\_\_()} method that defines explicitly
-how an object should be illustrated. Abjad transforms score components, for
-example, into LilyPond input code and then calls LilyPond to generate a PDF
-that is then pushed to the composer's PDF viewer.
+reflected in the \emph{illustration protocol} \footnote{Python describes common
+informal interfaces to working with objects as \emph{protocols}. Important
+protocols include the \emph{iterator protocol} for iterating over the contents
+of a container-like object, the \emph{sequence protocol} for getting items and
+length from a container-like object and the \emph{mutable container protocol}
+for mutating the contents of a container-like object.} established for Abjad
+objects. Composers call the top-level \texttt{show()} function to visualize
+Abjad objects. Behind the scenes Abjad inspects objects passed to
+\texttt{show()} for the presence of an \texttt{\_\_illustrate\_\_()} method
+that defines explicitly how an object should be illustrated. Abjad transforms
+score components, for example, into LilyPond input code and then calls LilyPond
+to generate a PDF that is then pushed to the composer's PDF viewer.
 
 %priority is driven in large part by our shared insistence on the incredible
 %power of conventional music notation as a tool for thinking about sound and
