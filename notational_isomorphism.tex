@@ -42,33 +42,21 @@ Components:
 \includegraphics[scale=1.0]{images/notational_isomorphism-1.pdf}
 
 
-Spanners:
+Spanners and indicators:
 
 \begin{lstlisting}
 >>> upper_leaves = upper_staff.select_leaves()
+>>> lower_leaves = lower_staff.select_leaves()
 >>> attach(Tie(), upper_leaves[4:6])
 >>> attach(Tie(), upper_leaves[-3:-1])
 >>> attach(Slur(), upper_leaves[:2])
 >>> attach(Slur(), upper_leaves[2:6])
 >>> attach(Slur(), upper_leaves[7:])
->>> show(score)
-\end{lstlisting}
-
-\includegraphics[scale=1.0]{images/notational_isomorphism-2.pdf}
-
-
-Indicators:
-
-\begin{lstlisting}
+>>> attach(Hairpin('ppp < mp'), lower_leaves)
 >>> attach(Dynamic('f'), upper_leaves[0])
 >>> attach(Dynamic('p'), upper_leaves[-4])
 >>> attach(Articulation('accent'), upper_leaves[0])
 >>> attach(Articulation('accent'), upper_leaves[2])
-\end{lstlisting}
-
-
-\begin{lstlisting}
->>> lower_leaves = lower_staff.select_leaves()
 >>> attach(Clef('bass'), lower_leaves[0])
 >>> for note in iterate(lower_staff).by_class(Note):
 ...     attach(Articulation('staccato'), note)
@@ -76,7 +64,7 @@ Indicators:
 >>> show(score)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/notational_isomorphism-3.pdf}
+\includegraphics[scale=1.0]{images/notational_isomorphism-2.pdf}
 
 
 \subsection{Building up score: iterative aggregation}
@@ -144,7 +132,7 @@ smart defaults for generating tied glyphs from otherwise un-notateable input.
 >>> show(staff)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/notational_isomorphism-4.pdf}
+\includegraphics[scale=1.0]{images/notational_isomorphism-3.pdf}
 
 
 All score components also have a \emph{prolated} duration - the product of
@@ -168,14 +156,14 @@ provide the desired prolation of \texttt{2/3} or \texttt{4/3}.
 >>> show(tuplet)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/notational_isomorphism-5.pdf}
+\includegraphics[scale=1.0]{images/notational_isomorphism-4.pdf}
 
 \begin{lstlisting}
 >>> tuplet.toggle_prolation()
 >>> show(tuplet)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/notational_isomorphism-6.pdf}
+\includegraphics[scale=1.0]{images/notational_isomorphism-5.pdf}
 
 
 The durational information of any aggregate score object in Abjad is therefore
