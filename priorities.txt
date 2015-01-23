@@ -11,7 +11,9 @@ reflected in the establishment of what we call the illustration protocol. this
 priority is driven in large part by our shared insistence on the incredible
 power of conventional music notation as a tool for thinking about sound and
 time. (we wanna make it possible to illustrate everything all the time because
-we notation helps us think about such incredibly complex stuff.)
+we notation helps us think about such incredibly complex stuff.) (footnote: we
+think it's important that users have access to all the features of the
+underlying typesetter.)
 
 2. "build bottom-up." it's important for composers to be able to build complex
 score bottom-up. input flexibility. you can build up score via iterative
@@ -37,35 +39,14 @@ intermediate-level object like a complete phrase of music.) we think it's
 important for composers to be able to create their own processes that
 generalize these things.
 
-==
-
-3. "encapsulation". we want everything to be encapsulated as much as
+4. "encapsulation". we want everything to be encapsulated as much as
 possible. what this comes out to mean is the system is overwhelming
 object-oriented (in the proper uses of the term) and that all parts of the
 system (whether object-oriented or not) are structured in such a way as to
 provide a single interface named according to a uniform set of naming
 conventions.
 
-====
-
-3.15 we think it's important that users of the system should always have access
-to an object-oriented interface to the graphic elements on the page.
-
-3.2 we're committed to providing our users access to the full inventory of
-symbols of conventional musical notation. (by contrast, we're not committed to
-affording the drawing of arbitrary lines or other vectors.) in fact it's
-interesting because what we seem to be committed to is letting users
-instantiate conventionally semantic objects. and we're not at all committed to
-letting users instantiate *nonsemantic* (that is, "purely graphic") objects.
-
-3.5 we think it's important that users have access to all the features of the
-underlying typesetter. (this is definitely a design committment and a
-development committment.) this definitely comes from working with lilypond.
-
-===
-
-
-4. "selection flexability". we think it's important for composers to be able to
+5. "selection flexability". we think it's important for composers to be able to
 select arbitrary collections of score objects. this is important for a couple
 of reasons. first, so that composers can map operations to the entirety of such
 a selection at one time. second, there's some type of conceptual benefit to be
@@ -78,7 +59,7 @@ criteria such as the relative times at which different objects appear in the
 score. examples follow. we provide concrete object models of vertical
 relationships in the score.
 
-5. "configuration is super fucking important." we think it's important for
+6. "configuration is super fucking important." we think it's important for
 composers to be able to define an operation (where musical or notational) one
 time and be able to apply the operation to arbitrarily many objects in the
 score at once. of the many ways abjad provides of doing this, the most
@@ -90,5 +71,5 @@ think it's important to configure complex objects all at once. "templating". we
 think it's important for composers to be able to template all objects in the
 system, especially the hugely complex objects.
 
-6. we try to follow the best practices of the open-source community (which has
+7. we try to follow the best practices of the open-source community (which has
 a number of subpoints). 
