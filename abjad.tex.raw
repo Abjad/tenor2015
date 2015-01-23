@@ -21,8 +21,8 @@ keywordstyle=\bfseries,
 basicstyle=\scriptsize\ttfamily
 }
 
-\def\papertitle{Design Priorities in Abjad:
-    A Python API for Formalized Score Control}
+\def\papertitle{The design priorities behind Abjad:
+Architecting an open-source software system for Formalized Score Control}
 \def\firstauthor{Trevor Ba\v{c}a}
 \def\secondauthor{Josiah Wolf Oberholtzer}
 \def\thirdauthor{Jeffrey Trevi\~{n}o}
@@ -74,7 +74,10 @@ basicstyle=\scriptsize\ttfamily
     urlcolor=black
 }
 
-\title{\papertitle}
+%\title{\papertitle}
+\title{The design priorities behind Abjad: \\ 
+Architecting an open-source software system \\
+for Formalized Score Control}
 
 \fourauthors
   {\firstauthor} {Harvard University \\
@@ -292,24 +295,72 @@ notation, addressability (in HMSL and JMSL). Reintroduce generative task: late
 until IRCAM's Patchwork approached a generative task of broadly enabling
 composers; sufficiency determined by comprehensive task.
 
-\section{NO DSLs}.
+\section{Extend an existing language: \\ No domain-specific languages}
 
-we think it's really important to rely as much as possible on a well-known
-and well-understood existent programming langauge. no domain-specific languages
-(dsls). music people always think they need a dsl. everybody always makes that
-mistake. extend existing language. [TREVOR]
+Abjad is not a programming langauge. Abjad instead extends the Python
+programming language. Our insistence on this principle of extension --- of
+adding functionality to an existing programming language rather than inventing
+yet another domain-specific language --- originates in the belief that there is
+no real benefit to be had in reestablishing the ways variables are created,
+references are handled, loops are structured or any of the other fundamentals
+of programming. We have instead architected Abjad in the form of a Python
+package designed to be used the same way as the thousands of other packages
+that equip Python with new functionality.\footnote{See the Python Package Index
+for functionality to extend the language for purposes as diverse as creative
+writing and aeronautical engineering. The Python Package Index contains 54,306
+packages at the time or writing and is available at \textit{pypi.python.org}.}
+In designing Abjad as an extension to a widely used language we make relevant
+both the hundreds of already-available print and Web resources that detail
+Python and its features as well as the global community of developers working
+in the language. Both benefits we hope to ease composers' transition to
+programming and make working with Abjad a familiar task that conforms to widely
+understood programming best practices: there will probably by necessity always
+be more programmers than composers in the world and it makes sense for our work
+as composers to benefit from the patterns already understood elsewhere in the
+culture.
 
-\section{universal illustration}
+Though we continue to find Python an excellent programming
+language,\footnote{Aspects of Python we find particularly helpful include the
+availability of lists, dictionaries and sets as built-in types; the interface
+provided for string and Unicode objects; the unified approach to encapsulation
+provided by Python's understanding of namespaces; and the extensive
+functionality provided in the standard library.} our decision to implement
+Abjad in Python does not arise from the specifics of the language but from the
+large community of users the language supports and the fact that Python is open
+source. The history of music software systems is littered with projects that
+fell into disuse. Music software systems except for the large commercial
+notation packages will probabaly always be the niche efforts of specialists and
+our experience architecting Abjad leads us to think about the future in such a
+way that we give ourselves all the advantages of expansiveness that are
+possible: picking an existing language that makes learning preliminaries
+easier and makes the continued development of the system as open as possible to
+as many different collaborators as possible.
 
-it's important that composers be able to
-illustrate all objects they work with as they compose. this design priority is
-reflected in the establishment of what we call the illustration protocol. this
-priority is driven in large part by our shared insistence on the incredible
-power of conventional music notation as a tool for thinking about sound and
-time. (we wanna make it possible to illustrate everything all the time because
-we notation helps us think about such incredibly complex stuff.) (footnote: we
-think it's important that users have access to all the features of the
-underlying typesetter.) [TREVOR]
+\section{Allow composers to illustrate objects iteratively during composition }
+
+One of the core beliefs we bring to our work architecting Abjad concerns the
+power of conventional music notation. We believe that it is important for
+composers be able to illustrate the objects they work with as they compose.
+This priority in favor of iteratively viewing the objects of composition is
+reflected in the \emph{illustration protocol} \footnote{Python describes common
+informal interfaces to working with objects as \emph{protocols}. Important
+protocols include the \emph{iterator protocol} for iterating over the contents
+of a container-like object, the \emph{sequence protocol} for getting items and
+length from a container-like object and the \emph{mutable container protocol}
+for mutating the contents of a container-like object.} established for Abjad
+objects. Composers call the top-level \texttt{show()} function to visualize
+Abjad objects. Behind the scenes Abjad inspects objects passed to
+\texttt{show()} for the presence of an \texttt{\_\_illustrate\_\_()} method
+that defines explicitly how an object should be illustrated. Abjad transforms
+score components, for example, into LilyPond input code and then calls LilyPond
+to generate a PDF that is then pushed to the composer's PDF viewer.
+
+%priority is driven in large part by our shared insistence on the incredible
+%power of conventional music notation as a tool for thinking about sound and
+%time. (we wanna make it possible to illustrate everything all the time because
+%we notation helps us think about such incredibly complex stuff.) (footnote: we
+%think it's important that users have access to all the features of the
+%underlying typesetter.) [TREVOR]
 
 \hrulefill\vspace{5pt}
 
@@ -339,7 +390,7 @@ rhythm, as well as affordances for moving between them, the format actually
 stored in and used by score components for rendering notation is always the
 most notationally-explicit.
 
-\section{build bottom-up}
+\section{Bottom-up construction}
 
 it's important for composers to be able to build complex
 score bottom-up. input flexibility. you can build up score via iterative
@@ -387,7 +438,7 @@ attach(Clef('bass'), lower_leaves[0])
 show(score)
 </abjad>
 
-\section{build top-down}
+\section{Top-down construction}
 
 it's important for composers to be able to build complex
 score top-down. we provide factories. factory functions. factory classes. when
@@ -415,7 +466,7 @@ By providing core functionality oriented toward the elements of standard
 notation, Abjad strives to remain as agnostic as possible to various
 composition techniques. 
 
-\section{selection flexability}
+\section{Selection flexibility}
 
 we think it's important for composers to be able to select arbitrary
 collections of score objects. this is important for a couple of reasons. first,
@@ -478,7 +529,7 @@ for index, component in enumerate(iterator):
 show(score)
 </abjad>
 
-\section{configuration is super fucking important}
+\section{Configuration}
 
 We think it's important for composers to be able to define an operation (where
 musical or notational) one time and be able to apply the operation to
@@ -519,7 +570,21 @@ print(format(new_rhythm_maker))
 show(new_rhythm_maker, divisions=divisions)
 </abjad>
 
-\section{encapsulation}
+<abjad>
+new_new_rhythm_maker = new(new_rhythm_maker,
+    extra_counts_per_division=(0, 1, 2),
+    beam_specifier=rhythmmakertools.BeamSpecifier(
+        beam_divisions_together=True,
+        ),
+    )
+print(format(new_new_rhythm_maker))
+</abjad>
+
+<abjad>
+show(new_new_rhythm_maker, divisions=divisions)
+</abjad>
+
+\section{Encapsulation}
 
 We want everything to be encapsulated as much as possible. what this comes out
 to mean is the system is overwhelming object-oriented (in the proper uses of
@@ -527,7 +592,7 @@ the term) and that all parts of the system (whether object-oriented or not) are
 structured in such a way as to provide a single interface named according to a
 uniform set of naming conventions. [TREVOR]
 
-\section{open-source best practices}
+\section{Open-source best practices}
 
 We try to follow the best practices of the open-source community (which has a
 number of subpoints). [TREVOR]

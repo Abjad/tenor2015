@@ -390,7 +390,7 @@ rhythm, as well as affordances for moving between them, the format actually
 stored in and used by score components for rendering notation is always the
 most notationally-explicit.
 
-\section{build bottom-up}
+\section{Bottom-up construction}
 
 it's important for composers to be able to build complex
 score bottom-up. input flexibility. you can build up score via iterative
@@ -444,7 +444,7 @@ container-like score components as though they were lists.
 \includegraphics[scale=1.0]{images/abjad-2.pdf}
 
 
-\section{build top-down}
+\section{Top-down construction}
 
 it's important for composers to be able to build complex
 score top-down. we provide factories. factory functions. factory classes. when
@@ -472,7 +472,7 @@ By providing core functionality oriented toward the elements of standard
 notation, Abjad strives to remain as agnostic as possible to various
 composition techniques. 
 
-\section{selection flexibility}
+\section{Selection flexibility}
 
 we think it's important for composers to be able to select arbitrary
 collections of score objects. this is important for a couple of reasons. first,
@@ -550,7 +550,7 @@ addressing regime follow those of Python's list and tuple interface exactly.
 \includegraphics[scale=1.0]{images/abjad-7.pdf}
 
 
-\section{configuration is super fucking important}
+\section{Configuration}
 
 We think it's important for composers to be able to define an operation (where
 musical or notational) one time and be able to apply the operation to
@@ -612,7 +612,36 @@ rhythmmakertools.TaleaRhythmMaker(
 \includegraphics[scale=1.0]{images/abjad-9.pdf}
 
 
-\section{encapsulation}
+\begin{lstlisting}
+>>> new_new_rhythm_maker = new(new_rhythm_maker,
+...     extra_counts_per_division=(0, 1, 2),
+...     beam_specifier=rhythmmakertools.BeamSpecifier(
+...         beam_divisions_together=True,
+...         ),
+...     )
+>>> print(format(new_new_rhythm_maker))
+rhythmmakertools.TaleaRhythmMaker(
+    talea=rhythmmakertools.Talea(
+        counts=(1, 2, 3, 4),
+        denominator=16,
+        ),
+    extra_counts_per_division=(0, 1, 2),
+    beam_specifier=rhythmmakertools.BeamSpecifier(
+        beam_each_division=True,
+        beam_divisions_together=True,
+        ),
+    )
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> show(new_new_rhythm_maker, divisions=divisions)
+\end{lstlisting}
+
+\includegraphics[scale=1.0]{images/abjad-10.pdf}
+
+
+\section{Encapsulation}
 
 We want everything to be encapsulated as much as possible. what this comes out
 to mean is the system is overwhelming object-oriented (in the proper uses of
@@ -620,7 +649,7 @@ the term) and that all parts of the system (whether object-oriented or not) are
 structured in such a way as to provide a single interface named according to a
 uniform set of naming conventions. [TREVOR]
 
-\section{open-source best practices}
+\section{Open-source best practices}
 
 We try to follow the best practices of the open-source community (which has a
 number of subpoints). [TREVOR]
