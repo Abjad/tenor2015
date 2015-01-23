@@ -47,14 +47,39 @@ letting users instantiate *nonsemantic* (that is, "purely graphic") objects.
 underlying typesetter. (this is definitely a design committment and a
 development committment.) this definitely comes from working with lilypond.
 
-4. "reference flexability"
-we think it's important to afford composers the ability to reference score
-objects in whatever ways are most natural for a given task. sometimes the most
-natural mode of reference is numeric, sometimes by name or sometimes by
-music-specific criteria such as the relative times at which different objects
-appear in the score. examples follow.
+4. "selection flexability". we think it's important for composers to be able to
+select arbitrary collections of score objects. this is important for a couple
+of reasons. first, so that composers can map operations to the entirety of such
+a selection at one time. second, there's some type of conceptual benefit to be
+had in named selections; the point is that every selection is an ad hoc
+intermediate structure created in the midst of the score. we also think it's
+important to afford composers the ability to reference score objects in
+whatever ways are most natural for a given task. sometimes the most natural
+mode of reference is numeric, sometimes by name or sometimes by music-specific
+criteria such as the relative times at which different objects appear in the
+score. examples follow.
 
-6. we provide a variety of ways of iterating over a score.
+5. we think it's important for composers to be able to define an operation
+(where musical or notational) one time and be able to apply the operation to
+arbitrarily many objects in the score at once. of the many ways abjad provides
+of doing this, the most important (and most general) is iteration. examples
+follow. iteration can be glossed as "define-once, apply-many".
+
+6. "configuration reuse". we think it's important for composers to be able to
+configure objects a single time, and then resuse the configuration as many
+times as necessary while composing. we also think it's important to configure
+complex objects all at once.
+
+6.5 "templating". we think it's important for composers to be able to template
+all objects in the system, especially the hugely complex objects.
+
+7. "statelessness". we think it's important that things should be stateless
+whenever possible. this is why we provide the top-level new() function.
+
+5. we provide a variety of ways of iterating over a score. 
+
+6. we think it's really important to rely as much as possible on a well-known
+and well-understood existent programming langauge.
 
 7. we provide concrete object models of hierarchical relationships in the
 score.
