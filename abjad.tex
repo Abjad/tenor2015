@@ -125,11 +125,102 @@ architecting Abjad.
 \end{abstract}
 
 \input{background.tex}
-\input{notational_reality.tex}
-\input{notational_isomorphism.tex}
-\input{score_addressability.tex}
-\input{relationship_modeling.tex}
-\input{open_source.tex}
+%\input{notational_reality.tex}
+%\input{notational_isomorphism.tex}
+%\input{score_addressability.tex}
+%\input{relationship_modeling.tex}
+%\input{open_source.tex}
+
+\section{NO DSLs}.
+we think it's really important to rely as much as possible on a well-known
+and well-understood existent programming langauge. no domain-specific languages
+(dsls). music people always think they need a dsl. everybody always makes that
+mistake. extend existing language. [TREVOR]
+
+\section{universal illustration}
+it's important that composers be able to
+illustrate all objects they work with as they compose. this design priority is
+reflected in the establishment of what we call the illustration protocol. this
+priority is driven in large part by our shared insistence on the incredible
+power of conventional music notation as a tool for thinking about sound and
+time. (we wanna make it possible to illustrate everything all the time because
+we notation helps us think about such incredibly complex stuff.) (footnote: we
+think it's important that users have access to all the features of the
+underlying typesetter.) [TREVOR]
+
+\section{build bottom-up}
+it's important for composers to be able to build complex
+score bottom-up. input flexibility. you can build up score via iterative
+aggregation but you can also just type a lilypond string into a staff. we
+afford both types of input and, indeed, two different ways of building up
+score. this is where we should cite alan kay's smalltalk paper. ("it's easy to
+make a thing.") we make it easy to build up complex score objects through
+iterative aggregation. ("we make it easy to build things up.") [JOSIAH]
+
+\section{build top-down}
+it's important for composers to be able to build complex
+score top-down. we provide factories. factory functions. factory classes. when
+we wanna make complex stuff we usually come up with factories. (there may be a
+design principle here that initialization is kept simple and we implement in
+factories complex ways of aggregating together objects that admit only simple
+initialization.) (we generalize many of these things in processes.) there's a
+design priority in here somewhere that what we want to do is make it as easy as
+possible for people to implement their own factories. what does this mean? it
+means that we want to make it as easy as possible for people to implement their
+own code that outputs or creates intermediate level structures or materials.
+(there's a realization here that people probabaly don't find it interesting to
+make a single note. but people can find it totally fascinating to make an
+intermediate-level object like a complete phrase of music.) we think it's
+important for composers to be able to create their own processes that
+generalize these things. with experience, use of the system migrates from
+bottom-up to top-down: just look at us! this is what is closest to the work of
+beginning to implement one's own system of composition. this is where we make
+the case for esthethic-agnositicism. this is also an important point about
+extensibility. [JOSIAH]
+
+\section{selection flexability}
+we think it's important for composers to be able to
+select arbitrary collections of score objects. this is important for a couple
+of reasons. first, so that composers can map operations to the entirety of such
+a selection at one time. second, there's some type of conceptual benefit to be
+had in named selections; the point is that every selection is an ad hoc
+intermediate structure created in the midst of the score. we also think it's
+important to afford composers the ability to reference score objects in
+whatever ways are most natural for a given task. sometimes the most natural
+mode of reference is numeric, sometimes by name or sometimes by music-specific
+criteria such as the relative times at which different objects appear in the
+score. examples follow. we provide concrete object models of vertical
+relationships in the score. [TREVOR]
+
+\section{configuration is super fucking important}
+we think it's important for
+composers to be able to define an operation (where musical or notational) one
+time and be able to apply the operation to arbitrarily many objects in the
+score at once. of the many ways abjad provides of doing this, the most
+important (and most general) is iteration. examples follow. iteration can be
+glossed as "define-once, apply-many". "configuration reuse". we think it's
+important for composers to be able to configure objects a single time, and then
+resuse the configuration as many times as necessary while composing. we also
+think it's important to configure complex objects all at once. "templating". we
+think it's important for composers to be able to template all objects in the
+system, especially the hugely complex objects. [JOSIAH]
+
+\section{encapsulation}
+we want everything to be encapsulated as much as
+possible. what this comes out to mean is the system is overwhelming
+object-oriented (in the proper uses of the term) and that all parts of the
+system (whether object-oriented or not) are structured in such a way as to
+provide a single interface named according to a uniform set of naming
+conventions. [TREVOR]
+
+\section{open-source best practices}
+we try to follow the best practices of the open-source community (which has
+a number of subpoints). [TREVOR]
+
+\section{conclusion}
+we want composers to become programmers. for extremely good
+reasons. and the priorities we have detailed here help make the case for why.
+[TREVOR]
 
 \bibliography{tenor2015}
 \end{document}
