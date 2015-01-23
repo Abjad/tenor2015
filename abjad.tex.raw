@@ -382,18 +382,9 @@ attach(Tie(), upper_leaves[-3:-1])
 attach(Slur(), upper_leaves[:2])
 attach(Slur(), upper_leaves[2:6])
 attach(Slur(), upper_leaves[7:])
-attach(Hairpin('ppp < mp'), lower_leaves)
-attach(Dynamic('f'), upper_leaves[0])
-attach(Dynamic('p'), upper_leaves[-4])
-attach(Articulation('accent'), upper_leaves[0])
-attach(Articulation('accent'), upper_leaves[2])
 attach(Clef('bass'), lower_leaves[0])
-for note in iterate(lower_staff).by_class(Note):
-    attach(Articulation('staccato'), note)
-
 show(score)
 </abjad>
-
 
 \section{build top-down}
 
@@ -437,6 +428,54 @@ numeric, sometimes by name or sometimes by music-specific criteria such as the
 relative times at which different objects appear in the score. examples follow.
 we provide concrete object models of vertical relationships in the score.
 [TREVOR]
+
+\hrulefill\vspace{5pt}
+
+Abjad allows the numeric addressing of all score components. Abjad score
+components are zero-indexed from the start of the container which holds them:
+the statement \texttt{staff[0]} addresses the first component contained in
+\texttt{staff} while the statement \texttt{staff[1]} addresses the component
+after that, and so on. Negative indices address components from the end of the
+container which holds them. Python's slice notation may be used to retrieve an
+arbitrary number of contiguous components at one time. As an example of the
+latter, the statement \texttt{staff[15:25]} selects the ten components in
+\texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
+addressing regime follow those of Python's list and tuple interface exactly. 
+
+<abjad>
+upper_staff = score[0][0]
+show(upper_staff)
+</abjad>
+
+<abjad>
+lower_staff = score['Lower Staff']
+show(lower_staff)
+</abjad>
+
+<abjad>
+for note in iterate(lower_staff).by_class(Note):
+    attach(Articulation('staccato'), note)
+
+show(score)
+</abjad>
+
+<abjad>
+iterator = iterate(score).by_logical_tie(
+    nontrivial=True, pitched=True)
+for logical_tie in iterator:
+    attach(Fermata(), logical_tie.tail)
+
+show(score)
+</abjad>
+
+<abjad>
+iterator = iterate(score).by_timeline()
+for index, component in enumerate(iterator):
+    markup = Markup(index, Up).circle()
+    attach(markup, component)
+
+show(score)
+</abjad>
 
 \section{configuration is super fucking important}
 

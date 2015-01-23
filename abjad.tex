@@ -329,6 +329,15 @@ users can feel confident that they will be able to view the objects they
 create. The same is true of many other Abjad classes that model abstract
 relationships: \texttt{Mode}, \texttt{Scale}, \texttt{PitchClass} and so on.
 
+For example, Abjad expresses the durations of all score components in terms of
+rational values -- fractions and integers -- rather than floating point
+numbers. Likewise Abjad expresses all pitches in terms of triples of diatonic
+note names, accidentals and octave numbers, rather than MIDI numbers or
+frequencies. While Abjad provides alternative representations of pitch and
+rhythm, as well as affordances for moving between them, the format actually
+stored in and used by score components for rendering notation is always the
+most notationally-explicit.
+
 \section{build bottom-up}
 
 it's important for composers to be able to build complex
@@ -376,20 +385,11 @@ container-like score components as though they were lists.
 >>> attach(Slur(), upper_leaves[:2])
 >>> attach(Slur(), upper_leaves[2:6])
 >>> attach(Slur(), upper_leaves[7:])
->>> attach(Hairpin('ppp < mp'), lower_leaves)
->>> attach(Dynamic('f'), upper_leaves[0])
->>> attach(Dynamic('p'), upper_leaves[-4])
->>> attach(Articulation('accent'), upper_leaves[0])
->>> attach(Articulation('accent'), upper_leaves[2])
 >>> attach(Clef('bass'), lower_leaves[0])
->>> for note in iterate(lower_staff).by_class(Note):
-...     attach(Articulation('staccato'), note)
-... 
 >>> show(score)
 \end{lstlisting}
 
 \includegraphics[scale=1.0]{images/abjad-2.pdf}
-
 
 
 \section{build top-down}
@@ -434,6 +434,69 @@ numeric, sometimes by name or sometimes by music-specific criteria such as the
 relative times at which different objects appear in the score. examples follow.
 we provide concrete object models of vertical relationships in the score.
 [TREVOR]
+
+\hrulefill\vspace{5pt}
+
+Abjad allows the numeric addressing of all score components. Abjad score
+components are zero-indexed from the start of the container which holds them:
+the statement \texttt{staff[0]} addresses the first component contained in
+\texttt{staff} while the statement \texttt{staff[1]} addresses the component
+after that, and so on. Negative indices address components from the end of the
+container which holds them. Python's slice notation may be used to retrieve an
+arbitrary number of contiguous components at one time. As an example of the
+latter, the statement \texttt{staff[15:25]} selects the ten components in
+\texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
+addressing regime follow those of Python's list and tuple interface exactly. 
+
+\begin{lstlisting}
+>>> upper_staff = score[0][0]
+>>> show(upper_staff)
+\end{lstlisting}
+
+\includegraphics[scale=1.0]{images/abjad-3.pdf}
+
+
+\begin{lstlisting}
+>>> lower_staff = score['Lower Staff']
+>>> show(lower_staff)
+\end{lstlisting}
+
+\includegraphics[scale=1.0]{images/abjad-4.pdf}
+
+
+\begin{lstlisting}
+>>> for note in iterate(lower_staff).by_class(Note):
+...     attach(Articulation('staccato'), note)
+... 
+>>> show(score)
+\end{lstlisting}
+
+\includegraphics[scale=1.0]{images/abjad-5.pdf}
+
+
+\begin{lstlisting}
+>>> iterator = iterate(score).by_logical_tie(
+...     nontrivial=True, pitched=True)
+>>> for logical_tie in iterator:
+...     attach(Fermata(), logical_tie.tail)
+... 
+>>> show(score)
+\end{lstlisting}
+
+\includegraphics[scale=1.0]{images/abjad-6.pdf}
+
+
+\begin{lstlisting}
+>>> iterator = iterate(score).by_timeline()
+>>> for index, component in enumerate(iterator):
+...     markup = Markup(index, Up).circle()
+...     attach(markup, component)
+... 
+>>> show(score)
+\end{lstlisting}
+
+\includegraphics[scale=1.0]{images/abjad-7.pdf}
+
 
 \section{configuration is super fucking important}
 
