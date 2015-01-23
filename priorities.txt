@@ -47,20 +47,21 @@ letting users instantiate *nonsemantic* (that is, "purely graphic") objects.
 underlying typesetter. (this is definitely a design committment and a
 development committment.) this definitely comes from working with lilypond.
 
-4. we think it's important to be able to address objects via numerical index.
+4. "reference flexability"
+we think it's important to afford composers the ability to reference score
+objects in whatever ways are most natural for a given task. sometimes the most
+natural mode of reference is numeric, sometimes by name or sometimes by
+music-specific criteria such as the relative times at which different objects
+appear in the score. examples follow.
 
-5. we allow users to address objects via time relations.
+6. we provide a variety of ways of iterating over a score.
 
-6. we allow users to address objects via name.
-
-7. we provide a variety of ways of iterating over a score.
-
-8. we provide concrete object models of hierarchical relationships in the
+7. we provide concrete object models of hierarchical relationships in the
 score.
 
-9. we provide concrete object models of temporal relationships in the score.
+8. we provide concrete object models of temporal relationships in the score.
 
-10. we provide concrete object models of vertical relationships in the score.
+9. we provide concrete object models of vertical relationships in the score.
 
-11. we try to follow the best practices of the open-source community (which has
+10. we try to follow the best practices of the open-source community (which has
 a number of subpoints). 
