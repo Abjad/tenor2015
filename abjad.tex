@@ -390,36 +390,41 @@ to generate a PDF that is then pushed to the composer's PDF viewer.
 
 \section{Bottom-up construction}
 
-It's important for composers to be able to build complex score bottom-up.
-
-Abjad affords aggregation via Python's \emph{mutable sequence} protocol, a
-collection of instance methods which allow score components to be appended,
-extended or inserted into other container-like score components as though they
-were lists.
+Abjad allows composers build scores piece by piece from the bottom up.
 
 Abjad assumes notational primitives are the elements of composition.
 
 The act of composition then revolves around the iterative aggregation of
 notational primitives into arbitrarily complex score objects.
 
-Input flexibility.
+\subsection{Components, spanners, indicators}
 
-You can build up score via iterative aggregation but you can also just type a
-lilypond string into a staff.
+Abjad models score in terms of \emph{components}, \emph{spanners} and
+\emph{indicators}. Score components include \emph{leaves} --- notes, chords and
+rests --- and \emph{containers} --- tuplets, measures, voices, staves, staff
+groups and scores and so forth. Components are arranged hierarchically into a
+tree by nesting score components inside containers. Child components receive a
+reference to their sole parent container, and parent containers maintain
+references to their children. Spanners model musical constructs such as beams,
+slurs and glissandi which \emph{span} across score components in a single
+\emph{logical voice}, allowing for the introduction of cyclicity into the
+acyclic component graph by spanning across components in different parentages.
+Indicators model objects attached to a single component, including
+articulations, time signatures, tempi, textural indications and dynamics.
+Indicators can have \emph{scope} making them \emph{effective} for all other
+components in that scope until another indicator of the same type appears. This
+models how all notes in a voice can be \emph{forte} until a \emph{piano}
+indication appears, but has been generalized for object attached to a score
+component as an indicator.
 
-We afford both types of input and, indeed, two different ways of building up
-score.
+\subsection{Iterative aggregation}
 
-This is where we should cite alan kay's smalltalk paper.
+It's important for composers to be able to build complex score bottom-up.
 
-("it's easy to make a thing.")
-
-We make it easy to build up complex score objects through iterative
-aggregation.
-
-("we make it easy to build things up.")
-
-[JOSIAH]
+Abjad affords aggregation via Python's \emph{mutable sequence} protocol, a
+collection of instance methods which allow score components to be appended,
+extended or inserted into other container-like score components as though they
+were lists.
 
 \begin{lstlisting}
 >>> outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
@@ -438,8 +443,11 @@ aggregation.
 >>> show(score)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-1.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-1.pdf}
 
+
+Composers can attach spanners such as ties and slurs to score components via
+Abjad's top-level \texttt{attach()} function.
 
 \begin{lstlisting}
 >>> upper_leaves = upper_staff.select_leaves()
@@ -449,12 +457,40 @@ aggregation.
 >>> attach(Slur(), upper_leaves[:2])
 >>> attach(Slur(), upper_leaves[2:6])
 >>> attach(Slur(), upper_leaves[7:])
+\end{lstlisting}
+
+
+Indicators can also be attached to single score components via
+\texttt{attach()}.
+
+\begin{lstlisting}
+>>> attach(Articulation('accent'), upper_leaves[0])
+>>> attach(Articulation('accent'), upper_leaves[2])
+>>> attach(Articulation('accent'), upper_leaves[7])
 >>> attach(Clef('bass'), lower_leaves[0])
 >>> show(score)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-2.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-2.pdf}
 
+
+\subsection{Input flexibility}
+
+
+You can build up score via iterative aggregation but you can also just type a
+lilypond string into a staff.
+
+We afford both types of input and, indeed, two different ways of building up
+score.
+
+This is where we should cite alan kay's smalltalk paper.
+
+("it's easy to make a thing.")
+
+We make it easy to build up complex score objects through iterative
+aggregation.
+
+("we make it easy to build things up.")
 
 \section{Top-down construction}
 
@@ -496,12 +532,21 @@ this is also an important point about extensibility.
 rhythm makers, score templates, etc.
 
 \begin{lstlisting}
+>>> notes = scoretools.make_notes([0, 1, 4, 7], [(1, 4)])
+>>> staff = Staff(notes)
+>>> show(staff)
+\end{lstlisting}
+
+\noindent\includegraphics[scale=1.0]{images/abjad-3.pdf}
+
+
+\begin{lstlisting}
 >>> divisions = [(3, 8), (5, 16), (1, 4), (5, 16)]
 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-3.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-4.pdf}
 
 
 \begin{lstlisting}
@@ -515,12 +560,16 @@ rhythm makers, score templates, etc.
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-4.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-5.pdf}
 
 
 \begin{lstlisting}
 >>> template = templatetools.GroupedRhythmicStavesScoreTemplate(4)
 >>> quartet_score = template()
+\end{lstlisting}
+
+
+\begin{lstlisting}
 >>> iterator = iterate(quartet_score).by_class(Voice)
 >>> for index, voice in enumerate(iterator):
 ...     divisions = sequencetools.rotate_sequence(
@@ -532,7 +581,7 @@ rhythm makers, score templates, etc.
 >>> show(quartet_score)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-5.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-6.pdf}
 
 
 [JOSIAH]
@@ -556,6 +605,10 @@ most natural for a given task. sometimes the most natural mode of reference is
 numeric, sometimes by name or sometimes by music-specific criteria such as the
 relative times at which different objects appear in the score. examples follow.
 we provide concrete object models of vertical relationships in the score.
+
+selecting one object: by number, by time relation, by name.
+selecting many things: by slicing, by select\_leaves(), by iteration.
+
 [TREVOR]
 
 %\hrulefill\vspace{5pt}
@@ -576,7 +629,7 @@ we provide concrete object models of vertical relationships in the score.
 >>> show(upper_staff)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-6.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-7.pdf}
 
 
 \begin{lstlisting}
@@ -584,7 +637,21 @@ we provide concrete object models of vertical relationships in the score.
 >>> show(lower_staff)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-7.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-8.pdf}
+
+
+\begin{lstlisting}
+>>> for leaf in lower_staff.select_leaves():
+...     print(repr(leaf))
+... 
+Note('c8')
+Rest('r8')
+Note('b8')
+Rest('r8')
+Note('gf8')
+Rest('r4')
+Note('cs8')
+\end{lstlisting}
 
 
 \begin{lstlisting}
@@ -594,7 +661,7 @@ we provide concrete object models of vertical relationships in the score.
 >>> show(score)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-8.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-9.pdf}
 
 
 \begin{lstlisting}
@@ -606,7 +673,7 @@ we provide concrete object models of vertical relationships in the score.
 >>> show(score)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-9.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-10.pdf}
 
 
 \begin{lstlisting}
@@ -618,21 +685,38 @@ we provide concrete object models of vertical relationships in the score.
 >>> show(score)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-10.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-11.pdf}
 
 
 \section{Configuration}
 
-We think it's important for composers to be able to define an operation (where
-musical or notational) one time and be able to apply the operation to
-arbitrarily many objects in the score at once. of the many ways abjad provides
-of doing this, the most important (and most general) is iteration. examples
-follow. iteration can be glossed as "define-once, apply-many". "configuration
-reuse". we think it's important for composers to be able to configure objects a
-single time, and then resuse the configuration as many times as necessary while
-composing. we also think it's important to configure complex objects all at
-once. "templating". we think it's important for composers to be able to
-template all objects in the system, especially the hugely complex objects.
+We think it's important for composers to be able to define an operation one
+time and be able to apply the operation to arbitrarily many objects in the
+score at once.
+
+of the many ways abjad provides of doing this, the most important (and most
+general) is iteration.
+
+examples follow.
+
+iteration can be glossed as "define-once, apply-many".
+
+"configuration reuse".
+
+we think it's important for composers to be able to configure objects a single
+time, and then resuse the configuration as many times as necessary while
+composing.
+
+we also think it's important to configure complex objects all at
+once.
+
+"templating".
+
+we think it's important for composers to be able to template all objects in the
+system, especially the hugely complex objects.
+
+selectors.
+
 [JOSIAH]
 
 \begin{lstlisting}
@@ -657,7 +741,7 @@ rhythmmakertools.TaleaRhythmMaker(
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-11.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-12.pdf}
 
 
 \begin{lstlisting}
@@ -680,7 +764,7 @@ rhythmmakertools.TaleaRhythmMaker(
 >>> show(new_rhythm_maker, divisions=divisions)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-12.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-13.pdf}
 
 
 \begin{lstlisting}
@@ -709,7 +793,7 @@ rhythmmakertools.TaleaRhythmMaker(
 >>> show(new_new_rhythm_maker, divisions=divisions)
 \end{lstlisting}
 
-\includegraphics[scale=1.0]{images/abjad-13.pdf}
+\noindent\includegraphics[scale=1.0]{images/abjad-14.pdf}
 
 
 \section{Encapsulation}
