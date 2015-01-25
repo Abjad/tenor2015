@@ -591,7 +591,7 @@ iterator = iterate(quartet_score).by_class(Voice)
 for index, voice in enumerate(iterator):
     divisions = sequencetools.rotate_sequence(
         divisions, -1)
-    selections = rhythm_maker(divisions, seeds=index)
+    selections = rhythm_maker(divisions, seeds=-index)
     measure = Measure((5, 4), selections)
     voice.append(measure)
 
@@ -646,21 +646,38 @@ selecting many things: by slicing, by select\_leaves(), by iteration.
 %\texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
 %addressing regime follow those of Python's list and tuple interface exactly. 
 
+Consider the two-staff score created earlier. The upper staff can be selected
+by indexing the first child of the first child of the score, i.e. the first
+staff in the staff group which is the first child of the score itself.
+
 <abjad>
 upper_staff = score[0][0]
 show(upper_staff)
 </abjad>
+
+Because both staves were given explicit names, they can also be selected by
+those names, regardless of their depth in the score hierarchy.
 
 <abjad>
 lower_staff = score['Lower Staff']
 show(lower_staff)
 </abjad>
 
+A score container's leaves --- the notes, chords and rests at the bottom of the
+score hierarchy which cannot, by definition, contain any other score component
+--- can be selected by that container's \texttt{select\_leaves()} method.
+
 <abjad>
 for leaf in lower_staff.select_leaves():
     print(repr(leaf))
 
 </abjad>
+
+Composers can select components via Abjad's powerful top-level
+\texttt{iterate()} function, which exposes the score iteration interface as
+implemented in our \texttt{IterationAgent}. The iteration interface affords a
+wide variety of selection criteria, such as class filters, logical tie
+selection and time-wise score traversal.
 
 <abjad>
 for note in iterate(lower_staff).by_class(Note):

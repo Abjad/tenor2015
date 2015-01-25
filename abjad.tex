@@ -609,7 +609,7 @@ generate complete score aggregates expressively.
 >>> for index, voice in enumerate(iterator):
 ...     divisions = sequencetools.rotate_sequence(
 ...         divisions, -1)
-...     selections = rhythm_maker(divisions, seeds=index)
+...     selections = rhythm_maker(divisions, seeds=-index)
 ...     measure = Measure((5, 4), selections)
 ...     voice.append(measure)
 ... 
@@ -667,6 +667,10 @@ selecting many things: by slicing, by select\_leaves(), by iteration.
 %\texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
 %addressing regime follow those of Python's list and tuple interface exactly. 
 
+Consider the two-staff score created earlier. The upper staff can be selected
+by indexing the first child of the first child of the score, i.e. the first
+staff in the staff group which is the first child of the score itself.
+
 \begin{lstlisting}
 >>> upper_staff = score[0][0]
 >>> show(upper_staff)
@@ -675,6 +679,9 @@ selecting many things: by slicing, by select\_leaves(), by iteration.
 \noindent\includegraphics[scale=1.0]{images/abjad-7.pdf}
 
 
+Because both staves were given explicit names, they can also be selected by
+those names, regardless of their depth in the score hierarchy.
+
 \begin{lstlisting}
 >>> lower_staff = score['Lower Staff']
 >>> show(lower_staff)
@@ -682,6 +689,10 @@ selecting many things: by slicing, by select\_leaves(), by iteration.
 
 \noindent\includegraphics[scale=1.0]{images/abjad-8.pdf}
 
+
+A score container's leaves --- the notes, chords and rests at the bottom of the
+score hierarchy which cannot, by definition, contain any other score component
+--- can be selected by that container's \texttt{select\_leaves()} method.
 
 \begin{lstlisting}
 >>> for leaf in lower_staff.select_leaves():
@@ -696,6 +707,12 @@ Rest('r4')
 Note('cs8')
 \end{lstlisting}
 
+
+Composers can select components via Abjad's powerful top-level
+\texttt{iterate()} function, which exposes the score iteration interface as
+implemented in our \texttt{IterationAgent}. The iteration interface affords a
+wide variety of selection criteria, such as class filters, logical tie
+selection and time-wise score traversal.
 
 \begin{lstlisting}
 >>> for note in iterate(lower_staff).by_class(Note):
