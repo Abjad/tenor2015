@@ -392,8 +392,13 @@ to generate a PDF that is then pushed to the composer's PDF viewer.
 
 \section{Bottom-up construction}
 
-Abjad allows composers build scores piece by piece from the bottom up.
-
+We believe composers should be able to build scores from the bottom up. Abjad
+never obscures the individual notational elements of the compositional process.
+Combining score components piece by piece into ever-larger aggregates gives
+composers fine-grained control over their compositional structures. Such
+control guarantees a high degree of compositional-process agnosticism on
+Abjad's part, and affords composers a solid framework on top of which they can
+design and implement their own personal approaches to composition.
 
 %Abjad assumes that symbols on the page --- notational primitives --- are the
 %elements of composition. The act of composition then revolves around the
@@ -507,48 +512,32 @@ techniques.
 
 \section{Top-down construction}
 
-it's important for composers to be able to build complex
-score top-down.
+With experience, use of the system migrates from bottom-up to top-down. We
+realize that composers probably don't find it interesting to make a single
+note, but can be deeply engaged by the process of creating intermediate and
+high-level objects like complete phrases or segments of music. Abstraction,
+encapsulation and re-use of generative processes is what comes closest to the
+work of beginning to implement one's own system of composition.
 
-we provide factories, factory functions, factory classes.
+\subsection{Factory functions, factory classes}
 
-when we wanna make complex stuff we usually come up with factories.
-
-(there may be a design principle here that initialization is kept simple and we
-implement in factories complex ways of aggregating together objects that admit
-only simple initialization.)
-
-(we generalize many of these things in processes.)
-
-there's a design priority in here somewhere that what we want to do is make it
-as easy as possible for people to implement their own factories.
-
-what does this mean? it means that we want to make it as easy as possible for
-people to implement their own code that outputs or creates intermediate level
-structures or materials.
-
-(there's a realization here that people probabaly don't find it interesting to
-make a single note. but people can find it totally fascinating to make an
-intermediate-level object like a complete phrase of music.)
-
-we think it's important for composers to be able to create their own processes
-that generalize these things.
-
-with experience, use of the system migrates from bottom-up to top-down: just
-look at us! this is what is closest to the work of beginning to implement one's
-own system of composition.
-
-this is where we make the case for esthethic-agnositicism.
-
-this is also an important point about extensibility.
-
-rhythm makers, score templates, etc.
+Abjad provides a variety of factories for quickly and flexibly creating
+arbitrarily large amounts of notation. These range from simple leaf-generating
+functions like \texttt{scoretools.make\_notes()}, which combine sequences of
+pitches and rhythms isorhythmically to generate selections of notes and rests,
+to more complexly-configured \emph{maker} classes for creating nuanced rhythmic
+patterns or entire scores.
 
 <abjad>
-notes = scoretools.make_notes([0, 1, 4, 7], [(1, 4)])
+notes = scoretools.make_notes([0, 1, 4, 7], [(1, 4)],)
 staff = Staff(notes)
 show(staff)
 </abjad>
+
+Abjad's \emph{rhythm makers} are factory classes which, once configured, can be
+called like functions to procedurally inscribe rhythms into a series of
+\emph{divisions}. The \texttt{NoteRhythmMaker} fills in divisions with notes,
+tied as necessary, to equal the duration of those divisions.
 
 <abjad>
 divisions = [(3, 8), (5, 16), (1, 4), (5, 16)]
@@ -556,23 +545,48 @@ rhythm_maker = rhythmmakertools.NoteRhythmMaker()
 show(rhythm_maker, divisions=divisions)
 </abjad>
 
+Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can create even
+more complex rhythmic output, integrating configurable patterns of durations,
+tupletting and silences.
+
 <abjad>
 rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+    burnish_specifier=rhythmmakertools.BurnishSpecifier(
+        left_classes=(Rest, Note),
+        left_counts=(1,),
+        ),
     extra_counts_per_division=(0, 1, 1),
     talea=rhythmmakertools.Talea(
         counts=(1, 2, 3),
         denominator=16,
         ),
+    tie_specifier=rhythmmakertools.TieSpecifier(
+        tie_across_divisions=True,
+        ),
     )
 show(rhythm_maker, divisions=divisions)
 </abjad>
 
-<abjad>
-template = templatetools.GroupedRhythmicStavesScoreTemplate(4)
-quartet_score = template()
-</abjad>
+Once instantiated, rhythm makers can be used over and over again with different
+input, a pattern used pervasively in Abjad: maker classes as object-oriented
+partially-evaluated functions. As generating duration sequences is generally
+less difficult than creating complete tupletted, beamed and tied rhythmic score
+artifacts, rhythm makers allow composers to focus on the process of building
+rhythm structures as a compositional material in-and-of itself. Because rhythm
+makers are classes, they can be subclassed and extended in order to modify
+their behavior. Because they are objects, they can be passed as parameters to
+configure even more expansive aggregate makers.
+
+\emph{Score templates} are another common factory pattern in Abjad,
+encapsulating the work of building the skeletons of complete scores, including
+voices, staves, staff groups, clefs and other indications pertinent to the
+intended instrumentation or typography. We can combine rhythm and score makers
+with score iteration, as well as some simple bottom-up construction, to
+generate complete score aggregates expressively.
 
 <abjad>
+template = templatetools.GroupedStavesScoreTemplate(4)
+quartet_score = template()
 iterator = iterate(quartet_score).by_class(Voice)
 for index, voice in enumerate(iterator):
     divisions = sequencetools.rotate_sequence(
@@ -583,6 +597,14 @@ for index, voice in enumerate(iterator):
 
 show(quartet_score)
 </abjad>
+
+\subsection{Top-down extensibility}
+
+We believe that there are more ways to generate notation than we can conceive
+of. While Abjad has implemented many notational factories, we do not think
+these are sufficient for any one artist's process and have therefore
+architected the project in such a way as to encourage extension by composers
+interacting with the system in the spirit of compositional agnosticism.
 
 [JOSIAH]
 
