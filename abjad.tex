@@ -295,7 +295,8 @@ notation, addressability (in HMSL and JMSL). Reintroduce generative task: late
 until IRCAM's Patchwork approached a generative task of broadly enabling
 composers; sufficiency determined by comprehensive task.
 
-\section{Extend an existing language: \\ No domain-specific languages}
+%\section{Extend an existing language: \\ No domain-specific languages}
+\section{Extension, not reinvention}
 
 Abjad is not a programming langauge. Abjad instead extends the Python
 programming language. Our insistence on this principle of extension --- of
@@ -336,7 +337,8 @@ possible: picking an existing language that makes learning preliminaries
 easier and makes the continued development of the system as open as possible to
 as many different collaborators as possible.
 
-\section{Allow composers to illustrate objects iteratively during composition }
+%\section{Allow composers to illustrate objects iteratively during composition}
+\section{Pervasive illustration}
 
 One of the core beliefs we bring to our work architecting Abjad concerns the
 power of conventional music notation. We believe that it is important for
@@ -392,18 +394,20 @@ to generate a PDF that is then pushed to the composer's PDF viewer.
 
 Abjad allows composers build scores piece by piece from the bottom up.
 
-Abjad assumes notational primitives are the elements of composition.
 
-The act of composition then revolves around the iterative aggregation of
-notational primitives into arbitrarily complex score objects.
+%Abjad assumes that symbols on the page --- notational primitives --- are the
+%elements of composition. The act of composition then revolves around the
+%iterative aggregation of these elements into arbitrarily complex score objects.
 
-\subsection{Components, spanners, indicators}
+\subsection{Components, spanners and indicators}
 
 Abjad models score in terms of \emph{components}, \emph{spanners} and
-\emph{indicators}. Score components include \emph{leaves} --- notes, chords and
-rests --- and \emph{containers} --- tuplets, measures, voices, staves, staff
-groups and scores and so forth. Components are arranged hierarchically into a
-tree by nesting score components inside containers. Child components receive a
+\emph{indicators}. These families of objects represent all of the notational
+primitives in Abjad. Score components include \emph{leaves}\footnote{Abjad
+borrows the term \emph{leaf} from graph theory.} --- notes, chords and rests
+--- and \emph{containers} --- tuplets, measures, voices, staves, staff groups
+and scores and so forth. Components are arranged hierarchically into a tree by
+nesting score components inside containers. Child components receive a
 reference to their sole parent container, and parent containers maintain
 references to their children. Spanners model musical constructs such as beams,
 slurs and glissandi which \emph{span} across score components in a single
@@ -412,19 +416,23 @@ acyclic component graph by spanning across components in different parentages.
 Indicators model objects attached to a single component, including
 articulations, time signatures, tempi, textural indications and dynamics.
 Indicators can have \emph{scope} making them \emph{effective} for all other
-components in that scope until another indicator of the same type appears. This
+components in that scope following the component to which that indicator is
+attached until another indicator of the same type appears. Indicator scoping
 models how all notes in a voice can be \emph{forte} until a \emph{piano}
-indication appears, but has been generalized for object attached to a score
-component as an indicator.
+indication appears. We have generalized this behavior, allowing composers to
+annotate score structures by attaching arbitrary non-notating objects like
+dictionaries or custom classes to any component.
 
 \subsection{Iterative aggregation}
 
-It's important for composers to be able to build complex score bottom-up.
-
-Abjad affords aggregation via Python's \emph{mutable sequence} protocol, a
-collection of instance methods which allow score components to be appended,
-extended or inserted into other container-like score components as though they
-were lists.
+We believe that is is important for composers to be able to construct scores
+though iterative aggregation. Any score modelable by Abjad, no matter how
+complex, can be constructed by nesting progressively more and more score
+components inside one another, and by attaching spanners and indicators onto
+the increasingly complex notational aggregate. Abjad affords score component
+aggregation via Python's \emph{mutable sequence} protocol, a collection of
+instance methods which allow score components to be appended, extended or
+inserted into other container-like score components as though they were lists.
 
 \begin{lstlisting}
 >>> outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
@@ -434,7 +442,18 @@ were lists.
 >>> outer_tuplet_two.extend("d'8 r16 b'16 as'16")
 >>> tuplets = [outer_tuplet_one, outer_tuplet_two]
 >>> upper_staff = Staff(tuplets, name='Upper Staff')
->>> upper_staff.extend("as'8.. fs'32")
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>> note_one = Note(10, (7, 32))
+>>> upper_staff.append(note_one)
+>>> note_two = Note(NamedPitch("fs'"), Duration(1, 32))
+>>> upper_staff.append(note_two)
+\end{lstlisting}
+
+
+\begin{lstlisting}
 >>> lower_staff = Staff(name='Lower Staff')
 >>> lower_staff.extend("c8 r8 b8 r8 gf8 r4 cs8")
 >>> staff_group = StaffGroup()
@@ -446,7 +465,7 @@ were lists.
 \noindent\includegraphics[scale=1.0]{images/abjad-1.pdf}
 
 
-Composers can attach spanners such as ties and slurs to score components via
+Composers can attach spanners (such as ties and slurs) to score components via
 Abjad's top-level \texttt{attach()} function.
 
 \begin{lstlisting}
@@ -460,8 +479,8 @@ Abjad's top-level \texttt{attach()} function.
 \end{lstlisting}
 
 
-Indicators can also be attached to single score components via
-\texttt{attach()}.
+Composers can also attach indicators (such as articulations and clefs) to
+individual score components with \texttt{attach()}.
 
 \begin{lstlisting}
 >>> attach(Articulation('accent'), upper_leaves[0])
@@ -476,21 +495,24 @@ Indicators can also be attached to single score components via
 
 \subsection{Input flexibility}
 
-
-You can build up score via iterative aggregation but you can also just type a
-lilypond string into a staff.
-
-We afford both types of input and, indeed, two different ways of building up
-score.
-
-This is where we should cite alan kay's smalltalk paper.
-
-("it's easy to make a thing.")
-
-We make it easy to build up complex score objects through iterative
-aggregation.
-
-("we make it easy to build things up.")
+We believe that there should be multiple ways of instantiating compositional
+elements. Input flexibility affords composers the ability to create
+compositional objects in whatever way closest aligns with their conception of
+music and their specific task at hand \cite{Kay:1996}. Abjad's score components
+can be created in a variety of ways. Leaves (such as notes) can be instantiated
+parametrically by specifying pitch and rhythm information numerically. Leaves
+can also be created via explicit \texttt{Pitch} and \texttt{Duration} objects.
+Containers (such as tuplets and measures) can be instantiated parametrically by
+specifying explicit lists of components to be inserted as children. Abjad also
+allows many score objects to be created via strings parseable in one of the
+various micro-languages we have implemented. Score components created via
+string input can be potentially much more complex than those created
+parametrically because Abjad's microlanguage parsers have the ability to attach
+spanners and indicators to the created components or their children, if they
+are containers. Parametric instantiation affords composers powerful procedural
+control over score structure while string instantiation allows for brevity and
+expressiveness. The score construction example above demonstrates both
+techniques. 
 
 \section{Top-down construction}
 
