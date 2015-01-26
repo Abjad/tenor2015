@@ -6,7 +6,7 @@
 \usepackage{cite}
 \usepackage{microtype}
 
-\usepackage{inconsolata}
+\usepackage[scaled=0.95]{inconsolata}
 \usepackage{verbatim}
 
 \usepackage{listings}
@@ -494,7 +494,7 @@ show(score)
 We believe that there should be multiple ways of instantiating compositional
 elements. Input flexibility affords composers the ability to create
 compositional objects in whatever way closest aligns with their conception of
-music and their specific task at hand \cite{Kay:1996}. Abjad's score components
+music and their specific task at hand \cite{Kay:1996vn}. Abjad's score components
 can be created in a variety of ways. Leaves (such as notes) can be instantiated
 parametrically by specifying pitch and rhythm information numerically. Leaves
 can also be created via explicit \texttt{Pitch} and \texttt{Duration} objects.
@@ -606,10 +606,6 @@ these are sufficient for any one artist's process and have therefore
 architected the project in such a way as to encourage extension by composers
 interacting with the system in the spirit of compositional agnosticism.
 
-[JOSIAH]
-
-%\hrulefill\vspace{5pt}
-
 %By providing core functionality oriented toward the elements of standard
 %notation, Abjad strives to remain as agnostic as possible to various
 %composition techniques. 
@@ -629,11 +625,10 @@ relative times at which different objects appear in the score. examples follow.
 we provide concrete object models of vertical relationships in the score.
 
 selecting one object: by number, by time relation, by name.
+
 selecting many things: by slicing, by select\_leaves(), by iteration.
 
 [TREVOR]
-
-%\hrulefill\vspace{5pt}
 
 %Abjad allows the numeric addressing of all score components. Abjad score
 %components are zero-indexed from the start of the container which holds them:
@@ -731,6 +726,10 @@ show(score)
 %the system, especially the hugely complex objects.
 
 %selectors.
+
+\subsection{Nested configuration}
+
+Text here.
 
 \subsection{Templating}
 
