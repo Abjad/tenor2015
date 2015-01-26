@@ -295,7 +295,6 @@ notation, addressability (in HMSL and JMSL). Reintroduce generative task: late
 until IRCAM's Patchwork approached a generative task of broadly enabling
 composers; sufficiency determined by comprehensive task.
 
-%\section{Extend an existing language: \\ No domain-specific languages}
 \section{Extension, not reinvention}
 
 Abjad is not a programming langauge. Abjad instead extends the Python
@@ -314,8 +313,8 @@ In designing Abjad as an extension to a widely used language we make relevant
 both the hundreds of already-available print and Web resources that detail
 Python and its features as well as the global community of developers working
 in the language. Both benefits we hope to ease composers' transition to
-programming and make working with Abjad a familiar task that conforms to widely
-understood programming best practices: there will probably by necessity always
+programming and make working with Abjad a familiar task that conforms to
+programming best practices: there will probably by necessity always
 be more programmers than composers in the world and it makes sense for our work
 as composers to benefit from the patterns already understood elsewhere in the
 culture.
@@ -330,27 +329,24 @@ Abjad in Python does not arise from the specifics of the language but from the
 large community of users the language supports and the fact that Python is open
 source. The history of music software systems is littered with projects that
 fell into disuse. Music software systems except for the large commercial
-notation packages will probabaly always be the niche efforts of specialists and
+notation packages will probably always be the niche efforts of specialists and
 our experience architecting Abjad leads us to think about the future in such a
 way that we give ourselves all the advantages of expansiveness that are
 possible: picking an existing language that makes learning preliminaries
 easier and makes the continued development of the system as open as possible to
 as many different collaborators as possible.
 
-%\section{Allow composers to illustrate objects iteratively during composition}
 \section{Pervasive illustration}
 
-One of the core beliefs we bring to our work architecting Abjad concerns the
-power of conventional music notation. We believe that it is important for
-composers be able to illustrate the objects they work with as they compose.
-This priority in favor of iteratively viewing the objects of composition is
-reflected in the \emph{illustration protocol} \footnote{Python describes common
+We believe it is important for
+composers to be able to illustrate the objects they work with as they compose.
+Abjad reflects this priority in the \emph{illustration protocol} established to provide composers a uniform way of visualizing all the elements of of common practice notation as well as conventional and composer-defined music-theoretic objects like rhythmic constructors or the Xenakis sieves.\footnote{Python describes common
 informal interfaces to working with objects as \emph{protocols}. Important
 protocols include the \emph{iterator protocol} for iterating over the contents
 of a container-like object, the \emph{sequence protocol} for getting items and
 length from a container-like object and the \emph{mutable container protocol}
-for mutating the contents of a container-like object.} established for Abjad
-objects. Composers call the top-level \texttt{show()} function to visualize
+for mutating the contents of a container-like object.}
+Composers call the top-level \texttt{show()} function to visualize
 Abjad objects. Behind the scenes Abjad inspects objects passed to
 \texttt{show()} for the presence of an \texttt{\_\_illustrate\_\_()} method
 that defines explicitly how an object should be illustrated. Abjad transforms
