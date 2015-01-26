@@ -285,55 +285,39 @@ as many different collaborators as possible.
 \section{Pervasive illustration}
 
 We believe it is important for composers to be able to illustrate the objects
-they work with as they compose. Abjad reflects this priority in the
-\emph{illustration protocol} established to provide composers a uniform way of
-visualizing all the elements of of common practice notation as well as
-conventional and composer-defined music-theoretic objects like rhythmic
-constructors or the Xenakis sieves.\footnote{Python describes common informal
+they work with as they compose. Abjad reflects this priority in its
+\emph{illustration protocol}.\footnote{Python describes common informal
 interfaces to working with objects as \emph{protocols}. Important protocols
 include the \emph{iterator protocol} for iterating over the contents of a
 container-like object, the \emph{sequence protocol} for getting items and
 length from a container-like object and the \emph{mutable container protocol}
-for mutating the contents of a container-like object.} Composers call the
-top-level \texttt{show()} function to visualize Abjad objects. Behind the
-scenes Abjad inspects objects passed to \texttt{show()} for the presence of an
-\texttt{\_\_illustrate\_\_()} method that defines explicitly how an object
-should be illustrated. Abjad transforms score components, for example, into
-LilyPond input code and then calls LilyPond to generate a PDF that is then
-pushed to the composer's PDF viewer.
-
-%priority is driven in large part by our shared insistence on the incredible
-%power of conventional music notation as a tool for thinking about sound and
-%time. (we wanna make it possible to illustrate everything all the time because
-%we notation helps us think about such incredibly complex stuff.) (footnote: we
-%think it's important that users have access to all the features of the
-%underlying typesetter.) [TREVOR]
-
-%We believe that the objects that composers work with should all theoretically
-%be viewable as notation. To this end Abjad makes visualizing notational
-%artifacts simple. Any notational element or element aggregate can be displayed
-%at any time as a PDF by calling the top-level \texttt{show()} function. The
-%motivation of the principle is immediate when discussing classes like
-%\texttt{Note}, \texttt{Rest} and \texttt{Chord} that model printed symbols on
-%the page. But Abjad invites developers and advanced users to extend the
-%principle of notational reality to include the abstract relationships in which
-%music and music composition are rich: users can call \texttt{show()} on
-%abstract objects like the Abjad \texttt{Duration}\footnote{Also
-%\texttt{PitchClass}, \texttt{Mode}, \texttt{Scale} and many other classes.}
-%class to view any duration as a typeset fraction. The decision to notate
-%durations this way is wholly conventional but increases the extent to which
-%users can feel confident that they will be able to view the objects they
-%create. The same is true of many other Abjad classes that model abstract
-%relationships: \texttt{Mode}, \texttt{Scale}, \texttt{PitchClass} and so on.
-
-%For example, Abjad expresses the durations of all score components in terms of
-%rational values -- fractions and integers -- rather than floating point
-%numbers. Likewise Abjad expresses all pitches in terms of triples of diatonic
-%note names, accidentals and octave numbers, rather than MIDI numbers or
-%frequencies. While Abjad provides alternative representations of pitch and
-%rhythm, as well as affordances for moving between them, the format actually
-%stored in and used by score components for rendering notation is always the
-%most notationally-explicit.
+for mutating the contents of a container-like object.} Abjad's illustration
+protocol conventionalizes the way developers equip Abjad classes with
+illustration output and the way composers access illustration output during
+composition. The composer-facing part of the protocol is implemented in Abjad's
+top-level \texttt{show()} function, which provides composers a unified way to
+illustrate any object in the system. The developer-facing part of Abjad's
+illustration protocol is evidenced in the collection of
+\texttt{\_\_illustrate\_\_()} methods that define how classes throughout the
+system are to illustrate when passed to \texttt{show()}.\footnote{Abjad's
+pairing of a single \texttt{show()} function with \texttt{\_\_illustrate\_\_()}
+methods defined as needed parallels the way Python's \texttt{len()} function
+works with \texttt{\_\_len\_\_()} methods defined on custom classes.} Under the
+most common pattern, Abjad transforms an object into LilyPond input code and
+then calls LilyPond to render the resultant input as a PDF. In all cases the
+composer's interface to the illustration logic implemented on a  class is
+provided by \texttt{show()}, as in the examples in this
+article.\footnote{Abjad's illustration protocol decouples illustration logic
+from the other functions of a class. An important consequence of this is that
+developers can illustrate classes with LaTeX or GraphViz or any collection of
+applications, whether or not LilyPond is included in the tool chain. We find
+LilyPond superior for a formalized score control system like Abjad for many
+reasons, ranging from LilyPond's powerful model of rhythmic timekeeping to the
+high quality of LilyPond output. But should the need arise to replace LilyPond
+with a different typesetting engine, the composer-facing  interface provided by
+\texttt{show()} will remain the same. The priority is that composers be able to
+illustrate compositional objects. LilyPond simply happens to be the best
+resource available to achieve our goals.} 
 
 \section{Bottom-up construction}
 
