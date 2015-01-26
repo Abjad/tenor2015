@@ -515,7 +515,7 @@ techniques.
 With experience, use of the system migrates from bottom-up to top-down. We
 realize that composers probably don't find it interesting to make a single
 note, but can be deeply engaged by the process of creating intermediate and
-high-level objects like complete phrases or segments of music. Abstraction,
+high-level objects like phrases or complete segments of music. Abstraction,
 encapsulation and re-use of generative processes is what comes closest to the
 work of beginning to implement one's own system of composition.
 
@@ -706,34 +706,38 @@ show(score)
 
 \section{Configuration}
 
-We think it's important for composers to be able to define an operation one
-time and be able to apply the operation to arbitrarily many objects in the
-score at once.
+%We think it's important for composers to be able to define an operation one
+%time and be able to apply the operation to arbitrarily many objects in the
+%score at once.
 
-of the many ways abjad provides of doing this, the most important (and most
-general) is iteration.
+%of the many ways abjad provides of doing this, the most important (and most
+%general) is iteration.
 
-examples follow.
+%examples follow.
 
-iteration can be glossed as "define-once, apply-many".
+%iteration can be glossed as "define-once, apply-many".
 
-"configuration reuse".
+%"configuration reuse".
 
-we think it's important for composers to be able to configure objects a single
-time, and then resuse the configuration as many times as necessary while
-composing.
+%we think it's important for composers to be able to configure objects a single
+%time, and then resuse the configuration as many times as necessary while
+%composing.
 
-we also think it's important to configure complex objects all at
-once.
+%we also think it's important to configure complex objects all at once.
 
-"templating".
+%"templating".
 
-we think it's important for composers to be able to template all objects in the
-system, especially the hugely complex objects.
+%we think it's important for composers to be able to template all objects in
+%the system, especially the hugely complex objects.
 
-selectors.
+%selectors.
 
-[JOSIAH]
+\subsection{Templating}
+
+As demonstrated earlier, Abjad's \emph{rhythm makers} are highly-configurable
+factory classes for generating rhythmic patterns. Many of their initialization
+keywords expect \emph{specifiers} --- object-oriented bundles of related
+parameters --- which can make their configurations potentially deeply nested.
 
 <abjad>
 rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
@@ -750,10 +754,18 @@ divisions = [(3, 8), (1, 4), (5, 16), (1, 4)]
 show(rhythm_maker, divisions=divisions)
 </abjad>
 
+Nested configuration via parameter grouping with specifiers provides
+considerable conceptual clarity, but is also potentially labor-intensive. Abjad
+mitigates the work of complex configuration by affording composers with
+powerful templating tools. New objects can be created from old ones, optionally
+replacing any initialization parameter in the templated object at any depth via
+the top-level \texttt{new()} function. Notice how the new rhythm maker below
+has both altered its talea counts and added a new initialization keyword.
+
 <abjad>
 new_rhythm_maker = new(rhythm_maker,
-    talea__counts=(1, 2, 3, 4),
     extra_counts_per_division=(0, 1),
+    talea__counts=(1, 2, 3, 4),
     )
 print(format(new_rhythm_maker))
 </abjad>
@@ -761,6 +773,10 @@ print(format(new_rhythm_maker))
 <abjad>
 show(new_rhythm_maker, divisions=divisions)
 </abjad>
+
+Repeating the templating process creates new and different yet still related
+objects, allowing composers to easily play with variation at the level of
+procedure.
 
 <abjad>
 new_new_rhythm_maker = new(new_rhythm_maker,
@@ -818,9 +834,26 @@ users.
 
 Text here.
 
+unit tests: 9119 tests
+
+documentation tests: 8528 tests
+
+continuous integration with Travis-CI
+
+cross-version testing
+
+parameterized testing of common behaviors for all classes and functions in the
+entire system
+
 \subsection{Maintainability}
 
 Text here.
+
+extensive documentation
+
+community coding standards
+
+distributed version control
 
 \section{conclusion}
 
