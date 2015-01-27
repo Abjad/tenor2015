@@ -128,7 +128,7 @@ and then elaborate the design priorities we have arrived at in our ongoing work
 architecting Abjad.
 \end{abstract}
 
-\section{Background}\label{sec:background}
+\section{Background} \label{sec:background}
 
 While many environments for both notation and sound production have arisen
 within the last twenty years, the following discussion focuses solely on the
@@ -241,7 +241,7 @@ and maintains a relatively application-agnostic status, as it was designed with
 the generative task of acting as an interchange format between variously tasked
 systems \cite{Good:2001if}.
 
-\section{Extension, not reinvention}
+\section{Extension, not reinvention} \label{sec:extension}
 
 Abjad is not a programming langauge. Abjad instead extends the Python
 programming language. Our insistence on this principle of extension --- of
@@ -282,7 +282,7 @@ possible: picking an existing language that makes learning preliminaries
 easier and makes the continued development of the system as open as possible to
 as many different collaborators as possible.
 
-\section{Pervasive illustration}
+\section{Pervasive illustration} \label{sec:illustration}
 
 We believe it is important for composers to be able to illustrate the objects
 they work with as they compose. Abjad reflects this priority in its
@@ -319,7 +319,7 @@ with a different typesetting engine, the composer-facing  interface provided by
 illustrate compositional objects. LilyPond simply happens to be the best
 resource available to achieve our goals.} 
 
-\section{Bottom-up construction}
+\section{Bottom-up construction} \label{sec:bottom-up}
 
 We believe composers should be able to build scores from the bottom up. Abjad
 never obscures the individual notational elements of the compositional process.
@@ -439,7 +439,7 @@ control over score structure while string instantiation allows for brevity and
 expressiveness. The score construction example above demonstrates both
 techniques. 
 
-\section{Top-down construction}
+\section{Top-down construction} \label{sec:top-down}
 
 With experience, use of the system migrates from bottom-up to top-down. We
 realize that composers probably don't find it interesting to make a single
@@ -539,7 +539,7 @@ interacting with the system in the spirit of compositional agnosticism.
 %notation, Abjad strives to remain as agnostic as possible to various
 %composition techniques. 
 
-\section{Selection flexibility}
+\section{Selection flexibility} \label{sec:selections}
 
 we think it's important for composers to be able to select arbitrary
 collections of score objects. this is important for a couple of reasons. first,
@@ -628,7 +628,7 @@ for index, component in enumerate(iterator):
 show(score)
 </abjad>
 
-\section{Configuration}
+\section{Configuration} \label{sec:configuration}
 
 %We think it's important for composers to be able to define an operation one
 %time and be able to apply the operation to arbitrarily many objects in the
@@ -720,7 +720,7 @@ print(format(new_new_rhythm_maker))
 show(new_new_rhythm_maker, divisions=divisions)
 </abjad>
 
-\section{Encapsulation}
+\section{Encapsulation} \label{sec:encapsulation}
 
 We want everything to be encapsulated as much as possible. what this comes out
 to mean is the system is overwhelming object-oriented (in the proper uses of
@@ -728,10 +728,11 @@ the term) and that all parts of the system (whether object-oriented or not) are
 structured in such a way as to provide a single interface named according to a
 uniform set of naming conventions. [TREVOR]
 
-\section{Open-source best practices}
+\section{Open-source best practices} \label{sec:open-source}
 
-We try to follow the best practices of the open-source community (which has a
-number of subpoints). [TREVOR]
+During the architecting of Abjad we have tried
+to adhere to as many of the programming best practices developed by the
+open-source community as possible.
 
 \subsection{Extensibility}
 
@@ -783,7 +784,7 @@ community coding standards
 
 distributed version control
 
-\section{conclusion}
+\section{conclusion} \label{sec:conclusion}
 
 we want composers to become programmers. for extremely good reasons. and the
 priorities we have detailed here help make the case for why. [TREVOR]
