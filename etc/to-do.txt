@@ -1,23 +1,30 @@
-0. Include an example of the system in action as early in the paper as
+0. Add a note (somewhere) about how the Abjad docs run to more than 800 pages.
+The point is important to make not because we want to brag about the docs but
+because we want to point out that this paper is very much an overview.
+
+1. Include an example of the system in action as early in the paper as
 possible. Perhaps right away in "bottom-up construction".
 
-1. Override the beams and tuplet brackets to be flat in all examples.
+2. Override the beams and tuplet brackets to be flat in all examples.
 
-2. Use rhythmic staves for the examples that include only rhythms. This is
+3. Use rhythmic staves for the examples that include only rhythms. This is
 already the case for all the examples except the four-staff rhythm-maker
 example.
 
-3. Format URLs in a uniform way. Probabaly with the http prefix always present.
+4. Do not use encircled markup (unless we can find a way to make all circles
+the same size).
 
-4. Remember to test all URLs in the document.
+5. Format URLs in a uniform way. Probabaly with the http prefix always present.
 
-5. Find a place to explain FSC and why we created the acronym.
+6. Remember to test all URLs in the document.
 
-6. Google for proper formatting of page numbered citations.
+7. Find a place to explain FSC and why we created the acronym.
 
-7. Put a note into the open-source values section about the importance of
+8. Google for proper formatting of page numbered citations.
+
+9. Put a note into the open-source values section about the importance of
 maintaining a system (not just building it once).
 
-8. There's an implicit pedagogical or educational message in the way we develop
-the system: we believe a certain subset of composers should become programmers.
-how does this fact relate to our design principles?
+10. There's an implicit pedagogical or educational message in the way we
+develop the system: we believe a certain subset of composers should become
+programmers. how does this fact relate to our design principles?
