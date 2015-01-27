@@ -730,9 +730,13 @@ uniform set of naming conventions. [TREVOR]
 
 \section{Open-source best practices} \label{sec:open-source}
 
-During the architecting of Abjad we have tried
-to adhere to as many of the programming best practices developed by the
-open-source community as possible.
+The architecting of Abjad has benefited enormously from programming best
+practices developed by the open-source community. One of these best practices
+--- the principle of extending an existing language rather than building from
+the ground up --- is so important that we introduced it earlier as the first
+principle behind our work. In this section we list other best practices we have
+taken from the open-source community and discuss their importance in the
+development of a computer-assisted system for formalized score control.
 
 \subsection{Extensibility}
 
