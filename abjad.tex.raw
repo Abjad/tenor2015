@@ -733,10 +733,26 @@ uniform set of naming conventions. [TREVOR]
 The architecting of Abjad has benefited enormously from programming best
 practices developed by the open-source community. One of these best practices
 --- the principle of extending an existing language rather than building from
-the ground up --- is so important that we introduced it earlier as the first
+the ground up --- is so important that we introduced it earlier as a first
 principle behind our work. In this section we list other best practices we have
 taken from the open-source community and discuss their importance in the
 development of a computer-assisted system for formalized score control.
+
+\subsection{Automated regression testing}
+
+Abjad comprises an automated battery of 9,119 unit tests and 8,528
+documentation tests.\footnote{Codebase metrics are taken from the prerelease
+version of Abjad 2.16.} Unit tests are executed by
+\texttt{pytest}.\footnote{http://pytest.org} Documentation tests are executed
+by the \texttt{doctest} module included in Python's standard
+library.\footnote{https://docs.python.org/3/library/doctest.html} Parametrized
+tests are provided to ensure that behaviors implemented the same way against
+different classes produce corresponding output. Developers run the entire
+battery of tests at the start of every development session and no new features
+are accepted as part of the Abjad codebase without tests authored to document
+changes to the system. Continuous integration testing is handled by Travis CI
+to ensure that nightly builds of Abjad installed under different operating
+systems continue to pass all tests.\footnote{https://travis-ci.org}
 
 \subsection{Extensibility}
 
@@ -762,21 +778,6 @@ intercepted and the rendered graphics are embedded directly into the Notebook
 along with the generating code. This allows scholars to quickly and intuitively
 create music texts which can be shared, edited and executed by other IPython
 users.
-
-\subsection{Testability}
-
-Text here.
-
-unit tests: 9119 tests
-
-documentation tests: 8528 tests
-
-continuous integration with Travis-CI
-
-cross-version testing
-
-parameterized testing of common behaviors for all classes and functions in the
-entire system
 
 \subsection{Maintainability}
 
