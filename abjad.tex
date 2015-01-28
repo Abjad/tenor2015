@@ -348,11 +348,9 @@ show(note)
 
 Abjad models score in terms of \emph{components}, \emph{spanners} and
 \emph{indicators}. These families of objects represent all of the notational
-primitives in Abjad. Score components include \emph{leaves}\footnote{Abjad
-borrows the term \emph{leaf} from graph theory.} --- notes, chords and rests
---- and \emph{containers} --- tuplets, measures, voices, staves, staff groups
-and scores and so forth. Components are arranged hierarchically into a tree by
-nesting score components inside containers. Child components receive a
+primitives in Abjad.
+
+Abjad defines components equal to notes, rests and chords taken together with the container-like elements of music notation --- tuplets, measures, voices, staves and complete scores --- that are used to contain them.\footnote{Abjad uses term `leaf' to generalize notes, rests and chords. The term is borrowed from graph theory and references the fact that notes, rests and chords can not be made to contain any other elements of music notation.} Components are arranged hierarchically into a tree by nesting score components inside containers. Child components receive a
 reference to their sole parent container, and parent containers maintain
 references to their children. Spanners model musical constructs such as beams,
 slurs and glissandi which \emph{span} across score components in a single
