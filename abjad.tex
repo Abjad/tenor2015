@@ -816,7 +816,7 @@ show(score)
 <abjad>
 iterator = iterate(score).by_timeline()
 for index, component in enumerate(iterator):
-    markup = Markup(index, Up).circle()
+    markup = Markup(index, Up).box()
     attach(markup, component)
 
 show(score)
@@ -827,12 +827,12 @@ show(score)
 \begin{lstlisting}
 >>> iterator = iterate(score).by_timeline()
 >>> for index, component in enumerate(iterator):
-...     markup = Markup(index, Up).circle()
+...     markup = Markup(index, Up).box()
 ...     attach(markup, component)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-efe68bb71f06e3d27e9d52e88f42aa7c.pdf}
+\includegraphics{assets/lilypond-ad63563595a97f5685b63c5ea5351319.pdf}
 %%% ABJADBOOK END %%%
 
 \section{Configuration} \label{sec:configuration}
