@@ -430,7 +430,7 @@ show(score)
 >>> score = Score([staff_group])
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-184fb83aabcfabe480f2a73feec487d1.pdf}
+\includegraphics{assets/lilypond-20f1d7c6901d7908e6e890db49c028f0.pdf}
 %%% ABJADBOOK END %%%
 
 Composers can attach spanners (such as ties and slurs) to score components via
@@ -481,7 +481,7 @@ show(score)
 >>> attach(Clef('bass'), lower_leaves[0])
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-5bb0764bf869a786a18aa924e36c7ccc.pdf}
+\includegraphics{assets/lilypond-1f45812a820d00be678059350542a032.pdf}
 %%% ABJADBOOK END %%%
 
 \subsection{Input flexibility}
@@ -537,7 +537,7 @@ show(staff)
 >>> staff = Staff(notes)
 >>> show(staff)
 \end{lstlisting}
-\includegraphics{assets/lilypond-a36cc9ebfc64700caf5618004e388d05.pdf}
+\includegraphics{assets/lilypond-8d7f5c809119d4fe1011ddb641d933b5.pdf}
 %%% ABJADBOOK END %%%
 
 Abjad's \emph{rhythm makers} are factory classes which, once configured, can be
@@ -559,7 +559,7 @@ show(rhythm_maker, divisions=divisions)
 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-491ec435bbfbd4d7d5cc7ad8883a3e00.pdf}
+\includegraphics{assets/lilypond-4ae6f4fae5382e2cccef70ab8113deac.pdf}
 %%% ABJADBOOK END %%%
 
 Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can create even
@@ -604,7 +604,7 @@ show(rhythm_maker, divisions=divisions)
 ...     )
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-1ca870711ed01616d8c08fecda1047d8.pdf}
+\includegraphics{assets/lilypond-ac2b3cf0b6a8e21879e6f5b59c0024f2.pdf}
 %%% ABJADBOOK END %%%
 
 Once instantiated, rhythm makers can be used over and over again with different
@@ -654,7 +654,7 @@ show(quartet_score)
 ...
 >>> show(quartet_score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-ed700108029dc49290685f261467f431.pdf}
+\includegraphics{assets/lilypond-bc8501b1d04f6de02b57061378cc26af.pdf}
 %%% ABJADBOOK END %%%
 
 \subsection{Top-down extensibility}
@@ -716,7 +716,7 @@ show(upper_staff)
 >>> upper_staff = score[0][0]
 >>> show(upper_staff)
 \end{lstlisting}
-\includegraphics{assets/lilypond-23bb8da1806ce4786a44d22f9a0cb1de.pdf}
+\includegraphics{assets/lilypond-03f40de384775683b89e8a37c094b7d7.pdf}
 %%% ABJADBOOK END %%%
 
 Because both staves were given explicit names, they can also be selected by
@@ -734,7 +734,7 @@ show(lower_staff)
 >>> lower_staff = score['Lower Staff']
 >>> show(lower_staff)
 \end{lstlisting}
-\includegraphics{assets/lilypond-2588b74b06599f9de82fdeda2ea88944.pdf}
+\includegraphics{assets/lilypond-40c23e4317fc6e9dfbd7031e78a2fe2c.pdf}
 %%% ABJADBOOK END %%%
 
 A score container's leaves --- the notes, chords and rests at the bottom of the
@@ -786,7 +786,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-67cbddeac1cbbb91c05fd16b129d16ac.pdf}
+\includegraphics{assets/lilypond-099666789f942090641921eb735887dd.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{comment}
@@ -809,7 +809,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-16d4303e9f206827c95823f36a87756a.pdf}
+\includegraphics{assets/lilypond-a997e5550e54433f21d32e04c8b2bdd3.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{comment}
@@ -832,7 +832,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-ad63563595a97f5685b63c5ea5351319.pdf}
+\includegraphics{assets/lilypond-f9414f94bf4a83ca429243f2165214b3.pdf}
 %%% ABJADBOOK END %%%
 
 \section{Configuration} \label{sec:configuration}
@@ -916,7 +916,7 @@ show(rhythm_maker, divisions=divisions)
 >>> divisions = [(3, 8), (1, 4), (5, 16), (1, 4)]
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-1bb2e1117872179c841ee9904f19df0d.pdf}
+\includegraphics{assets/lilypond-3061dd8148e3f75573756fea58330155.pdf}
 %%% ABJADBOOK END %%%
 
 Nested configuration via parameter grouping with specifiers provides
@@ -964,7 +964,7 @@ show(new_rhythm_maker, divisions=divisions)
 \begin{lstlisting}
 >>> show(new_rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-79b37fa602983fedbb6e71ca2e672a62.pdf}
+\includegraphics{assets/lilypond-9c06be1c324b8c1914fa61b455792e12.pdf}
 %%% ABJADBOOK END %%%
 
 Repeating the templating process creates new and different yet still related
@@ -1016,7 +1016,7 @@ show(new_new_rhythm_maker, divisions=divisions)
 \begin{lstlisting}
 >>> show(new_new_rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-023d75ecc15898244fb39cdde42d6ce4.pdf}
+\includegraphics{assets/lilypond-6e73e89c1e3b15970212d5ef404853ba.pdf}
 %%% ABJADBOOK END %%%
 
 \section{Encapsulation} \label{sec:encapsulation}
@@ -1039,32 +1039,11 @@ development of a computer-assisted system for formalized score control.
 
 \subsection{Automated regression testing}
 
-Abjad comprises an automated battery of 9,119 unit tests and 8,528
-documentation tests.\footnote{Codebase metrics are taken from the prerelease
-version of Abjad 2.16.} Unit tests are executed by
-\texttt{pytest}.\footnote{http://pytest.org} Documentation tests are executed
-by the \texttt{doctest} module included in Python's standard
-library.\footnote{https://docs.python.org/3/library/doctest.html} Parametrized
-tests are provided to ensure that behaviors implemented the same way against
-different classes produce corresponding output. Developers run the entire
-battery of tests at the start of every development session and no new features
-are accepted as part of the Abjad codebase without tests authored to document
-changes to the system. Continuous integration testing is handled by Travis CI
-to ensure that nightly builds of Abjad installed under different operating
-systems continue to pass all tests.\footnote{https://travis-ci.org} Over and
-over we have found it to be the case that the testability of Abjad is just as
-important --- and perhaps even more so --- as the fundamental design of the
-system. The current version of Abjad comprises about 178,000 lines of code. But
-the Abjad repository hosted on GitHub lists a total of more than 8.7 million
-lines of code committed since the start of the current
-repository.\footnote{https://github.com/Abjad/abjad} This gives a refactor
-ratio of something like 49:1, meaning that each line of code in the Abjad
-codebase has been rewritten nearly 50 times on average. This rate of
-refactoring has been possible only because of the approach taken to automated
-regression testing borrowed from the larger open-source community. Because of
-this we believe that any other music software system of a complexity comparable
-to Abjad's should prioritize automated tests from the beginning of the project
-to enable iterative refactoring from the start.
+The music software systems academic literature we have investigated is overwhelmingly silent on questions of software testing. None of the sources cited in this article reference software test methodologies. The same appears to be true for the much larger list of sources included in \cite{Trevino:2013aa}\footnote{Chris Ariza's work developing AthenaCL [SOURCE] and the development of Music21 [SOURCE] by Michael Cuthbert are important exceptions. Both projects are implemented in Python and both are aware of the the collection of best practices outlined in this section.} Why should this be the case? One possibility is that authors of music software systems have, in fact, availed themselves of the important improvements in software test methods developed over the previous decades but have, for whatever reasons, remained quiet on the matter in the publication record. We think a more likely explanation is that the culture of software best practices now widely followed in the open-source community simply has not yet arrived in the field of music software systems development (especially in the development of music software systems designed for noncommercial applications). This is a situation we work strongly to avoid in the development of Abjad.
+Our experience developing Abjad leads us to believe that the focus on testing absent the majority of music software systems is a liability to the field in two ways.\footnote{Abjad comprises an automated battery of 9,119 unit tests and 8,528 documentation tests. Unit tests are executed by \texttt{pytest}. Documentation tests are executed by the \texttt{doctest} module included in Python's standard library. Parametrized tests are provided to ensure that behaviors implemented the same way against different classes produce corresponding output. Developers run the entire battery of tests at the start of every development session. No new features are accepted as part of the Abjad codebase without tests authored to document changes to the system. Continuous integration testing is handled by Travis CI to ensure that nightly builds of Abjad installed under different operating systems continue to pass all tests. For \texttt{pytest} see \textit{http://pytest.org}. For Travis CI see \textit{https://travis-ci.org}.}
+The first such liability concerns systems development. The absence of automated regression tests acts as a barrier to new contributions to the system (who effectively have no contract to document expected behavior of the system) and severely attenuates the rate at which experienced developers can refactor the system during new feature development. Consider that Abjad currently comprises about 178,000 lines of code but that the Abjad repository hosted on GitHub\footnote{https://github.com/Abjad/abjad} lists more than 8.7 million lines of code committed since the start of the project. This refactor
+ratio of about 50:1 means that each line of code in the Abjad codebase has been rewritten an average of nearly 50 times. This rate of refactoring is possible only because of the approach to automated regression testing we have borrowed from the larger open-source community; without such an approach we think the development of other complex music software systems will be strongly limited.
+The second liability we diagnose in the relative absence of automated regression in music software systems concerns project continuance. What happens when the original developers of a music software system are no longer available to develop the system? The questions becomes increasingly acute when the system in question incorporates proprietary components, isn't documented, has had a small number of contributors and especially when the system contains no well-structured battery of tests. Automated tests serve as a type of behavioral contract for the system that serve to make possible a changing of the guard from one set of developers to another over what may potentially be the many decades of a software system's lifetime. The absence of such a test battery makes this sort of hand-off much more difficult and, in the worst case, nearly impossible. We hope that when the time comes for us to hand over primary responsibilities for the development of Abjad that the extensive collection of tests we have developed for the system will help ensure the continuance of the project as a whole.
 
 \subsection{Extensibility}
 
