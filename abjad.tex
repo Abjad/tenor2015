@@ -42,13 +42,13 @@ Architecting an open-source software system for Formalized Score Control}
     pdftitle={\papertitle},
     pdfauthor={\firstauthor, \secondauthor, \thirdauthor, \fourthauthor},
     bookmarksnumbered, % use section numbers with bookmarks
-    pdfstartview=XYZ % start with zoom=100% instead of full screen; 
+    pdfstartview=XYZ % start with zoom=100% instead of full screen;
                      % especially useful if working with a big screen :-)
    ]{hyperref}
   %\pdfcompresslevel=9
 
   \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are and their extensions so 
+  % declare the path(s) where your graphic files are and their extensions so
   %you won't have to specify these with every instance of \includegraphics
   \graphicspath{{./figures/}}
   \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
@@ -75,7 +75,7 @@ Architecting an open-source software system for Formalized Score Control}
 }
 
 %\title{\papertitle}
-\title{The design priorities behind Abjad: \\ 
+\title{The design priorities behind Abjad: \\
 Architecting an open-source software system \\
 for Formalized Score Control}
 
@@ -89,7 +89,7 @@ for Formalized Score Control}
   {\thirdauthor} {Carleton College \\
     {\tt \href{mailto:jeffrey.trevino@gmail.com}
         {jeffrey.trevino@gmail.com}}}
-  {\fourthauthor} { 
+  {\fourthauthor} {
     {\tt \href{mailto:vctradn@gmail.com}
         {vctradn@gmail.com}}}
 
@@ -128,13 +128,13 @@ and then elaborate the design priorities we have arrived at in our ongoing work
 architecting Abjad.
 \end{abstract}
 
-\section{Background \& Motivations} \label{sec:background}
+\section{Background} \label{sec:background}
 
 While many environments for both notation and sound production have arisen
 within the last twenty years, the following discussion focuses solely on the
 production of notation: Abjad enables composers to express both low- and
 high-level compositional ideas by extending a widely used programming language
-to provide a sufficiently detailed object model of common practice musical
+with a detailed object model of common practice musical
 notation. To minimize the restriction of artistic thought's infinite
 possibility while maximizing the ability to specify elegantly any arbitrary
 symbolic relationship, Abjad does this without prescribing explicit or implicit
@@ -211,7 +211,7 @@ rhythmic ideas that depend typographically on nested tuplets, a system that
 produces a notation only via a combination of MIDI and quantization must reduce
 rhythms to a non-hierarchical stream of event times, eliminating the temporally
 divisive approach of tuplet notation. For many rhythmic applications, though,
-MIDI suffices. 
+MIDI suffices.
 
 Many automated notation systems exist to model musical notation and the act of
 typographical layout without explicitly affording the computational modeling of
@@ -224,9 +224,13 @@ Finale, Sibelius, SCORE, Igor, Berlioz, and Nightingale, present themselves as
 relatively more genre-agnostic software tools. Such a system might go so far as
 to enable a text-based object-oriented model of notation that automates some
 aspect of an otherwise point-and-click interface, as in the case of Sibelius's
-ManuScript scripting language \cite{Technology:qc}. 
+ManuScript scripting language \cite{Technology:qc}.\footnote{An attempt to
+more comprehensively survey the history of object-oriented notation systems for
+composition, in the context of the broader histroy of object-oriented programming,
+lies beyond the scope of this paper but has recently been undertaken elsewhere
+\cite{Trevino:2013aa}.}
 
-Many models of musical notation have been designed created for purposes of
+Many models of musical notation have been designed for purposes of
 corpus-based computational musicology. Formats such as Music21, DARM, SMDL,
 HumDrum, and MuseData model notation with the generative task of searching
 through a large amount of data \cite{Selfridge-Field:1997ud}. Commercial
@@ -235,65 +239,7 @@ for optical score recognition (NIFF) \cite{niff1995niff}; since its release in
 2004, MusicXML has become a valid interchange format for over 160 applications
 and maintains a relatively application-agnostic status, as it was designed with
 the generative task of acting as an interchange format between variously tasked
-systems \cite{Good:2001if}. (are Igor and Berlioz commercial?)
-
-Notation representations that underly many of these GUI-based systems often go
-undescribed as computer representations of notation, in favor of discussions
-about human-computer interaction. For example, Barker and Cantor developed an
-early model of music notation that underlies a four-oscilloscope GUI and
-describe their work entirely in terms of user interaction
-\cite{cantor1971computer}; likewise, discussions of modern commercial notation
-systems remain similarly oriented, without much awareness or criticism of the
-underlying computational models of notation. This results in insufficiently
-detailed models of notation; systems, for example, that provide models only of
-mensural notation and enable nonmensural notations only as modified
-instantiations of notations based on measures.
-
-\subsection{The Development of Hierarchical Object Models of Notation}
-
-Many early models of musical notation were not hierarchical, and Lejaran
-Hiller, in reflecting on decades of automated notation work, identifies the
-lack of hierarchical organization as a limitation of early work --- although
-Nick Collins points out that even Hiller's program PHRASE addresses the
-hierarchical organization of a score up to the level of a phrase, without
-moving beyond this mid-level musical structure to concerns of large-scale form
-\cite[108]{Collins2009}. 
-
-There were several object-oriented music environments by 1990
-\cite[139]{Polansky:1990fk}, most created in or inspired by the newly popular
-Smalltalk-80 programming language; while they facilitated the hierarchical
-modeling of musical abstractions, they omitted or radically simplified the
-hierarchical nature of common notation. For example, Glen Krasner (Xerox
-Systems Science Laboratory) created Machine Tongues VIII, a music system that
-created an object-oriented model of the score/orchestra distinction inherited
-from Max Mathews' Music N languages, with a simple linear model of ``partOn''
-and ``partOff'' command sequences \cite{Krasner:1991uq}, omitting hierarchical
-organization entirely when the system produced notational output; although
-subsequent Machine Tongues systems introduced some hierarchical organization
-via ``note'' objects that inhabited ``event lists,'' systems did not attempt to
-model the hierarchical detail of all a traditional score's elements. Like
-Hiller's PHRASE program, Andreas Mahling's CompAss system organized events
-hierarchically up to the mid-level ``phrase'' level of musical structure
-\cite{Mahling:1991qf}. These systems extend Smalltalk-80 with interfaces to the
-MIDI communications protocol: as extensions of Smalltalk, they enabled the user
-to arbitrarily extend the system with new objects, creating a detailed and
-hierarchical model of music, usually flattened into a list of noteOn and
-noteOff commands to be notated or played back via MIDI interface. 
-
-By 1989, Glendon Diener's Nutation system (written in Objective C for the NeXT
-computer) modeled both musical and notational structure hierarchically through
-the use of directed graphs \cite{Diener:1991zr}, \cite{Diener:1991ly},
-\cite{Diener:1989ve}.
-
-last section: system motivations
-
-Linking our design priorities with those of previous systems by describing
-perceived deficiencies: evaluative priorities for previous systems: sufficiency
-instead of comprehensiveness, potentially evaluated by sonic result rather than
-notation, addressability (in HMSL and JMSL). Reintroduce generative task: late
-50s through 80s were motivated locally by generative tasks of specific projects
-until IRCAM's Patchwork approached a generative task of broadly enabling
-composers; sufficiency determined by comprehensive task.
+systems \cite{Good:2001if}.
 
 \section{Extension, not reinvention} \label{sec:extension}
 
@@ -313,8 +259,8 @@ In designing Abjad as an extension to a widely used language we make relevant
 both the hundreds of already-available print and Web resources that detail
 Python and its features as well as the global community of developers working
 in the language. Both benefits we hope to ease composers' transition to
-programming and make working with Abjad a familiar task that conforms to
-programming best practices: there will probably by necessity always
+programming and make working with Abjad a familiar task that conforms to widely
+understood programming best practices: there will probably by necessity always
 be more programmers than composers in the world and it makes sense for our work
 as composers to benefit from the patterns already understood elsewhere in the
 culture.
@@ -329,7 +275,7 @@ Abjad in Python does not arise from the specifics of the language but from the
 large community of users the language supports and the fact that Python is open
 source. The history of music software systems is littered with projects that
 fell into disuse. Music software systems except for the large commercial
-notation packages will probably always be the niche efforts of specialists and
+notation packages will probabaly always be the niche efforts of specialists and
 our experience architecting Abjad leads us to think about the future in such a
 way that we give ourselves all the advantages of expansiveness that are
 possible: picking an existing language that makes learning preliminaries
@@ -371,7 +317,7 @@ high quality of LilyPond output. But should the need arise to replace LilyPond
 with a different typesetting engine, the composer-facing  interface provided by
 \texttt{show()} will remain the same. The priority is that composers be able to
 illustrate compositional objects. LilyPond simply happens to be the best
-resource available to achieve our goals.} 
+resource available to achieve our goals.}
 
 \section{Bottom-up construction} \label{sec:bottom-up}
 
@@ -422,6 +368,19 @@ aggregation via Python's \emph{mutable sequence} protocol, a collection of
 instance methods which allow score components to be appended, extended or
 inserted into other container-like score components as though they were lists.
 
+\begin{comment}
+<abjad>
+outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
+inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
+outer_tuplet_one.append(inner_tuplet)
+outer_tuplet_two = Tuplet((4, 5))
+outer_tuplet_two.extend("d'8 r16 b'16 as'16")
+tuplets = [outer_tuplet_one, outer_tuplet_two]
+upper_staff = Staff(tuplets, name='Upper Staff')
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
 >>> inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
@@ -431,16 +390,38 @@ inserted into other container-like score components as though they were lists.
 >>> tuplets = [outer_tuplet_one, outer_tuplet_two]
 >>> upper_staff = Staff(tuplets, name='Upper Staff')
 \end{lstlisting}
+%%% ABJADBOOK END %%%
 
+\begin{comment}
+<abjad>
+note_one = Note(10, (7, 32))
+upper_staff.append(note_one)
+note_two = Note(NamedPitch("fs'"), Duration(1, 32))
+upper_staff.append(note_two)
+</abjad>
+\end{comment}
 
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> note_one = Note(10, (7, 32))
 >>> upper_staff.append(note_one)
 >>> note_two = Note(NamedPitch("fs'"), Duration(1, 32))
 >>> upper_staff.append(note_two)
 \end{lstlisting}
+%%% ABJADBOOK END %%%
 
+\begin{comment}
+<abjad>
+lower_staff = Staff(name='Lower Staff')
+lower_staff.extend("c8 r8 b8 r8 gf8 r4 cs8")
+staff_group = StaffGroup()
+staff_group.extend([upper_staff, lower_staff])
+score = Score([staff_group])
+show(score)
+</abjad>
+\end{comment}
 
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> lower_staff = Staff(name='Lower Staff')
 >>> lower_staff.extend("c8 r8 b8 r8 gf8 r4 cs8")
@@ -449,13 +430,25 @@ inserted into other container-like score components as though they were lists.
 >>> score = Score([staff_group])
 >>> show(score)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-1.pdf}
-
+\includegraphics{assets/lilypond-184fb83aabcfabe480f2a73feec487d1.pdf}
+%%% ABJADBOOK END %%%
 
 Composers can attach spanners (such as ties and slurs) to score components via
 Abjad's top-level \texttt{attach()} function.
 
+\begin{comment}
+<abjad>
+upper_leaves = upper_staff.select_leaves()
+lower_leaves = lower_staff.select_leaves()
+attach(Tie(), upper_leaves[4:6])
+attach(Tie(), upper_leaves[-3:-1])
+attach(Slur(), upper_leaves[:2])
+attach(Slur(), upper_leaves[2:6])
+attach(Slur(), upper_leaves[7:])
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> upper_leaves = upper_staff.select_leaves()
 >>> lower_leaves = lower_staff.select_leaves()
@@ -465,11 +458,22 @@ Abjad's top-level \texttt{attach()} function.
 >>> attach(Slur(), upper_leaves[2:6])
 >>> attach(Slur(), upper_leaves[7:])
 \end{lstlisting}
-
+%%% ABJADBOOK END %%%
 
 Composers can also attach indicators (such as articulations and clefs) to
 individual score components with \texttt{attach()}.
 
+\begin{comment}
+<abjad>
+attach(Articulation('accent'), upper_leaves[0])
+attach(Articulation('accent'), upper_leaves[2])
+attach(Articulation('accent'), upper_leaves[7])
+attach(Clef('bass'), lower_leaves[0])
+show(score)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> attach(Articulation('accent'), upper_leaves[0])
 >>> attach(Articulation('accent'), upper_leaves[2])
@@ -477,9 +481,8 @@ individual score components with \texttt{attach()}.
 >>> attach(Clef('bass'), lower_leaves[0])
 >>> show(score)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-2.pdf}
-
+\includegraphics{assets/lilypond-5bb0764bf869a786a18aa924e36c7ccc.pdf}
+%%% ABJADBOOK END %%%
 
 \subsection{Input flexibility}
 
@@ -500,7 +503,7 @@ spanners and indicators to the created components or their children, if they
 are containers. Parametric instantiation affords composers powerful procedural
 control over score structure while string instantiation allows for brevity and
 expressiveness. The score construction example above demonstrates both
-techniques. 
+techniques.
 
 \section{Top-down construction} \label{sec:top-down}
 
@@ -520,33 +523,70 @@ pitches and rhythms isorhythmically to generate selections of notes and rests,
 to more complexly-configured \emph{maker} classes for creating nuanced rhythmic
 patterns or entire scores.
 
+\begin{comment}
+<abjad>
+notes = scoretools.make_notes([0, 1, 4, 7], [(1, 4)],)
+staff = Staff(notes)
+show(staff)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> notes = scoretools.make_notes([0, 1, 4, 7], [(1, 4)],)
 >>> staff = Staff(notes)
 >>> show(staff)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-3.pdf}
-
+\includegraphics{assets/lilypond-a36cc9ebfc64700caf5618004e388d05.pdf}
+%%% ABJADBOOK END %%%
 
 Abjad's \emph{rhythm makers} are factory classes which, once configured, can be
 called like functions to procedurally inscribe rhythms into a series of
 \emph{divisions}. The \texttt{NoteRhythmMaker} fills in divisions with notes,
 tied as necessary, to equal the duration of those divisions.
 
+\begin{comment}
+<abjad>
+divisions = [(3, 8), (5, 16), (1, 4), (5, 16)]
+rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+show(rhythm_maker, divisions=divisions)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> divisions = [(3, 8), (5, 16), (1, 4), (5, 16)]
 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-4.pdf}
-
+\includegraphics{assets/lilypond-491ec435bbfbd4d7d5cc7ad8883a3e00.pdf}
+%%% ABJADBOOK END %%%
 
 Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can create even
 more complex rhythmic output, integrating configurable patterns of durations,
 tupletting and silences.
 
+\begin{comment}
+<abjad>
+rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+    burnish_specifier=rhythmmakertools.BurnishSpecifier(
+        left_classes=(Rest, Note),
+        left_counts=(1,),
+        ),
+    extra_counts_per_division=(0, 1, 1),
+    talea=rhythmmakertools.Talea(
+        counts=(1, 2, 3),
+        denominator=16,
+        ),
+    tie_specifier=rhythmmakertools.TieSpecifier(
+        tie_across_divisions=True,
+        ),
+    )
+show(rhythm_maker, divisions=divisions)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
 ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
@@ -564,9 +604,8 @@ tupletting and silences.
 ...     )
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-5.pdf}
-
+\includegraphics{assets/lilypond-1ca870711ed01616d8c08fecda1047d8.pdf}
+%%% ABJADBOOK END %%%
 
 Once instantiated, rhythm makers can be used over and over again with different
 input, a pattern used pervasively in Abjad: maker classes as object-oriented
@@ -585,6 +624,23 @@ intended instrumentation or typography. We can combine rhythm and score makers
 with score iteration, as well as some simple bottom-up construction, to
 generate complete score aggregates expressively.
 
+\begin{comment}
+<abjad>
+template = templatetools.GroupedStavesScoreTemplate(4)
+quartet_score = template()
+iterator = iterate(quartet_score).by_class(Voice)
+for index, voice in enumerate(iterator):
+    divisions = sequencetools.rotate_sequence(
+        divisions, -1)
+    selections = rhythm_maker(divisions, seeds=-index)
+    measure = Measure((5, 4), selections)
+    voice.append(measure)
+
+show(quartet_score)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> template = templatetools.GroupedStavesScoreTemplate(4)
 >>> quartet_score = template()
@@ -595,12 +651,11 @@ generate complete score aggregates expressively.
 ...     selections = rhythm_maker(divisions, seeds=-index)
 ...     measure = Measure((5, 4), selections)
 ...     voice.append(measure)
-... 
+...
 >>> show(quartet_score)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-6.pdf}
-
+\includegraphics{assets/lilypond-ed700108029dc49290685f261467f431.pdf}
+%%% ABJADBOOK END %%%
 
 \subsection{Top-down extensibility}
 
@@ -612,7 +667,7 @@ interacting with the system in the spirit of compositional agnosticism.
 
 %By providing core functionality oriented toward the elements of standard
 %notation, Abjad strives to remain as agnostic as possible to various
-%composition techniques. 
+%composition techniques.
 
 \section{Selection flexibility} \label{sec:selections}
 
@@ -643,39 +698,62 @@ selecting many things: by slicing, by select\_leaves(), by iteration.
 %arbitrary number of contiguous components at one time. As an example of the
 %latter, the statement \texttt{staff[15:25]} selects the ten components in
 %\texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
-%addressing regime follow those of Python's list and tuple interface exactly. 
+%addressing regime follow those of Python's list and tuple interface exactly.
 
 Consider the two-staff score created earlier. The upper staff can be selected
 by indexing the first child of the first child of the score, i.e. the first
 staff in the staff group which is the first child of the score itself.
 
+\begin{comment}
+<abjad>
+upper_staff = score[0][0]
+show(upper_staff)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> upper_staff = score[0][0]
 >>> show(upper_staff)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-7.pdf}
-
+\includegraphics{assets/lilypond-23bb8da1806ce4786a44d22f9a0cb1de.pdf}
+%%% ABJADBOOK END %%%
 
 Because both staves were given explicit names, they can also be selected by
 those names, regardless of their depth in the score hierarchy.
 
+\begin{comment}
+<abjad>
+lower_staff = score['Lower Staff']
+show(lower_staff)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> lower_staff = score['Lower Staff']
 >>> show(lower_staff)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-8.pdf}
-
+\includegraphics{assets/lilypond-2588b74b06599f9de82fdeda2ea88944.pdf}
+%%% ABJADBOOK END %%%
 
 A score container's leaves --- the notes, chords and rests at the bottom of the
 score hierarchy which cannot, by definition, contain any other score component
 --- can be selected by that container's \texttt{select\_leaves()} method.
 
+\begin{comment}
+<abjad>
+for leaf in lower_staff.select_leaves():
+    print(repr(leaf))
+
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> for leaf in lower_staff.select_leaves():
 ...     print(repr(leaf))
-... 
+...
 Note('c8')
 Rest('r8')
 Note('b8')
@@ -684,7 +762,7 @@ Note('gf8')
 Rest('r4')
 Note('cs8')
 \end{lstlisting}
-
+%%% ABJADBOOK END %%%
 
 Composers can select components via Abjad's powerful top-level
 \texttt{iterate()} function, which exposes the score iteration interface as
@@ -692,39 +770,70 @@ implemented in our \texttt{IterationAgent}. The iteration interface affords a
 wide variety of selection criteria, such as class filters, logical tie
 selection and time-wise score traversal.
 
+\begin{comment}
+<abjad>
+for note in iterate(lower_staff).by_class(Note):
+    attach(Articulation('staccato'), note)
+
+show(score)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> for note in iterate(lower_staff).by_class(Note):
 ...     attach(Articulation('staccato'), note)
-... 
+...
 >>> show(score)
 \end{lstlisting}
+\includegraphics{assets/lilypond-67cbddeac1cbbb91c05fd16b129d16ac.pdf}
+%%% ABJADBOOK END %%%
 
-\noindent\includegraphics[scale=1.0]{images/abjad-9.pdf}
+\begin{comment}
+<abjad>
+iterator = iterate(score).by_logical_tie(
+    nontrivial=True, pitched=True)
+for logical_tie in iterator:
+    attach(Fermata(), logical_tie.tail)
 
+show(score)
+</abjad>
+\end{comment}
 
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> iterator = iterate(score).by_logical_tie(
 ...     nontrivial=True, pitched=True)
 >>> for logical_tie in iterator:
 ...     attach(Fermata(), logical_tie.tail)
-... 
+...
 >>> show(score)
 \end{lstlisting}
+\includegraphics{assets/lilypond-16d4303e9f206827c95823f36a87756a.pdf}
+%%% ABJADBOOK END %%%
 
-\noindent\includegraphics[scale=1.0]{images/abjad-10.pdf}
+\begin{comment}
+<abjad>
+iterator = iterate(score).by_timeline()
+for index, component in enumerate(iterator):
+    markup = Markup(index, Up).circle()
+    attach(markup, component)
 
+show(score)
+</abjad>
+\end{comment}
 
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> iterator = iterate(score).by_timeline()
 >>> for index, component in enumerate(iterator):
 ...     markup = Markup(index, Up).circle()
 ...     attach(markup, component)
-... 
+...
 >>> show(score)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-11.pdf}
-
+\includegraphics{assets/lilypond-efe68bb71f06e3d27e9d52e88f42aa7c.pdf}
+%%% ABJADBOOK END %%%
 
 \section{Configuration} \label{sec:configuration}
 
@@ -765,6 +874,19 @@ factory classes for generating rhythmic patterns. Many of their initialization
 keywords expect \emph{specifiers} --- object-oriented bundles of related
 parameters --- which can make their configurations potentially deeply nested.
 
+\begin{comment}
+<abjad>
+rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+    talea=rhythmmakertools.Talea(
+        counts=(1, 2, 3),
+        denominator=16,
+        ),
+    )
+print(format(rhythm_maker))
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
 ...     talea=rhythmmakertools.Talea(
@@ -780,15 +902,22 @@ rhythmmakertools.TaleaRhythmMaker(
         ),
     )
 \end{lstlisting}
+%%% ABJADBOOK END %%%
 
+\begin{comment}
+<abjad>
+divisions = [(3, 8), (1, 4), (5, 16), (1, 4)]
+show(rhythm_maker, divisions=divisions)
+</abjad>
+\end{comment}
 
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> divisions = [(3, 8), (1, 4), (5, 16), (1, 4)]
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-12.pdf}
-
+\includegraphics{assets/lilypond-1bb2e1117872179c841ee9904f19df0d.pdf}
+%%% ABJADBOOK END %%%
 
 Nested configuration via parameter grouping with specifiers provides
 considerable conceptual clarity, but is also potentially labor-intensive. Abjad
@@ -798,6 +927,17 @@ replacing any initialization parameter in the templated object at any depth via
 the top-level \texttt{new()} function. Notice how the new rhythm maker below
 has both altered its talea counts and added a new initialization keyword.
 
+\begin{comment}
+<abjad>
+new_rhythm_maker = new(rhythm_maker,
+    extra_counts_per_division=(0, 1),
+    talea__counts=(1, 2, 3, 4),
+    )
+print(format(new_rhythm_maker))
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> new_rhythm_maker = new(rhythm_maker,
 ...     extra_counts_per_division=(0, 1),
@@ -812,19 +952,38 @@ rhythmmakertools.TaleaRhythmMaker(
     extra_counts_per_division=(0, 1),
     )
 \end{lstlisting}
+%%% ABJADBOOK END %%%
 
+\begin{comment}
+<abjad>
+show(new_rhythm_maker, divisions=divisions)
+</abjad>
+\end{comment}
 
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> show(new_rhythm_maker, divisions=divisions)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-13.pdf}
-
+\includegraphics{assets/lilypond-79b37fa602983fedbb6e71ca2e672a62.pdf}
+%%% ABJADBOOK END %%%
 
 Repeating the templating process creates new and different yet still related
 objects, allowing composers to easily play with variation at the level of
 procedure.
 
+\begin{comment}
+<abjad>
+new_new_rhythm_maker = new(new_rhythm_maker,
+    extra_counts_per_division=(0, 1, 2),
+    beam_specifier=rhythmmakertools.BeamSpecifier(
+        beam_divisions_together=True,
+        ),
+    )
+print(format(new_new_rhythm_maker))
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> new_new_rhythm_maker = new(new_rhythm_maker,
 ...     extra_counts_per_division=(0, 1, 2),
@@ -845,14 +1004,20 @@ rhythmmakertools.TaleaRhythmMaker(
         ),
     )
 \end{lstlisting}
+%%% ABJADBOOK END %%%
 
+\begin{comment}
+<abjad>
+show(new_new_rhythm_maker, divisions=divisions)
+</abjad>
+\end{comment}
 
+%%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> show(new_new_rhythm_maker, divisions=divisions)
 \end{lstlisting}
-
-\noindent\includegraphics[scale=1.0]{images/abjad-14.pdf}
-
+\includegraphics{assets/lilypond-023d75ecc15898244fb39cdde42d6ce4.pdf}
+%%% ABJADBOOK END %%%
 
 \section{Encapsulation} \label{sec:encapsulation}
 
@@ -864,17 +1029,48 @@ uniform set of naming conventions. [TREVOR]
 
 \section{Open-source best practices} \label{sec:open-source}
 
-The architecting of Abjad has benefited enormously from programming best practices developed by the open-source community. One of these best practices --- the principle of extending an existing language rather than building from the ground up --- is so important that we introduced it earlier as a first principle behind our work. In this section we list other best practices we have taken from the open-source community and discuss their importance in the development of a computer-assisted system for formalized score control.
+The architecting of Abjad has benefited enormously from programming best
+practices developed by the open-source community. One of these best practices
+--- the principle of extending an existing language rather than building from
+the ground up --- is so important that we introduced it earlier as a first
+principle behind our work. In this section we list other best practices we have
+taken from the open-source community and discuss their importance in the
+development of a computer-assisted system for formalized score control.
 
 \subsection{Automated regression testing}
 
-Abjad comprises an automated battery of 9,119 unit tests and 8,528 documentation tests.\footnote{Codebase metrics are taken from the prerelease version of Abjad 2.16.} Unit tests are executed by \texttt{pytest}.\footnote{http://pytest.org} Documentation tests are executed by the \texttt{doctest} module included in Python's standard library.\footnote{https://docs.python.org/3/library/doctest.html} Parametrized tests are provided to ensure that behaviors implemented the same way against different classes produce corresponding output. Developers run the entire battery of tests at the start of every development session and no new features are accepted as part of the Abjad codebase without tests authored to document changes to the system. Continuous integration testing is handled by Travis CI to ensure that nightly builds of Abjad installed under different operating systems continue to pass all tests.\footnote{https://travis-ci.org} Over and over we have found it to be the case that the testability of Abjad is just as important --- and perhaps even more so --- as the fundamental design of the system. The current version of Abjad comprises about 178,000 lines of code. But the Abjad repository hosted on GitHub lists a total of more than 8.7 million lines of code committed since the start of the current repository.\footnote{https://github.com/Abjad/abjad} This gives a refactor ratio of something like 49:1, meaning that each line of code in the Abjad codebase has been rewritten nearly 50 times on average. This rate of refactoring has been possible only because of the approach taken to automated regression testing borrowed from the larger open-source community. Because of this we believe that any other music software system of a complexity comparable to Abjad's should prioritize automated tests from the beginning of the project to enable iterative refactoring from the start. 
+Abjad comprises an automated battery of 9,119 unit tests and 8,528
+documentation tests.\footnote{Codebase metrics are taken from the prerelease
+version of Abjad 2.16.} Unit tests are executed by
+\texttt{pytest}.\footnote{http://pytest.org} Documentation tests are executed
+by the \texttt{doctest} module included in Python's standard
+library.\footnote{https://docs.python.org/3/library/doctest.html} Parametrized
+tests are provided to ensure that behaviors implemented the same way against
+different classes produce corresponding output. Developers run the entire
+battery of tests at the start of every development session and no new features
+are accepted as part of the Abjad codebase without tests authored to document
+changes to the system. Continuous integration testing is handled by Travis CI
+to ensure that nightly builds of Abjad installed under different operating
+systems continue to pass all tests.\footnote{https://travis-ci.org} Over and
+over we have found it to be the case that the testability of Abjad is just as
+important --- and perhaps even more so --- as the fundamental design of the
+system. The current version of Abjad comprises about 178,000 lines of code. But
+the Abjad repository hosted on GitHub lists a total of more than 8.7 million
+lines of code committed since the start of the current
+repository.\footnote{https://github.com/Abjad/abjad} This gives a refactor
+ratio of something like 49:1, meaning that each line of code in the Abjad
+codebase has been rewritten nearly 50 times on average. This rate of
+refactoring has been possible only because of the approach taken to automated
+regression testing borrowed from the larger open-source community. Because of
+this we believe that any other music software system of a complexity comparable
+to Abjad's should prioritize automated tests from the beginning of the project
+to enable iterative refactoring from the start.
 
 \subsection{Extensibility}
 
 As an open-source project, composers and researchers can contribute changes via
 git pull requests. A process of continuous integration and online version
-control simplifies this contribution process. 
+control simplifies this contribution process.
 
 \subsection{Embeddability}
 
@@ -894,7 +1090,6 @@ intercepted and the rendered graphics are embedded directly into the Notebook
 along with the generating code. This allows scholars to quickly and intuitively
 create music texts which can be shared, edited and executed by other IPython
 users.
-
 
 \subsection{Maintainability}
 
