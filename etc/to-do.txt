@@ -34,3 +34,5 @@ about Python's penetration.
 
 12. Our insistence on this principle of extension ... maybe revise to remove
 the form of "to be".
+
+13. Maybe include "visual feedback" in the pervasive illustration section.
