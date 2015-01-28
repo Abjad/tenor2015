@@ -25,3 +25,12 @@ maintaining a system (not just building it once).
 9. There's an implicit pedagogical or educational message in the way we develop
 the system: we believe a certain subset of composers should become programmers.
 how does this fact relate to our design principles?
+
+10. In section on "extension, not reinvention", preserve the first sentence of
+the second paragraph. Then footnote that sentence with some usage statistics
+about Python's penetration.
+
+11. Also in section on extension: "We hope both of these benefits ..."
+
+12. Our insistence on this principle of extension ... maybe revise to remove
+the form of "to be".
