@@ -11,20 +11,17 @@ possible. Perhaps right away in "bottom-up construction".
 already the case for all the examples except the four-staff rhythm-maker
 example.
 
-4. Do not use encircled markup (unless we can find a way to make all circles
-the same size).
+4. Format URLs in a uniform way. Probabaly with the http prefix always present.
 
-5. Format URLs in a uniform way. Probabaly with the http prefix always present.
+5. Remember to test all URLs in the document.
 
-6. Remember to test all URLs in the document.
+6. Find a place to explain FSC and why we created the acronym.
 
-7. Find a place to explain FSC and why we created the acronym.
+7. Google for proper formatting of page numbered citations.
 
-8. Google for proper formatting of page numbered citations.
-
-9. Put a note into the open-source values section about the importance of
+8. Put a note into the open-source values section about the importance of
 maintaining a system (not just building it once).
 
-10. There's an implicit pedagogical or educational message in the way we
-develop the system: we believe a certain subset of composers should become
-programmers. how does this fact relate to our design principles?
+9. There's an implicit pedagogical or educational message in the way we develop
+the system: we believe a certain subset of composers should become programmers.
+how does this fact relate to our design principles?
