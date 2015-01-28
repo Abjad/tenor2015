@@ -245,7 +245,7 @@ systems \cite{Good:2001if}.
 
 \section{Extension, not reinvention} \label{sec:extension}
 
-Abjad is not a programming language. Abjad instead extends the Python
+Abjad is not a stand-alone application for composers. Nor is Abjad a programming language. Abjad is instead an extension to the Python
 programming language. Our insistence on this principle of extension --- of
 adding functionality to an existing programming language rather than inventing
 yet another domain-specific language --- originates in the belief that there is
@@ -257,24 +257,29 @@ that equip Python with new functionality.\footnote{See the Python Package Index
 for functionality to extend the language for purposes as diverse as creative
 writing and aeronautical engineering. The Python Package Index contains 54,306
 packages at the time or writing and is available at \textit{pypi.python.org}.}
-In designing Abjad as an extension to a widely used language, we make relevant
-both the hundreds of available print and Web resources that detail
-Python and its features as well as the global community of developers working
-in the language. We hope both benefits will ease composers' transition to
-programming and make working with Abjad a familiar task that conforms to widely
-understood programming best practices: there will probably by necessity always
-be more programmers than composers in the world and it makes sense for our work
-as composers to benefit from the patterns already understood elsewhere in the
-culture.
-
-Though we continue to find Python an excellent programming
-language,\footnote{Aspects of Python we find particularly helpful include the
+In designing Abjad as an extension to a widely used language, we hope to make relevant
+the hundreds of available print and Web resources that detail
+Python and its features. We also hope to make the global community of developers working
+in the Python available to composers working with notation in a formalized way. 
+But we note that even though we find Python an excellent programming
+language for architecting a music software system like Abjad,\footnote{Aspects of Python we find particularly helpful include the
 availability of lists, dictionaries and sets as built-in types; the interface
 provided for string and Unicode objects; the unified approach to encapsulation
 provided by Python's understanding of namespaces; and the extensive
 functionality provided in the standard library.} our decision to implement
 Abjad in Python does not arise from the specifics of the language but from the
-large community of users the language supports and the fact that Python is open
+fact that the language is part of a global programming mainstream with tools and best practices that can be borrowed directly into the work of music composition.
+
+\begin{comment}
+We hope both benefits will ease composers' transition to
+programming and make working with Abjad a familiar task that conforms to widely
+understood programming best practices: there will probably by necessity always
+be more programmers than composers in the world and it makes sense for our work
+as composers to benefit from the patterns already understood elsewhere in the
+culture.
+\end{comment}
+
+\begin{comment}
 source. The history of music software systems is littered with projects that
 fell into disuse. Music software systems except for the large commercial
 notation packages will probabaly always be the niche efforts of specialists and
@@ -283,8 +288,9 @@ way that we give ourselves all the advantages of expansiveness that are
 possible: picking an existing language that makes learning preliminaries
 easier and makes the continued development of the system as open as possible to
 as many different collaborators as possible.
+\end{comment}
 
-\section{An example usage session} \label{sec:illustration}
+\section{An example use session} \label{sec:illustration}
 
 We believe it is important for composers to be able to illustrate the objects
 they work with as they compose. Abjad reflects this priority in its
