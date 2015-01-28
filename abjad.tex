@@ -430,7 +430,7 @@ show(score)
 >>> score = Score([staff_group])
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-20f1d7c6901d7908e6e890db49c028f0.pdf}
+\includegraphics{assets/lilypond-8d72e9a5aced38c13d509aea16c53ca6.pdf}
 %%% ABJADBOOK END %%%
 
 Composers can attach spanners (such as ties and slurs) to score components via
@@ -481,7 +481,7 @@ show(score)
 >>> attach(Clef('bass'), lower_leaves[0])
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-1f45812a820d00be678059350542a032.pdf}
+\includegraphics{assets/lilypond-6e6234ddf98e707d42a58b6306767fc8.pdf}
 %%% ABJADBOOK END %%%
 
 \subsection{Input flexibility}
@@ -537,7 +537,7 @@ show(staff)
 >>> staff = Staff(notes)
 >>> show(staff)
 \end{lstlisting}
-\includegraphics{assets/lilypond-8d7f5c809119d4fe1011ddb641d933b5.pdf}
+\includegraphics{assets/lilypond-64155bcaa384109d40ae2616a2224dd1.pdf}
 %%% ABJADBOOK END %%%
 
 Abjad's \emph{rhythm makers} are factory classes which, once configured, can be
@@ -559,7 +559,7 @@ show(rhythm_maker, divisions=divisions)
 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-4ae6f4fae5382e2cccef70ab8113deac.pdf}
+\includegraphics{assets/lilypond-911011fbb23e3c959a67793f30d2d299.pdf}
 %%% ABJADBOOK END %%%
 
 Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can create even
@@ -604,7 +604,7 @@ show(rhythm_maker, divisions=divisions)
 ...     )
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-ac2b3cf0b6a8e21879e6f5b59c0024f2.pdf}
+\includegraphics{assets/lilypond-c0d5041cb91ce3d3e6b94a69fd638cf2.pdf}
 %%% ABJADBOOK END %%%
 
 Once instantiated, rhythm makers can be used over and over again with different
@@ -654,7 +654,7 @@ show(quartet_score)
 ...
 >>> show(quartet_score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-bc8501b1d04f6de02b57061378cc26af.pdf}
+\includegraphics{assets/lilypond-f4e67b8cf062f5baa8def83e32bbffd3.pdf}
 %%% ABJADBOOK END %%%
 
 \subsection{Top-down extensibility}
@@ -716,7 +716,7 @@ show(upper_staff)
 >>> upper_staff = score[0][0]
 >>> show(upper_staff)
 \end{lstlisting}
-\includegraphics{assets/lilypond-03f40de384775683b89e8a37c094b7d7.pdf}
+\includegraphics{assets/lilypond-4aa1bd58533df74ce54d499ffd6dbb25.pdf}
 %%% ABJADBOOK END %%%
 
 Because both staves were given explicit names, they can also be selected by
@@ -734,7 +734,7 @@ show(lower_staff)
 >>> lower_staff = score['Lower Staff']
 >>> show(lower_staff)
 \end{lstlisting}
-\includegraphics{assets/lilypond-40c23e4317fc6e9dfbd7031e78a2fe2c.pdf}
+\includegraphics{assets/lilypond-fa746e527d218a814e36af2f46d314bb.pdf}
 %%% ABJADBOOK END %%%
 
 A score container's leaves --- the notes, chords and rests at the bottom of the
@@ -786,7 +786,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-099666789f942090641921eb735887dd.pdf}
+\includegraphics{assets/lilypond-85c47ec39685eb2a539925a3599691c2.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{comment}
@@ -809,7 +809,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-a997e5550e54433f21d32e04c8b2bdd3.pdf}
+\includegraphics{assets/lilypond-1981e2f1300698407cb416bc14b38c23.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{comment}
@@ -832,7 +832,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-f9414f94bf4a83ca429243f2165214b3.pdf}
+\includegraphics{assets/lilypond-783949753898126e596d11728f72bf61.pdf}
 %%% ABJADBOOK END %%%
 
 \section{Configuration} \label{sec:configuration}
@@ -916,7 +916,7 @@ show(rhythm_maker, divisions=divisions)
 >>> divisions = [(3, 8), (1, 4), (5, 16), (1, 4)]
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-3061dd8148e3f75573756fea58330155.pdf}
+\includegraphics{assets/lilypond-8d11397fa8a7ed768182e6c89abe52f0.pdf}
 %%% ABJADBOOK END %%%
 
 Nested configuration via parameter grouping with specifiers provides
@@ -964,7 +964,7 @@ show(new_rhythm_maker, divisions=divisions)
 \begin{lstlisting}
 >>> show(new_rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-9c06be1c324b8c1914fa61b455792e12.pdf}
+\includegraphics{assets/lilypond-a769357ad75c64d981f789b0e3a0f4da.pdf}
 %%% ABJADBOOK END %%%
 
 Repeating the templating process creates new and different yet still related
@@ -1016,7 +1016,7 @@ show(new_new_rhythm_maker, divisions=divisions)
 \begin{lstlisting}
 >>> show(new_new_rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-6e73e89c1e3b15970212d5ef404853ba.pdf}
+\includegraphics{assets/lilypond-23e2752f7db7cf02e31cf8e9f399c5b6.pdf}
 %%% ABJADBOOK END %%%
 
 \section{Encapsulation} \label{sec:encapsulation}
