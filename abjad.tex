@@ -245,30 +245,31 @@ systems \cite{Good:2001if}.
 
 \section{Extension, not reinvention} \label{sec:extension}
 
-Abjad is not a stand-alone application. Nor is Abjad a programming language. Abjad is instead an extension to the Python
-programming language. Our insistence on this principle of extension --- of
-adding functionality to an existing programming language rather than inventing
-yet another domain-specific language --- originates in the belief that there is
-no benefit to be had in reestablishing the ways variables are created,
-references are handled, loops are structured or any of the other fundamentals
-of programming. We have instead architected Abjad in the form of a Python
-package designed to be used the same way as the thousands of other packages
-that already exist.\footnote{See the Python Package Index
-for functionality to extend the language for purposes as diverse as creative
-writing and aeronautical engineering. The Python Package Index contains 54,306
-packages at the time or writing and is available at \textit{pypi.python.org}.}
-Even though we find Python an excellent programming
-language for architecting a music software system like Abjad,\footnote{Aspects of Python we find particularly helpful include the
-availability of lists, dictionaries and sets as built-in types; the interface
-provided for string and Unicode objects; the unified approach to encapsulation
-provided by Python's understanding of namespaces; and the extensive
-functionality provided in the standard library.} our decision to implement
-Abjad in Python does not arise from the specifics of the language but from the
-fact that the language is part of a global programming mainstream with tools and best practices that can be borrowed directly into music composition.
-In designing Abjad as an extension to Python, we hope to make relevant
-the hundreds of print and Web resources that detail
-the language and its features. We also hope to make the global community of developers working
-in Python available to composers. 
+Abjad is not a stand-alone application. Nor is Abjad a programming language.
+Abjad is instead an extension to the Python programming language. Our
+insistence on this principle of extension --- of adding functionality to an
+existing programming language rather than inventing yet another domain-specific
+language --- originates in the belief that there is no benefit to be had in
+reestablishing the ways variables are created, references are handled, loops
+are structured or any of the other fundamentals of programming. We have instead
+architected Abjad in the form of a Python package designed to be used the same
+way as the thousands of other packages that already exist.\footnote{See the
+Python Package Index for functionality to extend the language for purposes as
+diverse as creative writing and aeronautical engineering. The Python Package
+Index contains 54,306 packages at the time or writing and is available at
+\textit{pypi.python.org}.} Even though we find Python an excellent programming
+language for architecting a music software system like Abjad,\footnote{Aspects
+of Python we find particularly helpful include the availability of lists,
+dictionaries and sets as built-in types; the interface provided for string and
+Unicode objects; the unified approach to encapsulation provided by Python's
+understanding of namespaces; and the extensive functionality provided in the
+standard library.} our decision to implement Abjad in Python does not arise
+from the specifics of the language but from the fact that the language is part
+of a global programming mainstream with tools and best practices that can be
+borrowed directly into music composition. In designing Abjad as an extension to
+Python, we hope to make relevant the hundreds of print and Web resources that
+detail the language and its features. We also hope to make the global community
+of developers working in Python available to composers.
 
 \begin{comment}
 We hope both benefits will ease composers' transition to
@@ -346,7 +347,7 @@ show(note)
 
 \section{The Abjad object model}
 
-Abjad models score in terms of \emph{components}, \emph{spanners} and
+Abjad models musical score in terms of \emph{components}, \emph{spanners} and
 \emph{indicators}. These families of objects represent all of the notational
 primitives in Abjad. Abjad defines components equal to notes, rests and chords
 taken together with the container-like elements of music notation --- tuplets,
@@ -355,17 +356,17 @@ them.\footnote{Abjad uses term `leaf' to generalize notes, rests and chords.
 The term is borrowed from graph theory and references the fact that notes,
 rests and chords can not be made to contain any other elements of music
 notation.} Components are arranged hierarchically into a tree. Spanners model
-musical constructs such as beams, slurs and glissandi which can \emph{cross}
-different levels of hierarchy in the score tree. Indicators model objects
-attached to a single component. These include articulations, time signatures,
-tempi, textural indications and dynamics. \footnote{Indicators can have
-\emph{scope} making them \emph{effective} for all other components in that
-scope following the component to which that indicator is attached until another
-indicator of the same type appears. Indicator scoping models how all notes in a
-voice can be marked as \emph{forte} until another note is marked as
-\emph{piano}. We have generalized the scoping behavior of indicators, allowing
-composers to annotate score structures by attaching arbitrary non-notating
-objects like dictionaries or custom classes to any component.}
+musical constructs such as beams, slurs and glissandi which can cross different
+levels of hierarchy in the score tree. Indicators model objects attached to a
+single component. These include articulations, time signatures, tempi, textural
+indications and dynamics.\footnote{Indicators can have \emph{scope} making them
+\emph{effective} for all other components in that scope following the component
+to which that indicator is attached until another indicator of the same type
+appears. Indicator scoping models how all notes in a voice can be marked as
+\emph{forte} until another note is marked as \emph{piano}. We have generalized
+the scoping behavior of indicators, allowing composers to annotate score
+structures by attaching arbitrary non-notating objects like dictionaries or
+custom classes to any component.}
 
 \section{Bottom-up construction} \label{sec:bottom-up}
 
@@ -1063,10 +1064,62 @@ impact the development of music software systems.
 
 \subsection{Automated regression testing}
 
-The music software systems academic literature we have investigated is overwhelmingly silent on questions of software testing. None of the sources cited in this article reference software test methodologies. The same appears to be true for the larger list of sources included in \cite{Trevino:2013aa}.\footnote{Chris Ariza's work developing AthenaCL [SOURCE] and the development of Music21 [SOURCE] led by Michael Cuthbert are important exceptions. Both projects are implemented in Python and both projects feature approaches to testing aligned to those outlined above.} Why should this be the case? One possibility is that authors of music software systems have, in fact, availed themselves of important improvements in software test methods developed over the previous decades but have, for whatever reasons, remained quiet on the matter in the publication record. We think a more likely explanation is that the culture of software best practices now widely followed in the open-source community simply has not yet arrived in the field of music software systems development (and especially in the development of music software systems designed for noncommercial applications). Our experience developing Abjad leads us to believe that the focus on testing absent the majority of music software systems is a liability to the field in two ways.\footnote{Abjad comprises an automated battery of 9,119 unit tests and 8,528 documentation tests. Unit tests are executed by \texttt{pytest}. Documentation tests are executed by the \texttt{doctest} module included in Python's standard library. Parametrized tests are provided to ensure that behaviors implemented the same way against different classes produce corresponding output. Developers run the entire battery of tests at the start of every development session. No new features are accepted as part of the Abjad codebase without tests authored to document changes to the system. Continuous integration testing is handled by Travis CI to ensure that nightly builds of Abjad installed under different operating systems continue to pass all tests. For \texttt{pytest} see \textit{http://pytest.org}. For Travis CI see \textit{https://travis-ci.org}.}
-The first such liability concerns systems development. The absence of automated regression tests acts as a barrier to new contributors to the system (who effectively have no way to determine whether proposed changes to the system negatively impact the system) and severely attenuates the rate at which experienced developers can refactor the system during new feature development. Consider that Abjad currently comprises about 178,000 lines of code and that the Abjad repository hosted on GitHub\footnote{https://github.com/Abjad/abjad} lists more than 8.7 million lines of code committed since the start of the project. This refactor
-ratio of about 50:1 means that each line of code in the Abjad codebase has been rewritten dozens of times. This freedom to refactor is possible only because of the approach to automated regression testing we have borrowed from the larger open-source community.
-The second testing-related liability we diagnose concerns project continuance. What happens when the original developers of a music software system are no longer available to develop the system? Automated regression tests help make possible a changing of the guard from one set of developers to another. This is true because automated tests serve as a type of functional specification of how a software system is supposed to behave after the system is altered. While automated tests alone will not ensure the continued development of any software system, we believe that adherence to the testing practices of the open-source community constitutes the most effective hedge available to music software systems developers to fend against project abandonment in the medium and long term.
+The music software systems academic literature we have investigated is
+overwhelmingly silent on questions of software testing. None of the sources
+cited in this article reference software test methodologies. The same appears
+to be true for the larger list of sources included in
+\cite{Trevino:2013aa}.\footnote{Chris Ariza's work developing AthenaCL [SOURCE]
+and the development of Music21 [SOURCE] led by Michael Cuthbert are important
+exceptions. Both projects are implemented in Python and both projects feature
+approaches to testing aligned to those outlined above.} Why should this be the
+case? One possibility is that authors of music software systems have, in fact,
+availed themselves of important improvements in software test methods developed
+over the previous decades but have, for whatever reasons, remained quiet on the
+matter in the publication record. We think a more likely explanation is that
+the culture of software best practices now widely followed in the open-source
+community simply has not yet arrived in the field of music software systems
+development (and especially in the development of music software systems
+designed for noncommercial applications).
+
+Our experience developing Abjad leads us to believe that the focus on testing
+absent the majority of music software systems is a liability to the field in
+two ways.\footnote{Abjad comprises an automated battery of 9,119 unit tests and
+8,528 documentation tests. Unit tests are executed by \texttt{pytest}.
+Documentation tests are executed by the \texttt{doctest} module included in
+Python's standard library. Parametrized tests are provided to ensure that
+behaviors implemented the same way against different classes produce
+corresponding output. Developers run the entire battery of tests at the start
+of every development session. No new features are accepted as part of the Abjad
+codebase without tests authored to document changes to the system. Continuous
+integration testing is handled by Travis CI to ensure that nightly builds of
+Abjad installed under different operating systems continue to pass all tests.
+For \texttt{pytest} see \textit{http://pytest.org}. For Travis CI see
+\textit{https://travis-ci.org}.}
+
+The first such liability concerns systems development. The absence of automated
+regression tests acts as a barrier to new contributors to the system (who
+effectively have no way to determine whether proposed changes to the system
+negatively impact the system) and severely attenuates the rate at which
+experienced developers can refactor the system during new feature development.
+Consider that Abjad currently comprises about 178,000 lines of code and that
+the Abjad repository hosted on GitHub\footnote{https://github.com/Abjad/abjad}
+lists more than 8.7 million lines of code committed since the start of the
+project. This refactor ratio of about 50:1 means that each line of code in the
+Abjad codebase has been rewritten dozens of times. This freedom to refactor is
+possible only because of the approach to automated regression testing we have
+borrowed from the larger open-source community.
+
+The second testing-related liability we diagnose concerns project continuance.
+What happens when the original developers of a music software system are no
+longer available to develop the system? Automated regression tests help make
+possible a changing of the guard from one set of developers to another. This is
+true because automated tests serve as a type of functional specification of how
+a software system is supposed to behave after the system is altered. While
+automated tests alone will not ensure the continued development of any software
+system, we believe that adherence to the testing practices of the open-source
+community constitutes the most effective hedge available to music software
+systems developers to fend against project abandonment in the medium and long
+term.
 
 \subsection{Extensibility}
 
