@@ -8,6 +8,7 @@ before_install:
     - sudo apt-get install -y graphviz
     - sudo apt-get install -y imagemagick
     - sudo apt-get install -y texlive 
+    - sudo apt-get install -y texlive-fonts-extra
     - sudo apt-get install -y texlive-fonts-recommended
     - sudo apt-get install -y texlive-latex-extra 
     - sudo apt-get install -y texlive-latex-recommended 
