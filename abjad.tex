@@ -284,7 +284,7 @@ possible: picking an existing language that makes learning preliminaries
 easier and makes the continued development of the system as open as possible to
 as many different collaborators as possible.
 
-\section{Pervasive illustration} \label{sec:illustration}
+\section{Usage session} \label{sec:illustration}
 
 We believe it is important for composers to be able to illustrate the objects
 they work with as they compose. Abjad reflects this priority in its
@@ -321,21 +321,24 @@ with a different typesetting engine, the composer-facing  interface provided by
 illustrate compositional objects. LilyPond simply happens to be the best
 resource available to achieve our goals.}
 
-\section{Bottom-up construction} \label{sec:bottom-up}
+\begin{comment}
+<abjad>
+from abjad import *
+note = Note("c'4")
+show(note)
+</abjad>
+\end{comment}
 
-We believe composers should be able to build scores from the bottom up. Abjad
-never obscures the individual notational elements of the compositional process.
-Combining score components piece by piece into ever-larger aggregates gives
-composers fine-grained control over their compositional structures. Such
-control guarantees a high degree of compositional-process agnosticism on
-Abjad's part, and affords composers a solid framework on top of which they can
-design and implement their own personal approaches to composition.
+%%% ABJADBOOK START %%%
+\begin{lstlisting}
+>>> from abjad import *
+>>> note = Note("c'4")
+>>> show(note)
+\end{lstlisting}
+\includegraphics{assets/lilypond-c018a545d264ff34225e9a3a5babb6c1.pdf}
+%%% ABJADBOOK END %%%
 
-%Abjad assumes that symbols on the page --- notational primitives --- are the
-%elements of composition. The act of composition then revolves around the
-%iterative aggregation of these elements into arbitrarily complex score objects.
-
-\subsection{Components, spanners and indicators}
+\section{Object model}
 
 Abjad models score in terms of \emph{components}, \emph{spanners} and
 \emph{indicators}. These families of objects represent all of the notational
@@ -358,6 +361,20 @@ models how all notes in a voice can be \emph{forte} until a \emph{piano}
 indication appears. We have generalized this behavior, allowing composers to
 annotate score structures by attaching arbitrary non-notating objects like
 dictionaries or custom classes to any component.
+
+\section{Bottom-up construction} \label{sec:bottom-up}
+
+We believe composers should be able to build scores from the bottom up. Abjad
+never obscures the individual notational elements of the compositional process.
+Combining score components piece by piece into ever-larger aggregates gives
+composers fine-grained control over their compositional structures. Such
+control guarantees a high degree of compositional-process agnosticism on
+Abjad's part, and affords composers a solid framework on top of which they can
+design and implement their own personal approaches to composition.
+
+%Abjad assumes that symbols on the page --- notational primitives --- are the
+%elements of composition. The act of composition then revolves around the
+%iterative aggregation of these elements into arbitrarily complex score objects.
 
 \subsection{Iterative aggregation}
 
