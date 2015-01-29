@@ -6,7 +6,6 @@
     \context {
         \Score
         \remove Bar_number_engraver
-        \override Beam #'positions = #'(4 . 4)
         \override SpacingSpanner #'strict-grace-spacing = ##t
         \override SpacingSpanner #'strict-note-spacing = ##t
         \override SpacingSpanner #'uniform-stretching = ##t
