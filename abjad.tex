@@ -182,7 +182,7 @@ between intended use and system development.
 
 \subsection{Computational Models of Notation}
 
-Many systems implement detailed models of music explicitly or implicitly, but
+Many systems implement detailed models of composition explicitly or implicitly, but
 few of these implement detailed models of notation.\footnote{Computational
 models of music might entail the representation of higher-level musical
 entities apparent in the acts of listening and analysis but absent in the
@@ -205,26 +205,33 @@ extrasymbolic musical entities, such as large-scale form and transition
 with analysis tasks, and models of listening and cognition can enable novel
 methods of high-level musical structures and transformations, like dramatic
 direction, tension, and transition between sections \cite[108]{Collins2009}.} A
-system that affords a detailed model of music/composition without linking to a
-sufficiently detailed model of musical notation does not afford automated
-notation --- sufficiency, however, depends heavily on generative task. For
-example, if a composer requires an automated notation system to render complex
-rhythmic ideas that depend typographically on nested tuplets, a system that
+system that affords a detailed model of composition without linking to a
+a detailed model of musical notation suffices for most tasks --- sufficiency, however, depends heavily on generative task. For example, if a composer requires an automated notation system to render complex rhythmic ideas that depend typographically on nested tuplets, a system that
 produces a notation only via a combination of MIDI and quantization must reduce
 rhythms to a non-hierarchical stream of event times, eliminating the temporally
 divisive approach of tuplet notation. For many rhythmic applications, though,
 MIDI suffices.
 
+Finale/Sibelius -- access to a model of notation with no access to model of composition.
+
+lossy downsampling of information representation due to MIDI somewhere in pipeline -- potentially detailed models of either composition or notation
+
+insufficient notation model - too many typographical details aren't modeled, working in Illustrator
+
+composition, not notation
+notation, not composition
+losing information because of representation
+
 Many automated notation systems exist to model musical notation and the act of
 typographical layout without explicitly affording the computational modeling of
-music or composition \cite{Smith:1972mw}, \cite{Nienhuys:2003ve},
+composition \cite{Smith:1972mw}, \cite{Nienhuys:2003ve},
 \cite{Hoos:1998bd}, \cite{hamel1noteability}; many of these systems strongly
 imply a model of music, such as Gr\'{e}goire for Gregorian chant, Django for
 guitar tablature, and GOODFEEL for Braille notation \cite{2006}, while
 feature-rich systems (often oriented toward classical composers) such as
 Finale, Sibelius, SCORE, Igor, Berlioz, and Nightingale, present themselves as
-relatively more genre-agnostic software tools. Such a system might go so far as
-to enable a text-based object-oriented model of notation that automates some
+relatively more genre-agnostic software tools. These tools provide detailed models of notation without allowing equivalently detailed models of composition, although such systems might go so far as
+to enable a text-based object-oriented model of notation to automate some
 aspect of an otherwise point-and-click interface, as in the case of Sibelius's
 ManuScript scripting language \cite{Technology:qc}.\footnote{An attempt to
 more comprehensively survey the history of object-oriented notation systems for
