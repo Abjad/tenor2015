@@ -353,6 +353,59 @@ show(note)
 \includegraphics{assets/lilypond-c018a545d264ff34225e9a3a5babb6c1.pdf}
 %%% ABJADBOOK END %%%
 
+\begin{comment}
+<abjad>[strip_prompt=true]
+def make_nested_tuplet(
+    tuplet_duration,
+    outer_tuplet_proportions,
+    inner_tuplet_subdivision_count,
+    ):
+    outer_tuplet = Tuplet.from_duration_and_ratio(
+        tuplet_duration, outer_tuplet_proportions)
+    inner_tuplet_proportions = \
+        inner_tuplet_subdivision_count * [1]
+    last_leaf = outer_tuplet.select_leaves()[-1]
+    inspector = inspect_(last_leaf)
+    right_logical_tie = inspector.get_logical_tie()
+    right_logical_tie.to_tuplet(inner_tuplet_proportions)
+    return outer_tuplet
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
+\begin{lstlisting}
+def make_nested_tuplet(
+    tuplet_duration,
+    outer_tuplet_proportions,
+    inner_tuplet_subdivision_count,
+    ):
+    outer_tuplet = Tuplet.from_duration_and_ratio(
+        tuplet_duration, outer_tuplet_proportions)
+    inner_tuplet_proportions = \
+        inner_tuplet_subdivision_count * [1]
+    last_leaf = outer_tuplet.select_leaves()[-1]
+    inspector = inspect_(last_leaf)
+    right_logical_tie = inspector.get_logical_tie()
+    right_logical_tie.to_tuplet(inner_tuplet_proportions)
+    return outer_tuplet
+\end{lstlisting}
+%%% ABJADBOOK END %%%
+
+\begin{comment}
+<abjad>
+tuplet = make_nested_tuplet((7, 8), (3, -1, 2), 3)
+show(tuplet)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
+\begin{lstlisting}
+>>> tuplet = make_nested_tuplet((7, 8), (3, -1, 2), 3)
+>>> show(tuplet)
+\end{lstlisting}
+\includegraphics{assets/lilypond-4926e77647583925d3a89653f8577025.pdf}
+%%% ABJADBOOK END %%%
+
 \section{The Abjad object model}
 
 Abjad models musical score in terms of \emph{components}, \emph{spanners} and
