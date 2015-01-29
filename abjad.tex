@@ -490,8 +490,9 @@ show(score)
 \includegraphics{assets/lilypond-f7e01534b99f9f1501e5d707f5038fbe.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Composers can attach spanners (such as ties and slurs) to score components via
-Abjad's top-level \texttt{attach()} function.
+\noindent Ties, slurs and other spanners attach to score components via Abjad's
+top-level \texttt{attach()} function. The same is true for articulations, clefs
+and other indicators:
 
 \begin{comment}
 <abjad>
@@ -502,6 +503,11 @@ attach(Tie(), upper_leaves[-3:-1])
 attach(Slur(), upper_leaves[:2])
 attach(Slur(), upper_leaves[2:6])
 attach(Slur(), upper_leaves[7:])
+attach(Articulation('accent'), upper_leaves[0])
+attach(Articulation('accent'), upper_leaves[2])
+attach(Articulation('accent'), upper_leaves[7])
+attach(Clef('bass'), lower_leaves[0])
+show(score)
 </abjad>
 \end{comment}
 
@@ -514,24 +520,6 @@ attach(Slur(), upper_leaves[7:])
 >>> attach(Slur(), upper_leaves[:2])
 >>> attach(Slur(), upper_leaves[2:6])
 >>> attach(Slur(), upper_leaves[7:])
-\end{lstlisting}
-%%% ABJADBOOK END %%%
-
-\noindent Composers can also attach indicators (such as articulations and clefs) to
-individual score components with \texttt{attach()}.
-
-\begin{comment}
-<abjad>
-attach(Articulation('accent'), upper_leaves[0])
-attach(Articulation('accent'), upper_leaves[2])
-attach(Articulation('accent'), upper_leaves[7])
-attach(Clef('bass'), lower_leaves[0])
-show(score)
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
 >>> attach(Articulation('accent'), upper_leaves[0])
 >>> attach(Articulation('accent'), upper_leaves[2])
 >>> attach(Articulation('accent'), upper_leaves[7])
