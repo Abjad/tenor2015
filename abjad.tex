@@ -438,21 +438,14 @@ custom classes to any component.}
 \section{Bottom-up construction} \label{sec:bottom-up}
 
 % Abjad never obscures the individual notational elements of the compositional process.
-Abjad affords composers the ability to build scores from the bottom up. 
-Combining score components piece by piece into ever-larger aggregates gives
-composers fine-grained control over their compositional structures. Such
-control guarantees a high degree of compositional-process agnosticism on
-Abjad's part, and affords composers a solid framework on top of which they can
-design and implement their own personal approaches to composition.
-
-We believe that is is important for composers to be able to construct scores
-though iterative aggregation. Any score modelable by Abjad, no matter how
+Abjad affords composers the ability to build scores from the bottom up.
+Any score modelable by Abjad, no matter how
 complex, can be constructed by nesting progressively more and more score
 components inside one another, and by attaching spanners and indicators onto
 the increasingly complex notational aggregate. Abjad affords score component
 aggregation via Python's \emph{mutable sequence} protocol, a collection of
 instance methods which allow score components to be appended, extended or
-inserted into other container-like score components as though they were lists.
+inserted into other container-like score components as though they were lists:
 
 \begin{comment}
 <abjad>
@@ -569,6 +562,12 @@ show(score)
 \end{lstlisting}
 \includegraphics{assets/lilypond-6e6234ddf98e707d42a58b6306767fc8.pdf}
 %%% ABJADBOOK END %%%
+
+Combining score components piece by piece into ever-larger aggregates gives
+composers fine-grained control over their compositional structures. Such
+control guarantees a high degree of compositional-process agnosticism on
+Abjad's part, and affords composers a solid framework on top of which they can
+design and implement their own personal approaches to composition.
 
 \section{Input flexibility}
 
