@@ -454,7 +454,7 @@ outer_tuplet_two = Tuplet((4, 5))
 outer_tuplet_two.extend("d'8 r16 b'16 as'16")
 tuplets = [outer_tuplet_one, outer_tuplet_two]
 upper_staff = Staff(tuplets, name='Upper Staff')
-note_one = Note(10, (3, 16))
+note_one = Note(12, (3, 16))
 upper_staff.append(note_one)
 note_two = Note(NamedPitch("fs'"), Duration(1, 16))
 upper_staff.append(note_two)
@@ -476,7 +476,7 @@ show(score)
 >>> outer_tuplet_two.extend("d'8 r16 b'16 as'16")
 >>> tuplets = [outer_tuplet_one, outer_tuplet_two]
 >>> upper_staff = Staff(tuplets, name='Upper Staff')
->>> note_one = Note(10, (3, 16))
+>>> note_one = Note(12, (3, 16))
 >>> upper_staff.append(note_one)
 >>> note_two = Note(NamedPitch("fs'"), Duration(1, 16))
 >>> upper_staff.append(note_two)
@@ -487,7 +487,7 @@ show(score)
 >>> score = Score([staff_group])
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-f7e01534b99f9f1501e5d707f5038fbe.pdf}
+\includegraphics{assets/lilypond-3267998ba22aaacb9386665d12f8cce0.pdf}
 %%% ABJADBOOK END %%%
 
 \noindent Ties, slurs and other spanners attach to score components via Abjad's
@@ -526,7 +526,7 @@ show(score)
 >>> attach(Clef('bass'), lower_leaves[0])
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-9c0ed155a455f116485bdbfe18da703f.pdf}
+\includegraphics{assets/lilypond-e8875dc7bab70898d816689c758fd7be.pdf}
 %%% ABJADBOOK END %%%
 
 \noindent Combining score components piece by piece into ever-larger aggregates gives
@@ -923,7 +923,7 @@ show(upper_staff)
 >>> upper_staff = score[0][0]
 >>> show(upper_staff)
 \end{lstlisting}
-\includegraphics{assets/lilypond-5d0cd6314dd2737adf4b477c7a2fa2fc.pdf}
+\includegraphics{assets/lilypond-9da0f4858f3377b553eae2208072c2bc.pdf}
 %%% ABJADBOOK END %%%
 
 Because both staves were given explicit names, they can also be selected by
@@ -993,7 +993,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-b2cb98e1e73d5c07314a7f0267e0d26b.pdf}
+\includegraphics{assets/lilypond-fa4c8d9019fcef2563aed3d7dc4eda70.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{comment}
@@ -1016,7 +1016,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-2c8af83002776b93135ce1f89a65b066.pdf}
+\includegraphics{assets/lilypond-daae1fa8ba1e5fe23f35c69be7e07f93.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{comment}
@@ -1039,7 +1039,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-10d5b9d7051dfce5eacfa56f79ea923a.pdf}
+\includegraphics{assets/lilypond-3eefc169b782de95b400a81c4546bdd6.pdf}
 %%% ABJADBOOK END %%%
 
 \section{Open-source best practices} \label{sec:open-source}
