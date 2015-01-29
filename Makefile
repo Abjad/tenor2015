@@ -12,3 +12,8 @@ skip-rendering:
 
 clean:
 	rm -Rif assets
+
+compile:
+	pdflatex abjad.tex
+	bibtex abjad.aux
+	pdflatex abjad.tex
