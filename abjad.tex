@@ -529,21 +529,21 @@ show(score)
 \includegraphics{assets/lilypond-e8875dc7bab70898d816689c758fd7be.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Combining score components piece by piece into ever-larger aggregates gives
-composers fine-grained control over their compositional structures. Such
+\noindent Combining score components piece by piece into ever-larger aggregates
+gives composers fine-grained control over their compositional structures. Such
 control guarantees a high degree of compositional-process agnosticism on
 Abjad's part, and affords composers a solid framework on top of which they can
 design and implement their own personal approaches to composition.
 
-Abjad never obscures the individual notational elements of the compositional process.
+Abjad never obscures the individual notational elements of the compositional
+process.
 
 \section{Top-down construction} \label{sec:top-down}
 
-With experience, use of the system migrates from bottom-up to top-down. We
-realize that composers probably don't find it interesting to make a single
-note, but can be deeply engaged by the process of creating intermediate and
-high-level objects like phrases or complete segments of music. Abstraction,
-encapsulation and re-use of generative processes ...
+With experience, use of Abjad migrates from bottom-up to top-down. When working
+top-down, composers create intermediate and high-level objects like phrases or
+even complete segments of music. Fact Abstraction, encapsulation and re-use of
+generative processes ...
 
 \subsection{Factory functions, factory classes}
 
@@ -638,15 +638,15 @@ show(rhythm_maker, divisions=divisions)
 \includegraphics{assets/lilypond-cf8687c5463d3d6aec12827476c8fc4e.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Once instantiated, rhythm makers can be used over and over again with different
-input, a pattern used pervasively in Abjad: maker classes as object-oriented
-partially-evaluated functions. As generating duration sequences is generally
-less difficult than creating complete tupletted, beamed and tied rhythmic score
-artifacts, rhythm makers allow composers to focus on the process of building
-rhythm structures as a compositional material in-and-of itself. Because rhythm
-makers are classes, they can be subclassed and extended in order to modify
-their behavior. Because they are objects, they can be passed as parameters to
-configure even more expansive aggregate makers.
+\noindent Once instantiated, rhythm makers can be used over and over again with
+different input, a pattern used pervasively in Abjad: maker classes as
+object-oriented partially-evaluated functions. As generating duration sequences
+is generally less difficult than creating complete tupletted, beamed and tied
+rhythmic score artifacts, rhythm makers allow composers to focus on the process
+of building rhythm structures as a compositional material in-and-of itself.
+Because rhythm makers are classes, they can be subclassed and extended in order
+to modify their behavior. Because they are objects, they can be passed as
+parameters to configure even more expansive aggregate makers.
 
 \noindent \emph{Score templates} are another common factory pattern in Abjad,
 encapsulating the work of building the skeletons of complete scores, including
