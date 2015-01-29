@@ -248,11 +248,9 @@ and maintains a relatively application-agnostic status, as it was designed with
 the generative task of acting as an interchange format between variously tasked
 systems \cite{Good:2001if}.
 
-\section{Extension, not reinvention} \label{sec:extension}
 
-Abjad is not a stand-alone application. Nor is Abjad a programming language.
-Abjad is instead an extension to the Python programming language. Our
-insistence on this principle of extension --- of adding functionality to an
+\begin{comment}
+Our insistence on this principle of extension --- of adding functionality to an
 existing programming language rather than inventing yet another domain-specific
 language --- originates in the belief that there is no benefit to be had in
 reestablishing the ways variables are created, references are handled, loops
@@ -275,63 +273,20 @@ borrowed directly into music composition. In designing Abjad as an extension to
 Python, we hope to make relevant the hundreds of print and Web resources that
 detail the language and its features. We also hope to make the global community
 of developers working in Python available to composers.
-
-\begin{comment}
-We hope both benefits will ease composers' transition to
-programming and make working with Abjad a familiar task that conforms to widely
-understood programming best practices: there will probably by necessity always
-be more programmers than composers in the world and it makes sense for our work
-as composers to benefit from the patterns already understood elsewhere in the
-culture.
 \end{comment}
 
-\begin{comment}
-source. The history of music software systems is littered with projects that
-fell into disuse. Music software systems except for the large commercial
-notation packages will probabaly always be the niche efforts of specialists and
-our experience architecting Abjad leads us to think about the future in such a
-way that we give ourselves all the advantages of expansiveness that are
-possible: picking an existing language that makes learning preliminaries
-easier and makes the continued development of the system as open as possible to
-as many different collaborators as possible.
-\end{comment}
+\section{An example use session} \label{sec:example}
 
-\section{An example use session} \label{sec:illustration}
-
-We believe it is important for composers to be able to illustrate the objects
-they work with as they compose. Abjad reflects this priority in its
-\emph{illustration protocol}.\footnote{Python describes common informal
-interfaces to working with objects as \emph{protocols}. Important protocols
-include the \emph{iterator protocol} for iterating over the contents of a
-container-like object, the \emph{sequence protocol} for getting items and
-length from a container-like object and the \emph{mutable container protocol}
-for mutating the contents of a container-like object.} Abjad's illustration
-protocol conventionalizes the way developers equip Abjad classes with
-illustration output and the way composers access illustration output during
-composition. The composer-facing part of the protocol is implemented in Abjad's
-top-level \texttt{show()} function, which provides composers a unified way to
-illustrate any object in the system. The developer-facing part of Abjad's
-illustration protocol is evidenced in the collection of
-\texttt{\_\_illustrate\_\_()} methods that define how classes throughout the
-system are to illustrate when passed to \texttt{show()}.\footnote{Abjad's
-pairing of a single \texttt{show()} function with \texttt{\_\_illustrate\_\_()}
-methods defined as needed parallels the way Python's \texttt{len()} function
-works with \texttt{\_\_len\_\_()} methods defined on custom classes.} Under the
-most common pattern, Abjad transforms an object into LilyPond input code and
-then calls LilyPond to render the resultant input as a PDF. In all cases the
-composer's interface to the illustration logic implemented on a  class is
-provided by \texttt{show()}, as in the examples in this
-article.\footnote{Abjad's illustration protocol decouples illustration logic
-from the other functions of a class. An important consequence of this is that
-developers can illustrate classes with LaTeX or GraphViz or any collection of
-applications, whether or not LilyPond is included in the tool chain. We find
-LilyPond superior for a formalized score control system like Abjad for many
-reasons, ranging from LilyPond's powerful model of rhythmic timekeeping to the
-high quality of LilyPond output. But should the need arise to replace LilyPond
-with a different typesetting engine, the composer-facing  interface provided by
-\texttt{show()} will remain the same. The priority is that composers be able to
-illustrate compositional objects. LilyPond simply happens to be the best
-resource available to achieve our goals.}
+Abjad is not a stand-alone application. Nor is Abjad a programming language.
+Abjad extends the Python programming language with a computational model of music notation.
+We have architected Abjad in the form of a Python package designed to be used the same
+way as the many other packages that already exist.\footnote{See the
+Python Package Index for functionality to extend the language for purposes as
+diverse as creative writing and aeronautical engineering. The Python Package
+Index contains 54,306 packages at the time or writing and is available at
+\textit{pypi.python.org}.}
+This means that working with Abjad is exactly the same as working with Python.
+In the simplest case this means starting the Python interpreter, creating a single object like a note and visualizing the note as music notation:
 
 \begin{comment}
 <abjad>
@@ -350,10 +305,9 @@ show(note)
 \includegraphics{assets/lilypond-c018a545d264ff34225e9a3a5babb6c1.pdf}
 %%% ABJADBOOK END %%%
 
-While most of the examples shown in this paper are demonstrated in Python's
-interactive console, Python code --- including Abjad --- is almost always
-written as functions and classes in packages and modules to be imported in
-other Python code or executed from the commandline.
+\noindent Most of the examples shown in this paper are demonstrated in Python's
+interactive console. Real-world Abjad code is almost always
+structured as functions and classes written into files:
 
 \begin{comment}
 <abjad>[strip_prompt=true]
@@ -407,6 +361,51 @@ show(tuplet)
 \end{lstlisting}
 \includegraphics{assets/lilypond-4926e77647583925d3a89653f8577025.pdf}
 %%% ABJADBOOK END %%%
+
+Our decision to implement Abjad as an extension to an
+existing programming language (rather than inventing yet another domain-specific
+language) originates in the belief that music software systems work better when they accept the established fundamentals of programming\footnote{Programming fundamentals include things like the ways variables are created, references are handled, loops are structured and so on.} rather than introducing custom syntax for programming basics. 
+
+
+
+
+
+We believe it is important for composers to be able to illustrate the objects
+they work with as they compose. Abjad reflects this priority in its
+\emph{illustration protocol}.\footnote{Python describes common informal
+interfaces to working with objects as \emph{protocols}. Important protocols
+include the \emph{iterator protocol} for iterating over the contents of a
+container-like object, the \emph{sequence protocol} for getting items and
+length from a container-like object and the \emph{mutable container protocol}
+for mutating the contents of a container-like object.} Abjad's illustration
+protocol conventionalizes the way developers equip Abjad classes with
+illustration output and the way composers access illustration output during
+composition. The composer-facing part of the protocol is implemented in Abjad's
+top-level \texttt{show()} function, which provides composers a unified way to
+illustrate any object in the system. The developer-facing part of Abjad's
+illustration protocol is evidenced in the collection of
+\texttt{\_\_illustrate\_\_()} methods that define how classes throughout the
+system are to illustrate when passed to \texttt{show()}.\footnote{Abjad's
+pairing of a single \texttt{show()} function with \texttt{\_\_illustrate\_\_()}
+methods defined as needed parallels the way Python's \texttt{len()} function
+works with \texttt{\_\_len\_\_()} methods defined on custom classes.} Under the
+most common pattern, Abjad transforms an object into LilyPond input code and
+then calls LilyPond to render the resultant input as a PDF. In all cases the
+composer's interface to the illustration logic implemented on a  class is
+provided by \texttt{show()}, as in the examples in this
+article.\footnote{Abjad's illustration protocol decouples illustration logic
+from the other functions of a class. An important consequence of this is that
+developers can illustrate classes with LaTeX or GraphViz or any collection of
+applications, whether or not LilyPond is included in the tool chain. We find
+LilyPond superior for a formalized score control system like Abjad for many
+reasons, ranging from LilyPond's powerful model of rhythmic timekeeping to the
+high quality of LilyPond output. But should the need arise to replace LilyPond
+with a different typesetting engine, the composer-facing  interface provided by
+\texttt{show()} will remain the same. The priority is that composers be able to
+illustrate compositional objects. LilyPond simply happens to be the best
+resource available to achieve our goals.}
+
+
 
 \section{The Abjad object model}
 
@@ -1109,6 +1108,22 @@ term.
 As an open-source project, composers and researchers can contribute changes via
 git pull requests. A process of continuous integration and online version
 control simplifies this contribution process.
+
+\subsection{Language independence}
+
+Even though we find Python an excellent programming
+language for architecting a music software system like Abjad,\footnote{Aspects
+of Python we find particularly helpful include the availability of lists,
+dictionaries and sets as built-in types; the interface provided for string and
+Unicode objects; the unified approach to encapsulation provided by Python's
+understanding of namespaces; and the extensive functionality provided in the
+standard library.} our decision to implement Abjad in Python does not arise
+from the specifics of the language but from the fact that the language is part
+of a global programming mainstream with tools and best practices that can be
+borrowed directly into music composition. In designing Abjad as an extension to
+Python, we hope to make relevant the hundreds of print and Web resources that
+detail the language and its features. We also hope to make the global community
+of developers working in Python available to composers.
 
 \subsection{Embeddability}
 
