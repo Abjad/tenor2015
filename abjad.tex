@@ -525,10 +525,10 @@ work of beginning to implement one's own system of composition.
 
 Abjad provides a variety of factories for quickly and flexibly creating
 arbitrarily large amounts of notation. These range from simple leaf-generating
-functions like \texttt{scoretools.make\_notes()}, which combine sequences of
-pitches and rhythms isorhythmically to generate selections of notes and rests,
-to more complexly-configured \emph{maker} classes for creating nuanced rhythmic
-patterns or entire scores.
+functions like \texttt{make\_notes()}, which
+combine sequences of pitches and rhythms isorhythmically to generate selections
+of notes and rests, to more complexly-configured \emph{maker} classes for
+creating nuanced rhythmic patterns or entire scores.
 
 \begin{comment}
 <abjad>
@@ -554,7 +554,7 @@ tied as necessary, to equal the duration of those divisions.
 
 \begin{comment}
 <abjad>
-divisions = [(3, 8), (5, 16), (1, 4), (5, 16)]
+divisions = [(3, 8), (5, 16), (1, 4), (3, 16)]
 rhythm_maker = rhythmmakertools.NoteRhythmMaker()
 show(rhythm_maker, divisions=divisions)
 </abjad>
@@ -562,11 +562,11 @@ show(rhythm_maker, divisions=divisions)
 
 %%% ABJADBOOK START %%%
 \begin{lstlisting}
->>> divisions = [(3, 8), (5, 16), (1, 4), (5, 16)]
+>>> divisions = [(3, 8), (5, 16), (1, 4), (3, 16)]
 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-911011fbb23e3c959a67793f30d2d299.pdf}
+\includegraphics{assets/lilypond-af2aa88dc88360a6a0cf5c3f8da17b85.pdf}
 %%% ABJADBOOK END %%%
 
 Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can create even
@@ -611,7 +611,7 @@ show(rhythm_maker, divisions=divisions)
 ...     )
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-c0d5041cb91ce3d3e6b94a69fd638cf2.pdf}
+\includegraphics{assets/lilypond-cf8687c5463d3d6aec12827476c8fc4e.pdf}
 %%% ABJADBOOK END %%%
 
 Once instantiated, rhythm makers can be used over and over again with different
@@ -633,14 +633,15 @@ generate complete score aggregates expressively.
 
 \begin{comment}
 <abjad>
-template = templatetools.GroupedStavesScoreTemplate(4)
+template = templatetools.\
+    GroupedRhythmicStavesScoreTemplate(4)
 quartet_score = template()
 iterator = iterate(quartet_score).by_class(Voice)
 for index, voice in enumerate(iterator):
     divisions = sequencetools.rotate_sequence(
         divisions, -1)
     selections = rhythm_maker(divisions, seeds=-index)
-    measure = Measure((5, 4), selections)
+    measure = Measure((9, 8), selections)
     voice.append(measure)
 
 show(quartet_score)
@@ -649,19 +650,20 @@ show(quartet_score)
 
 %%% ABJADBOOK START %%%
 \begin{lstlisting}
->>> template = templatetools.GroupedStavesScoreTemplate(4)
+>>> template = templatetools.\
+...     GroupedRhythmicStavesScoreTemplate(4)
 >>> quartet_score = template()
 >>> iterator = iterate(quartet_score).by_class(Voice)
 >>> for index, voice in enumerate(iterator):
 ...     divisions = sequencetools.rotate_sequence(
 ...         divisions, -1)
 ...     selections = rhythm_maker(divisions, seeds=-index)
-...     measure = Measure((5, 4), selections)
+...     measure = Measure((9, 8), selections)
 ...     voice.append(measure)
 ...
 >>> show(quartet_score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-f4e67b8cf062f5baa8def83e32bbffd3.pdf}
+\includegraphics{assets/lilypond-07f633b33deadb5b938f688d727585f0.pdf}
 %%% ABJADBOOK END %%%
 
 \subsection{Top-down extensibility}
