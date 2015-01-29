@@ -213,17 +213,17 @@ users interact with the system's underlying model of notation. These systems
 enable users to engrave and format music without necessarily exposing any underlying model of composition. These tools provide interfaces to detailed models of notation without allowing equivalently detailed models of
 composition, although such systems might go so far as to enable scripting, as
 in the case of Sibelius's ManuScript \cite{Technology:qc} scripting language or
-Lilypond's embedded Scheme code.\footnote{An attempt to more comprehensively
+Lilypond's embedded Scheme code; although these systems enable low-level automation of notational elements, it remains difficult to model higher-level processes and relationships. \footnote{An attempt to more comprehensively
 survey the history of object-oriented notation systems for composition, in the
 context of the broader history of object-oriented programming, lies beyond the
 scope of this paper but has recently been undertaken elsewhere
 \cite{trevino2013compositional}.}
 
-Other systems strike different balances between notation and composition
-modeling. OpenMusic \cite{Assayag:1999sw}, PWGL \cite{Laurson:2009qf}, and BACH
-\cite{agostini2013real} invite the user to create detailed models of
-composition and notation, often with the aid of the above notation editors for
-final engraving and layout via intermediate file formats. Some composers use
+Other systems provide environments for modeling higher-level processes and relationships. OpenMusic \cite{Assayag:1999sw}, PWGL \cite{Laurson:2009qf}, and BACH
+\cite{agostini2013real} supply an interface to a model of notation with the intention that the user will model composition, often with the aid of the above notation editors for
+final engraving and layout via intermediate file formats. 
+
+Some composers use
 drawing software like AutoCAD and Adobe Illustrator to create notations; these
 provide neither a model of notation nor a model of composition to the user.
 Many audio-focused environments afford models of composition without inviting
