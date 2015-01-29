@@ -165,7 +165,7 @@ representations and user interactions.
 While composers working traditionally may allow intuition to substitute for
 formally defined principles, a computer demands the composer to think formally
 about music \cite{Xenakis:1992rq}. Keeping in mind generative task as an
-analytical framework, it is broadly useful to bifurcate an automated notation
+analytical framework, it is broadly useful to bifurcate a  notation
 system's development into the modeling of music and composition, on the one
 hand, and the modeling of musical notation, on the other. All systems model
 both, to greater or lesser degrees, often engaging in the ambiguous or implicit
@@ -174,7 +174,7 @@ notation, or focusing on the abstract modeling of music without a considered
 link to a model of notation. Due to the intimate link between notation and
 musical ideas, it is impossible for a system that models notation to avoid at
 least implicitly modeling musical and compositional ideas, and a computational
-model of music and composition is an inevitable component of every automated
+model of music and composition is an inevitable component of every
 notation system, even when it exists as an unspoken set of technological
 constraints. Generative task explains a given system's balance between
 computational models of music/composition and notation by assuming a link
@@ -206,7 +206,7 @@ with analysis tasks, and models of listening and cognition can enable novel
 methods of high-level musical structures and transformations, like dramatic
 direction, tension, and transition between sections \cite[108]{Collins2009}.} A
 system that affords a detailed model of composition without linking to a
-a detailed model of musical notation suffices for most tasks --- sufficiency, however, depends heavily on generative task. For example, if a composer requires an automated notation system to render complex rhythmic ideas that depend typographically on nested tuplets, a system that
+a detailed model of musical notation suffices for most tasks --- sufficiency, however, depends heavily on generative task. For example, if a composer requires a notation system to render complex rhythmic ideas that depend typographically on nested tuplets, a system that
 produces a notation only via a combination of MIDI and quantization must reduce
 rhythms to a non-hierarchical stream of event times, eliminating the temporally
 divisive approach of tuplet notation. For many rhythmic applications, though,
@@ -222,22 +222,23 @@ composition, not notation
 notation, not composition
 losing information because of representation
 
-Many automated notation systems exist to model musical notation and the act of
+Many notation systems exist to model musical notation and the act of
 typographical layout without explicitly affording the computational modeling of
 composition \cite{Smith:1972mw}, \cite{Nienhuys:2003ve},
 \cite{Hoos:1998bd}, \cite{hamel1noteability}; many of these systems strongly
 imply a model of music, such as Gr\'{e}goire for Gregorian chant, Django for
 guitar tablature, and GOODFEEL for Braille notation \cite{2006}, while
 feature-rich systems (often oriented toward classical composers) such as
-Finale, Sibelius, SCORE, Igor, Berlioz, and Nightingale, present themselves as
+Finale, Sibelius, SCORE, Igor, Berlioz, Lilypond, and Nightingale, present themselves as
 relatively more genre-agnostic software tools. These tools provide detailed models of notation without allowing equivalently detailed models of composition, although such systems might go so far as
 to enable a text-based object-oriented model of notation to automate some
 aspect of an otherwise point-and-click interface, as in the case of Sibelius's
-ManuScript scripting language \cite{Technology:qc}.\footnote{An attempt to
-more comprehensively survey the history of object-oriented notation systems for
-composition, in the context of the broader histroy of object-oriented programming,
+ManuScript scripting language or Lilypond's Scheme automation. \cite{Technology:qc}.\footnote{An attempt to more comprehensively survey the history of object-oriented notation systems for
+composition, in the context of the broader history of object-oriented programming,
 lies beyond the scope of this paper but has recently been undertaken elsewhere
 \cite{Trevino:2013aa}.}
+
+Other system balances exist. Some composers use drawing software like AutoCAD and Adobe Illustrator to create notations; these provide neither a model of notation nor a model of composition to the user. Many audio-focused environments afford models of composition without inviting or providing models of notation.
 
 Many models of musical notation have been designed for purposes of
 corpus-based computational musicology. Formats such as Music21, DARM, SMDL,
