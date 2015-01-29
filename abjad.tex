@@ -548,7 +548,7 @@ work of beginning to implement one's own system of composition.
 
 \subsection{Factory functions, factory classes}
 
-Abjad provides a variety of factories for quickly and flexibly creating
+\noindent Abjad provides a variety of factories for quickly and flexibly creating
 arbitrarily large amounts of notation. These range from simple leaf-generating
 functions like \texttt{make\_notes()}, which
 combine sequences of pitches and rhythms isorhythmically to generate selections
@@ -572,7 +572,7 @@ show(staff)
 \includegraphics{assets/lilypond-64155bcaa384109d40ae2616a2224dd1.pdf}
 %%% ABJADBOOK END %%%
 
-Abjad's \emph{rhythm makers} are factory classes which, once configured, can be
+\noindent Abjad's \emph{rhythm makers} are factory classes which, once configured, can be
 called like functions to procedurally inscribe rhythms into a series of
 \emph{divisions}. The \texttt{NoteRhythmMaker} fills in divisions with notes,
 tied as necessary, to equal the duration of those divisions.
@@ -594,7 +594,7 @@ show(rhythm_maker, divisions=divisions)
 \includegraphics{assets/lilypond-af2aa88dc88360a6a0cf5c3f8da17b85.pdf}
 %%% ABJADBOOK END %%%
 
-Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can create even
+\noindent Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can create even
 more complex rhythmic output, integrating configurable patterns of durations,
 tupletting and silences.
 
@@ -639,7 +639,7 @@ show(rhythm_maker, divisions=divisions)
 \includegraphics{assets/lilypond-cf8687c5463d3d6aec12827476c8fc4e.pdf}
 %%% ABJADBOOK END %%%
 
-Once instantiated, rhythm makers can be used over and over again with different
+\noindent Once instantiated, rhythm makers can be used over and over again with different
 input, a pattern used pervasively in Abjad: maker classes as object-oriented
 partially-evaluated functions. As generating duration sequences is generally
 less difficult than creating complete tupletted, beamed and tied rhythmic score
@@ -649,7 +649,7 @@ makers are classes, they can be subclassed and extended in order to modify
 their behavior. Because they are objects, they can be passed as parameters to
 configure even more expansive aggregate makers.
 
-\emph{Score templates} are another common factory pattern in Abjad,
+\noindent \emph{Score templates} are another common factory pattern in Abjad,
 encapsulating the work of building the skeletons of complete scores, including
 voices, staves, staff groups, clefs and other indications pertinent to the
 intended instrumentation or typography. We can combine rhythm and score makers
@@ -691,17 +691,9 @@ show(quartet_score)
 \includegraphics{assets/lilypond-07f633b33deadb5b938f688d727585f0.pdf}
 %%% ABJADBOOK END %%%
 
-\subsection{Top-down extensibility}
-
-We believe that there are more ways to generate notation than we can conceive
-of. While Abjad has implemented many notational factories, we do not think
-these are sufficient for any one artist's process and have therefore
-architected the project in such a way as to encourage extension by composers
-interacting with the system in the spirit of compositional agnosticism.
-
 \subsection{Templating}
 
-As demonstrated earlier, Abjad's \emph{rhythm makers} are highly-configurable
+\noindent As demonstrated earlier, Abjad's \emph{rhythm makers} are highly-configurable
 factory classes for generating rhythmic patterns. Many of their initialization
 keywords expect \emph{specifiers} --- object-oriented bundles of related
 parameters --- which can make their configurations potentially deeply nested.
@@ -751,7 +743,7 @@ show(rhythm_maker, divisions=divisions)
 \includegraphics{assets/lilypond-8d11397fa8a7ed768182e6c89abe52f0.pdf}
 %%% ABJADBOOK END %%%
 
-Nested configuration via parameter grouping with specifiers provides
+\noindent Nested configuration via parameter grouping with specifiers provides
 considerable conceptual clarity, but is also potentially labor-intensive. Abjad
 mitigates the work of complex configuration by affording composers with
 powerful templating tools. New objects can be created from old ones, optionally
@@ -799,7 +791,7 @@ show(new_rhythm_maker, divisions=divisions)
 \includegraphics{assets/lilypond-a769357ad75c64d981f789b0e3a0f4da.pdf}
 %%% ABJADBOOK END %%%
 
-Repeating the templating process creates new and different yet still related
+\noindent Repeating the templating process creates new and different yet still related
 objects, allowing composers to easily play with variation at the level of
 procedure.
 
@@ -854,6 +846,12 @@ show(new_new_rhythm_maker, divisions=divisions)
 %By providing core functionality oriented toward the elements of standard
 %notation, Abjad strives to remain as agnostic as possible to various
 %composition techniques.
+
+\noindent We believe that there are more ways to generate notation than we can conceive
+of. While Abjad has implemented many notational factories, we do not think
+these are sufficient for any one artist's process and have therefore
+architected the project in such a way as to encourage extension by composers
+interacting with the system in the spirit of compositional agnosticism.
 
 \section{Input flexibility}
 
