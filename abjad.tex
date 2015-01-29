@@ -435,7 +435,7 @@ the scoping behavior of indicators, allowing composers to annotate score
 structures by attaching arbitrary non-notating objects like dictionaries or
 custom classes to any component.}
 
-\section{Bottom up construction} \label{sec:bottom-up}
+\section{Bottom-up construction} \label{sec:bottom-up}
 
 Abjad affords composers the ability to build scores from the bottom up.
 When working bottom-up, composers create individual notes, rests and chords that
@@ -689,7 +689,15 @@ show(quartet_score)
 \includegraphics{assets/lilypond-07f633b33deadb5b938f688d727585f0.pdf}
 %%% ABJADBOOK END %%%
 
-\subsection{Templating}
+\noindent Nested configuration via parameter grouping with specifiers provides
+considerable conceptual clarity, but is also potentially labor-intensive. Abjad
+mitigates the work of complex configuration by affording composers with
+powerful templating tools. New objects can be created from old ones, optionally
+replacing any initialization parameter in the templated object at any depth via
+the top-level \texttt{new()} function. Notice how the new rhythm maker below
+has both altered its talea counts and added a new initialization keyword.
+
+\section{Templating}
 
 \noindent As demonstrated earlier, Abjad's \emph{rhythm makers} are highly-configurable
 factory classes for generating rhythmic patterns. Many of their initialization
@@ -740,14 +748,6 @@ show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
 \includegraphics{assets/lilypond-8d11397fa8a7ed768182e6c89abe52f0.pdf}
 %%% ABJADBOOK END %%%
-
-\noindent Nested configuration via parameter grouping with specifiers provides
-considerable conceptual clarity, but is also potentially labor-intensive. Abjad
-mitigates the work of complex configuration by affording composers with
-powerful templating tools. New objects can be created from old ones, optionally
-replacing any initialization parameter in the templated object at any depth via
-the top-level \texttt{new()} function. Notice how the new rhythm maker below
-has both altered its talea counts and added a new initialization keyword.
 
 \begin{comment}
 <abjad>
