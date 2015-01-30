@@ -739,10 +739,9 @@ show(quartet_score)
 
 \section{Input flexibility}
 
-We believe that there should be multiple ways of instantiating compositional
-elements. Input flexibility allows composers to create
-compositional objects in whatever way closest aligns with their conception of
-music and their specific task at hand \cite{Kay:1996vn}. Abjad's score
+Input flexibility allows composers to create
+compositional objects in whatever way aligns with their conception of
+music and with the task at hand \cite{Kay:1996vn}. Abjad's score
 components can be created in a variety of ways. Leaves (such as notes) can be
 instantiated parametrically by specifying pitch and rhythm information
 numerically. Leaves can also be created via explicit \texttt{Pitch} and
@@ -751,12 +750,12 @@ instantiated parametrically by specifying explicit lists of components to be
 inserted as children. Abjad also allows many score objects to be created via
 strings parseable in one of the various micro-languages we have implemented.
 Score components created via string input can be potentially much more complex
-than those created parametrically because Abjad's microlanguage parsers have
-the ability to attach spanners and indicators to the created components or
-their children, if they are containers. Parametric instantiation gives
+than those created parametrically, because Abjad's microlanguage parsers have
+the ability to attach spanners and indicators to both the created components and
+their children (if the created components are containers). Parametric instantiation gives
 composers powerful procedural control over score structure while string
-instantiation allows for brevity and expressiveness. The score construction
-example above demonstrates both techniques.
+instantiation provides concisely specified expression. The score construction
+examples above demonstrates both of these techniques.
 
 \section{Selection flexibility} \label{sec:selections}
 
