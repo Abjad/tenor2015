@@ -127,10 +127,7 @@ from software engineering can apply to the development of a music software
 system (Which programming concepts concerning things like iteration,
 aggregation and encapsulation make sense to make available to composers? Which
 existing tools to test, document and deploy other open-source projects are
-available to help develop a music software system?). In the sections that
-follow we discuss the background and motivations that lead us to ask questions
-like these and then elaborate the design priorities we have arrived at in our
-ongoing work architecting Abjad.
+available to help develop a music software system?). A background taxonomy motivates a discussion of design priorities via examples of system use.
 
 While many environments for both notation and sound production been been
 created within the last twenty years, the discussion focuses solely on the
@@ -151,19 +148,19 @@ entail the representation of higher-level musical entities apparent in the acts
 of listening and analysis but absent in the symbols of notation themselves, as
 determined to be creatively exigent. Programming researchers and musical
 artists have modeled many such extrasymbolic musical entities, such as
-large-scale form and transition \cite{polansky1991morphological},
-\cite{uno1994temporal}, \cite{dobrian1995algorithmic}, \cite{abrams1999higher},
+large-scale form and transition \cite{polansky1991morphological}
+\cite{uno1994temporal} \cite{dobrian1995algorithmic} \cite{abrams1999higher}
 \cite{Yoo1983}, texture \cite{Horenstein:2004kx}, contrapuntal relationships
-\cite{Boenn:2009oq}, \cite{Acevedo2005}, \cite{Anders:2011kl},
-\cite{Balser:1990tg}, \cite{Jones:2000hc}, \cite{uno1994temporal},
-\cite{Bell:1995ij}, \cite{farbood2001analysis}, \cite{Cope:2002fv},
-\cite{Laurson:2005dz}, \cite{Polansky:2011fu}, \cite{Ebcioglu:1980kl}, harmonic
-tension and resolution \cite{Melo2003}, \cite{Wiggins1999},
-\cite{Foster:1995qa}, melody \cite{Hornel:1993mi}, \cite{Smith:1992pi}, meter
-\cite{Hamanaka:2005ff}, rhythm \cite{Nauert2007}, \cite{Degazio:1996lh},
-\cite{Collins:2003bs}, timbre \cite{Xenakis:1991fu}, \cite{Creasey:1996ye},
-\cite{Osaka2004}, temperament \cite{Seymour:2007qo}, \cite{Graf:2006il}, and
-ornamentation \cite{Ariza:2003zt}, \cite{Chico-Topfer:1998jl}. This work
+\cite{Boenn:2009oq} \cite{Acevedo2005} \cite{Anders:2011kl}
+\cite{Balser:1990tg} \cite{Jones:2000hc} \cite{uno1994temporal}
+\cite{Bell:1995ij} \cite{farbood2001analysis} \cite{Cope:2002fv}
+\cite{Laurson:2005dz} \cite{Polansky:2011fu} \cite{Ebcioglu:1980kl}, harmonic
+tension and resolution \cite{Melo2003} \cite{Wiggins1999}
+\cite{Foster:1995qa}, melody \cite{Hornel:1993mi} \cite{Smith:1992pi}, meter
+\cite{Hamanaka:2005ff}, rhythm \cite{Nauert2007} \cite{Degazio:1996lh}
+\cite{Collins:2003bs}, timbre \cite{Xenakis:1991fu} \cite{Creasey:1996ye}
+\cite{Osaka2004}, temperament \cite{Seymour:2007qo} \cite{Graf:2006il} and
+ornamentation \cite{Ariza:2003zt} \cite{Chico-Topfer:1998jl}. This work
 overlaps fruitfully with analysis tasks, and models of listening and cognition
 can enable novel methods of high-level musical structures and transformations,
 like dramatic direction, tension, and transition between sections
@@ -206,9 +203,9 @@ between intended use and system development.}
 
 Many notation systems --- such as Finale, Sibelius, SCORE \cite{Smith:1972mw},
 Igor, Berlioz, Lilypond \cite{Nienhuys:2003ve}, GUIDO \cite{Hoos:1998bd}
-NoteAbility \cite{hamel1noteability}, and Nightingale --- exist to help people
+NoteAbility \cite{hamel1noteability} and Nightingale --- exist to help people
 engrave and format music documents; because these systems provide functions
-that operate on notational elements (i.e., transposition, spacing, and
+that operate on notational elements (i.e., transposition, spacing and
 playback), hidden models of common practice music notation must underly all of
 these systems, and each system's interface constrains and directs the ways in
 which users interact with this underlying model of notation. These systems
@@ -222,7 +219,7 @@ compositional processes and relationships.
 
 Other systems provide environments specifically for the modeling of
 higher-level processes and relationships. OpenMusic \cite{Assayag:1999sw}, PWGL
-\cite{Laurson:2009qf}, and BACH \cite{agostini2013real} supply an interface to
+\cite{Laurson:2009qf} and BACH \cite{agostini2013real} supply an interface to
 a model of notation and a toolkit that enables the user to model composition,
 often with the aid of the above notation editors for final engraving and layout
 via intermediate file formats.
@@ -239,7 +236,7 @@ relationships.
 
 Many models of musical notation have been designed for purposes of
 corpus-based computational musicology. Formats such as DARM, SMDL,
-HumDrum, and MuseData model notation with the generative task of searching
+HumDrum and MuseData model notation with the generative task of searching
 through a large amount of data \cite{Selfridge-Field:1997ud}. Commercial
 notation software developers attempted to establish a data interchange standard
 for optical score recognition (NIFF) \cite{niff1995niff}. Since its release in
@@ -252,37 +249,11 @@ composition, in the context of the broader history of object-oriented
 programming, lies beyond the scope of this paper but has recently been
 undertaken elsewhere\cite{trevino2013compositional}.}
 
-\begin{comment}
-Our insistence on this principle of extension --- of adding functionality to an
-existing programming language rather than inventing yet another domain-specific
-language --- originates in the belief that there is no benefit to be had in
-reestablishing the ways variables are created, references are handled, loops
-are structured or any of the other fundamentals of programming. We have instead
-architected Abjad in the form of a Python package designed to be used the same
-way as the thousands of other packages that already exist.\footnote{See the
-Python Package Index for functionality to extend the language for purposes as
-diverse as creative writing and aeronautical engineering. The Python Package
-Index contains 54,306 packages at the time or writing and is available at
-\textit{pypi.python.org}.} Even though we find Python an excellent programming
-language for architecting a music software system like Abjad,\footnote{Aspects
-of Python we find particularly helpful include the availability of lists,
-dictionaries and sets as built-in types; the interface provided for string and
-Unicode objects; the unified approach to encapsulation provided by Python's
-understanding of namespaces; and the extensive functionality provided in the
-standard library.} our decision to implement Abjad in Python does not arise
-from the specifics of the language but from the fact that the language is part
-of a global programming mainstream with tools and best practices that can be
-borrowed directly into music composition. In designing Abjad as an extension to
-Python, we hope to make relevant the hundreds of print and Web resources that
-detail the language and its features. We also hope to make the global community
-of developers working in Python available to composers.
-\end{comment}
-
 \section{Working with Abjad} \label{sec:example}
 
 Abjad is not a stand-alone application. Nor is Abjad a programming language.
 Abjad instead adds a computational model of music notation to the Python programming language.
-By architecting Abjad as an extension to one of the most widely-used programming languages in the world, we hope to make a considerable collection of programming best practices available to composers in a straightforward a way. Abjad is implemented as a Python package;\footnote{See the Python Package Index for extensions to Python for purposes as diverse as creative writing and aeronautical engineering. The Python Package Index contains 54,306 packages at the time or writing and is available at \textit{https://pypi.python.org}.} composers work with Abjad exactly the same way developers work with all the other packages available for the language. In the most common case this means opening a file, writing code and saving the file:
+By designing Abjad as an extension to one of the most widely-used programming languages in the world, we hope to make a considerable collection of programming best practices available to composers in a straightforward a way. Abjad is implemented as a Python package;\footnote{See the Python Package Index for extensions to Python for purposes as diverse as creative writing and aeronautical engineering. The Python Package Index contains 54,306 packages at the time or writing and is available at \textit{https://pypi.python.org}.} composers work with Abjad exactly the same way developers work with all the other packages available for the language. In the most common case this means opening a file, writing code and saving the file:
 
 \begin{comment}
 <abjad>[strip_prompt=true]
@@ -343,15 +314,10 @@ show(tuplet)
 \includegraphics{assets/lilypond-4926e77647583925d3a89653f8577025.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Most of the examples shown in this paper are demonstrated in Python's
-interactive console because the console helps distinguish input from output.\footnote{Lines preceded by the \texttt{>>>} prompt are passed to Python for interpretation; any output generated by the line of code appears immediately after. The example above creates a tuplet with the tuplet-making function defined earlier and calls Abjad's top-level \texttt{show()} function to generate a PDF of the result.} But the primary way composers work with Abjad is by typing notationally-enabled Python code into a collection of interrelated files and managing those files as a project grows to encompass the composition of an entire score.\footnote{The importance Abjad attaches to composers being able to notate the objects they work with during composition should be underscored before proceeding to more detailed examples. Abjad reflects this priority in its illustration protocol, which conventionalizes the way developers equip Abjad classes with
+\noindent This paper demonstrates most examples in Python's interactive console, because the console helps distinguish input from output;\footnote{Lines preceded by the \texttt{>>>} prompt are passed to Python for interpretation; any output generated by the line of code appears immediately after. The example above creates a tuplet with the tuplet-making function defined earlier and calls Abjad's top-level \texttt{show()} function to generate a PDF of the result.} however, composers work with Abjad primarily by typing notationally-enabled Python code into a collection of interrelated files and managing those files as a project grows to encompass the composition of an entire score.\footnote{The importance Abjad attaches to composers ability to notate the objects they work with during composition should be underscored before proceeding to more detailed examples. Abjad reflects this priority in its illustration protocol, which conventionalizes the way developers equip Abjad classes with
 notation output and the way composers notate objects during
-composition. The composer-facing part of the protocol is implemented in Abjad's
-top-level \texttt{show()} function, included in most of the examples in this article, which provides a unified way to
-notate any object in the system. The developer-facing part of Abjad's
-illustration protocol is implemented in a collection of
-\texttt{\_\_illustrate\_\_()} methods that define how any given class should produce notation. Under the
-most common pattern, Abjad transforms an object into LilyPond input code and
+composition. Abjad's top-level \texttt{show()} function, included in most of the examples in this article, implements the composer-facing part of this protocol and provides a unified way to
+notate any object in the system. A collection of \texttt{\_\_illustrate\_\_()} methods implement the developer-facing part of this protocol and define the way any given class should produce notation. Under the most common pattern, Abjad transforms an object into LilyPond input code and
 then calls LilyPond to render the input as a PDF.}
 
 \begin{comment}
@@ -383,7 +349,7 @@ Abjad models musical notation with \emph{components}, \emph{spanners} and
 \emph{indicators}. Every notational element in Abjad belongs to one of these
 three families. Abjad models notes, rests
 and chords as classes that can be added into the container-like elements of music notation,
-such as tuplets, measures, voices, staves, and complete scores.\footnote{Abjad
+such as tuplets, measures, voices, staves and complete scores.\footnote{Abjad
 uses the term `leaf' to refer generally to notes, rests, and chords. This term,
 borrowed from graph theory, reflects the fact that notes, rests and chords
 cannot contain other elements of music notation.} Spanners model notational constructs
