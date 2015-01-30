@@ -198,7 +198,7 @@ least implicitly modeling musical and compositional ideas, and a computational
 model of music and composition is an inevitable component of every
 notation system, even when it exists as an unspoken set of technological
 constraints. Generative task explains a given system's balance between
-computational models of music/composition and notation by assuming a link
+computational models of composition and notation by assuming a link
 between intended use and system development.}
 
 Many notation systems --- such as Finale, Sibelius, SCORE \cite{Smith:1972mw},
@@ -425,11 +425,9 @@ custom classes to any component.}
 
 \section{Bottom-up construction} \label{sec:bottom-up}
 
-Abjad allows composers to build scores from the bottom up. When
-working bottom-up, composers create individual notes, rests and chords that are
-grouped into tuplets, measures and voices and then nested into the largest
-elements of musical structure, like staves and complete scores. Abjad provides
-for this type of component nesting via a collection of methods which append,
+Abjad lets composers build scores from the bottom up. When
+working bottom-up, composers first create individual note, rest, and chord components, which then group into tuplet, measure, and voice container components, which then may be included in other
+container components of the score tree, such as staves and scores.\footnote{Unlike many systems, Abjad does not require composers to write mensurally, although measure containers exist.}  Abjad implements this style of component aggregation via a collection of methods which append,
 extend or insert into container-like components as though they were
 lists:\footnote{Abjad's container interface derives from Python's mutable
 sequence protocol, which specifies an interface to list-like objects.}
@@ -480,8 +478,8 @@ show(score)
 %%% ABJADBOOK END %%%
 
 \noindent Ties, slurs and other spanners attach to score components via Abjad's
-top-level \texttt{attach()} function. The same is true for articulations, clefs
-and other indicators:
+top-level \texttt{attach()} function. Articulations, clefs,
+and other indicators attach identically:
 
 \begin{comment}
 <abjad>
@@ -518,33 +516,23 @@ show(score)
 \includegraphics{assets/lilypond-e8875dc7bab70898d816689c758fd7be.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Combining score components piece by piece into ever-larger aggregates
+\noindent Combining score components one by one into ever-larger aggregates
 gives composers fine-grained control over their compositional structures. Such
 control guarantees a high degree of compositional-process agnosticism on
-Abjad's part, and gives composers a solid framework on top of which they can
+Abjad's part and gives composers a basic framework on top of which they can
 design and implement their own personal approaches to composition.
-
-Abjad never obscures the individual notational elements of the compositional
-process.
-
 \section{Top-down construction} \label{sec:top-down}
 
-What are the objects of music composition? Individual notes, rests and chords
-constitute for most composers only the necessary means to achieve some larger,
-musically interesting result. Which leads to the observation that the
-interesting ideas of composition are almost always higher-level groupings of
-symbols on the page: notes taken in sequence to constitute figure, gesture or
+What are the objects of music composition? For most composers, individual notes, rests and chords
+constitute  only the necessary means to achieve some larger,
+musically interesting result. A model of composition needs to describe groups of
+symbols on the page: notes taken in sequence to constitute a figure, gesture or
 melody; chords taken in sequence as a progression; attack points arranged in
-time as the scaffolding of some larger orchestral texture. These entities, and
-the others like them, all may result from a flash of compositional intuition
-that then requires detailed attention to elaborate and score correctly for
-performance. With experience, use of Abjad migrates from the type of bottom-up
-assembly of individual components described in the section above to a type of
-top-down use of the system like the one we describe below. The motivation for
-this change in one's way of working usually derives from a desire to work with
-high-level, and more interesting, objects of musical thought.
+time as the scaffolding of some larger texture. These entities, and
+the others like them, might result from a flash of compositional intuition
+that then requires detailed attention and elaboration. In addition to the bottom-up aggregation of components, Abjad allows composers to work with higher-level musical objects, each of which generates many components.
 
-\noindent Abjad provides a variety of factories for quickly and flexibly
+Abjad provides a variety of factories for quickly and flexibly
 creating arbitrarily large amounts of notation. These range from simple
 leaf-generating functions like \texttt{make\_notes()}, which combine sequences
 of pitches and rhythms isorhythmically to generate selections of notes and
@@ -637,20 +625,15 @@ show(rhythm_maker, divisions=divisions)
 
 \noindent Once instantiated, rhythm makers can be used over and over again with
 different input, a pattern used pervasively in Abjad: maker classes as
-object-oriented partially-evaluated functions. As generating duration sequences
-is generally less difficult than creating complete tupletted, beamed and tied
-rhythmic score artifacts, rhythm makers allow composers to focus on the process
-of building rhythm structures as a compositional material in-and-of itself.
-Because rhythm makers are classes, they can be subclassed and extended in order
-to modify their behavior. Because they are objects, they can be passed as
+object-oriented, partially-evaluated functions. By automating the instantiation of complete tupletted, beamed, and tied rhythmic score artifacts, rhythm makers allow composers to focus on rhythmic structures as compositional materials without becoming ensnared in the vagaries of notation.
+Rhythm makers are classes, and they can be subclassed and extended
+to customize behavior. Like other objects, they can be passed as
 parameters to configure even more expansive aggregate makers.
 
-\noindent \emph{Score templates} are another common factory pattern in Abjad,
-encapsulating the work of building the skeletons of complete scores, including
+Another common factory pattern in Abjad, \emph{score templates} encapsulate the work of building the skeletons of complete scores, including
 voices, staves, staff groups, clefs and other indications pertinent to the
-intended instrumentation or typography. We can combine rhythm and score makers
-with score iteration, as well as some simple bottom-up construction, to
-generate complete score aggregates expressively.
+intended instrumentation or typography. Score iteration can combine rhythm makers with score templates, as well as bottom-up construction, to
+generate complete score aggregates:
 
 \begin{comment}
 <abjad>
@@ -687,12 +670,7 @@ show(quartet_score)
 \includegraphics{assets/lilypond-4598fe78647d623cdf81100e0343874a.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent We believe that there are more ways to generate notation than we can
-conceive of. While Abjad has implemented many notational factories, we do not
-think these will ever be sufficient for any one artist's compositional process.
-This is one of the most important reasons we have chosen to architect Abjad in
-such a way as to encourage other composers to extend the system as they work to
-implement their own theories of composition.
+\noindent Abjad implements many different factories, any of which can be customized or sub-classed, and composers can extend the system as they work to implement their own models of composition.
 
 %\section{Templating}
 %
