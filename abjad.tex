@@ -759,17 +759,7 @@ examples above demonstrates both of these techniques.
 
 \section{Selection flexibility} \label{sec:selections}
 
-we think it's important for composers to be able to select arbitrary
-collections of score objects. this is important for a couple of reasons. first,
-so that composers can map operations to the entirety of such a selection at one
-time. second, there's some type of conceptual benefit to be had in named
-selections; the point is that every selection is an ad hoc intermediate
-structure created in the midst of the score. we also think it's important to
-afford composers the ability to reference score objects in whatever ways are
-most natural for a given task. sometimes the most natural mode of reference is
-numeric, sometimes by name or sometimes by music-specific criteria such as the
-relative times at which different objects appear in the score. examples follow.
-we provide concrete object models of vertical relationships in the score.
+Abjad allows composers to select and operate on arbitrary collections of score objects. A single operation can be mapped onto the entirety of a selection, and ad hoc intermediate structures can be created as they become compositionally relevant. Composers can refer to selections in several potentially intuitive ways: by number, name, or temporal succession. In light of western composition history's infatuation with the resolution of vertical and horizontal operation, Abjad provides object models of vertical relationships in the score tree.
 
 selecting one object: by number, by time relation, by name.
 
@@ -856,7 +846,7 @@ Composers can select components via Abjad's powerful top-level
 \texttt{iterate()} function, which exposes the score iteration interface as
 implemented in our \texttt{IterationAgent}. The iteration interface provides a
 wide variety of selection criteria, such as class filters, logical tie
-selection and time-wise score traversal.
+selection, and time-wise score traversal:\footnote{A logical tie is a selection of one or more components which represent all of the components tied together by zero or more ties.}
 
 \begin{comment}
 <abjad>
@@ -925,17 +915,12 @@ show(score)
 
 \section{Open-source best practices} \label{sec:open-source}
 
-The architecting of Abjad has benefited enormously from programming best
-practices developed by the open-source community. One of these best practices
---- the principle of extending an existing language rather than building from
-the ground up --- is so important that we introduced it earlier as a first
-principle behind our work. In this section we list other best practices we have
-taken from the open-source community and discuss the ways these principles
-impact the development of music software systems.
+Abjad has benefited enormously from programming best
+practices developed by the open-source community. As described previously, the extension of an existing language informs the project as a first principle. The following best practices from the open-source community have also positively impacted the project and might be helpful in the development of other music software systems.
 
-\subsection{Automated regression testing}
+\subsection{Automated Regression Testing}
 
-The music software systems academic literature we have investigated is
+The music software systems literature investigated in preparing this report remains
 overwhelmingly silent on questions of software testing. None of the sources
 cited in this article reference software test methodologies. The same appears
 to be true for the larger list of sources included in
@@ -953,9 +938,7 @@ arrived in the field of music software systems development (and especially in
 the development of music software systems designed for noncommercial
 applications).
 
-Our experience developing Abjad leads us to believe that the focus on testing
-absent the majority of music software systems is a liability to the field in
-two ways.\footnote{Abjad comprises an automated battery of 9,119 unit tests and
+The use of automated regression testing in Abjad's development makes apparent the way in which tests encourage efficient development and robust project continuance.\footnote{Abjad comprises an automated battery of 9,119 unit tests and
 8,528 documentation tests. Unit tests are executed by \texttt{pytest}.
 Documentation tests are executed by the \texttt{doctest} module included in
 Python's standard library. Parametrized tests are provided to ensure that
@@ -968,27 +951,22 @@ Abjad installed under different operating systems continue to pass all tests.
 For \texttt{pytest} see \textit{http://pytest.org}. For Travis CI see
 \textit{https://travis-ci.org}.}
 
-The first such liability concerns systems development. The absence of automated
+The absence of automated
 regression tests acts as a barrier to new contributors to the system (who
 effectively have no way to determine whether proposed changes to the system
 negatively impact the system) and severely attenuates the rate at which
 experienced developers can refactor the system during new feature development.
-Consider that Abjad currently comprises about 178,000 lines of code and that
-the Abjad repository hosted on GitHub\footnote{https://github.com/Abjad/abjad}
+Abjad currently comprises about 178,000 lines of code, and
+the Abjad repository, hosted on GitHub\footnote{https://github.com/Abjad/abjad},
 lists more than 8.7 million lines of code committed since the start of the
 project. This refactor ratio of about 50:1 means that each line of code in the
 Abjad codebase has been rewritten dozens of times. This freedom to refactor is
 possible only because of the approach to automated regression testing we have
 borrowed from the larger open-source community.
 
-The second testing-related liability we diagnose concerns project continuance.
-What happens when the original developers of a music software system are no
-longer available to develop the system? Automated regression tests help make
-possible a changing of the guard from one set of developers to another. This is
-true because automated tests serve as a type of functional specification of how
-a software system is supposed to behave after the system is altered. While
-automated tests alone will not ensure the continued development of any software
-system, we believe that adherence to the testing practices of the open-source
+Testing also benefits project continuance when the original developers of a music software system are no longer available to develop the system. Automated regression tests help make
+possible a changing of the guard from one set of developers to another. Automated tests serve as a type of functional specification of how a software system is supposed to behave after the system is altered. While automated tests alone will not ensure the continued development of any software
+system, adherence to the testing practices of the open-source
 community constitutes the most effective hedge available to music software
 systems developers to fend against project abandonment in the medium and long
 term.
@@ -1001,25 +979,24 @@ control simplifies this contribution process.
 
 \subsection{Language independence}
 
-Even though we find Python an excellent programming
+Even though Python is an excellent programming
 language for architecting a music software system like Abjad,\footnote{Aspects
 of Python we find particularly helpful include the availability of lists,
 dictionaries and sets as built-in types; the interface provided for string and
 Unicode objects; the unified approach to encapsulation provided by Python's
 understanding of namespaces; and the extensive functionality provided in the
-standard library.} our decision to implement Abjad in Python does not arise
+standard library.} the decision to implement Abjad in Python arises not
 from the specifics of the language but from the fact that the language is part
 of a global programming mainstream with tools and best practices that can be
-borrowed directly into music composition. In designing Abjad as an extension to
-Python, we hope to make relevant the hundreds of print and Web resources that
-detail the language and its features. We also hope to make the global community
-of developers working in Python available to composers.
+borrowed directly into music composition: by designing Abjad as an extension to
+Python, hundreds of print and Web Python resources become relevant to Abjad and to composition more broadly. The global community
+of developers working in Python also becomes available to composers, and vice versa.
 
 \subsection{Embeddability}
 
 Abjad is an importable Python library. It can be used in whole or in part as a
 component of any Python-compatible system. Abjad has few Python package
-dependencies and is not bound to any specific user application or graphic user
+dependencies and does not depend on any specific user application or graphic user
 interface. These qualities make Abjad an ideal project ideal for embedding in
 other software systems.
 
@@ -1027,7 +1004,7 @@ For example, Abjad supports IPython
 Notebook\footnote{http://ipython.org/notebook.html}, a web-based interactive
 computational environment combining code execution, text, mathematics, plots
 and rich media into a single document. Notational output from Abjad can be
-transparently captured and embedded directly into an IPython Notebook which has
+transparently captured and embedded directly into an IPython Notebook that has
 loaded Abjad's IPython Notebook extension. Calls to Abjad's \texttt{show()} are
 intercepted and the rendered graphics are embedded directly into the Notebook
 along with the generating code. This allows scholars to quickly and intuitively
