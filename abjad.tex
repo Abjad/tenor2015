@@ -488,10 +488,8 @@ progression; attack points arranged in time as the scaffolding of some larger
 texture. These entities, and the others like them, might result from a flash of
 compositional intuition that then requires detailed attention and elaboration.
 
-% , any of which can be customized or sub-classed,
-Abjad implements many different factories and composers can extend the system as they work to implement their own models of composition. Abjad also provides a variety of factory functions and factory classes for
-facilitating top-down construction. These
-range from simple note-generating functions, like \texttt{make\_notes()}, which
+
+Abjad invites composers generalize and encapsulate processes to enable the parametric exploration of material by implementing factories. In this way, composers can extend the system as they work to implement their own models of composition. Abjad also provides a variety of example factory functions and factory classes that exemplify top-down construction. These range from simple note-generating functions, like \texttt{make\_notes()}, which
 combine sequences of pitches and rhythms to generate patterned selections
 of notes and rests, to more complexly-configured maker classes for
 creating nuanced rhythmic patterns or entire scores:
@@ -644,9 +642,6 @@ show(quartet_score)
 \end{lstlisting}
 \includegraphics{assets/lilypond-4598fe78647d623cdf81100e0343874a.pdf}
 %%% ABJADBOOK END %%%
-
-\noindent Factories generalize and encapsulate
-processes to enable the parametric exploration of material.
 
 \section{Input flexibility} \label{sec:input-flexibility}
 
