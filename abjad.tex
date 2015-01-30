@@ -10,15 +10,17 @@
 \usepackage{verbatim}
 
 \usepackage{listings}
-\lstset{language=Python,
-showspaces=false,
-showtabs=false,
-breaklines=false,
-showstringspaces=false,
+\lstset{
+basicstyle=\scriptsize\ttfamily,
 breakatwhitespace=false,
+breaklines=false,
 escapeinside={(*@}{@*)},
 keywordstyle=\bfseries,
-basicstyle=\scriptsize\ttfamily
+language=Python,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+xleftmargin=2mm
 }
 
 \def\papertitle{Abjad:
@@ -532,7 +534,7 @@ show(rhythm_maker, divisions=divisions)
 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-af2aa88dc88360a6a0cf5c3f8da17b85.pdf}
+\includegraphics{assets/lilypond-358b2f51787297a1dbc4423c1c37374e.pdf}
 %%% ABJADBOOK END %%%
 
 \noindent Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can
@@ -577,7 +579,7 @@ show(rhythm_maker, divisions=divisions)
 ...     )
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
-\includegraphics{assets/lilypond-cf8687c5463d3d6aec12827476c8fc4e.pdf}
+\includegraphics{assets/lilypond-c238b5fdf445554d95cebd52911b461e.pdf}
 %%% ABJADBOOK END %%%
 
 \noindent Once instantiated, rhythm makers can be used over and over again with

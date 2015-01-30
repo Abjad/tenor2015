@@ -1,7 +1,7 @@
 #(set-global-staff-size 12)
 
 \layout {
-    indent = #0
+    indent = 2\mm
     ragged-right = ##t
     \context {
         \Score
