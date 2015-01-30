@@ -438,10 +438,10 @@ outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
 inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
 outer_tuplet_one.append(inner_tuplet)
 outer_tuplet_two = Tuplet((4, 5))
-outer_tuplet_two.extend("d'8 r16 b'16 as'16")
+outer_tuplet_two.extend("d'8 r16 c'16 bf'16")
 tuplets = [outer_tuplet_one, outer_tuplet_two]
 upper_staff = Staff(tuplets, name='Upper Staff')
-note_one = Note(12, (3, 16))
+note_one = Note(10, (3, 16))
 upper_staff.append(note_one)
 note_two = Note(NamedPitch("fs'"), Duration(1, 16))
 upper_staff.append(note_two)
@@ -460,10 +460,10 @@ show(score)
 >>> inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
 >>> outer_tuplet_one.append(inner_tuplet)
 >>> outer_tuplet_two = Tuplet((4, 5))
->>> outer_tuplet_two.extend("d'8 r16 b'16 as'16")
+>>> outer_tuplet_two.extend("d'8 r16 c'16 bf'16")
 >>> tuplets = [outer_tuplet_one, outer_tuplet_two]
 >>> upper_staff = Staff(tuplets, name='Upper Staff')
->>> note_one = Note(12, (3, 16))
+>>> note_one = Note(10, (3, 16))
 >>> upper_staff.append(note_one)
 >>> note_two = Note(NamedPitch("fs'"), Duration(1, 16))
 >>> upper_staff.append(note_two)
@@ -474,7 +474,7 @@ show(score)
 >>> score = Score([staff_group])
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-3267998ba22aaacb9386665d12f8cce0.pdf}
+\includegraphics{assets/lilypond-1c885bfebd0d1fe0357ba25ba72d36ba.pdf}
 %%% ABJADBOOK END %%%
 
 \noindent Ties, slurs and other spanners attach to score components via Abjad's
@@ -513,7 +513,7 @@ show(score)
 >>> attach(Clef('bass'), lower_leaves[0])
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-e8875dc7bab70898d816689c758fd7be.pdf}
+\includegraphics{assets/lilypond-19c9fd0f2ed858d81b6840584a4e0cc8.pdf}
 %%% ABJADBOOK END %%%
 
 \noindent Combining score components one by one into ever-larger aggregates
@@ -794,7 +794,7 @@ show(upper_staff)
 >>> upper_staff = score[0][0]
 >>> show(upper_staff)
 \end{lstlisting}
-\includegraphics{assets/lilypond-9da0f4858f3377b553eae2208072c2bc.pdf}
+\includegraphics{assets/lilypond-5db9f4197c984cbc17b69ed1ab39af68.pdf}
 %%% ABJADBOOK END %%%
 
 Because both staves were given explicit names, they can also be selected by
@@ -864,7 +864,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-fa4c8d9019fcef2563aed3d7dc4eda70.pdf}
+\includegraphics{assets/lilypond-1aa26e8361e9c7841287eeed734f1cb9.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{comment}
@@ -887,7 +887,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-daae1fa8ba1e5fe23f35c69be7e07f93.pdf}
+\includegraphics{assets/lilypond-fff28391092702cdbeee1a1a28ff395d.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{comment}
@@ -910,7 +910,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-3eefc169b782de95b400a81c4546bdd6.pdf}
+\includegraphics{assets/lilypond-a0f0024aef8572171e2aa922cc739cb1.pdf}
 %%% ABJADBOOK END %%%
 
 \section{Open-source best practices} \label{sec:open-source}
@@ -1023,7 +1023,7 @@ distributed version control
 
 \section{conclusion} \label{sec:conclusion}
 
-Composers cannot participate fully in digital society's new creative paradigms, the benefits of which have been made clear above, until they learn to code. While exclude composers 
+Composers cannot participate fully in digital society's new creative paradigms, the benefits of which have been made clear above, until they learn to code. While exclude composers
 we want composers to become programmers. for extremely good reasons. and the
 priorities we have detailed here help make the case for why. [TREVOR]
 
