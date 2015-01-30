@@ -367,7 +367,7 @@ components hierarchically into a score tree with spanners and indicators attache
 Abjad lets composers build scores from the bottom up. When working bottom-up,
 composers create individual notes, rests and chords to be grouped
 into tuplets, measures and voices that may then be
-included in even high-level containers, such as staves and scores.\footnote{Abjad does not require composers to structure music into measures, a modeling decision that differs than that of many notation packages. Any Abjad container can hold music directly.} Abjad implements this style of
+included in even high-level containers, such as staves and scores.\footnote{Unlike many notation packages, Abjad does not require composers to structure music into measures. Abjad's tuple, voice, staff, and score container components can hold leaves (notes, rests and chords) directly.} Abjad implements this style of
 component aggregation via a collection of methods which append, extend or
 insert into container-like components as though they were
 lists:\footnote{Abjad's container interface derives from Python's mutable
@@ -565,7 +565,7 @@ show(rhythm_maker, divisions=divisions)
 \noindent Once instantiated, rhythm makers can be used over and over again with
 different input, a pattern used pervasively in Abjad: maker classes as
 object-oriented, partially-evaluated functions. By automating the instantiation
-of complete tupletted, beamed, and tied rhythmic score artifacts, rhythm makers
+of complete tupletted, beamed and tied rhythmic score artifacts, rhythm makers
 allow composers to focus on rhythmic structures as compositional materials
 without becoming ensnared in the vagaries of notation. Rhythm makers are
 classes, and they can be subclassed and extended to customize behavior. Like
@@ -808,7 +808,7 @@ language informs the project as a first principle. The following best practices
 from the open-source community have also positively impacted the project and
 might be helpful in the development of other music software systems.
 
-\subsection{Extension, not reinvention}
+\subsection{Extension instead of Reinvention}
 
 Our decision to implement Abjad as an extension to an existing
 programming language (rather than inventing yet another domain-specific
@@ -832,10 +832,7 @@ outlined above.} Why should this be the case? One possibility is that authors
 of music software systems have, in fact, availed themselves of important
 improvements in software test methods developed over the previous decades but
 have, for whatever reasons, remained quiet on the matter in the publication
-record. We think a more likely explanation is that the culture of software best
-practices now widely followed in the open-source community simply has not yet
-arrived in the field of music software systems development (and especially in
-the development of music software systems designed for noncommercial
+record. Perhaps the culture of software best practices now widely followed in the open-source community simply has not yet arrived in the field of music software systems development (and especially in the development of music software systems designed for noncommercial
 applications).
 
 The use of automated regression testing in Abjad's development makes apparent
@@ -869,7 +866,7 @@ Testing also benefits project continuance when the original developers of a
 music software system can no longer develop the system. Automated regression
 tests help make possible a changing of the guard from one set of developers to
 another. Automated tests serve as a type of functional specification of how a
-software system is supposed to behave after the system is altered. While
+software system should behave after a revision. While
 automated tests alone will not ensure the continued development of any software
 system, adherence to the testing practices of the open-source community
 constitutes the most effective hedge available to music software systems
