@@ -456,29 +456,45 @@ show(score)
 \includegraphics{assets/lilypond-19c9fd0f2ed858d81b6840584a4e0cc8.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent When does it make sense for composers to work with Abjad in the bottom-up way outlined here? Instantiating components by hand in the way shown above resembles notating by hand and composers may choose to work bottom-up when doing the equivalent of sketching in computer code: when making the first versions of a figure or gesture, when trying out combinations of small bits of notation or when inserting one or two items at a time into a larger structure. For some composers this may be a regular or even predominant way of working. Other composers may notice patterns in their own compositional process when they work bottom-up and may find ways to formalize these patterns into classes or functions that generalize their work; the next section describes some ways composers might do this.
+\noindent When does it make sense for composers to work with Abjad in the
+bottom-up way outlined here? Instantiating components by hand in the way shown
+above resembles notating by hand and composers may choose to work bottom-up
+when doing the equivalent of sketching in computer code: when making the first
+versions of a figure or gesture, when trying out combinations of small bits of
+notation or when inserting one or two items at a time into a larger structure.
+For some composers this may be a regular or even predominant way of working.
+Other composers may notice patterns in their own compositional process when
+they work bottom-up and may find ways to formalize these patterns into classes
+or functions that generalize their work; the next section describes some ways
+composers might do this.
 
-%The ability to combine score components one by one into ever-larger
-%aggregates gives composers fine-grained control over their compositional
-%structures; however, as composers notice bottom-up work patterns, they may desire to formalize these patterns into component-generating factory functions. In this way, bottom-up work may proceed in ongoing dialogue with top-down strategies of score construction.
+%The ability to combine score components one by one into ever-larger aggregates
+%gives composers fine-grained control over their compositional structures;
+%however, as composers notice bottom-up work patterns, they may desire to
+%formalize these patterns into component-generating factory functions. In this
+%way, bottom-up work may proceed in ongoing dialogue with top-down strategies
+%of score construction.
 
 \section{Top-down construction} \label{sec:top-down}
 
 What are the objects of music composition? For most composers, individual
 notes, rests and chords constitute  only the necessary means to achieve some
-larger, musically interesting result. For this reason, a model of composition needs to describe
-groups of symbols on the page: notes taken in sequence to constitute a figure,
-gesture or melody; chords taken in sequence as a progression; attack points
-arranged in time as the scaffolding of some larger texture. These entities, and
-the others like them, might result from a flash of compositional intuition that
-then requires detailed attention and elaboration. In addition to bottom-up construction, Abjad allows composers to work with higher-level musical objects, each of which generates many components.
+larger, musically interesting result. For this reason, a model of composition
+needs to describe groups of symbols on the page: notes taken in sequence to
+constitute a figure, gesture or melody; chords taken in sequence as a
+progression; attack points arranged in time as the scaffolding of some larger
+texture. These entities, and the others like them, might result from a flash of
+compositional intuition that then requires detailed attention and elaboration.
+In addition to bottom-up construction, Abjad allows composers to work with
+higher-level musical objects, each of which generates many components.
 
-Abjad provides a variety of factories for quickly and flexibly
-creating arbitrarily large amounts of notation. These range from simple
-note-generating functions like \texttt{make\_notes()}, which combine sequences
-of pitches and rhythms isorhythmically to generate selections of notes and
-rests, to more complexly-configured \emph{maker} classes for creating nuanced
-rhythmic patterns or entire scores.
+Abjad provides a variety of factory functions and factory classes for
+facilitating top-down construction. Factories generalize and encapsulate
+processes for quickly and flexibly creating large amounts of notation. These
+range from simple note-generating functions like \texttt{make\_notes()}, which
+combine sequences of pitches and rhythms isorhythmically to generate selections
+of notes and rests, to more complexly-configured \emph{maker} classes for
+creating nuanced rhythmic patterns or entire scores.
 
 \begin{comment}
 <abjad>
