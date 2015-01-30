@@ -202,16 +202,14 @@ constraints. Generative task explains a given system's balance between
 computational models of music/composition and notation by assuming a link
 between intended use and system development.}
 
-
 Many notation systems --- such as Finale, Sibelius, SCORE \cite{Smith:1972mw},
 Igor, Berlioz, Lilypond \cite{Nienhuys:2003ve}, GUIDO \cite{Hoos:1998bd}
 NoteAbility \cite{hamel1noteability}, and Nightingale --- exist to help people
-engrave music; because these systems provide functions that operate on
-notational elements, hidden models of musical notation must underly all of
-these systems. Each system's interface constrains and directs the ways in which
-users interact with the system's underlying model of notation. These systems
-enable users to engrave and format music without necessarily exposing any underlying model of composition. These tools provide interfaces to detailed models of notation without allowing equivalently detailed models of
-composition, although such systems might go so far as to enable scripting, as
+engrave and format music documents; because these systems provide functions that operate on
+notational elements (i.e., transposition, spacing, and playback), hidden models of common practice music notation must underly all of
+these systems, and each system's interface constrains and directs the ways in which
+users interact with this underlying model of notation. These systems
+enable users to engrave and format music without exposing any particular underlying model of composition, and without requiring, or even inviting the user to computationally model composition. Such systems might go so far as to enable scripting, as
 in the case of Sibelius's ManuScript \cite{Technology:qc} scripting language or
 Lilypond's embedded Scheme code; although these systems enable low-level automation of notational elements, it remains difficult to model higher-level processes and relationships. \footnote{An attempt to more comprehensively
 survey the history of object-oriented notation systems for composition, in the
@@ -219,21 +217,11 @@ context of the broader history of object-oriented programming, lies beyond the
 scope of this paper but has recently been undertaken elsewhere
 \cite{trevino2013compositional}.}
 
-Other systems provide environments for modeling higher-level processes and relationships. OpenMusic \cite{Assayag:1999sw}, PWGL \cite{Laurson:2009qf}, and BACH
-\cite{agostini2013real} supply an interface to a model of notation with the intention that the user will model composition, often with the aid of the above notation editors for
+Other systems provide environments specifically for the modeling of higher-level processes and relationships. OpenMusic \cite{Assayag:1999sw}, PWGL \cite{Laurson:2009qf}, and BACH
+\cite{agostini2013real} supply an interface to a model of notation and a toolkit that enables the user to model composition, often with the aid of the above notation editors for
 final engraving and layout via intermediate file formats. 
 
-Graphic layout programs, such as AutoCAD and Adobe Illustrator, have been designed broadly for the placement and design of graphic elements.  Some composers use drawing software like AutoCAD and Adobe Illustrator to create notations; these
-provide neither a model of notation nor a model of composition to the user.
-Many audio-focused environments afford models of composition without inviting
-or providing models of notation \cite{Ariza2005b}. Many systems depend on the
-MIDI protocol for output or interchange and cannot provide a hierarchical,
-detailed model of notation: for example, if a composer requires a notation
-system to render complex rhythmic ideas that depend typographically on nested
-tuplets, a system that produces a notation only via a combination of MIDI and
-quantization must reduce rhythms to a non-hierarchical stream of event times,
-eliminating the temporally divisive approach of tuplet notation previously
-modeled.
+Some composers make scores with software systems that provide neither a model of notation nor a model of composition. Graphic layout programs, such as AutoCAD and Adobe Illustrator, have been designed broadly for the placement and design of graphic elements. While scripting enables automation, composers must model both notation and composition from scratch, and the low-level scope of potential automations described in the course of modeling ensures that composers spend as much time addressing elemental typographical concerns (e.g., accidental collisions) as would be spent modeling higher-level processes and relationships.
 
 Many models of musical notation have been designed for purposes of
 corpus-based computational musicology. Formats such as DARM, SMDL,
