@@ -107,40 +107,44 @@ objects. A summary of widely used notation systems' intended uses motivates a
 discussion of system design priorities with examples of system use.
 \end{abstract}
 
-\section{Introduction} \label{sec:background}
+\section{Introduction} \label{sec:introduction}
+
 Abjad\footnote{www.projectabjad.org} is an interactive, open-source software
-system designed to help composers build scores in
-an iterative and incremental way.  Abjad is implemented in the
-Python\footnote{www.python.org} programming language and architected as an
-object-oriented collection of packages, classes and functions. Composers can
-visualize their work as publication-quality notation at all stages of the
-compositional process using Abjad's interface to the
-LilyPond\footnote{www.lilypond.org} music notation package. The first
+system designed to help composers build scores in an iterative and incremental
+way.  Abjad is implemented in the Python\footnote{www.python.org} programming
+language and architected as an object-oriented collection of packages, classes
+and functions. Composers can visualize their work as publication-quality
+notation at all stages of the compositional process using Abjad's interface to
+the LilyPond\footnote{www.lilypond.org} music notation package. The first
 versions of Abjad were implemented in 1997 and the project website is now
-visited thousands of times each month. This paper details some of the most important principles guiding the development of Abjad. The priorities outlined here arise in answer to
-domain-specific questions of music modeling (What are the fundamental elements
-of music notation? Which elements of music notation should be modeled
-hierarchically? Which programming constructs are available to help model the
-temporal relationships arising between entities in musical score?) as well as
-in consideration of the ways in which best practices taken from software
-engineering can apply to the development of a music software system
-(Which programming concepts concerning things like iteration, aggregation and
-encapsulation make sense to make available to composers? Which existing tools
-to test, document and deploy other open-source projects are available to help
-develop a music software system?). In the sections that follow we
-discuss the background and motivations that lead us to ask questions like these
-and then elaborate the design priorities we have arrived at in our ongoing work
-architecting Abjad.
+visited thousands of times each month. This paper details some of the most
+important principles guiding the development of Abjad. The priorities outlined
+here arise in answer to domain-specific questions of music modeling (What are
+the fundamental elements of music notation? Which elements of music notation
+should be modeled hierarchically? Which programming constructs are available to
+help model the temporal relationships arising between entities in musical
+score?) as well as in consideration of the ways in which best practices taken
+from software engineering can apply to the development of a music software
+system (Which programming concepts concerning things like iteration,
+aggregation and encapsulation make sense to make available to composers? Which
+existing tools to test, document and deploy other open-source projects are
+available to help develop a music software system?). In the sections that
+follow we discuss the background and motivations that lead us to ask questions
+like these and then elaborate the design priorities we have arrived at in our
+ongoing work architecting Abjad.
 
 While many environments for both notation and sound production been been
-created within the last twenty years, the discussion focuses solely
-on the production of notation: Abjad enables composers to model compositional ideas by extending a widely used programming language with a detailed object model of common practice musical notation. To minimize the restriction of artistic thought's infinite possibility while maximizing the
-ability to specify elegantly any arbitrary symbolic relationship, Abjad does
-this without prescribing explicit or implicit models of music or composition:
-Abjad defines composition narrowly as the act of creating a document via the
-encoded aggregation of notational symbols.
+created within the last twenty years, the discussion focuses solely on the
+production of notation: Abjad enables composers to model compositional ideas by
+extending a widely used programming language with a detailed object model of
+common practice musical notation. To minimize the restriction of artistic
+thought's infinite possibility while maximizing the ability to specify
+elegantly any arbitrary symbolic relationship, Abjad does this without
+prescribing explicit or implicit models of music or composition: Abjad defines
+composition narrowly as the act of creating a document via the encoded
+aggregation of notational symbols.
 
-\section{A Taxonomy} \label{sec:background}
+\section{A Taxonomy} \label{sec:taxonomy}
 
 Many music software systems implement models of music, but few of these
 implement models of notation.\footnote{Computational models of music might
@@ -409,11 +413,21 @@ with a different typesetting engine, the composer-facing  interface provided by
 illustrate compositional objects. LilyPond simply happens to be the best
 resource available to achieve our goals.}
 
-\section{The Abjad object model}
+\section{The Abjad object model} \label{sec:object-model}
 
 Abjad models musical notation with \emph{components}, \emph{spanners} and
-\emph{indicators}; every notational element in Abjad belongs to one of these three families. Abjad provides \emph{component} object models of notes, rests, and chords, as well as models of container-like components of music notation, such as tuplets, measures, voices, staves, and complete scores.\footnote{Abjad uses term
-`leaf' to refer generally to notes, rests, and chords. This term, borrowed from graph theory, reflects the fact that notes, rests and chords cannot contain any other elements of music notation.} Composers arrange components hierarchically into a score tree, in which container components group leaf components together. \emph{Spanners} model notational constructs that cross different levels of hierarchy in the score tree, such as beams, slurs and glissandi, while \emph{indicators} model objects attached to a single component, such as articulations, time signatures, dynamics, and textual
+\emph{indicators}; every notational element in Abjad belongs to one of these
+three families. Abjad provides \emph{component} object models of notes, rests,
+and chords, as well as models of container-like components of music notation,
+such as tuplets, measures, voices, staves, and complete scores.\footnote{Abjad
+uses term `leaf' to refer generally to notes, rests, and chords. This term,
+borrowed from graph theory, reflects the fact that notes, rests and chords
+cannot contain any other elements of music notation.} Composers arrange
+components hierarchically into a score tree, in which container components
+group leaf components together. \emph{Spanners} model notational constructs
+that cross different levels of hierarchy in the score tree, such as beams,
+slurs and glissandi, while \emph{indicators} model objects attached to a single
+component, such as articulations, time signatures, dynamics, and textual
 indications.\footnote{Indicators can have \emph{scope}, making them
 \emph{effective} for all other components in that scope following the component
 to which that indicator is attached until another indicator of the same type
@@ -425,10 +439,14 @@ custom classes to any component.}
 
 \section{Bottom-up construction} \label{sec:bottom-up}
 
-Abjad lets composers build scores from the bottom up. When
-working bottom-up, composers first create individual note, rest, and chord components, which then group into tuplet, measure, and voice container components, which then may be included in other
-container components of the score tree, such as staves and scores.\footnote{Unlike many systems, Abjad does not require composers to write mensurally, although measure containers exist.}  Abjad implements this style of component aggregation via a collection of methods which append,
-extend or insert into container-like components as though they were
+Abjad lets composers build scores from the bottom up. When working bottom-up,
+composers first create individual note, rest, and chord components, which then
+group into tuplet, measure, and voice container components, which then may be
+included in other container components of the score tree, such as staves and
+scores.\footnote{Unlike many systems, Abjad does not require composers to write
+mensurally, although measure containers exist.}  Abjad implements this style of
+component aggregation via a collection of methods which append, extend or
+insert into container-like components as though they were
 lists:\footnote{Abjad's container interface derives from Python's mutable
 sequence protocol, which specifies an interface to list-like objects.}
 
@@ -521,16 +539,19 @@ gives composers fine-grained control over their compositional structures. Such
 control guarantees a high degree of compositional-process agnosticism on
 Abjad's part and gives composers a basic framework on top of which they can
 design and implement their own personal approaches to composition.
+
 \section{Top-down construction} \label{sec:top-down}
 
-What are the objects of music composition? For most composers, individual notes, rests and chords
-constitute  only the necessary means to achieve some larger,
-musically interesting result. A model of composition needs to describe groups of
-symbols on the page: notes taken in sequence to constitute a figure, gesture or
-melody; chords taken in sequence as a progression; attack points arranged in
-time as the scaffolding of some larger texture. These entities, and
-the others like them, might result from a flash of compositional intuition
-that then requires detailed attention and elaboration. In addition to the bottom-up aggregation of components, Abjad allows composers to work with higher-level musical objects, each of which generates many components.
+What are the objects of music composition? For most composers, individual
+notes, rests and chords constitute  only the necessary means to achieve some
+larger, musically interesting result. A model of composition needs to describe
+groups of symbols on the page: notes taken in sequence to constitute a figure,
+gesture or melody; chords taken in sequence as a progression; attack points
+arranged in time as the scaffolding of some larger texture. These entities, and
+the others like them, might result from a flash of compositional intuition that
+then requires detailed attention and elaboration. In addition to the bottom-up
+aggregation of components, Abjad allows composers to work with higher-level
+musical objects, each of which generates many components.
 
 Abjad provides a variety of factories for quickly and flexibly
 creating arbitrarily large amounts of notation. These range from simple
@@ -625,15 +646,20 @@ show(rhythm_maker, divisions=divisions)
 
 \noindent Once instantiated, rhythm makers can be used over and over again with
 different input, a pattern used pervasively in Abjad: maker classes as
-object-oriented, partially-evaluated functions. By automating the instantiation of complete tupletted, beamed, and tied rhythmic score artifacts, rhythm makers allow composers to focus on rhythmic structures as compositional materials without becoming ensnared in the vagaries of notation.
-Rhythm makers are classes, and they can be subclassed and extended
-to customize behavior. Like other objects, they can be passed as
-parameters to configure even more expansive aggregate makers.
+object-oriented, partially-evaluated functions. By automating the instantiation
+of complete tupletted, beamed, and tied rhythmic score artifacts, rhythm makers
+allow composers to focus on rhythmic structures as compositional materials
+without becoming ensnared in the vagaries of notation. Rhythm makers are
+classes, and they can be subclassed and extended to customize behavior. Like
+other objects, they can be passed as parameters to configure even more
+expansive aggregate makers.
 
-Another common factory pattern in Abjad, \emph{score templates} encapsulate the work of building the skeletons of complete scores, including
-voices, staves, staff groups, clefs and other indications pertinent to the
-intended instrumentation or typography. Score iteration can combine rhythm makers with score templates, as well as bottom-up construction, to
-generate complete score aggregates:
+Another common factory pattern in Abjad, \emph{score templates} encapsulate the
+work of building the skeletons of complete scores, including voices, staves,
+staff groups, clefs and other indications pertinent to the intended
+instrumentation or typography. Score iteration can combine rhythm makers with
+score templates, as well as bottom-up construction, to generate complete score
+aggregates:
 
 \begin{comment}
 <abjad>
@@ -670,96 +696,39 @@ show(quartet_score)
 \includegraphics{assets/lilypond-4598fe78647d623cdf81100e0343874a.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Abjad implements many different factories, any of which can be customized or sub-classed, and composers can extend the system as they work to implement their own models of composition.
+\noindent Abjad implements many different factories, any of which can be
+customized or sub-classed, and composers can extend the system as they work to
+implement their own models of composition.
 
-%\section{Templating}
-%
-%\noindent As demonstrated earlier, Abjad's \emph{rhythm makers} are
-%highly-configurable factory classes for generating rhythmic patterns. Many of
-%their initialization keywords expect \emph{specifiers} --- object-oriented
-%bundles of related parameters --- which can make their configurations
-%potentially deeply nested.
-%
-%\begin{comment}
-%<abjad>
-%rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-%    talea=rhythmmakertools.Talea(
-%        counts=(1, 2, 3),
-%        denominator=16,
-%        ),
-%    )
-%print(format(rhythm_maker))
-%</abjad>
-%\end{comment}
-%
-%\begin{comment}
-%<abjad>
-%divisions = [(3, 8), (1, 4), (5, 16), (1, 4)]
-%show(rhythm_maker, divisions=divisions)
-%</abjad>
-%\end{comment}
-%
-%\begin{comment}
-%<abjad>
-%new_rhythm_maker = new(rhythm_maker,
-%    extra_counts_per_division=(0, 1),
-%    talea__counts=(1, 2, 3, 4),
-%    )
-%print(format(new_rhythm_maker))
-%</abjad>
-%\end{comment}
-%
-%\begin{comment}
-%<abjad>
-%show(new_rhythm_maker, divisions=divisions)
-%</abjad>
-%\end{comment}
-%
-%\noindent Repeating the templating process creates new and different yet still
-%related objects, allowing composers to easily play with variation at the level
-%of procedure.
-%
-%\begin{comment}
-%<abjad>
-%new_new_rhythm_maker = new(new_rhythm_maker,
-%    extra_counts_per_division=(0, 1, 2),
-%    beam_specifier=rhythmmakertools.BeamSpecifier(
-%        beam_divisions_together=True,
-%        ),
-%    )
-%print(format(new_new_rhythm_maker))
-%</abjad>
-%\end{comment}
-%
-%\begin{comment}
-%<abjad>
-%show(new_new_rhythm_maker, divisions=divisions)
-%</abjad>
-%\end{comment}
+\section{Input flexibility} \label{sec:input-flexibility}
 
-\section{Input flexibility}
+Input flexibility allows composers to create compositional objects in whatever
+way aligns with their conception of music and with the task at hand
+\cite{Kay:1996vn}. Abjad's score components can be created in a variety of
+ways. Leaves (such as notes) can be instantiated parametrically by specifying
+pitch and rhythm information numerically. Leaves can also be created via
+explicit \texttt{Pitch} and \texttt{Duration} objects. Containers (such as
+tuplets and measures) can be instantiated parametrically by specifying explicit
+lists of components to be inserted as children. Abjad also allows many score
+objects to be created via strings parseable in one of the various
+micro-languages we have implemented. Score components created via string input
+can be potentially much more complex than those created parametrically, because
+Abjad's microlanguage parsers have the ability to attach spanners and
+indicators to both the created components and their children (if the created
+components are containers). Parametric instantiation gives composers powerful
+procedural control over score structure while string instantiation provides
+concisely specified expression. The score construction examples above
+demonstrates both of these techniques.
 
-Input flexibility allows composers to create
-compositional objects in whatever way aligns with their conception of
-music and with the task at hand \cite{Kay:1996vn}. Abjad's score
-components can be created in a variety of ways. Leaves (such as notes) can be
-instantiated parametrically by specifying pitch and rhythm information
-numerically. Leaves can also be created via explicit \texttt{Pitch} and
-\texttt{Duration} objects. Containers (such as tuplets and measures) can be
-instantiated parametrically by specifying explicit lists of components to be
-inserted as children. Abjad also allows many score objects to be created via
-strings parseable in one of the various micro-languages we have implemented.
-Score components created via string input can be potentially much more complex
-than those created parametrically, because Abjad's microlanguage parsers have
-the ability to attach spanners and indicators to both the created components and
-their children (if the created components are containers). Parametric instantiation gives
-composers powerful procedural control over score structure while string
-instantiation provides concisely specified expression. The score construction
-examples above demonstrates both of these techniques.
+\section{Selection flexibility} \label{sec:selection-flexibility}
 
-\section{Selection flexibility} \label{sec:selections}
-
-Abjad allows composers to select and operate on arbitrary collections of score objects. A single operation can be mapped onto the entirety of a selection, and ad hoc intermediate structures can be created as they become compositionally relevant. Composers can refer to selections in several potentially intuitive ways: by number, name, or temporal succession. In light of western composition history's infatuation with the resolution of vertical and horizontal operation, Abjad provides object models of vertical relationships in the score tree.
+Abjad allows composers to select and operate on arbitrary collections of score
+objects. A single operation can be mapped onto the entirety of a selection, and
+ad hoc intermediate structures can be created as they become compositionally
+relevant. Composers can refer to selections in several potentially intuitive
+ways: by number, name, or temporal succession. In light of western composition
+history's infatuation with the resolution of vertical and horizontal operation,
+Abjad provides object models of vertical relationships in the score tree.
 
 selecting one object: by number, by time relation, by name.
 
@@ -846,7 +815,9 @@ Composers can select components via Abjad's powerful top-level
 \texttt{iterate()} function, which exposes the score iteration interface as
 implemented in our \texttt{IterationAgent}. The iteration interface provides a
 wide variety of selection criteria, such as class filters, logical tie
-selection, and time-wise score traversal:\footnote{A logical tie is a selection of one or more components which represent all of the components tied together by zero or more ties.}
+selection, and time-wise score traversal:\footnote{A logical tie is a selection
+of one or more components which represent all of the components tied together
+by zero or more ties.}
 
 \begin{comment}
 <abjad>
@@ -915,15 +886,18 @@ show(score)
 
 \section{Open-source best practices} \label{sec:open-source}
 
-Abjad has benefited enormously from programming best
-practices developed by the open-source community. As described previously, the extension of an existing language informs the project as a first principle. The following best practices from the open-source community have also positively impacted the project and might be helpful in the development of other music software systems.
+Abjad has benefited enormously from programming best practices developed by the
+open-source community. As described previously, the extension of an existing
+language informs the project as a first principle. The following best practices
+from the open-source community have also positively impacted the project and
+might be helpful in the development of other music software systems.
 
 \subsection{Automated Regression Testing}
 
-The music software systems literature investigated in preparing this report remains
-overwhelmingly silent on questions of software testing. None of the sources
-cited in this article reference software test methodologies. The same appears
-to be true for the larger list of sources included in
+The music software systems literature investigated in preparing this report
+remains overwhelmingly silent on questions of software testing. None of the
+sources cited in this article reference software test methodologies. The same
+appears to be true for the larger list of sources included in
 \cite{trevino2013compositional}.\footnote{Chris Ariza's work developing
 AthenaCL \cite{Ariza2005} and the development of Music21 \cite{Ariza2010} led
 by Michael Cuthbert are important exceptions. Both projects are implemented in
@@ -938,8 +912,10 @@ arrived in the field of music software systems development (and especially in
 the development of music software systems designed for noncommercial
 applications).
 
-The use of automated regression testing in Abjad's development makes apparent the way in which tests encourage efficient development and robust project continuance.\footnote{Abjad comprises an automated battery of 9,119 unit tests and
-8,528 documentation tests. Unit tests are executed by \texttt{pytest}.
+The use of automated regression testing in Abjad's development makes apparent
+the way in which tests encourage efficient development and robust project
+continuance.\footnote{Abjad comprises an automated battery of 9,119 unit tests
+and 8,528 documentation tests. Unit tests are executed by \texttt{pytest}.
 Documentation tests are executed by the \texttt{doctest} module included in
 Python's standard library. Parametrized tests are provided to ensure that
 behaviors implemented the same way against different classes produce
@@ -951,25 +927,27 @@ Abjad installed under different operating systems continue to pass all tests.
 For \texttt{pytest} see \textit{http://pytest.org}. For Travis CI see
 \textit{https://travis-ci.org}.}
 
-The absence of automated
-regression tests acts as a barrier to new contributors to the system (who
-effectively have no way to determine whether proposed changes to the system
-negatively impact the system) and severely attenuates the rate at which
-experienced developers can refactor the system during new feature development.
-Abjad currently comprises about 178,000 lines of code, and
-the Abjad repository, hosted on GitHub\footnote{https://github.com/Abjad/abjad},
+The absence of automated regression tests acts as a barrier to new contributors
+to the system (who effectively have no way to determine whether proposed
+changes to the system negatively impact the system) and severely attenuates the
+rate at which experienced developers can refactor the system during new feature
+development. Abjad currently comprises about 178,000 lines of code, and the
+Abjad repository, hosted on GitHub\footnote{https://github.com/Abjad/abjad},
 lists more than 8.7 million lines of code committed since the start of the
 project. This refactor ratio of about 50:1 means that each line of code in the
 Abjad codebase has been rewritten dozens of times. This freedom to refactor is
 possible only because of the approach to automated regression testing we have
 borrowed from the larger open-source community.
 
-Testing also benefits project continuance when the original developers of a music software system can no longer develop the system. Automated regression tests help make
-possible a changing of the guard from one set of developers to another. Automated tests serve as a type of functional specification of how a software system is supposed to behave after the system is altered. While automated tests alone will not ensure the continued development of any software
-system, adherence to the testing practices of the open-source
-community constitutes the most effective hedge available to music software
-systems developers to fend against project abandonment in the medium and long
-term.
+Testing also benefits project continuance when the original developers of a
+music software system can no longer develop the system. Automated regression
+tests help make possible a changing of the guard from one set of developers to
+another. Automated tests serve as a type of functional specification of how a
+software system is supposed to behave after the system is altered. While
+automated tests alone will not ensure the continued development of any software
+system, adherence to the testing practices of the open-source community
+constitutes the most effective hedge available to music software systems
+developers to fend against project abandonment in the medium and long term.
 
 \subsection{Extensibility}
 
@@ -979,35 +957,37 @@ control simplifies this contribution process.
 
 \subsection{Language Independence}
 
-Even though Python is an excellent programming
-language for developing a music software system like Abjad,\footnote{Aspects
-of Python we find particularly helpful include the availability of lists,
-dictionaries and sets as built-in types; the interface provided for string and
-Unicode objects; the unified approach to encapsulation provided by Python's
-understanding of namespaces; and the extensive functionality provided in the
-standard library.} the decision to implement Abjad in Python arises not
-from the specifics of the language but from the fact that the language is part
-of a global programming mainstream with tools and best practices that can be
-borrowed directly into music composition: by designing Abjad as an extension to
-Python, hundreds of print and Web Python resources become relevant to Abjad and to composition more broadly. The global community
-of developers working in Python also becomes available to composers, and vice versa.
+Even though Python is an excellent programming language for developing a music
+software system like Abjad,\footnote{Aspects of Python we find particularly
+helpful include the availability of lists, dictionaries and sets as built-in
+types; the interface provided for string and Unicode objects; the unified
+approach to encapsulation provided by Python's understanding of namespaces; and
+the extensive functionality provided in the standard library.} the decision to
+implement Abjad in Python arises not from the specifics of the language but
+from the fact that the language is part of a global programming mainstream with
+tools and best practices that can be borrowed directly into music composition:
+by designing Abjad as an extension to Python, hundreds of print and Web Python
+resources become relevant to Abjad and to composition more broadly. The global
+community of developers working in Python also becomes available to composers,
+and vice versa.
 
 \subsection{Embeddability}
 
 Abjad is an importable Python library. It can be used in whole or in part as a
 component of any Python-compatible system. Abjad requires few Python package
-dependencies and does not depend on any specific user application or graphic user
-interface. These qualities make Abjad an ideal project ideal for embedding in
-other software systems.
+dependencies and does not depend on any specific user application or graphic
+user interface. These qualities make Abjad an ideal project ideal for embedding
+in other software systems.
 
 For example, Abjad supports IPython
 Notebook\footnote{http://ipython.org/notebook.html}, a web-based interactive
 computational environment combining code execution, text, mathematics, plots
 and rich media into a single document. Notational output from Abjad can be
 transparently captured and embedded directly into an IPython Notebook that has
-loaded Abjad's IPython Notebook extension. IPython intercepts calls to Abjad's \texttt{show()}
-and rendered graphics appear in the Notebook alongside generating code. This allows scholars to quickly and intuitively create music texts which can be shared, edited and executed by other IPython
-users.
+loaded Abjad's IPython Notebook extension. IPython intercepts calls to Abjad's
+\texttt{show()} and rendered graphics appear in the Notebook alongside
+generating code. This allows scholars to quickly and intuitively create music
+texts which can be shared, edited and executed by other IPython users.
 
 \subsection{Maintainability}
 
@@ -1021,7 +1001,13 @@ distributed version control
 
 \section{conclusion} \label{sec:conclusion}
 
-Composers cannot participate fully in a digital society's new creative paradigms, the benefits of which have been made clear above, until they learn to code. Music software systems developers, by perpetually reinventing the wheel and apologetically concealing the interior functionality of computational models, have excluded composers from mainstream software development communities and activities for decades. It is time to assertively reverse this trend.
+Composers cannot participate fully in a digital society's new creative
+paradigms, the benefits of which have been made clear above, until they learn
+to code. Music software systems developers, by perpetually reinventing the
+wheel and apologetically concealing the interior functionality of computational
+models, have excluded composers from mainstream software development
+communities and activities for decades. It is time to assertively reverse this
+trend.
 
 \bibliography{tenor2015}
 \end{document}
