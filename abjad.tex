@@ -319,8 +319,8 @@ show(note)
 %%% ABJADBOOK END %%%
 
 \noindent Most of the examples shown in this paper are demonstrated in Python's
-interactive console. Real-world Abjad code is almost always
-structured as functions and classes written into files:
+interactive console. Real-world Abjad code is almost always structured as
+functions and classes written into files:
 
 \begin{comment}
 <abjad>[strip_prompt=true]
@@ -360,6 +360,9 @@ def make_nested_tuplet(
 \end{lstlisting}
 %%% ABJADBOOK END %%%
 
+\noindent The above function could then be used in other Python files, or in an
+interactive session:
+
 \begin{comment}
 <abjad>
 tuplet = make_nested_tuplet((7, 8), (3, -1, 2), 3)
@@ -375,10 +378,10 @@ show(tuplet)
 \includegraphics{assets/lilypond-4926e77647583925d3a89653f8577025.pdf}
 %%% ABJADBOOK END %%%
 
-Our decision to implement Abjad as an extension to an existing programming
-language (rather than inventing yet another domain-specific language)
-originates in the belief that music software systems work better when they
-accept the established fundamentals of programming\footnote{Programming
+\noindent Our decision to implement Abjad as an extension to an existing
+programming language (rather than inventing yet another domain-specific
+language) originates in the belief that music software systems work better when
+they accept the established fundamentals of programming\footnote{Programming
 fundamentals include things like the ways variables are created, references are
 handled, loops are structured and so on.} rather than introducing custom syntax
 for programming basics.
