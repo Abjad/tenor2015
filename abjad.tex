@@ -380,26 +380,21 @@ resource available to achieve our goals.}
 \section{The Abjad object model} \label{sec:object-model}
 
 Abjad models musical notation with \emph{components}, \emph{spanners} and
-\emph{indicators}; every notational element in Abjad belongs to one of these
-three families. Abjad provides \emph{component} object models of notes, rests,
-and chords, as well as models of container-like components of music notation,
+\emph{indicators}. Every notational element in Abjad belongs to one of these
+three families. Abjad models notes, rests
+and chords as classes that can be added into the container-like elements of music notation,
 such as tuplets, measures, voices, staves, and complete scores.\footnote{Abjad
 uses the term `leaf' to refer generally to notes, rests, and chords. This term,
 borrowed from graph theory, reflects the fact that notes, rests and chords
-cannot contain any other elements of music notation.} Composers arrange
-components hierarchically into a score tree, in which container components
-group leaf components together. \emph{Spanners} model notational constructs
+cannot contain other elements of music notation.} Spanners model notational constructs
 that cross different levels of hierarchy in the score tree, such as beams,
-slurs and glissandi, while \emph{indicators} model objects attached to a single
-component, such as articulations, time signatures, dynamics, and textual
-indications.\footnote{Indicators can have \emph{scope}, making them
-\emph{effective} for all other components in that scope following the component
-to which that indicator is attached until another indicator of the same type
-appears. Indicator scoping models how all notes in a voice can be marked as
-\emph{forte} until another note is marked as \emph{piano}. We have generalized
+slurs and glissandi. Indicators model objects attached to a single
+component, such as articulations, dynamics and time signatures.\footnote{Abjad indicators are scoped. Indicator scoping models how all notes in a voice can be marked
+\emph{forte} until another note is marked \emph{piano}. We have generalized
 the scoping behavior of indicators, allowing composers to annotate score
 structures by attaching arbitrary non-notating objects like dictionaries or
-custom classes to any component.}
+custom classes to any component.} Composers arrange
+components hierarchically into a score tree with spanners and indicators attached to components in the tree.
 
 \section{Bottom-up construction} \label{sec:bottom-up}
 
