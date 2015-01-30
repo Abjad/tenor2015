@@ -11,8 +11,8 @@
         \override SpacingSpanner.uniform-stretching = ##t
         \override TupletBracket.bracket-visibility = ##t
         \override TupletBracket.minimum-length = 3
-        \override TupletBracket.padding = 1
-        \override TupletBracket.outside-staff-padding = 1
+        \override TupletBracket.padding = 1.5
+        \override TupletBracket.outside-staff-padding = 2
         \override TupletBracket.staff-padding = 3
         \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
         \override TupletNumber.text = #tuplet-number::calc-fraction-text
