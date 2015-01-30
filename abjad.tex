@@ -425,7 +425,7 @@ custom classes to any component.}
 
 \section{Bottom-up construction} \label{sec:bottom-up}
 
-Abjad affords composers the ability to build scores from the bottom up. When
+Abjad allows composers to build scores from the bottom up. When
 working bottom-up, composers create individual notes, rests and chords that are
 grouped into tuplets, measures and voices and then nested into the largest
 elements of musical structure, like staves and complete scores. Abjad provides
@@ -521,7 +521,7 @@ show(score)
 \noindent Combining score components piece by piece into ever-larger aggregates
 gives composers fine-grained control over their compositional structures. Such
 control guarantees a high degree of compositional-process agnosticism on
-Abjad's part, and affords composers a solid framework on top of which they can
+Abjad's part, and gives composers a solid framework on top of which they can
 design and implement their own personal approaches to composition.
 
 Abjad never obscures the individual notational elements of the compositional
@@ -762,7 +762,7 @@ implement their own theories of composition.
 \section{Input flexibility}
 
 We believe that there should be multiple ways of instantiating compositional
-elements. Input flexibility affords composers the ability to create
+elements. Input flexibility allows composers to create
 compositional objects in whatever way closest aligns with their conception of
 music and their specific task at hand \cite{Kay:1996vn}. Abjad's score
 components can be created in a variety of ways. Leaves (such as notes) can be
@@ -775,7 +775,7 @@ strings parseable in one of the various micro-languages we have implemented.
 Score components created via string input can be potentially much more complex
 than those created parametrically because Abjad's microlanguage parsers have
 the ability to attach spanners and indicators to the created components or
-their children, if they are containers. Parametric instantiation affords
+their children, if they are containers. Parametric instantiation gives
 composers powerful procedural control over score structure while string
 instantiation allows for brevity and expressiveness. The score construction
 example above demonstrates both techniques.
@@ -877,7 +877,7 @@ Note('cs8')
 
 Composers can select components via Abjad's powerful top-level
 \texttt{iterate()} function, which exposes the score iteration interface as
-implemented in our \texttt{IterationAgent}. The iteration interface affords a
+implemented in our \texttt{IterationAgent}. The iteration interface provides a
 wide variety of selection criteria, such as class filters, logical tie
 selection and time-wise score traversal.
 
