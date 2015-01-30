@@ -35,4 +35,7 @@ the form of "to be".
 12. Maybe include "visual feedback" in the pervasive illustration section.
 
 13. In opening of section 7 (top-down), work in footnotes from Jeff about
-    earlier systems that analyzed or created phrase, figure, texture.
+earlier systems that analyzed or created phrase, figure, texture.
+
+14. Find a way to indent the code and notation examples ever so slightly (maybe
+three fixed-width spaces).
