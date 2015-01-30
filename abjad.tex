@@ -278,39 +278,11 @@ detail the language and its features. We also hope to make the global community
 of developers working in Python available to composers.
 \end{comment}
 
-\section{An example use session} \label{sec:example}
+\section{Working with Abjad} \label{sec:example}
 
 Abjad is not a stand-alone application. Nor is Abjad a programming language.
 Abjad instead adds a computational model of music notation to the Python programming language.
-By architecting Abjad as an extension to one of the most widely-used programming languages currently in use, we hope to make the considerable power of programming available to composers in as straightforward a way as possible. Abjad is implemented as a Python package; composers work with Abjad exactly the same way Python developers work with all the other packages available for the language.\footnote{See the Python Package Index for packages to extend Python for purposes as diverse as creative writing and aeronautical engineering. The Python Package Index contains 54,306 packages at the time or writing and is available at \textit{pypi.python.org}.}
-
-%This means that working
-%with Abjad is exactly the same as working with Python. In the simplest case
-%this means starting the Python interpreter, creating a single object like a
-%note and visualizing the note as music notation:
-
-%This means that composers who decide to model working with Abjad have access to all the features of one of the most widely-used and fully-developed programming languages ever invented.  
-
-\begin{comment}
-<abjad>
-from abjad import *
-note = Note("c'4")
-show(note)
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> from abjad import *
->>> note = Note("c'4")
->>> show(note)
-\end{lstlisting}
-\includegraphics{assets/lilypond-c018a545d264ff34225e9a3a5babb6c1.pdf}
-%%% ABJADBOOK END %%%
-
-\noindent Most of the examples shown in this paper are demonstrated in Python's
-interactive console. Real-world Abjad code is almost always structured as
-functions and classes written into files:
+By architecting Abjad as an extension to one of the most widely-used programming languages in the world, we hope to make the considerable power of programming available to composers in a straightforward a way. Abjad is implemented as a Python package;\footnote{See the Python Package Index for extensions to Python for purposes as diverse as creative writing and aeronautical engineering. The Python Package Index contains 54,306 packages at the time or writing and is available at \textit{https://pypi.python.org}.} composers work with Abjad exactly the same way developers work with all the other packages available for the language. This means that Abjad turns all or part of the work of composition into programming and that composers who work with Abjad structure parts of their musical thought as computer code. In the most common case this means opening a file, writing code and saving the file:
 
 \begin{comment}
 <abjad>[strip_prompt=true]
@@ -350,8 +322,7 @@ def make_nested_tuplet(
 \end{lstlisting}
 %%% ABJADBOOK END %%%
 
-\noindent The above function could then be used in other Python files, or in an
-interactive session:
+\noindent The contents of the file can then be used in other Python files or in an interactive session:
 
 \begin{comment}
 <abjad>
@@ -367,6 +338,28 @@ show(tuplet)
 \end{lstlisting}
 \includegraphics{assets/lilypond-4926e77647583925d3a89653f8577025.pdf}
 %%% ABJADBOOK END %%%
+
+%This means that composers who decide to model working with Abjad have access to all the features of one of the most widely-used and fully-developed programming languages ever invented.
+
+%\begin{comment}
+%<abjad>
+%from abjad import *
+%note = Note("c'4")
+%show(note)
+%</abjad>
+%\end{comment}
+%
+%%%% ABJADBOOK START %%%
+%\begin{lstlisting}
+%>>> from abjad import *
+%>>> note = Note("c'4")
+%>>> show(note)
+%\end{lstlisting}
+%\includegraphics{assets/lilypond-c018a545d264ff34225e9a3a5babb6c1.pdf}
+%%%% ABJADBOOK END %%%
+
+\noindent Most of the examples shown in this paper are demonstrated in Python's
+interactive console.
 
 \noindent Our decision to implement Abjad as an extension to an existing
 programming language (rather than inventing yet another domain-specific
