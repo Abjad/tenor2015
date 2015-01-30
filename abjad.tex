@@ -812,7 +812,7 @@ show(score)
 <abjad>
 iterator = iterate(score).by_timeline()
 for index, component in enumerate(iterator):
-    markup = Markup(index, Up).box()
+    markup = Markup(index, Up).pad_around(0.5).box()
     attach(markup, component)
 
 show(score)
@@ -823,12 +823,12 @@ show(score)
 \begin{lstlisting}
 >>> iterator = iterate(score).by_timeline()
 >>> for index, component in enumerate(iterator):
-...     markup = Markup(index, Up).box()
+...     markup = Markup(index, Up).pad_around(0.5).box()
 ...     attach(markup, component)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-a0f0024aef8572171e2aa922cc739cb1.pdf}
+\includegraphics{assets/lilypond-0a01efa1748eaea2385c849e49797cc2.pdf}
 %%% ABJADBOOK END %%%
 
 \section{Open-source best practices} \label{sec:open-source}

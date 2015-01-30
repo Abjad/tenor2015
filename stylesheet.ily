@@ -13,6 +13,8 @@
         \override TupletBracket.padding = 1.5
         \override TupletBracket.outside-staff-padding = 1.5
 
+        \override TextScript.outside-staff-padding = 1
+
         \override SpacingSpanner.strict-grace-spacing = ##t
         \override SpacingSpanner.strict-note-spacing = ##t
         \override SpacingSpanner.uniform-stretching = ##t
