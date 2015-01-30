@@ -420,7 +420,7 @@ Abjad models musical notation with \emph{components}, \emph{spanners} and
 three families. Abjad provides \emph{component} object models of notes, rests,
 and chords, as well as models of container-like components of music notation,
 such as tuplets, measures, voices, staves, and complete scores.\footnote{Abjad
-uses term `leaf' to refer generally to notes, rests, and chords. This term,
+uses the term `leaf' to refer generally to notes, rests, and chords. This term,
 borrowed from graph theory, reflects the fact that notes, rests and chords
 cannot contain any other elements of music notation.} Composers arrange
 components hierarchically into a score tree, in which container components
@@ -555,7 +555,7 @@ musical objects, each of which generates many components.
 
 Abjad provides a variety of factories for quickly and flexibly
 creating arbitrarily large amounts of notation. These range from simple
-leaf-generating functions like \texttt{make\_notes()}, which combine sequences
+note-generating functions like \texttt{make\_notes()}, which combine sequences
 of pitches and rhythms isorhythmically to generate selections of notes and
 rests, to more complexly-configured \emph{maker} classes for creating nuanced
 rhythmic patterns or entire scores.
@@ -705,10 +705,10 @@ implement their own models of composition.
 Input flexibility allows composers to create compositional objects in whatever
 way aligns with their conception of music and with the task at hand
 \cite{Kay:1996vn}. Abjad's score components can be created in a variety of
-ways. Leaves (such as notes) can be instantiated parametrically by specifying
-pitch and rhythm information numerically. Leaves can also be created via
-explicit \texttt{Pitch} and \texttt{Duration} objects. Containers (such as
-tuplets and measures) can be instantiated parametrically by specifying explicit
+ways. Notes and chords can be instantiated parametrically by specifying
+pitch and rhythm information numerically. These elements can also be created via
+explicit \texttt{Pitch} and \texttt{Duration} objects. Containers, such as
+tuplets and measures, can be instantiated parametrically by specifying explicit
 lists of components to be inserted as children. Abjad also allows many score
 objects to be created via strings parseable in one of the various
 micro-languages we have implemented. Score components created via string input
