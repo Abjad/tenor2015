@@ -964,7 +964,7 @@ Abjad codebase has been rewritten dozens of times. This freedom to refactor is
 possible only because of the approach to automated regression testing we have
 borrowed from the larger open-source community.
 
-Testing also benefits project continuance when the original developers of a music software system are no longer available to develop the system. Automated regression tests help make
+Testing also benefits project continuance when the original developers of a music software system can no longer develop the system. Automated regression tests help make
 possible a changing of the guard from one set of developers to another. Automated tests serve as a type of functional specification of how a software system is supposed to behave after the system is altered. While automated tests alone will not ensure the continued development of any software
 system, adherence to the testing practices of the open-source
 community constitutes the most effective hedge available to music software
@@ -977,10 +977,10 @@ As an open-source project, composers and researchers can contribute changes via
 git pull requests. A process of continuous integration and online version
 control simplifies this contribution process.
 
-\subsection{Language independence}
+\subsection{Language Independence}
 
 Even though Python is an excellent programming
-language for architecting a music software system like Abjad,\footnote{Aspects
+language for developing a music software system like Abjad,\footnote{Aspects
 of Python we find particularly helpful include the availability of lists,
 dictionaries and sets as built-in types; the interface provided for string and
 Unicode objects; the unified approach to encapsulation provided by Python's
@@ -995,7 +995,7 @@ of developers working in Python also becomes available to composers, and vice ve
 \subsection{Embeddability}
 
 Abjad is an importable Python library. It can be used in whole or in part as a
-component of any Python-compatible system. Abjad has few Python package
+component of any Python-compatible system. Abjad requires few Python package
 dependencies and does not depend on any specific user application or graphic user
 interface. These qualities make Abjad an ideal project ideal for embedding in
 other software systems.
@@ -1005,10 +1005,8 @@ Notebook\footnote{http://ipython.org/notebook.html}, a web-based interactive
 computational environment combining code execution, text, mathematics, plots
 and rich media into a single document. Notational output from Abjad can be
 transparently captured and embedded directly into an IPython Notebook that has
-loaded Abjad's IPython Notebook extension. Calls to Abjad's \texttt{show()} are
-intercepted and the rendered graphics are embedded directly into the Notebook
-along with the generating code. This allows scholars to quickly and intuitively
-create music texts which can be shared, edited and executed by other IPython
+loaded Abjad's IPython Notebook extension. IPython intercepts calls to Abjad's \texttt{show()}
+and rendered graphics appear in the Notebook alongside generating code. This allows scholars to quickly and intuitively create music texts which can be shared, edited and executed by other IPython
 users.
 
 \subsection{Maintainability}
