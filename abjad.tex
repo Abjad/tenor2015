@@ -100,7 +100,11 @@ for Formalized Score Control}
 \capstarttrue
 
 \begin{abstract}
-The Abjad API for Formalized Score Control extends the Python programming language with an open-source, object-oriented software system that enables composers to build scores through the encoded aggregation of elemental notation objects. A summary of widely used notation systems' intended uses motivates a discussion of system design priorities with examples of system use.
+The Abjad API for Formalized Score Control extends the Python programming
+language with an open-source, object-oriented software system that enables
+composers to build scores through the encoded aggregation of elemental notation
+objects. A summary of widely used notation systems' intended uses motivates a
+discussion of system design priorities with examples of system use.
 \end{abstract}
 
 \section{Introduction} \label{sec:background}
@@ -144,33 +148,34 @@ encoded aggregation of notational symbols.
 
 \section{A Taxonomy} \label{sec:background}
 
-Many music software systems implement models of music,
-but few of these implement models of notation.\footnote{Computational
-models of music might entail the representation of higher-level musical
-entities apparent in the acts of listening and analysis but absent in the
-symbols of notation themselves, as determined to be creatively exigent.
-Programming researchers and musical artists have modeled many such
-extrasymbolic musical entities, such as large-scale form and transition
-\cite{polansky1991morphological}, \cite{uno1994temporal},
-\cite{dobrian1995algorithmic}, \cite{abrams1999higher}, \cite{Yoo1983}, texture
-\cite{Horenstein:2004kx}, contrapuntal relationships \cite{Boenn:2009oq},
-\cite{Acevedo2005}, \cite{Anders:2011kl}, \cite{Balser:1990tg},
-\cite{Jones:2000hc}, \cite{uno1994temporal}, \cite{Bell:1995ij},
-\cite{farbood2001analysis}, \cite{Cope:2002fv}, \cite{Laurson:2005dz},
-\cite{Polansky:2011fu}, \cite{Ebcioglu:1980kl}, harmonic tension and resolution
-\cite{Melo2003}, \cite{Wiggins1999}, \cite{Foster:1995qa}, melody
-\cite{Hornel:1993mi}, \cite{Smith:1992pi}, meter \cite{Hamanaka:2005ff}, rhythm
-\cite{Nauert2007}, \cite{Degazio:1996lh}, \cite{Collins:2003bs}, timbre
-\cite{Xenakis:1991fu}, \cite{Creasey:1996ye}, \cite{Osaka2004}, temperament
-\cite{Seymour:2007qo}, \cite{Graf:2006il}, and ornamentation
-\cite{Ariza:2003zt}, \cite{Chico-Topfer:1998jl}. This work overlaps fruitfully
-with analysis tasks, and models of listening and cognition can enable novel
-methods of high-level musical structures and transformations, like dramatic
-direction, tension, and transition between sections \cite[108]{Collins2009}.} 
-Music software systems that model notation can be classified according to their generative tasks.\footnote{Software production exists as an organizationally designed feedback loop
-between production values and implementation \cite{Derniame:1999fk}, and it is
-possible to understand a system by understanding the purpose for which it was
-initially designed. This purpose can be termed a software system's generative task. In the analysis of
+Many music software systems implement models of music, but few of these
+implement models of notation.\footnote{Computational models of music might
+entail the representation of higher-level musical entities apparent in the acts
+of listening and analysis but absent in the symbols of notation themselves, as
+determined to be creatively exigent. Programming researchers and musical
+artists have modeled many such extrasymbolic musical entities, such as
+large-scale form and transition \cite{polansky1991morphological},
+\cite{uno1994temporal}, \cite{dobrian1995algorithmic}, \cite{abrams1999higher},
+\cite{Yoo1983}, texture \cite{Horenstein:2004kx}, contrapuntal relationships
+\cite{Boenn:2009oq}, \cite{Acevedo2005}, \cite{Anders:2011kl},
+\cite{Balser:1990tg}, \cite{Jones:2000hc}, \cite{uno1994temporal},
+\cite{Bell:1995ij}, \cite{farbood2001analysis}, \cite{Cope:2002fv},
+\cite{Laurson:2005dz}, \cite{Polansky:2011fu}, \cite{Ebcioglu:1980kl}, harmonic
+tension and resolution \cite{Melo2003}, \cite{Wiggins1999},
+\cite{Foster:1995qa}, melody \cite{Hornel:1993mi}, \cite{Smith:1992pi}, meter
+\cite{Hamanaka:2005ff}, rhythm \cite{Nauert2007}, \cite{Degazio:1996lh},
+\cite{Collins:2003bs}, timbre \cite{Xenakis:1991fu}, \cite{Creasey:1996ye},
+\cite{Osaka2004}, temperament \cite{Seymour:2007qo}, \cite{Graf:2006il}, and
+ornamentation \cite{Ariza:2003zt}, \cite{Chico-Topfer:1998jl}. This work
+overlaps fruitfully with analysis tasks, and models of listening and cognition
+can enable novel methods of high-level musical structures and transformations,
+like dramatic direction, tension, and transition between sections
+\cite[108]{Collins2009}.} Music software systems that model notation can be
+classified according to their generative tasks.\footnote{Software production
+exists as an organizationally designed feedback loop between production values
+and implementation \cite{Derniame:1999fk}, and it is possible to understand a
+system by understanding the purpose for which it was initially designed. This
+purpose can be termed a software system's generative task. In the analysis of
 systems created for use by artists, this priority yields a dilemma instantly,
 as analyses that explain a system's affordances with reference to intended
 purpose must contend with the creative use of technology by artists: a system's
@@ -204,14 +209,12 @@ between intended use and system development.}
 
 Many notation systems --- such as Finale, Sibelius, SCORE \cite{Smith:1972mw},
 Igor, Berlioz, Lilypond \cite{Nienhuys:2003ve}, GUIDO \cite{Hoos:1998bd}
-NoteAbility \cite{hamel1noteability}, and Nightingale --- exist to help people
-engrave and format music documents; because these systems provide functions that operate on
+NoteAbility \cite{hamel1noteability}, and Nightingale --- exist to help people engrave and format music documents; because these systems provide functions that operate on
 notational elements (i.e., transposition, spacing, and playback), hidden models of common practice music notation must underly all of
 these systems, and each system's interface constrains and directs the ways in which
 users interact with this underlying model of notation. These systems
-enable users to engrave and format music without exposing any particular underlying model of composition, and without requiring, or even inviting the user to computationally model composition. Such systems might go so far as to enable scripting, as
-in the case of Sibelius's ManuScript \cite{Technology:qc} scripting language or
-Lilypond's embedded Scheme code; although these systems enable low-level automation of notational elements, it remains difficult to model higher-level processes and relationships. \footnote{An attempt to more comprehensively
+enable users to engrave and format music without exposing any particular underlying model of composition, and without requiring, or even inviting the user to computationally model composition. Such systems might go so far as to enable scripting, as in the case of Sibelius's ManuScript \cite{Technology:qc} scripting language or Lilypond's embedded Scheme code; although these systems enable low-level automation of notational elements, it remains difficult to model higher-level
+processes and relationships. \footnote{An attempt to more comprehensively
 survey the history of object-oriented notation systems for composition, in the
 context of the broader history of object-oriented programming, lies beyond the
 scope of this paper but has recently been undertaken elsewhere
@@ -264,15 +267,16 @@ of developers working in Python available to composers.
 \section{An example use session} \label{sec:example}
 
 Abjad is not a stand-alone application. Nor is Abjad a programming language.
-Abjad extends the Python programming language with a computational model of music notation.
-We have architected Abjad in the form of a Python package designed to be used the same
-way as the many other packages that already exist.\footnote{See the
-Python Package Index for functionality to extend the language for purposes as
-diverse as creative writing and aeronautical engineering. The Python Package
-Index contains 54,306 packages at the time or writing and is available at
-\textit{pypi.python.org}.}
-This means that working with Abjad is exactly the same as working with Python.
-In the simplest case this means starting the Python interpreter, creating a single object like a note and visualizing the note as music notation:
+Abjad extends the Python programming language with a computational model of
+music notation. We have architected Abjad in the form of a Python package
+designed to be used the same way as the many other packages that already
+exist.\footnote{See the Python Package Index for functionality to extend the
+language for purposes as diverse as creative writing and aeronautical
+engineering. The Python Package Index contains 54,306 packages at the time or
+writing and is available at \textit{pypi.python.org}.} This means that working
+with Abjad is exactly the same as working with Python. In the simplest case
+this means starting the Python interpreter, creating a single object like a
+note and visualizing the note as music notation:
 
 \begin{comment}
 <abjad>
@@ -292,8 +296,8 @@ show(note)
 %%% ABJADBOOK END %%%
 
 \noindent Most of the examples shown in this paper are demonstrated in Python's
-interactive console. Real-world Abjad code is almost always
-structured as functions and classes written into files:
+interactive console. Real-world Abjad code is almost always structured as
+functions and classes written into files:
 
 \begin{comment}
 <abjad>[strip_prompt=true]
@@ -333,6 +337,9 @@ def make_nested_tuplet(
 \end{lstlisting}
 %%% ABJADBOOK END %%%
 
+\noindent The above function could then be used in other Python files, or in an
+interactive session:
+
 \begin{comment}
 <abjad>
 tuplet = make_nested_tuplet((7, 8), (3, -1, 2), 3)
@@ -348,13 +355,13 @@ show(tuplet)
 \includegraphics{assets/lilypond-4926e77647583925d3a89653f8577025.pdf}
 %%% ABJADBOOK END %%%
 
-Our decision to implement Abjad as an extension to an
-existing programming language (rather than inventing yet another domain-specific
-language) originates in the belief that music software systems work better when they accept the established fundamentals of programming\footnote{Programming fundamentals include things like the ways variables are created, references are handled, loops are structured and so on.} rather than introducing custom syntax for programming basics. 
-
-
-
-
+\noindent Our decision to implement Abjad as an extension to an existing
+programming language (rather than inventing yet another domain-specific
+language) originates in the belief that music software systems work better when
+they accept the established fundamentals of programming\footnote{Programming
+fundamentals include things like the ways variables are created, references are
+handled, loops are structured and so on.} rather than introducing custom syntax
+for programming basics.
 
 We believe it is important for composers to be able to illustrate the objects
 they work with as they compose. Abjad reflects this priority in its
@@ -391,8 +398,6 @@ with a different typesetting engine, the composer-facing  interface provided by
 illustrate compositional objects. LilyPond simply happens to be the best
 resource available to achieve our goals.}
 
-
-
 \section{The Abjad object model}
 
 Abjad models musical score in terms of \emph{components}, \emph{spanners} and
@@ -419,13 +424,14 @@ custom classes to any component.}
 
 \section{Bottom-up construction} \label{sec:bottom-up}
 
-Abjad affords composers the ability to build scores from the bottom up.
-When working bottom-up, composers create individual notes, rests and chords that
-are grouped into tuplets, measures and voices and then nested into the
-largest elements of musical structure, like staves and complete scores.
-Abjad provides for this type of component nesting via a collection of methods which
-append, extend or insert into container-like components as though they were lists:\footnote{Abjad's
-container interface derives from Python's mutable sequence protocol, which specifies an interface to list-like objects.}
+Abjad affords composers the ability to build scores from the bottom up. When
+working bottom-up, composers create individual notes, rests and chords that are
+grouped into tuplets, measures and voices and then nested into the largest
+elements of musical structure, like staves and complete scores. Abjad provides
+for this type of component nesting via a collection of methods which append,
+extend or insert into container-like components as though they were
+lists:\footnote{Abjad's container interface derives from Python's mutable
+sequence protocol, which specifies an interface to list-like objects.}
 
 \begin{comment}
 <abjad>
@@ -522,7 +528,20 @@ process.
 
 \section{Top-down construction} \label{sec:top-down}
 
-What are the objects of music composition? Individual notes, rests and chords constitute for most composers only the necessary means to achieve some larger, musically interesting result. Which leads to the observation that the interesting ideas of composition are almost always higher-level groupings of symbols on the page: notes taken in sequence to constitute figure, gesture or melody; chords taken in sequence as a progression; attack points arranged in time as the scaffolding of some larger orchestral texture. These entities, and the others like them, all may result from a flash of compositional intuition that then requires detailed attention to elaborate and score correctly for performance. With experience, use of Abjad migrates from the type of bottom-up assembly of individual components described in the section above to a type of top-down use of the system like the one we describe below. The motivation for this change in one's way of working usually derives from a desire to work with high-level, and more interesting, objects of musical thought.  
+What are the objects of music composition? Individual notes, rests and chords
+constitute for most composers only the necessary means to achieve some larger,
+musically interesting result. Which leads to the observation that the
+interesting ideas of composition are almost always higher-level groupings of
+symbols on the page: notes taken in sequence to constitute figure, gesture or
+melody; chords taken in sequence as a progression; attack points arranged in
+time as the scaffolding of some larger orchestral texture. These entities, and
+the others like them, all may result from a flash of compositional intuition
+that then requires detailed attention to elaborate and score correctly for
+performance. With experience, use of Abjad migrates from the type of bottom-up
+assembly of individual components described in the section above to a type of
+top-down use of the system like the one we describe below. The motivation for
+this change in one's way of working usually derives from a desire to work with
+high-level, and more interesting, objects of musical thought.
 
 \noindent Abjad provides a variety of factories for quickly and flexibly creating
 arbitrarily large amounts of notation. These range from simple leaf-generating
@@ -548,10 +567,10 @@ show(staff)
 \includegraphics{assets/lilypond-64155bcaa384109d40ae2616a2224dd1.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Abjad's \emph{rhythm makers} are factory classes which, once configured, can be
-called like functions to procedurally inscribe rhythms into a series of
-\emph{divisions}. The \texttt{NoteRhythmMaker} fills in divisions with notes,
-tied as necessary, to equal the duration of those divisions.
+\noindent Abjad's \emph{rhythm makers} are factory classes which, once
+configured, can be called like functions to procedurally inscribe rhythms into
+a series of \emph{divisions}. The \texttt{NoteRhythmMaker} fills in divisions
+with notes, tied as necessary, to equal the duration of those divisions.
 
 \begin{comment}
 <abjad>
@@ -570,9 +589,9 @@ show(rhythm_maker, divisions=divisions)
 \includegraphics{assets/lilypond-af2aa88dc88360a6a0cf5c3f8da17b85.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can create even
-more complex rhythmic output, integrating configurable patterns of durations,
-tupletting and silences.
+\noindent Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can
+create even more complex rhythmic output, integrating configurable patterns of
+durations, tupletting and silences.
 
 \begin{comment}
 <abjad>
@@ -639,11 +658,11 @@ template = templatetools.\
 quartet_score = template()
 iterator = iterate(quartet_score).by_class(Voice)
 for index, voice in enumerate(iterator):
-    divisions = sequencetools.rotate_sequence(
-        divisions, -1)
     selections = rhythm_maker(divisions, seeds=-index)
     measure = Measure((9, 8), selections)
     voice.append(measure)
+    divisions = sequencetools.rotate_sequence(
+        divisions, -1)
 
 show(quartet_score)
 </abjad>
@@ -656,182 +675,88 @@ show(quartet_score)
 >>> quartet_score = template()
 >>> iterator = iterate(quartet_score).by_class(Voice)
 >>> for index, voice in enumerate(iterator):
-...     divisions = sequencetools.rotate_sequence(
-...         divisions, -1)
 ...     selections = rhythm_maker(divisions, seeds=-index)
 ...     measure = Measure((9, 8), selections)
 ...     voice.append(measure)
+...     divisions = sequencetools.rotate_sequence(
+...         divisions, -1)
 ...
 >>> show(quartet_score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-07f633b33deadb5b938f688d727585f0.pdf}
+\includegraphics{assets/lilypond-4598fe78647d623cdf81100e0343874a.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Nested configuration via parameter grouping with specifiers provides
-considerable conceptual clarity, but is also potentially labor-intensive. Abjad
-mitigates the work of complex configuration by affording composers with
-powerful templating tools. New objects can be created from old ones, optionally
-replacing any initialization parameter in the templated object at any depth via
-the top-level \texttt{new()} function. Notice how the new rhythm maker below
-has both altered its talea counts and added a new initialization keyword.
+\noindent We believe that there are more ways to generate notation than we can
+conceive of. While Abjad has implemented many notational factories, we do not
+think these will ever be sufficient for any one artist's compositional process.
+This is one of the most important reasons we have chosen to architect Abjad in
+such a way as to encourage other composers to extend the system as they work to
+implement their own theories of composition.
 
-\section{Templating}
-
-\noindent As demonstrated earlier, Abjad's \emph{rhythm makers} are highly-configurable
-factory classes for generating rhythmic patterns. Many of their initialization
-keywords expect \emph{specifiers} --- object-oriented bundles of related
-parameters --- which can make their configurations potentially deeply nested.
-
-\begin{comment}
-<abjad>
-rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-    talea=rhythmmakertools.Talea(
-        counts=(1, 2, 3),
-        denominator=16,
-        ),
-    )
-print(format(rhythm_maker))
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-...     talea=rhythmmakertools.Talea(
-...         counts=(1, 2, 3),
-...         denominator=16,
-...         ),
-...     )
->>> print(format(rhythm_maker))
-rhythmmakertools.TaleaRhythmMaker(
-    talea=rhythmmakertools.Talea(
-        counts=(1, 2, 3),
-        denominator=16,
-        ),
-    )
-\end{lstlisting}
-%%% ABJADBOOK END %%%
-
-\begin{comment}
-<abjad>
-divisions = [(3, 8), (1, 4), (5, 16), (1, 4)]
-show(rhythm_maker, divisions=divisions)
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> divisions = [(3, 8), (1, 4), (5, 16), (1, 4)]
->>> show(rhythm_maker, divisions=divisions)
-\end{lstlisting}
-\includegraphics{assets/lilypond-8d11397fa8a7ed768182e6c89abe52f0.pdf}
-%%% ABJADBOOK END %%%
-
-\begin{comment}
-<abjad>
-new_rhythm_maker = new(rhythm_maker,
-    extra_counts_per_division=(0, 1),
-    talea__counts=(1, 2, 3, 4),
-    )
-print(format(new_rhythm_maker))
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> new_rhythm_maker = new(rhythm_maker,
-...     extra_counts_per_division=(0, 1),
-...     talea__counts=(1, 2, 3, 4),
-...     )
->>> print(format(new_rhythm_maker))
-rhythmmakertools.TaleaRhythmMaker(
-    talea=rhythmmakertools.Talea(
-        counts=(1, 2, 3, 4),
-        denominator=16,
-        ),
-    extra_counts_per_division=(0, 1),
-    )
-\end{lstlisting}
-%%% ABJADBOOK END %%%
-
-\begin{comment}
-<abjad>
-show(new_rhythm_maker, divisions=divisions)
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> show(new_rhythm_maker, divisions=divisions)
-\end{lstlisting}
-\includegraphics{assets/lilypond-a769357ad75c64d981f789b0e3a0f4da.pdf}
-%%% ABJADBOOK END %%%
-
-\noindent Repeating the templating process creates new and different yet still related
-objects, allowing composers to easily play with variation at the level of
-procedure.
-
-\begin{comment}
-<abjad>
-new_new_rhythm_maker = new(new_rhythm_maker,
-    extra_counts_per_division=(0, 1, 2),
-    beam_specifier=rhythmmakertools.BeamSpecifier(
-        beam_divisions_together=True,
-        ),
-    )
-print(format(new_new_rhythm_maker))
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> new_new_rhythm_maker = new(new_rhythm_maker,
-...     extra_counts_per_division=(0, 1, 2),
-...     beam_specifier=rhythmmakertools.BeamSpecifier(
-...         beam_divisions_together=True,
-...         ),
-...     )
->>> print(format(new_new_rhythm_maker))
-rhythmmakertools.TaleaRhythmMaker(
-    talea=rhythmmakertools.Talea(
-        counts=(1, 2, 3, 4),
-        denominator=16,
-        ),
-    extra_counts_per_division=(0, 1, 2),
-    beam_specifier=rhythmmakertools.BeamSpecifier(
-        beam_each_division=True,
-        beam_divisions_together=True,
-        ),
-    )
-\end{lstlisting}
-%%% ABJADBOOK END %%%
-
-\begin{comment}
-<abjad>
-show(new_new_rhythm_maker, divisions=divisions)
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> show(new_new_rhythm_maker, divisions=divisions)
-\end{lstlisting}
-\includegraphics{assets/lilypond-23e2752f7db7cf02e31cf8e9f399c5b6.pdf}
-%%% ABJADBOOK END %%%
-
-%By providing core functionality oriented toward the elements of standard
-%notation, Abjad strives to remain as agnostic as possible to various
-%composition techniques.
-
-\noindent We believe that there are more ways to generate notation than we can conceive
-of. While Abjad has implemented many notational factories, we do not think
-these will ever be sufficient for any one artist's compositional process. This is one of the most important reasons we have chosen to architect Abjad in such a way as to encourage other composers to extend the system as they work to implement their own theories of composition.
-
-%extension by composers
-%interacting with the system in the spirit of compositional agnosticism.
-
-%is what comes closest to the
-%work of beginning to implement one's own system of composition.
+%\section{Templating}
+%
+%\noindent As demonstrated earlier, Abjad's \emph{rhythm makers} are
+%highly-configurable factory classes for generating rhythmic patterns. Many of
+%their initialization keywords expect \emph{specifiers} --- object-oriented
+%bundles of related parameters --- which can make their configurations
+%potentially deeply nested.
+%
+%\begin{comment}
+%<abjad>
+%rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+%    talea=rhythmmakertools.Talea(
+%        counts=(1, 2, 3),
+%        denominator=16,
+%        ),
+%    )
+%print(format(rhythm_maker))
+%</abjad>
+%\end{comment}
+%
+%\begin{comment}
+%<abjad>
+%divisions = [(3, 8), (1, 4), (5, 16), (1, 4)]
+%show(rhythm_maker, divisions=divisions)
+%</abjad>
+%\end{comment}
+%
+%\begin{comment}
+%<abjad>
+%new_rhythm_maker = new(rhythm_maker,
+%    extra_counts_per_division=(0, 1),
+%    talea__counts=(1, 2, 3, 4),
+%    )
+%print(format(new_rhythm_maker))
+%</abjad>
+%\end{comment}
+%
+%\begin{comment}
+%<abjad>
+%show(new_rhythm_maker, divisions=divisions)
+%</abjad>
+%\end{comment}
+%
+%\noindent Repeating the templating process creates new and different yet still
+%related objects, allowing composers to easily play with variation at the level
+%of procedure.
+%
+%\begin{comment}
+%<abjad>
+%new_new_rhythm_maker = new(new_rhythm_maker,
+%    extra_counts_per_division=(0, 1, 2),
+%    beam_specifier=rhythmmakertools.BeamSpecifier(
+%        beam_divisions_together=True,
+%        ),
+%    )
+%print(format(new_new_rhythm_maker))
+%</abjad>
+%\end{comment}
+%
+%\begin{comment}
+%<abjad>
+%show(new_new_rhythm_maker, divisions=divisions)
+%</abjad>
+%\end{comment}
 
 \section{Input flexibility}
 
@@ -1037,17 +962,18 @@ overwhelmingly silent on questions of software testing. None of the sources
 cited in this article reference software test methodologies. The same appears
 to be true for the larger list of sources included in
 \cite{trevino2013compositional}.\footnote{Chris Ariza's work developing
-AthenaCL \cite{Ariza2005} and the development of Music21 \cite{Ariza2010} led by Michael
-Cuthbert are important exceptions. Both projects are implemented in Python and
-both projects feature approaches to testing aligned to those outlined above.}
-Why should this be the case? One possibility is that authors of music software
-systems have, in fact, availed themselves of important improvements in software
-test methods developed over the previous decades but have, for whatever
-reasons, remained quiet on the matter in the publication record. We think a
-more likely explanation is that the culture of software best practices now
-widely followed in the open-source community simply has not yet arrived in the
-field of music software systems development (and especially in the development
-of music software systems designed for noncommercial applications).
+AthenaCL \cite{Ariza2005} and the development of Music21 \cite{Ariza2010} led
+by Michael Cuthbert are important exceptions. Both projects are implemented in
+Python and both projects feature approaches to testing aligned to those
+outlined above.} Why should this be the case? One possibility is that authors
+of music software systems have, in fact, availed themselves of important
+improvements in software test methods developed over the previous decades but
+have, for whatever reasons, remained quiet on the matter in the publication
+record. We think a more likely explanation is that the culture of software best
+practices now widely followed in the open-source community simply has not yet
+arrived in the field of music software systems development (and especially in
+the development of music software systems designed for noncommercial
+applications).
 
 Our experience developing Abjad leads us to believe that the focus on testing
 absent the majority of music software systems is a liability to the field in
