@@ -215,11 +215,7 @@ user to computationally model composition. Such systems might go so far as to
 enable scripting, as in the case of Sibelius's ManuScript \cite{Technology:qc}
 scripting language or Lilypond's embedded Scheme code; although these systems
 enable the automation of notational elements, it remains difficult to model
-compositional processes and relationships.\footnote{An attempt to more
-comprehensively survey the history of object-oriented notation systems for
-composition, in the context of the broader history of object-oriented
-programming, lies beyond the scope of this paper but has recently been
-undertaken elsewhere \cite{trevino2013compositional}.}
+compositional processes and relationships.
 
 Other systems provide environments specifically for the modeling of
 higher-level processes and relationships. OpenMusic \cite{Assayag:1999sw}, PWGL
@@ -247,7 +243,11 @@ for optical score recognition (NIFF) \cite{niff1995niff}. Since its release in
 2004, MusicXML has become a valid interchange format for over 160 applications
 and maintains a relatively application-agnostic status, as it was designed with
 the generative task of acting as an interchange format between variously tasked
-systems \cite{Good:2001if}.
+systems \cite{Good:2001if}.\footnote{An attempt to more
+comprehensively survey the history of object-oriented notation systems for
+composition, in the context of the broader history of object-oriented
+programming, lies beyond the scope of this paper but has recently been
+undertaken elsewhere\cite{trevino2013compositional}.}
 
 \begin{comment}
 Our insistence on this principle of extension --- of adding functionality to an
@@ -413,7 +413,7 @@ resource available to achieve our goals.}
 
 Abjad models musical score in terms of \emph{components}, \emph{spanners} and
 \emph{indicators}. These families of objects represent all of the notational
-primitives in Abjad. Abjad defines components equal to notes, rests and chords
+elements in Abjad. Abjad defines components equal to notes, rests and chords
 taken together with the container-like elements of music notation, such as
 tuplets, measures, voices, staves and complete scores.\footnote{Abjad uses term
 `leaf' to generalize notes, rests and chords. The term is borrowed from graph
