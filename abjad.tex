@@ -543,19 +543,22 @@ durations, tupletting and silences.
 
 \begin{comment}
 <abjad>
+burnish_specifier = rhythmmakertools.BurnishSpecifier(
+    left_classes=(Rest, Note),
+    left_counts=(1,),
+    )
+talea = rhythmmakertools.Talea(
+    counts=(1, 2, 3),
+    denominator=16,
+    )
+tie_specifier = rhythmmakertools.TieSpecifier(
+    tie_across_divisions=True,
+    )
 rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-    burnish_specifier=rhythmmakertools.BurnishSpecifier(
-        left_classes=(Rest, Note),
-        left_counts=(1,),
-        ),
+    burnish_specifier=burnish_specifier,
     extra_counts_per_division=(0, 1, 1),
-    talea=rhythmmakertools.Talea(
-        counts=(1, 2, 3),
-        denominator=16,
-        ),
-    tie_specifier=rhythmmakertools.TieSpecifier(
-        tie_across_divisions=True,
-        ),
+    talea=talea,
+    tie_specifier=tie_specifier,
     )
 show(rhythm_maker, divisions=divisions)
 </abjad>
@@ -563,19 +566,22 @@ show(rhythm_maker, divisions=divisions)
 
 %%% ABJADBOOK START %%%
 \begin{lstlisting}
+>>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
+...     left_classes=(Rest, Note),
+...     left_counts=(1,),
+...     )
+>>> talea = rhythmmakertools.Talea(
+...     counts=(1, 2, 3),
+...     denominator=16,
+...     )
+>>> tie_specifier = rhythmmakertools.TieSpecifier(
+...     tie_across_divisions=True,
+...     )
 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
-...         left_classes=(Rest, Note),
-...         left_counts=(1,),
-...         ),
+...     burnish_specifier=burnish_specifier,
 ...     extra_counts_per_division=(0, 1, 1),
-...     talea=rhythmmakertools.Talea(
-...         counts=(1, 2, 3),
-...         denominator=16,
-...         ),
-...     tie_specifier=rhythmmakertools.TieSpecifier(
-...         tie_across_divisions=True,
-...         ),
+...     talea=talea,
+...     tie_specifier=tie_specifier,
 ...     )
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
@@ -604,7 +610,8 @@ template = templatetools.\
 quartet_score = template()
 iterator = iterate(quartet_score).by_class(Voice)
 for index, voice in enumerate(iterator):
-    selections = rhythm_maker(divisions, seeds=-index)
+    seed = -index
+    selections = rhythm_maker(divisions, seeds=seed)
     measure = Measure((9, 8), selections)
     voice.append(measure)
     divisions = sequencetools.rotate_sequence(
@@ -621,7 +628,8 @@ show(quartet_score)
 >>> quartet_score = template()
 >>> iterator = iterate(quartet_score).by_class(Voice)
 >>> for index, voice in enumerate(iterator):
-...     selections = rhythm_maker(divisions, seeds=-index)
+...     seed = -index
+...     selections = rhythm_maker(divisions, seeds=seed)
 ...     measure = Measure((9, 8), selections)
 ...     voice.append(measure)
 ...     divisions = sequencetools.rotate_sequence(
