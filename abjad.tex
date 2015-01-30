@@ -326,7 +326,7 @@ interfaces to working with objects as \emph{protocols}. Important protocols
 include the \emph{iterator protocol} for iterating over the contents of a
 container-like object, the \emph{sequence protocol} for getting items and
 length from a container-like object and the \emph{mutable container protocol}
-for mutating the contents of a container-like object.} 
+for mutating the contents of a container-like object.}
 \end{comment}
 
 \begin{comment}
@@ -638,19 +638,18 @@ demonstrates both of these techniques.
 
 \section{Selection flexibility} \label{sec:selection-flexibility}
 
-Abjad allows composers to select and operate on arbitrary collections of score
-objects. A single operation can be mapped onto the entirety of a selection, and
-ad hoc intermediate structures can be created as they become compositionally
-relevant. Composers can refer to selections in several potentially intuitive
-ways: by number, name, or temporal succession. In light of western composition
-history's infatuation with the resolution of vertical and horizontal operation,
-Abjad provides object models of vertical relationships in the score tree.
+Abjad allows composers to select and operate on arbitrary collections of
+objects in a score. A single operation can be mapped onto the entirety of a
+selection, and ad hoc intermediate structures can be created as they become
+compositionally relevant. Composers can refer to selections in several
+potentially intuitive ways: by number, name, or temporal succession. In light
+of western composition history's infatuation with the resolution of vertical
+and horizontal operation, Abjad provides object models of vertical
+relationships in the score tree.
 
-selecting one object: by number, by time relation, by name.
+%selecting one object: by number, by time relation, by name.
 
-selecting many things: by slicing, by select\_leaves(), by iteration.
-
-[TREVOR]
+%selecting many things: by slicing, by select\_leaves(), by iteration.
 
 %Abjad allows the numeric addressing of all score components. Abjad score
 %components are zero-indexed from the start of the container which holds them:
@@ -727,13 +726,13 @@ Note('cs8')
 \end{lstlisting}
 %%% ABJADBOOK END %%%
 
-Composers can select components via Abjad's powerful top-level
-\texttt{iterate()} function, which exposes the score iteration interface as
-implemented in our \texttt{IterationAgent}. The iteration interface provides a
-wide variety of selection criteria, such as class filters, logical tie
-selection, and time-wise score traversal:\footnote{A logical tie is a selection
-of one or more components which represent all of the components tied together
-by zero or more ties.}
+Composers can select components via the top-level \texttt{iterate()} function,
+which exposes Abjad's score iteration interface. This iteration interface
+provides a wide variety of selection criteria, such as class filters, logical
+tie selection, and time-wise score traversal:\footnote{A logical tie is a
+selection of one or more leaf components which represent all of the components
+tied together by zero or more ties. A single note, untied, is considered a
+\emph{trivial} logical tie.}
 
 \begin{comment}
 <abjad>
