@@ -678,11 +678,11 @@ template = templatetools.\
 quartet_score = template()
 iterator = iterate(quartet_score).by_class(Voice)
 for index, voice in enumerate(iterator):
-    divisions = sequencetools.rotate_sequence(
-        divisions, -1)
     selections = rhythm_maker(divisions, seeds=-index)
     measure = Measure((9, 8), selections)
     voice.append(measure)
+    divisions = sequencetools.rotate_sequence(
+        divisions, -1)
 
 show(quartet_score)
 </abjad>
@@ -695,15 +695,15 @@ show(quartet_score)
 >>> quartet_score = template()
 >>> iterator = iterate(quartet_score).by_class(Voice)
 >>> for index, voice in enumerate(iterator):
-...     divisions = sequencetools.rotate_sequence(
-...         divisions, -1)
 ...     selections = rhythm_maker(divisions, seeds=-index)
 ...     measure = Measure((9, 8), selections)
 ...     voice.append(measure)
+...     divisions = sequencetools.rotate_sequence(
+...         divisions, -1)
 ...
 >>> show(quartet_score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-07f633b33deadb5b938f688d727585f0.pdf}
+\includegraphics{assets/lilypond-4598fe78647d623cdf81100e0343874a.pdf}
 %%% ABJADBOOK END %%%
 
 \noindent We believe that there are more ways to generate notation than we can
