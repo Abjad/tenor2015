@@ -209,22 +209,40 @@ between intended use and system development.}
 
 Many notation systems --- such as Finale, Sibelius, SCORE \cite{Smith:1972mw},
 Igor, Berlioz, Lilypond \cite{Nienhuys:2003ve}, GUIDO \cite{Hoos:1998bd}
-NoteAbility \cite{hamel1noteability}, and Nightingale --- exist to help people engrave and format music documents; because these systems provide functions that operate on
-notational elements (i.e., transposition, spacing, and playback), hidden models of common practice music notation must underly all of
-these systems, and each system's interface constrains and directs the ways in which
-users interact with this underlying model of notation. These systems
-enable users to engrave and format music without exposing any particular underlying model of composition, and without requiring, or even inviting the user to computationally model composition. Such systems might go so far as to enable scripting, as in the case of Sibelius's ManuScript \cite{Technology:qc} scripting language or Lilypond's embedded Scheme code; although these systems enable the automation of notational elements, it remains difficult to model compositional
-processes and relationships.\footnote{An attempt to more comprehensively
-survey the history of object-oriented notation systems for composition, in the
-context of the broader history of object-oriented programming, lies beyond the
-scope of this paper but has recently been undertaken elsewhere
-\cite{trevino2013compositional}.}
+NoteAbility \cite{hamel1noteability}, and Nightingale --- exist to help people
+engrave and format music documents; because these systems provide functions
+that operate on notational elements (i.e., transposition, spacing, and
+playback), hidden models of common practice music notation must underly all of
+these systems, and each system's interface constrains and directs the ways in
+which users interact with this underlying model of notation. These systems
+enable users to engrave and format music without exposing any particular
+underlying model of composition, and without requiring, or even inviting the
+user to computationally model composition. Such systems might go so far as to
+enable scripting, as in the case of Sibelius's ManuScript \cite{Technology:qc}
+scripting language or Lilypond's embedded Scheme code; although these systems
+enable the automation of notational elements, it remains difficult to model
+compositional processes and relationships.\footnote{An attempt to more
+comprehensively survey the history of object-oriented notation systems for
+composition, in the context of the broader history of object-oriented
+programming, lies beyond the scope of this paper but has recently been
+undertaken elsewhere \cite{trevino2013compositional}.}
 
-Other systems provide environments specifically for the modeling of higher-level processes and relationships. OpenMusic \cite{Assayag:1999sw}, PWGL \cite{Laurson:2009qf}, and BACH
-\cite{agostini2013real} supply an interface to a model of notation and a toolkit that enables the user to model composition, often with the aid of the above notation editors for
-final engraving and layout via intermediate file formats. 
+Other systems provide environments specifically for the modeling of
+higher-level processes and relationships. OpenMusic \cite{Assayag:1999sw}, PWGL
+\cite{Laurson:2009qf}, and BACH \cite{agostini2013real} supply an interface to
+a model of notation and a toolkit that enables the user to model composition,
+often with the aid of the above notation editors for final engraving and layout
+via intermediate file formats.
 
-Some composers make scores with software systems that provide neither a model of notation nor a model of composition. Graphic layout programs, such as AutoCAD and Adobe Illustrator, have been designed broadly for the placement and design of graphic elements. While scripting enables automation, composers must model both notation and composition from scratch, and the symbolic scope of potential automations described in the course of modeling ensures that composers spend as much time addressing elemental typographical concerns (e.g., accidental collisions) as would be spent modeling compositional processes and relationships.
+Some composers make scores with software systems that provide neither a model
+of notation nor a model of composition. Graphic layout programs, such as
+AutoCAD and Adobe Illustrator, have been designed broadly for the placement and
+design of graphic elements. While scripting enables automation, composers must
+model both notation and composition from scratch, and the symbolic scope of
+potential automations described in the course of modeling ensures that
+composers spend as much time addressing elemental typographical concerns (e.g.,
+accidental collisions) as would be spent modeling compositional processes and
+relationships.
 
 Many models of musical notation have been designed for purposes of
 corpus-based computational musicology. Formats such as DARM, SMDL,
@@ -542,12 +560,12 @@ top-down use of the system like the one we describe below. The motivation for
 this change in one's way of working usually derives from a desire to work with
 high-level, and more interesting, objects of musical thought.
 
-\noindent Abjad provides a variety of factories for quickly and flexibly creating
-arbitrarily large amounts of notation. These range from simple leaf-generating
-functions like \texttt{make\_notes()}, which
-combine sequences of pitches and rhythms isorhythmically to generate selections
-of notes and rests, to more complexly-configured \emph{maker} classes for
-creating nuanced rhythmic patterns or entire scores.
+\noindent Abjad provides a variety of factories for quickly and flexibly
+creating arbitrarily large amounts of notation. These range from simple
+leaf-generating functions like \texttt{make\_notes()}, which combine sequences
+of pitches and rhythms isorhythmically to generate selections of notes and
+rests, to more complexly-configured \emph{maker} classes for creating nuanced
+rhythmic patterns or entire scores.
 
 \begin{comment}
 <abjad>
