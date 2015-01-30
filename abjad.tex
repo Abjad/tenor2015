@@ -113,34 +113,28 @@ system designed to help composers build scores in
 an iterative and incremental way.  Abjad is implemented in the
 Python\footnote{www.python.org} programming language and architected as an
 object-oriented collection of packages, classes and functions. Composers can
-visualize their work as publication-quality score at all stages of the
+visualize their work as publication-quality notation at all stages of the
 compositional process using Abjad's interface to the
-LilyPond\footnote{www.lilypond.org} music notation package. Although the first
+LilyPond\footnote{www.lilypond.org} music notation package. The first
 versions of Abjad were implemented in 1997 and the project website is now
-visited thousands of times each month, we have never documented the design
-priorities that have guided us as we have built the system. In this paper we
-detail some of the most important principles we have followed in our work
-architecting Abjad. The priorities we document here arise in answer to
-domain-specific questions of music modeling (what are the fundamental elements
-of music notation? which elements of music notation should be modeled
-hierarchically? which programming constructs are available to help model the
+visited thousands of times each month. This paper details some of the most important principles guiding the development of Abjad. The priorities we document here arise in answer to
+domain-specific questions of music modeling (What are the fundamental elements
+of music notation? Which elements of music notation should be modeled
+hierarchically? Which programming constructs are available to help model the
 temporal relationships arising between entities in musical score?) as well as
 in consideration of the ways in which best practices taken from software
-engineering can apply to the development of a music software system like ours
-(which programming concepts concerning things like iteration, aggregation and
-encapsulation make sense to make available to composers? which existing tools
+engineering can apply to the development of a music software system
+(Which programming concepts concerning things like iteration, aggregation and
+encapsulation make sense to make available to composers? Which existing tools
 to test, document and deploy other open-source projects are available to help
-develop a music software system like Abjad?). In the sections that follow we
+develop a music software system?). In the sections that follow we
 discuss the background and motivations that lead us to ask questions like these
 and then elaborate the design priorities we have arrived at in our ongoing work
 architecting Abjad.
 
 While many environments for both notation and sound production been been
-created within the last twenty years, the following discussion focuses solely
-on the production of notation: Abjad enables composers to express both low- and
-high-level compositional ideas by extending a widely used programming language
-with a detailed object model of common practice musical notation. To minimize
-the restriction of artistic thought's infinite possibility while maximizing the
+created within the last twenty years, the discussion focuses solely
+on the production of notation: Abjad enables composers to model compositional ideas by extending a widely used programming language with a detailed object model of common practice musical notation. To minimize the restriction of artistic thought's infinite possibility while maximizing the
 ability to specify elegantly any arbitrary symbolic relationship, Abjad does
 this without prescribing explicit or implicit models of music or composition:
 Abjad defines composition narrowly as the act of creating a document via the
@@ -1085,6 +1079,7 @@ distributed version control
 
 \section{conclusion} \label{sec:conclusion}
 
+Composers cannot participate fully in digital society's new creative paradigms, the benefits of which have been made clear above, until they learn to code. While exclude composers 
 we want composers to become programmers. for extremely good reasons. and the
 priorities we have detailed here help make the case for why. [TREVOR]
 
