@@ -1,49 +1,18 @@
-0. Add a note (somewhere) about how the Abjad docs run to more than 800 pages.
+1. Add a note (somewhere) about how the Abjad docs run to more than 800 pages.
 The point is important to make not because we want to brag about the docs but
 because we want to point out that this paper is very much an overview.
 
-1. Include an example of the system in action as early in the paper as
-possible. Perhaps right away in "bottom-up construction".
+2. Format URLs in a uniform way. Probabaly with the http prefix always present.
 
-2. Override the beams and tuplet brackets to be flat in all examples.
+3. Remember to test all URLs in the document.
 
-3. Use rhythmic staves for the examples that include only rhythms. This is
-already the case for all the examples except the four-staff rhythm-maker
-example.
+4. Find a place to explain FSC and why we created the acronym.
 
-4. Format URLs in a uniform way. Probabaly with the http prefix always present.
+5. Google for proper formatting of page numbered citations.
 
-5. Remember to test all URLs in the document.
-
-6. Find a place to explain FSC and why we created the acronym.
-
-7. Google for proper formatting of page numbered citations.
-
-8. Put a note into the open-source values section about the importance of
-maintaining a system (not just building it once).
-
-9. There's an implicit pedagogical or educational message in the way we develop
+6. There's an implicit pedagogical or educational message in the way we develop
 the system: we believe a certain subset of composers should become programmers.
 how does this fact relate to our design principles?
-
-10. In section on "extension" add a footnote with some usage statistics about
-Python's penetration.
-
-11. Our insistence on this principle of extension ... maybe revise to remove
-the form of "to be".
-
-12. Maybe include "visual feedback" in the pervasive illustration section.
-
-13. In opening of section 7 (top-down), work in footnotes from Jeff about
-earlier systems that analyzed or created phrase, figure, texture.
-
-14. Find a way to indent the code and notation examples ever so slightly (maybe
-three fixed-width spaces).
-
-15. Work the phrase 'stand-alone application' into the taxonomy.
-
-16. Create acknowledgments section. Thank the LilyPond developers. Thank the
-Python community. Thank our own user community.
 
 things possible in conclusion: return to valorizing agnosticism; return to
 valorizing (parametric) exploration; notational foundation; exhort composers to
