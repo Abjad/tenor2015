@@ -763,7 +763,7 @@ show(score)
 
 Abjad has benefited enormously from programming best practices developed by the
 open-source community. As described previously, the extension of an existing
-language informs the project as a first principle. The following best practices
+language informs the project as a first principle. The following other development practices
 from the open-source community have also positively impacted the project and
 might be helpful in the development of other music software systems.
 
@@ -797,14 +797,13 @@ codebase without tests authored to document changes to the system. Continuous
 integration testing is handled by Travis CI to ensure that nightly builds of
 Abjad installed under different operating systems continue to pass all tests.
 For \texttt{pytest} see \textit{http://pytest.org}. For Travis CI see
-\textit{https://travis-ci.org}.}
-
-The absence of automated regression tests acts as a barrier to new contributors
-to the system (who effectively have no way to determine whether proposed
-changes to the system negatively impact the system) and severely attenuates the
+\textit{https://travis-ci.org}.} The presence of automated regression tests acts as an incentive to new contributors
+to the system (who can test whether proposed
+changes to the system work correctly with existing features) and greatly increases the
 rate at which experienced developers can refactor the system during new feature
-development. Abjad currently comprises about 178,000 lines of code, and the
-Abjad repository, hosted on GitHub\footnote{https://github.com/Abjad/abjad},
+development.
+Abjad currently comprises about 178,000 lines of code, and the
+Abjad repository, hosted on GitHub,\footnote{https://github.com/Abjad/abjad}
 lists more than 8.7 million lines of code committed since the start of the
 project. This refactor ratio of about 50:1 means that each line of code in the
 Abjad codebase has been rewritten dozens of times. This freedom to refactor is
