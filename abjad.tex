@@ -497,7 +497,7 @@ combine sequences of pitches and rhythms to generate patterned selections
 of notes and rests, to more complexly-configured maker classes for
 creating nuanced rhythmic patterns or entire scores.
 
-As an example, consider the \texttt{rhythmmakertools} package included with Abjad. 
+As an example, consider the \texttt{rhythmmakertools} package included with Abjad.
 The classes provided in this package are factory classes which, once
 configured, can be called like functions to inscribe rhythms into
 a series of beats or other time divisions. The example below integrates configurable patterns of durations, tupletting and silences:
@@ -521,6 +521,7 @@ rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
     tie_specifier=tie_specifier,
     )
+divisions = [(3, 8), (5, 16), (1, 4), (3, 16)]
 show(rhythm_maker, divisions=divisions)
 </abjad>
 \end{comment}
@@ -544,6 +545,7 @@ show(rhythm_maker, divisions=divisions)
 ...     talea=talea,
 ...     tie_specifier=tie_specifier,
 ...     )
+>>> divisions = [(3, 8), (5, 16), (1, 4), (3, 16)]
 >>> show(rhythm_maker, divisions=divisions)
 \end{lstlisting}
 \includegraphics{assets/lilypond-c238b5fdf445554d95cebd52911b461e.pdf}
@@ -558,49 +560,37 @@ without becoming ensnared in the vagaries of notation. Rhythm makers are
 classes, and they can be subclassed and extended to customize behavior. Like
 other objects, they can be passed as parameters to configure larger makers.
 
-\section{Bottom-up \& top-down together}
-
-Another common factory pattern in Abjad, score templates encapsulate the
-work of building the skeletons of complete scores, including voices, staves,
-staff groups, clefs and other indications pertinent to the intended
-instrumentation or typography. Score iteration can combine rhythm makers with
-score templates, as well as bottom-up construction, to generate complete scores:
-
 \begin{comment}
 <abjad>
-template = templatetools.\
-    GroupedRhythmicStavesScoreTemplate(4)
-quartet_score = template()
-iterator = iterate(quartet_score).by_class(Voice)
-for index, voice in enumerate(iterator):
-    seed = -index
-    selections = rhythm_maker(divisions, seeds=seed)
+rhythmic_score = Score()
+for i in range(8):
+    selections = rhythm_maker(divisions, seeds=i)
     measure = Measure((9, 8), selections)
-    voice.append(measure)
+    staff = Staff(context_name='RhythmicStaff')
+    staff.append(measure)
+    rhythmic_score.append(staff)
     divisions = sequencetools.rotate_sequence(
-        divisions, -1)
+        divisions, 1)
 
-show(quartet_score)
+show(rhythmic_score)
 </abjad>
 \end{comment}
 
 %%% ABJADBOOK START %%%
 \begin{lstlisting}
->>> template = templatetools.\
-...     GroupedRhythmicStavesScoreTemplate(4)
->>> quartet_score = template()
->>> iterator = iterate(quartet_score).by_class(Voice)
->>> for index, voice in enumerate(iterator):
-...     seed = -index
-...     selections = rhythm_maker(divisions, seeds=seed)
+>>> rhythmic_score = Score()
+>>> for i in range(8):
+...     selections = rhythm_maker(divisions, seeds=i)
 ...     measure = Measure((9, 8), selections)
-...     voice.append(measure)
+...     staff = Staff(context_name='RhythmicStaff')
+...     staff.append(measure)
+...     rhythmic_score.append(staff)
 ...     divisions = sequencetools.rotate_sequence(
-...         divisions, -1)
+...         divisions, 1)
 ...
->>> show(quartet_score)
+>>> show(rhythmic_score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-4598fe78647d623cdf81100e0343874a.pdf}
+\includegraphics{assets/lilypond-89acf493fafea6ee83e3032bbed09718.pdf}
 %%% ABJADBOOK END %%%
 
 \section{Input flexibility} \label{sec:input-flexibility}
