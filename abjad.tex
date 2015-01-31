@@ -653,25 +653,12 @@ demonstrates both of these techniques.
 
 Abjad allows composers to select and operate on collections of
 objects in a score. Composers can select objects in several
-ways: by name, numeric indices or iteration. A single operation can be mapped onto the entirety of a selection. Ad hoc intermediate structures can be created as they become
+ways: by name, numeric indices or iteration.
+Ad hoc intermediate structures can be created as they become
 compositionally relevant.
+A single operation, such as attaching an articulation, can then be mapped onto the entirety of a selection.
 
-%selecting one object: by number, by time relation, by name.
-
-%selecting many things: by slicing, by select\_leaves(), by iteration.
-
-%Abjad allows the numeric addressing of all score components. Abjad score
-%components are zero-indexed from the start of the container which holds them:
-%the statement \texttt{staff[0]} addresses the first component contained in
-%\texttt{staff} while the statement \texttt{staff[1]} addresses the component
-%after that, and so on. Negative indices address components from the end of the
-%container which holds them. Python's slice notation may be used to retrieve an
-%arbitrary number of contiguous components at one time. As an example of the
-%latter, the statement \texttt{staff[15:25]} selects the ten components in
-%\texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
-%addressing regime follow those of Python's list and tuple interface exactly.
-
-Consider the two-staff score created earlier. Because both staves were given
+\noindent Consider the two-staff score created earlier. Because both staves were given
 explicit names, the upper staff can be selected by name:
 
 \begin{comment}
