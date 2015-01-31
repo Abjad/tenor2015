@@ -251,7 +251,7 @@ composition, in the context of the broader history of object-oriented
 programming, lies beyond the scope of this paper but has recently been
 undertaken elsewhere\cite{trevino2013compositional}.}
 
-\section{Working with Abjad} \label{sec:example}
+\section{Abjad basics} \label{sec:example}
 
 Abjad is not a stand-alone application. Nor is Abjad a programming language.
 Abjad instead adds a computational model of music notation to the Python programming language.
@@ -497,14 +497,10 @@ combine sequences of pitches and rhythms to generate patterned selections
 of notes and rests, to more complexly-configured maker classes for
 creating nuanced rhythmic patterns or entire scores.
 
-\noindent Abjad's \emph{rhythm makers} are factory classes which, once
-configured, can be called like functions to procedurally inscribe rhythms into
-a series of \emph{divisions}. The \texttt{NoteRhythmMaker} fills in divisions
-with notes, tied as necessary, to equal the duration of those divisions.
-
-\noindent Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can
-create even more complex rhythmic output, integrating configurable patterns of
-durations, tupletting and silences.
+As an example, consider the \texttt{rhythmmakertools} package included with Abjad. 
+The classes provided in this package are factory classes which, once
+configured, can be called like functions to inscribe rhythms into
+a series of beats or other time divisions. The example below integrates configurable patterns of durations, tupletting and silences:
 
 \begin{comment}
 <abjad>
@@ -562,7 +558,7 @@ without becoming ensnared in the vagaries of notation. Rhythm makers are
 classes, and they can be subclassed and extended to customize behavior. Like
 other objects, they can be passed as parameters to configure larger makers.
 
-\section{Synthesis: bottom-up \& top-down together}
+\section{Bottom-up \& top-down together}
 
 Another common factory pattern in Abjad, score templates encapsulate the
 work of building the skeletons of complete scores, including voices, staves,
