@@ -406,7 +406,7 @@ measures and voices that may then be included in even high-level containers,
 such as staves and scores.\footnote{Unlike many notation packages, Abjad does
 not require composers to structure music into measures. Abjad's tuple, voice,
 staff, and score container components can hold leaves (notes, rests and chords)
-directly.} Abjad implements this style of component aggregation via a
+directly.}\footnote{Notes, rests and chords may be initialized with pitches named according to either American or European conventions, with the pitch numbers of American pitch-class theory or from combinations of Abjad pitch and duration objects.} Abjad implements this style of component aggregation via a
 collection of methods which append, extend or insert into container-like
 components as though they were lists:\footnote{Abjad's container interface
 derives from Python's mutable sequence protocol, which specifies an interface
@@ -627,6 +627,7 @@ show(rhythmic_score)
 \includegraphics{assets/lilypond-89acf493fafea6ee83e3032bbed09718.pdf}
 %%% ABJADBOOK END %%%
 
+\begin{comment}
 \section{Input flexibility} \label{sec:input-flexibility}
 
 Input flexibility allows composers to create compositional objects in whatever
@@ -646,6 +647,7 @@ components are containers). Parametric instantiation gives composers powerful
 procedural control over score structure while string instantiation provides
 concisely specified expression. The score construction examples above
 demonstrates both of these techniques.
+\end{comment}
 
 \section{Selection flexibility} \label{sec:selection-flexibility}
 
