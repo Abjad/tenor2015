@@ -671,27 +671,9 @@ compositionally relevant.
 %\texttt{staff} between indices 15 and 25. The conventions of Abjad's numeric
 %addressing regime follow those of Python's list and tuple interface exactly.
 
-Consider the two-staff score created earlier. The upper staff can be selected
-by indexing the first child of the first child of the score, i.e. the first
-staff in the staff group which is the first child of the score itself.
-
-\begin{comment}
-<abjad>
-upper_staff = score[0][0]
-show(upper_staff)
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> upper_staff = score[0][0]
->>> show(upper_staff)
-\end{lstlisting}
-\includegraphics{assets/lilypond-dcce2b5927dd4f606034c3efcde7da2e.pdf}
-%%% ABJADBOOK END %%%
-
-Because both staves were given explicit names, they can also be selected by
-those names, regardless of their depth in the score hierarchy.
+Consider the two-staff score created earlier. Because both staves were given
+explicit names, they can also be selected by those names, regardless of their
+depth in the score hierarchy. Here we select the lower staff by name:
 
 \begin{comment}
 <abjad>
@@ -708,7 +690,26 @@ show(lower_staff)
 \includegraphics{assets/lilypond-fa746e527d218a814e36af2f46d314bb.pdf}
 %%% ABJADBOOK END %%%
 
-A score container's leaves --- the notes, chords and rests at the bottom of the
+\noindent The upper staff can be selected by indexing the first child of the
+first child of the score, i.e. the first staff in the staff group which is the
+first child of the score itself.
+
+\begin{comment}
+<abjad>
+upper_staff = score[0][0]
+show(upper_staff)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
+\begin{lstlisting}
+>>> upper_staff = score[0][0]
+>>> show(upper_staff)
+\end{lstlisting}
+\includegraphics{assets/lilypond-dcce2b5927dd4f606034c3efcde7da2e.pdf}
+%%% ABJADBOOK END %%%
+
+\noindent A score container's leaves --- the notes, chords and rests at the bottom of the
 score hierarchy which cannot, by definition, contain any other score component
 --- can be selected by that container's \texttt{select\_leaves()} method.
 
