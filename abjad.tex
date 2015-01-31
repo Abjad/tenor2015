@@ -709,11 +709,7 @@ show(upper_staff)
 
 \noindent The top-level \texttt{iterate()} function exposes Abjad's score iteration interface. This interface
 provides a collection of methods for iterating over the components in a score
-according to various criteria. Such criteria include component
-class, groups of tied notes and attack point order:\footnote{Abjad uses the term \emph{logical tie}
-to refer to a selection of one or more leaf components which represent all of the
-components tied together by zero or more ties; a single note, untied, is
-considered a \emph{trivial} logical tie.}
+in different ways. 
 
 \begin{comment}
 <abjad>
@@ -733,6 +729,12 @@ show(score)
 \end{lstlisting}
 \includegraphics{assets/lilypond-b7a01ad584c3c470c0bbff20fbc76741.pdf}
 %%% ABJADBOOK END %%%
+
+\noindent Iteration by groups of tied notes:\footnote{Abjad uses the term \emph{logical tie}
+to refer to a selection of one or more leaf components which represent all of the
+components tied together by zero or more ties; a single note, untied, is
+considered a \emph{trivial} logical tie.}
+
 
 \begin{comment}
 <abjad>
@@ -758,6 +760,8 @@ show(score)
 \end{lstlisting}
 \includegraphics{assets/lilypond-a692b35a07435259861a4299267be394.pdf}
 %%% ABJADBOOK END %%%
+
+\noindent Iteration by attack point order:
 
 \begin{comment}
 <abjad>
