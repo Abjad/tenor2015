@@ -737,13 +737,14 @@ Note('cs8')
 \end{lstlisting}
 %%% ABJADBOOK END %%%
 
-Composers can select components via the top-level \texttt{iterate()} function,
-which exposes Abjad's score iteration interface. This iteration interface
-provides a wide variety of selection criteria, such as class filters, logical
-tie selection, and time-wise score traversal:\footnote{A logical tie is a
-selection of one or more leaf components which represent all of the components
-tied together by zero or more ties. A single note, untied, is considered a
-\emph{trivial} logical tie.}
+Composers can also select components through iteration. The top-level
+\texttt{iterate()} function exposes Abjad's score iteration interface which
+provides a collection of methods for iterating over the components in score
+according to various criteria. Such criteria include filtering by component
+class, grouping by logical tie, and time-wise traversal:\footnote{A logical tie
+is a selection of one or more leaf components which represent all of the
+components tied together by zero or more ties. A single note, untied, is
+considered a \emph{trivial} logical tie.}
 
 \begin{comment}
 <abjad>
@@ -769,6 +770,8 @@ show(score)
 for logical_tie in iterate(score).by_logical_tie():
     if 1 < len(logical_tie):
         attach(Fermata(), logical_tie.tail)
+        for note in logical_tie:
+            override(note).note_head.style = 'cross'
 
 show(score)
 </abjad>
@@ -779,10 +782,12 @@ show(score)
 >>> for logical_tie in iterate(score).by_logical_tie():
 ...     if 1 < len(logical_tie):
 ...         attach(Fermata(), logical_tie.tail)
+...         for note in logical_tie:
+...             override(note).note_head.style = 'cross'
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-b5f9325282fd0c528bd1874a4b8a6987.pdf}
+\includegraphics{assets/lilypond-a692b35a07435259861a4299267be394.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{comment}
@@ -805,7 +810,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-cab0e364ff6f8132f4f5ea06b1e3a947.pdf}
+\includegraphics{assets/lilypond-a8c80733c1d89558f3f0c4e69eec6409.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{figure*}
