@@ -381,7 +381,7 @@ sequence protocol, which specifies an interface to list-like objects.}
 
 \begin{comment}
 <abjad>
-outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
+outer_tuplet_one = Tuplet((2, 3), "d''16 f'8.")
 inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
 outer_tuplet_one.append(inner_tuplet)
 outer_tuplet_two = Tuplet((4, 5))
@@ -403,7 +403,7 @@ show(score)
 
 %%% ABJADBOOK START %%%
 \begin{lstlisting}
->>> outer_tuplet_one = Tuplet((2, 3), "d''16 ef'8.")
+>>> outer_tuplet_one = Tuplet((2, 3), "d''16 f'8.")
 >>> inner_tuplet = Tuplet((4, 5), "cs''16 e'16 d'2")
 >>> outer_tuplet_one.append(inner_tuplet)
 >>> outer_tuplet_two = Tuplet((4, 5))
@@ -421,7 +421,7 @@ show(score)
 >>> score = Score([staff_group])
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-1c885bfebd0d1fe0357ba25ba72d36ba.pdf}
+\includegraphics{assets/lilypond-45865c9ff19c72c1c9f7a6f4234e8546.pdf}
 %%% ABJADBOOK END %%%
 
 \noindent Ties, slurs and other spanners attach to score components via Abjad's
@@ -459,7 +459,7 @@ show(score)
 >>> attach(Clef('bass'), lower_leaves[0])
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-19c9fd0f2ed858d81b6840584a4e0cc8.pdf}
+\includegraphics{assets/lilypond-b8f044cb7178ea31797238c629d3f54c.pdf}
 %%% ABJADBOOK END %%%
 
 \noindent When does it make sense for composers to work with Abjad in the
@@ -657,7 +657,7 @@ show(upper_staff)
 >>> upper_staff = score[0][0]
 >>> show(upper_staff)
 \end{lstlisting}
-\includegraphics{assets/lilypond-5db9f4197c984cbc17b69ed1ab39af68.pdf}
+\includegraphics{assets/lilypond-dcce2b5927dd4f606034c3efcde7da2e.pdf}
 %%% ABJADBOOK END %%%
 
 Because both staves were given explicit names, they can also be selected by
@@ -729,7 +729,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-1aa26e8361e9c7841287eeed734f1cb9.pdf}
+\includegraphics{assets/lilypond-b7a01ad584c3c470c0bbff20fbc76741.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{comment}
@@ -752,7 +752,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-fff28391092702cdbeee1a1a28ff395d.pdf}
+\includegraphics{assets/lilypond-b5f9325282fd0c528bd1874a4b8a6987.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{comment}
@@ -775,7 +775,7 @@ show(score)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-0a01efa1748eaea2385c849e49797cc2.pdf}
+\includegraphics{assets/lilypond-2456d51cfca254abae0bf44f6030df7a.pdf}
 %%% ABJADBOOK END %%%
 
 \section{Open-source best practices} \label{sec:open-source}
