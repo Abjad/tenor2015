@@ -672,44 +672,45 @@ compositionally relevant.
 %addressing regime follow those of Python's list and tuple interface exactly.
 
 Consider the two-staff score created earlier. Because both staves were given
-explicit names, the lower staff can be selected by name:
+explicit names, the upper staff can be selected by name:
 
 \begin{comment}
 <abjad>
-lower_staff = score['Lower Staff']
-show(lower_staff)
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> lower_staff = score['Lower Staff']
->>> show(lower_staff)
-\end{lstlisting}
-\includegraphics{assets/lilypond-fa746e527d218a814e36af2f46d314bb.pdf}
-%%% ABJADBOOK END %%%
-
-\noindent Using numeric indices, the upper staff can be selected by indexing the first child of the
-first child of the score:
-
-\begin{comment}
-<abjad>
-upper_staff = score[0][0]
+upper_staff = score['Upper Staff']
 show(upper_staff)
 </abjad>
 \end{comment}
 
 %%% ABJADBOOK START %%%
 \begin{lstlisting}
->>> upper_staff = score[0][0]
+>>> upper_staff = score['Upper Staff']
 >>> show(upper_staff)
 \end{lstlisting}
 \includegraphics{assets/lilypond-dcce2b5927dd4f606034c3efcde7da2e.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent The top-level \texttt{iterate()} function exposes Abjad's score iteration interface. This interface
-provides a collection of methods for iterating over the components in a score
-in different ways. 
+\noindent Using numeric indices, the lower staff can be selected by indexing
+the second child of the first child of the score:
+
+\begin{comment}
+<abjad>
+lower_staff = score[0][1]
+show(lower_staff)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
+\begin{lstlisting}
+>>> lower_staff = score[0][1]
+>>> show(lower_staff)
+\end{lstlisting}
+\includegraphics{assets/lilypond-fa746e527d218a814e36af2f46d314bb.pdf}
+%%% ABJADBOOK END %%%
+
+\noindent The top-level \texttt{iterate()} function exposes Abjad's score
+iteration interface. This interface provides a collection of methods for
+iterating over the components in a score in different ways. For example, only
+the \texttt{Note} objects can be selected from the lower staff:
 
 \begin{comment}
 <abjad>
@@ -730,10 +731,11 @@ show(score)
 \includegraphics{assets/lilypond-b7a01ad584c3c470c0bbff20fbc76741.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Iteration by groups of tied notes:\footnote{Abjad uses the term \emph{logical tie}
-to refer to a selection of one or more leaf components which represent all of the
-components tied together by zero or more ties; a single note, untied, is
-considered a \emph{trivial} logical tie.}
+\noindent Groups of tied notes can be selected from an entire
+score:\footnote{Abjad uses the term \emph{logical tie} to refer to a selection
+of one or more leaf components which represent all of the components tied
+together by zero or more ties; a single note, untied, is considered a
+\emph{trivial} logical tie.}
 
 
 \begin{comment}
@@ -761,7 +763,7 @@ show(score)
 \includegraphics{assets/lilypond-a692b35a07435259861a4299267be394.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Iteration by attack point order:
+\noindent An entire score can be iterated in attack-point order:
 
 \begin{comment}
 <abjad>
