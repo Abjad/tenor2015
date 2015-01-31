@@ -749,30 +749,30 @@ show(score)
 \includegraphics{assets/lilypond-a692b35a07435259861a4299267be394.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent All notes and rests can be iterated in attack-point order:
-
-\begin{comment}
-<abjad>
-iterator = iterate(score).by_timeline()
-for i, leaf in enumerate(iterator):
-    markup = Markup(i + 1, Up).pad_around(0.5).box()
-    attach(markup, leaf)
-
-show(score)
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> iterator = iterate(score).by_timeline()
->>> for i, leaf in enumerate(iterator):
-...     markup = Markup(i + 1, Up).pad_around(0.5).box()
-...     attach(markup, leaf)
-...
->>> show(score)
-\end{lstlisting}
-\includegraphics{assets/lilypond-a8c80733c1d89558f3f0c4e69eec6409.pdf}
-%%% ABJADBOOK END %%%
+%\noindent All notes and rests can be iterated in attack-point order:
+%
+%\begin{comment}
+%<abjad>
+%iterator = iterate(score).by_timeline()
+%for i, leaf in enumerate(iterator):
+%    markup = Markup(i + 1, Up).pad_around(0.5).box()
+%    attach(markup, leaf)
+%
+%show(score)
+%</abjad>
+%\end{comment}
+%
+%%%% ABJADBOOK START %%%
+%\begin{lstlisting}
+%>>> iterator = iterate(score).by_timeline()
+%>>> for i, leaf in enumerate(iterator):
+%...     markup = Markup(i + 1, Up).pad_around(0.5).box()
+%...     attach(markup, leaf)
+%...
+%>>> show(score)
+%\end{lstlisting}
+%\includegraphics{assets/lilypond-a8c80733c1d89558f3f0c4e69eec6409.pdf}
+%%%% ABJADBOOK END %%%
 
 \begin{figure*}
     \centering
