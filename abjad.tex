@@ -749,31 +749,6 @@ show(score)
 \includegraphics{assets/lilypond-a692b35a07435259861a4299267be394.pdf}
 %%% ABJADBOOK END %%%
 
-%\noindent All notes and rests can be iterated in attack-point order:
-%
-%\begin{comment}
-%<abjad>
-%iterator = iterate(score).by_timeline()
-%for i, leaf in enumerate(iterator):
-%    markup = Markup(i + 1, Up).pad_around(0.5).box()
-%    attach(markup, leaf)
-%
-%show(score)
-%</abjad>
-%\end{comment}
-%
-%%%% ABJADBOOK START %%%
-%\begin{lstlisting}
-%>>> iterator = iterate(score).by_timeline()
-%>>> for i, leaf in enumerate(iterator):
-%...     markup = Markup(i + 1, Up).pad_around(0.5).box()
-%...     attach(markup, leaf)
-%...
-%>>> show(score)
-%\end{lstlisting}
-%\includegraphics{assets/lilypond-a8c80733c1d89558f3f0c4e69eec6409.pdf}
-%%%% ABJADBOOK END %%%
-
 \begin{figure*}
     \centering
     \makebox[\textwidth]{\includegraphics[height=.8\paperheight]{assets/armilla-page-8.pdf}}
@@ -791,16 +766,6 @@ open-source community. As described previously, the extension of an existing
 language informs the project as a first principle. The following best practices
 from the open-source community have also positively impacted the project and
 might be helpful in the development of other music software systems.
-
-\subsection{Extension instead of Reinvention}
-
-Our decision to implement Abjad as an extension to an existing
-programming language (rather than inventing yet another domain-specific
-language) originates in the belief that music software systems work better when
-they accept the established fundamentals of programming\footnote{Programming
-fundamentals include things like the ways variables are created, references are
-handled, loops are structured and so on.} rather than introducing custom syntax
-for programming basics.
 
 \subsection{Automated Regression Testing}
 
