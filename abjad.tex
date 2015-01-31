@@ -707,11 +707,10 @@ show(upper_staff)
 \includegraphics{assets/lilypond-dcce2b5927dd4f606034c3efcde7da2e.pdf}
 %%% ABJADBOOK END %%%
 
-Composers can also select components through iteration. The top-level
-\texttt{iterate()} function exposes Abjad's score iteration interface which
-provides a collection of methods for iterating over the components in score
+\noindent The top-level \texttt{iterate()} function exposes Abjad's score iteration interface. This interface
+provides a collection of methods for iterating over the components in a score
 according to various criteria. Such criteria include filtering by component
-class, grouping by logical tie, and time-wise traversal:\footnote{A logical tie
+class, groups of tied notes and by attack point order:\footnote{A logical tie
 is a selection of one or more leaf components which represent all of the
 components tied together by zero or more ties. A single note, untied, is
 considered a \emph{trivial} logical tie.}
