@@ -11,7 +11,7 @@ skip-rendering:
 	pdflatex abjad.tex
 
 clean:
-	rm -Rif assets
+	rm assets/lilypond-*.pdf
 
 compile:
 	pdflatex abjad.tex
