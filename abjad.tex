@@ -552,13 +552,7 @@ show(rhythm_maker, divisions=divisions)
 %%% ABJADBOOK END %%%
 
 \noindent Once instantiated, rhythm makers can be used over and over again with
-different input, a pattern used pervasively in Abjad: maker classes as
-object-oriented, partially-evaluated functions. By automating the instantiation
-of complete tupletted, beamed and tied rhythmic score artifacts, rhythm makers
-allow composers to focus on rhythmic structures as compositional materials
-without becoming ensnared in the vagaries of notation. Rhythm makers are
-classes, and they can be subclassed and extended to customize behavior. Like
-other objects, they can be passed as parameters to configure larger makers.
+different input:
 
 \begin{comment}
 <abjad>
@@ -592,6 +586,14 @@ show(rhythmic_score)
 \end{lstlisting}
 \includegraphics{assets/lilypond-89acf493fafea6ee83e3032bbed09718.pdf}
 %%% ABJADBOOK END %%%
+
+a pattern used pervasively in Abjad: maker classes as
+object-oriented, partially-evaluated functions. By automating the instantiation
+of complete tupletted, beamed and tied rhythmic score artifacts, rhythm makers
+allow composers to focus on rhythmic structures as compositional materials
+without becoming ensnared in the vagaries of notation. Rhythm makers are
+classes, and they can be subclassed and extended to customize behavior. Like
+other objects, they can be passed as parameters to configure larger makers.
 
 \section{Input flexibility} \label{sec:input-flexibility}
 
