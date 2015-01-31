@@ -709,8 +709,8 @@ show(lower_staff)
 
 \noindent The top-level \texttt{iterate()} function exposes Abjad's score
 iteration interface. This interface provides a collection of methods for
-iterating over the components in a score in different ways. For example, only
-the \texttt{Note} objects can be selected from the lower staff:
+iterating over the components in a score in different ways. For example, all
+notes can be selected from a single staff:
 
 \begin{comment}
 <abjad>
@@ -763,7 +763,7 @@ show(score)
 \includegraphics{assets/lilypond-a692b35a07435259861a4299267be394.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent An entire score can be iterated in attack-point order:
+\noindent All notes and rests can be iterated in attack-point order:
 
 \begin{comment}
 <abjad>
