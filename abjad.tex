@@ -495,51 +495,12 @@ compositional intuition that then requires detailed attention and elaboration.
 Abjad invites composers to implement factories as a way of generalizing and encapsulating parts of one's own compositional process. In this way, composers can extend the system as they work to implement their own models of composition. Abjad also provides a variety of factory functions and factory classes that exemplify this way of working. These range from simple note-generating functions, like \texttt{make\_notes()}, which
 combine sequences of pitches and rhythms to generate patterned selections
 of notes and rests, to more complexly-configured maker classes for
-creating nuanced rhythmic patterns or entire scores:
-
-\begin{comment}
-Factories generalize and encapsulate
-processes to enable the parametric exploration of material.
-\end{comment}
-
-\begin{comment}
-<abjad>
-notes = scoretools.make_notes([0, 1, 4, 7], [(1, 4)],)
-staff = Staff(notes)
-show(staff)
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> notes = scoretools.make_notes([0, 1, 4, 7], [(1, 4)],)
->>> staff = Staff(notes)
->>> show(staff)
-\end{lstlisting}
-\includegraphics{assets/lilypond-64155bcaa384109d40ae2616a2224dd1.pdf}
-%%% ABJADBOOK END %%%
+creating nuanced rhythmic patterns or entire scores.
 
 \noindent Abjad's \emph{rhythm makers} are factory classes which, once
 configured, can be called like functions to procedurally inscribe rhythms into
 a series of \emph{divisions}. The \texttt{NoteRhythmMaker} fills in divisions
 with notes, tied as necessary, to equal the duration of those divisions.
-
-\begin{comment}
-<abjad>
-divisions = [(3, 8), (5, 16), (1, 4), (3, 16)]
-rhythm_maker = rhythmmakertools.NoteRhythmMaker()
-show(rhythm_maker, divisions=divisions)
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> divisions = [(3, 8), (5, 16), (1, 4), (3, 16)]
->>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
->>> show(rhythm_maker, divisions=divisions)
-\end{lstlisting}
-\includegraphics{assets/lilypond-358b2f51787297a1dbc4423c1c37374e.pdf}
-%%% ABJADBOOK END %%%
 
 \noindent Other rhythm makers, such as Abjad's \texttt{TaleaRhythmMaker}, can
 create even more complex rhythmic output, integrating configurable patterns of
