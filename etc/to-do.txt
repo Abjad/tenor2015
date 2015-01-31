@@ -39,3 +39,23 @@ earlier systems that analyzed or created phrase, figure, texture.
 
 14. Find a way to indent the code and notation examples ever so slightly (maybe
 three fixed-width spaces).
+
+15. Work the phrase 'stand-alone application' into the taxonomy.
+
+16. Create acknowledgments section. Thank the LilyPond developers. Thank the
+Python community. Thank our own user community.
+
+things possible in conclusion: return to valorizing agnosticism; return to
+valorizing (parametric) exploration; notational foundation; exhort composers to
+implement one's own model of composition; congratulate the status of the
+notation api; talk about the fact that the developers of the system are all
+composers; talk about abjad bringing the power of programming to composition;
+the composer-driven underpinnings of the project; what drives the development
+of the project are our own needs as composers; do we mention that the system is
+probabaly most attractive to composers who are already programmers? many
+different composers can use these things in many different ways: there's a
+feedback loop available here that may not be available under other regimes of
+composition. there is a development roadmap: the roadmap contains work on
+modeling document preparation (primarily for reasons of producing large scores
+with many parts) extending the api with increasingly many classes and functions
+that generate the intermediate musical structures introduced in the paper.
