@@ -263,7 +263,10 @@ straightforward way. Abjad is implemented as a Python package;\footnote{See the
 Python Package Index for extensions to Python for purposes as diverse as
 creative writing and aeronautical engineering. The Python Package Index
 contains 54,306 packages at the time or writing and is available at
-\textit{https://pypi.python.org}.} composers work with Abjad exactly the same
+\textit{https://pypi.python.org}.}\footnote{Designing Abjad as an extension to Python makes hundreds of print and Web Python
+resources relevant to composers working in Abjad. The global
+community of developers working in Python also becomes available to composers,
+and vice versa.} composers work with Abjad exactly the same
 way developers work with all the other packages available for the language. In
 the most common case this means opening a file, writing code and saving the
 file:
@@ -794,7 +797,7 @@ behaviors implemented the same way against different classes produce
 corresponding output. Developers run the entire battery of tests at the start
 of every development session. No new features are accepted as part of the Abjad
 codebase without tests authored to document changes to the system. Continuous
-integration testing is handled by Travis CI to ensure that all tests pass after every commit from every developer.
+integration testing is handled by Travis CI to ensure that all tests pass after every commit from every core developer and newcomer to the project alike.
 For \texttt{pytest} see \textit{http://pytest.org}. For Travis CI see
 \textit{https://travis-ci.org}.} The presence of automated regression tests acts as an incentive to new contributors
 to the system (who can test whether proposed
@@ -818,12 +821,6 @@ automated tests alone will not ensure the continued development of any software
 system, adherence to the testing practices of the open-source community
 constitutes the most effective hedge available to music software systems
 developers to fend against project abandonment in the medium and long term.
-
-% extensibility
-
-As an open-source project, composers and researchers can contribute changes via
-git pull requests. A process of continuous integration and online version
-control simplifies this contribution process.
 
 % language independence
 
