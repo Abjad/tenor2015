@@ -766,10 +766,9 @@ show(score)
 
 \begin{comment}
 <abjad>
-iterator = iterate(score).by_logical_tie(
-    nontrivial=True, pitched=True)
-for logical_tie in iterator:
-    attach(Fermata(), logical_tie.tail)
+for logical_tie in iterate(score).by_logical_tie():
+    if 1 < len(logical_tie):
+        attach(Fermata(), logical_tie.tail)
 
 show(score)
 </abjad>
@@ -777,10 +776,9 @@ show(score)
 
 %%% ABJADBOOK START %%%
 \begin{lstlisting}
->>> iterator = iterate(score).by_logical_tie(
-...     nontrivial=True, pitched=True)
->>> for logical_tie in iterator:
-...     attach(Fermata(), logical_tie.tail)
+>>> for logical_tie in iterate(score).by_logical_tie():
+...     if 1 < len(logical_tie):
+...         attach(Fermata(), logical_tie.tail)
 ...
 >>> show(score)
 \end{lstlisting}
@@ -790,9 +788,9 @@ show(score)
 \begin{comment}
 <abjad>
 iterator = iterate(score).by_timeline()
-for index, component in enumerate(iterator):
-    markup = Markup(index, Up).pad_around(0.5).box()
-    attach(markup, component)
+for i, leaf in enumerate(iterator):
+    markup = Markup(i + 1, Up).pad_around(0.5).box()
+    attach(markup, leaf)
 
 show(score)
 </abjad>
@@ -801,18 +799,18 @@ show(score)
 %%% ABJADBOOK START %%%
 \begin{lstlisting}
 >>> iterator = iterate(score).by_timeline()
->>> for index, component in enumerate(iterator):
-...     markup = Markup(index, Up).pad_around(0.5).box()
-...     attach(markup, component)
+>>> for i, leaf in enumerate(iterator):
+...     markup = Markup(i + 1, Up).pad_around(0.5).box()
+...     attach(markup, leaf)
 ...
 >>> show(score)
 \end{lstlisting}
-\includegraphics{assets/lilypond-2456d51cfca254abae0bf44f6030df7a.pdf}
+\includegraphics{assets/lilypond-cab0e364ff6f8132f4f5ea06b1e3a947.pdf}
 %%% ABJADBOOK END %%%
 
 \begin{figure*}
     \centering
-    \makebox[\textwidth]{\includegraphics[height=.8\paperheight]{armilla-page-8.pdf}}
+    \makebox[\textwidth]{\includegraphics[height=.8\paperheight]{assets/armilla-page-8.pdf}}
     \caption{
         Page 8 from Josiah Wolf Oberholtzer's \emph{Invisible Cities (ii):
         Armilla} for two violas (2015), created with tools extending Abjad.
