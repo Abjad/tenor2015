@@ -707,33 +707,6 @@ show(upper_staff)
 \includegraphics{assets/lilypond-dcce2b5927dd4f606034c3efcde7da2e.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent A score container's leaves --- the notes, chords and rests at the bottom of the
-score hierarchy which cannot, by definition, contain any other score component
---- can be selected by that container's \texttt{select\_leaves()} method.
-
-\begin{comment}
-<abjad>
-for leaf in lower_staff.select_leaves():
-    print(repr(leaf))
-
-</abjad>
-\end{comment}
-
-%%% ABJADBOOK START %%%
-\begin{lstlisting}
->>> for leaf in lower_staff.select_leaves():
-...     print(repr(leaf))
-...
-Note('c8')
-Rest('r8')
-Note('b8')
-Rest('r8')
-Note('gf8')
-Rest('r4')
-Note('cs8')
-\end{lstlisting}
-%%% ABJADBOOK END %%%
-
 Composers can also select components through iteration. The top-level
 \texttt{iterate()} function exposes Abjad's score iteration interface which
 provides a collection of methods for iterating over the components in score
