@@ -225,19 +225,18 @@ Abjad instead adds a computational model of music notation to the Python
 programming language. By designing Abjad as an extension to one of the most
 widely-used programming languages in the world, we hope to make a considerable
 collection of programming best practices available to composers in a
-straightforward way. Abjad is implemented as a Python package;\footnote{See the
+straightforward way. Abjad is implemented as a Python package.\footnote{See the
 Python Package Index for extensions to Python for purposes as diverse as
 creative writing and aeronautical engineering. The Python Package Index
 contains 54,306 packages at the time or writing and is available at
-\textit{https://pypi.python.org}.}\footnote{Designing Abjad as an extension to Python makes hundreds of print and Web Python
-resources relevant to composers working in Abjad. The global
+\textit{https://pypi.python.org}.}\footnote{Designing Abjad as an extension to Python makes hundreds of print and Web resources relevant to composers working in Abjad. The global
 community of developers working in Python also becomes available to composers,
 and vice versa.}\footnote{Abjad is an importable Python library. It can be used in whole or in part as a
-component of any Python-compatible system. For example, Abjad supports IPython Notebook, a web-based interactive computational environment combining code execution, text, mathematics, plots
+component of any Python-compatible system. For example, Abjad supports IPython Notebook, a Web-based interactive computational environment combining code execution, text, mathematics, plots
 and rich media into a single document. Notational output from Abjad can be
 transparently captured and embedded into an IPython Notebook that has
 loaded Abjad's IPython Notebook extension. See \textit{http://ipython.org/notebook.html}.}
-composers work with Abjad exactly the same
+Composers work with Abjad exactly the same
 way developers work with all the other packages available for the language. In
 the most common case this means opening a file, writing code and saving the
 file:
@@ -359,15 +358,15 @@ Abjad models musical notation with \emph{components}, \emph{spanners} and
 three families. Abjad models notes, rests and chords as classes that can be
 added into the container-like elements of music notation, such as tuplets,
 measures, voices, staves and complete scores.\footnote{Abjad uses the term
-`leaf' to refer generally to notes, rests, and chords. This term, borrowed from
+\textit{leaf} to refer generally to notes, rests, and chords. This term, borrowed from
 graph theory, reflects the fact that notes, rests and chords cannot contain
 other elements of music notation.} Spanners model notational constructs that
 cross different levels of hierarchy in the score tree, such as beams, slurs and
 glissandi. Indicators model objects attached to a single component, such as
 articulations, dynamics and time signatures.\footnote{Abjad indicators are
 scoped. Indicator scoping models how all notes in a voice can be marked
-\emph{forte} until another note is marked \emph{piano}. We have generalized the
-scoping behavior of indicators, allowing composers to annotate score structures
+\emph{forte} until another note is marked \emph{piano}. The
+scoping behavior of indicators is generalized to allow composers to annotate score structures
 by attaching arbitrary non-notating objects like dictionaries or custom classes
 to any component.} Composers arrange components hierarchically into a score
 tree with spanners and indicators attached to components in the tree.
@@ -378,9 +377,7 @@ Abjad lets composers build scores from the bottom up. When working bottom-up,
 composers create individual notes, rests and chords to be grouped into tuplets,
 measures and voices that may then be included in even high-level containers,
 such as staves and scores.\footnote{Unlike many notation packages, Abjad does
-not require composers to structure music into measures. Abjad's tuple, voice,
-staff, and score container components can hold leaves (notes, rests and chords)
-directly.}\footnote{Notes, rests and chords may be initialized with pitches named according to either American or European conventions, with the pitch numbers of American pitch-class theory or from combinations of Abjad pitch and duration objects.} Abjad implements this style of component aggregation via a
+not require composers to structure music into measures. All of Abjad's containers can hold leaves notes, rests and chords directly.}\footnote{Notes, rests and chords may be initialized with pitches named according to either American or European conventions, with the pitch numbers of American pitch-class theory or from combinations of Abjad pitch and duration objects.} Abjad implements this style of component aggregation via a
 collection of methods which append, extend or insert into container-like
 components as though they were lists:\footnote{Abjad's container interface
 derives from Python's mutable sequence protocol, which specifies an interface
