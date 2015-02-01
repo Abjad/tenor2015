@@ -628,7 +628,7 @@ ways: by name, numeric indices or iteration.
 A single operation, such as transposing pitches or attaching articulations,
 can then be mapped onto the entirety of a selection.
 
-\noindent Consider the two-staff score created earlier. Because both staves were given
+Consider the two-staff score created earlier. Because both staves were given
 explicit names, the upper staff can be selected by name:
 
 \begin{comment}
@@ -738,7 +738,7 @@ language informs the project as a first principle. The following other developme
 from the open-source community have also positively impacted the project and
 might be helpful in the development of other music software systems.
 
-The music software systems literature investigated in preparing this report
+The literature investigated in preparing this report
 remains overwhelmingly silent on questions of software testing. None of the
 sources cited in this article reference software test methodologies. The same
 appears to be true for the larger list of sources included in
@@ -752,17 +752,17 @@ improvements in software test methods developed over the previous decades but
 have, for whatever reasons, remained quiet on the matter in the publication
 record. Perhaps the culture of software best practices now widely followed in
 the open-source community simply has not yet arrived in the field of music
-software systems development (and especially in the development of music
-software systems designed for noncommercial applications).
+software systems development (and especially in the development of systems
+designed for noncommercial applications).
 
 The use of automated regression testing in Abjad's development makes apparent
 the way in which tests encourage efficient development and robust project
 continuance.\footnote{Abjad comprises an automated battery of 9,119 unit tests
 and 8,528 documentation tests. Unit tests are executed by \texttt{pytest}.
 Documentation tests are executed by the \texttt{doctest} module included in
-Python's standard library. Parametrized tests are provided to ensure that
-behaviors implemented the same way against different classes produce
-corresponding output. Developers run the entire battery of tests at the start
+Python's standard library. Parameterized tests ensure that
+different classes implement similar behaviors in a consistent way.
+Developers run the entire battery of tests at the start
 of every development session. No new features are accepted as part of the Abjad
 codebase without tests authored to document changes to the system. Continuous
 integration testing is handled by Travis CI to ensure that all tests pass after every commit from every core developer and newcomer to the project alike.
@@ -780,7 +780,7 @@ Abjad codebase has been rewritten dozens of times. This freedom to refactor is
 possible only because of the approach to automated regression testing Abjad has
 borrowed from the larger open-source community.
 
-Testing also benefits project continuance when the original developers of a
+Testing benefits project continuance when the original developers of a
 music software system can no longer develop the system. Automated regression
 tests help make possible a changing of the guard from one set of developers to
 another. Automated tests serve as a type of functional specification of how a

@@ -7,3 +7,9 @@ because we want to point out that this paper is very much an overview.
 3. Remember to test all URLs in the document.
 
 4. Find a place to explain FSC and why we created the acronym.
+
+##### for after r&r
+
+6. Consider adding concluding paragraph to section 6.
+
+7. Consider adding concluding paragraph to section 7.
