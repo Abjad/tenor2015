@@ -91,7 +91,7 @@ for Formalized Score Control}
   {\thirdauthor} {Carleton College \\
     {\tt \href{mailto:jeffrey.trevino@gmail.com}
         {jeffrey.trevino@gmail.com}}}
-  {\fourthauthor} {
+  {\fourthauthor} {Columbia University \\
     {\tt \href{mailto:vctradn@gmail.com}
         {vctradn@gmail.com}}}
 
@@ -134,9 +134,10 @@ motivates a discussion of design priorities via examples of system use.
 \section{A Taxonomy} \label{sec:taxonomy}
 
 Many software systems implement models of music but few of these
-implement a model of notation.\footnote{Computational models of music might
-entail the representation of higher-level musical entities apparent in the acts
-of listening and analysis but absent in the symbols of notation themselves.
+implement a model of notation.
+Many music software systems 
+model higher-level musical entities apparent in the acts
+of listening and analysis while omitting any model of the symbols of music notation.
 Researchers and musical artists have modeled many such extrasymbolic musical
 entities, such as large-scale form and transition
 \cite{polansky1991morphological, uno1994temporal, dobrian1995algorithmic,
@@ -148,15 +149,16 @@ tension and resolution \cite{Melo2003, Wiggins1999, Foster:1995qa}, melody
 \cite{Nauert2007, Degazio:1996lh, Collins:2003bs}, timbre \cite{Xenakis:1991fu,
 Creasey:1996ye, Osaka2004}, temperament \cite{Seymour:2007qo, Graf:2006il} and
 ornamentation \cite{Ariza:2003zt, Chico-Topfer:1998jl}. This work overlaps
-fruitfully with analysis tasks, and models of listening and cognition can
+fruitfully with analysis tasks because models of listening and cognition can
 enable novel methods of high-level musical structures and transformations, like
 dramatic direction, tension, and transition between sections
-\cite{Collins2009}.} Music software systems that model notation can be
-classified according to their generative tasks.\footnote{Software production
+\cite{Collins2009}.
+
+Software production
 exists as an organizationally designed feedback loop between production values
-and implementation \cite{Derniame:1999fk}, and it is possible to understand a
+and implementation \cite{Derniame:1999fk}. It is possible to understand a
 system by understanding the purpose for which it was initially designed. This
-purpose can be termed a software system's generative task. In the analysis of
+purpose can be termed a software system's generative task. In the classfication of
 systems created for use by artists, this priority yields a dilemma instantly,
 as analyses that explain a system's affordances with reference to intended
 purpose must contend with the creative use of technology by artists: a system's
@@ -177,7 +179,7 @@ while focusing more ostensibly on a model of notation, or focusing on the
 abstract modeling of composition without a considered link to a model of
 notation. Generative task explains a given system's balance between
 computational models of composition and notation by assuming a link between
-intended use and system development.}
+intended use and system development.
 
 Many notation systems --- such as Finale, Sibelius, SCORE \cite{Smith:1972mw},
 Igor, Berlioz, Lilypond \cite{Nienhuys:2003ve}, GUIDO \cite{Hoos:1998bd}
@@ -230,36 +232,33 @@ recognition (NIFF) \cite{niff1995niff}. Since its release in 2004, MusicXML has
 become a valid interchange format for over 160 applications and maintains a
 relatively application-agnostic status, as it was designed with the generative
 task of acting as an interchange format between variously-tasked systems
-\cite{Good:2001if}.\footnote{An attempt to survey more comprehensively the
+\cite{Good:2001if}.
+
+An attempt to survey more comprehensively the
 history of object-oriented notation systems for composition, in the context of
 the broader history of object-oriented programming, lies beyond the scope of
 this paper but has recently been undertaken
-elsewhere\cite{trevino2013compositional}.}
+elsewhere\cite{trevino2013compositional}.
 
 \section{Abjad basics} \label{sec:example}
 
 Abjad is not a stand-alone application. Nor is Abjad a programming language.
-Abjad instead adds a computational model of music notation to the Python
-programming language. By designing Abjad as an extension to one of the most
-widely-used programming languages in the world, we hope to make a considerable
-collection of programming best practices available to composers in a
-straightforward way. Abjad is implemented as a Python package.\footnote{See the
+Abjad instead adds a computational model of music notation to Python, one of the most widely used 
+programming languages currently available. Abjad's design as a standard extension to Python makes hundreds of print and Web programming resources
+relevant to composers and further helps to make the global communities of software developers and composers available to each other.\footnote{See the
 Python Package Index for extensions to Python for purposes as diverse as
 creative writing and aeronautical engineering. The Python Package Index
 contains 54,306 packages at the time or writing and is available at
-\textit{https://pypi.python.org}.}\footnote{Designing Abjad as an extension to
-Python makes hundreds of print and Web resources relevant to composers working
-in Abjad. The global community of developers working in Python also becomes
-available to composers, and vice versa.}\footnote{Abjad is an importable Python
+\textit{https://pypi.python.org}.}\footnote{Abjad is an importable Python
 library. It can be used in whole or in part as a component of any
 Python-compatible system. For example, Abjad supports IPython Notebook, a
 Web-based interactive computational environment combining code execution, text,
 mathematics, plots and rich media into a single document. Notational output
 from Abjad can be transparently captured and embedded into an IPython Notebook
 that has loaded Abjad's IPython Notebook extension. See
-\textit{http://ipython.org/notebook.html}.} Composers work with Abjad exactly
-the same way developers work with all the other packages available for the
-language. In the most common case this means opening a file, writing code and
+\textit{http://ipython.org/notebook.html}.}
+Composers work with Abjad exactly
+the same as with any other Python package. In the most common case this means opening a file, writing code and
 saving the file:
 
 \begin{comment}
@@ -304,8 +303,7 @@ def make_nested_tuplet(
 \end{lstlisting}
 %%% ABJADBOOK END %%%
 
-\noindent The contents of the file can then be used in other Python files or in
-an interactive session:
+\noindent The classes, functions and other identifiers defined in the file can then be used in other Python files or in an interactive session:
 
 \begin{comment}
 <abjad>
@@ -326,51 +324,29 @@ show(rhythmic_staff)
 \noindent\includegraphics{assets/lilypond-a8fcfb8f401a81a10afeb01a4f9f03ab.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent This paper demonstrates most examples in Python's interactive console
-because the console helps distinguish input from output;\footnote{Lines
-preceded by the \texttt{>>>} prompt are passed to Python for interpretation;
-any output generated by the line of code appears immediately after. The example
+\noindent This paper demonstrates examples in Python's interactive console
+because the console helps distinguish input from output. Lines
+preceded by the \texttt{>>>} prompt are passed to Python for interpretation and any output generated by the line of code appears immediately after. The example
 above creates a tuplet with the tuplet-making function defined earlier and
 calls Abjad's top-level \texttt{show()} function to generate a PDF of the
-result.} however, composers work with Abjad primarily by typing
+result. But note that composers work with Abjad primarily by typing
 notationally-enabled Python code into a collection of interrelated files and
 managing those files as a project grows to encompass the composition of an
-entire score.\footnote{The importance Abjad attaches to composers' ability to
-notate the objects they work with during composition should be underscored
-before proceeding to more detailed examples. Abjad reflects this priority in
-its illustration protocol, which conventionalizes the way developers equip
-Abjad classes with notation output and the way composers notate objects during
-composition. Abjad's top-level \texttt{show()} function, included in most of
-the examples in this article, implements the composer-facing part of this
-protocol and provides a unified way to notate any object in the system. A
-collection of \texttt{\_\_illustrate\_\_()} methods implement the
-developer-facing part of this protocol and define the way any given class
-should produce notation. Under the most common pattern, Abjad transforms an
-object into LilyPond input code and then calls LilyPond to render the input as
-a PDF.}
+entire score.
 
-\begin{comment}
-\footnote{Python describes common informal
-interfaces to working with objects as \emph{protocols}. Important protocols
-include the \emph{iterator protocol} for iterating over the contents of a
-container-like object, the \emph{sequence protocol} for getting items and
-length from a container-like object and the \emph{mutable container protocol}
-for mutating the contents of a container-like object.}
-\end{comment}
-
-\begin{comment}
-\footnote{Abjad's illustration protocol decouples illustration logic
-from the other functions of a class. An important consequence of this is that
-developers can illustrate classes with LaTeX or GraphViz or any collection of
-applications, whether or not LilyPond is included in the tool chain. We find
-LilyPond superior for a formalized score control system like Abjad for many
-reasons, ranging from LilyPond's powerful model of rhythmic timekeeping to the
-high quality of LilyPond output. But should the need arise to replace LilyPond
-with a different typesetting engine, the composer-facing  interface provided by
-\texttt{show()} will remain the same. The priority is that composers be able to
-illustrate compositional objects. LilyPond simply happens to be the best
-resource available to achieve our goals.}
-\end{comment}
+%\footnote{The importance Abjad attaches to composers' ability to
+%notate the objects they work with during composition should be underscored
+%before proceeding to more detailed examples. Abjad reflects this priority in
+%its illustration protocol, which conventionalizes the way developers equip
+%Abjad classes with notation output and the way composers notate objects during
+%composition. Abjad's top-level \texttt{show()} function, included in most of
+%the examples in this article, implements the composer-facing part of this
+%protocol and provides a unified way to notate any object in the system. A
+%collection of \texttt{\_\_illustrate\_\_()} methods implement the
+%developer-facing part of this protocol and define the way any given class
+%should produce notation. Under the most common pattern, Abjad transforms an
+%object into LilyPond input code and then calls LilyPond to render the input as
+%a PDF.}
 
 \section{The Abjad object model} \label{sec:object-model}
 
@@ -378,39 +354,36 @@ Abjad models musical notation with \emph{components}, \emph{spanners} and
 \emph{indicators}. Every notational element in Abjad belongs to one of these
 three families. Abjad models notes, rests and chords as classes that can be
 added into the container-like elements of music notation, such as tuplets,
-measures, voices, staves and complete scores.\footnote{Abjad uses the term
-\textit{leaf} to refer generally to notes, rests, and chords. This term,
-borrowed from graph theory, reflects the fact that notes, rests and chords
-cannot contain other elements of music notation.} Spanners model notational
+measures, voices, staves and complete scores.
+%\footnote{Abjad uses the term
+%\textit{leaf} to refer generally to notes, rests, and chords. This term,
+%borrowed from graph theory, reflects the fact that notes, rests and chords
+%cannot contain other elements of music notation.}
+Spanners model notational
 constructs that cross different levels of hierarchy in the score tree, such as
-beams, slurs and glissandi. Indicators model objects attached to a single
-component, such as articulations, dynamics and time signatures.\footnote{Abjad
-indicators are scoped. Indicator scoping models how all notes in a voice can be
-marked \emph{forte} until another note is marked \emph{piano}. The scoping
-behavior of indicators is generalized to allow composers to annotate score
-structures by attaching arbitrary non-notating objects like dictionaries or
-custom classes to any component.} Composers arrange components hierarchically
+beams, slurs and glissandi. Indicators model objects like articulations, dynamics and time signatures that attach to a single
+component.
+%\footnote{Abjad
+%indicators are scoped. Indicator scoping models how all notes in a voice can be
+%marked \emph{forte} until another note is marked \emph{piano}. The scoping
+%behavior of indicators is generalized to allow composers to annotate score
+%structures by attaching arbitrary non-notating objects like dictionaries or
+%custom classes to any component.}
+Composers arrange components hierarchically
 into a score tree with spanners and indicators attached to components in the
-tree.
+tree.\footnote{Abjad chords
+aggregate note-heads instead of notes. This corrects a modeling problem sometimes present in other music software systems: if chords aggregate multiple notes and every note has a stem then how is it that chords avoid multiple stems? Abjad chords implement the container interface described below to add and remove note-heads to and from chords.}
 
 \section{Bottom-up construction} \label{sec:bottom-up}
 
 Abjad lets composers build scores from the bottom up. When working bottom-up,
-composers create individual notes, rests and chords\footnote{In Abjad, chords
-aggregate \emph{note heads} rather than notes. Likewise, notes aggregate a
-single note head. Note heads are not score components, therefore chords are not
-treated like other score containers.} to be grouped into tuplets, measures or
+composers create individual notes, rests and chords
+to be grouped into tuplets, measures or
 voices that may then be included in even higher-level containers, such as
-staves and scores.\footnote{Unlike many notation packages, Abjad does not
-require composers to structure music into measures. All of Abjad's containers
-can hold leaves notes, rests and chords directly.}\footnote{Notes, rests and
-chords may be initialized with pitches named according to either American or
-European conventions, with the pitch numbers of American pitch-class theory or
-from combinations of Abjad pitch and duration objects.} Abjad implements this
-style of component aggregation via a collection of methods which append, extend
-or insert into container-like components as though they were
-lists:\footnote{Abjad's container interface derives from Python's mutable
-sequence protocol, which specifies an interface to list-like objects.}
+staves and scores.
+Abjad affords this
+style of component aggregation via a container interface which derives from Python's mutable sequence protocol. Python's mutable sequence protocol specifies an interface to list-like objects. Abjad's container interface implements a collection of methods which append, extend
+or insert into Abjad containers:
 
 \begin{comment}
 <abjad>
@@ -457,15 +430,23 @@ show(score)
 \noindent\includegraphics{assets/lilypond-45865c9ff19c72c1c9f7a6f4234e8546.pdf}
 %%% ABJADBOOK END %%%
 
-\noindent Ties, slurs and other spanners attach to score components via Abjad's
+\noindent Notes and
+chords may be initialized with pitches named according to either American or
+European conventions. Notes and chords may also be initialized with the pitch numbers of American pitch-class theory or
+from combinations of Abjad pitch and duration objects.
+Unlike many notation packages, Abjad does not
+require composers to structure music into measures. All Abjad containers
+can hold notes, rests and chords directly.
+
+Ties, slurs and other spanners attach to score components via Abjad's
 top-level \texttt{attach()} function. The same is true for articulations, clefs
-and other indicators. For example, after selecting the leaves from each staff,
+and other indicators. For example, after selecting the notes, rests and chords from each staff,
 individual components and slices of contiguous components may be selected by
-their indices within each leaf selection.\footnote{Python allows indexing into
+their indices within each selection.\footnote{Python allows indexing into
 sequences by both positive and negative indices. Positive indices count from
 the beginning of the sequence, starting at 0, while negative indices count from
 the end of the sequence, with -1 being the last item in the sequence and -2 the
-second-to-last. Subsegments of a sequence may be retrieved by \emph{slicing}
+second-to-last. Subsegments of a sequence may be retrieved by slicing
 with an optional start and optional stop index. The slice indicated by
 \texttt{[1:-1]} would retrieve all of the items in a sequence starting from the
 second and going up until, but not including, the last. The slice indicated by
@@ -518,7 +499,7 @@ For some composers this may be a regular or even predominant way of working.
 Other composers may notice patterns in their own compositional process when
 they work bottom-up and may find ways to formalize these patterns into classes
 or functions that generalize their work; the next section describes some ways
-composers might do this.
+composers do this.
 
 %The ability to combine score components one by one into ever-larger aggregates
 %gives composers fine-grained control over their compositional structures;
@@ -729,11 +710,7 @@ show(score)
 %%% ABJADBOOK END %%%
 
 \noindent Groups of tied notes can be selected from an entire
-score:\footnote{Abjad uses the term \emph{logical tie} to refer to a selection
-of one or more leaf components which represent all of the components tied
-together by zero or more ties; a single note, untied, is considered a
-\emph{trivial} logical tie.}
-
+score. Abjad uses the term logical tie to refer to the collection of notes or chords joined together by consecutive ties. The `logical' qualifier points to the fact that Abjad considers untied notes and untied chords as logical ties of length 1, which makes it possible to select untied notes and chords together with tied notes and chords in a single method call:
 
 \begin{comment}
 <abjad>
@@ -784,11 +761,9 @@ The literature investigated in preparing this report remains overwhelmingly
 silent on questions of software testing. None of the sources cited in this
 article reference software test methodologies. The same appears to be true for
 the larger list of sources included in
-\cite{trevino2013compositional}.\footnote{Chris Ariza's work developing
-AthenaCL \cite{Ariza2005} and the development of Music21 \cite{Ariza2010} led
-by Michael Cuthbert are important exceptions. Both projects are implemented in
-Python and both projects feature approaches to testing aligned to those
-outlined above.} Why should this be the case? One possibility is that authors
+\cite{trevino2013compositional}.\footnote{AthenaCL \cite{Ariza2005} and Music21 \cite{Ariza2010} are important exceptions. Both projects are implemented in
+Python and both projects feature approaches to testing in line with those
+outlined here.} Why should this be the case? One possibility is that authors
 of music software systems have, in fact, availed themselves of important
 improvements in software test methods developed over the previous decades but
 have, for whatever reasons, remained quiet on the matter in the publication
@@ -799,26 +774,26 @@ designed for noncommercial applications).
 
 The use of automated regression testing in Abjad's development makes apparent
 the way in which tests encourage efficient development and robust project
-continuance.\footnote{Abjad comprises an automated battery of 9,119 unit tests
-and 8,528 documentation tests. Unit tests are executed by \texttt{pytest}.
+continuance. Abjad comprises an automated battery of 9,119 unit tests
+and 8,528 documentation tests. Unit tests are executed by \texttt{pytest}.\footnote{http://pytest.org}
 Documentation tests are executed by the \texttt{doctest} module included in
 Python's standard library. Parameterized tests ensure that different classes
 implement similar behaviors in a consistent way. Developers run the entire
 battery of tests at the start of every development session. No new features are
 accepted as part of the Abjad codebase without tests authored to document
-changes to the system. Continuous integration testing is handled by Travis CI
+changes to the system. Continuous integration testing is handled by Travis CI\footnote{https://travis-ci.org}
 to ensure that all tests pass after every commit from every core developer and
-newcomer to the project alike. For \texttt{pytest} see
-\textit{http://pytest.org}. For Travis CI see \textit{https://travis-ci.org}.}
+newcomer to the project alike.
+
 The presence of automated regression tests acts as an incentive to new
 contributors to the system (who can test whether proposed changes to the system
 work correctly with existing features) and greatly increases the rate at which
 experienced developers can refactor the system during new feature development.
-Abjad currently comprises about 178,000 lines of code, and the Abjad
+Abjad currently comprises about 178,000 lines of code. The Abjad
 repository, hosted on GitHub,\footnote{https://github.com/Abjad/abjad} lists
 more than 8.7 million lines of code committed since the start of the project.
 This refactor ratio of about 50:1 means that each line of code in the Abjad
-codebase has been rewritten dozens of times. This freedom to refactor is
+codebase has been rewritten dozens of times. The freedom to refactor at this rate is
 possible only because of the approach to automated regression testing Abjad has
 borrowed from the larger open-source community.
 
